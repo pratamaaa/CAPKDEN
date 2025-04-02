@@ -199,9 +199,9 @@
 
                                     </div>
 
-                                    <!-- Step 3: Organisasi Pengusul -->
+                                    <!-- Step 3: Pengusul Calon Kalangan -->
                                     <div class="step">
-                                        <h5>3. Organisasi Pengusul</h5>
+                                        <h5>3. Pengusul Calon Kalangan</h5>
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Organisasi Pengusul</label>
 

@@ -8,57 +8,90 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Daftar Pengguna</h1>
+                        <h1 class="m-0">Daftar Pelamar</h1>
                     </div><!-- /.col -->
                     <!-- /.col -->
                 </div><!-- /.row -->
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
-                            <div class="card-header">
-                                <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal"
-                                    data-bs-target="#tambahDataModal">
-                                    Tambah Data
-                                </button>
-   
-                            </div>
+
                             <!-- /.card-header -->
-                            <div class="card-body table-responsive p-0">
+                            <div class="card-body table-responsive p-0" style="overflow-x: auto;">
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
-                                        <tr>
-                                            <th class="text-center">No</th>
-                                            <th class="text-center">Nama</th>
-                                            <th class="text-center">Username</th>
-                                            <th class="text-center">NIK</th>
-                                            <th class="text-center">Email</th>
-                                            <th class="text-center">Role</th>
-                                            <th class="text-center">Action</th>
+                                        <tr class="header-row">
+                                            <th class="align-top text-center" rowspan="3">No</th>
+                                            <th class="align-top text-center" rowspan="3">Foto Profile</th>
+                                            <th class="align-top text-center" rowspan="3">Nama</th>
+                                            <th class="align-top text-center" rowspan="3">NIK</th>
+                                            <th class="align-top text-center" rowspan="3">Tempat, Tanggal Lahir</th>
+                                            <th class="align-top text-center" rowspan="3">Jenis Kelamin</th>
+                                            <th class="align-top text-center" rowspan="3">Alamat</th>
+                                            <th class="align-top text-center" rowspan="3">No. Handphone</th>
+                                            <th class="align-top text-center" rowspan="3">Calon Kalangan</th>
+                                            <th class="text-center" colspan="9">Pendidikan</th>
+                                            <th class="text-center" colspan="4">Pengusul Calon Kalangan</th>
+                                        </tr>
+                                        <tr class="header-row">
+                                            <th class="text-center" colspan="3">Sarjana</th>
+                                            <th class="text-center" colspan="3">Magister</th>
+                                            <th class="text-center" colspan="3">Doktoral</th>
+                                            <th class="text-center" rowspan="3">Organisasi Pengusul</th>
+                                            <th class="text-center" rowspan="3">Rekomendasi Pakar-1</th>
+                                            <th class="text-center" rowspan="3">Rekomendasi Pakar-2</th>
+                                            <th class="text-center" rowspan="3">Rekomendasi Pakar-3</th>
+                                        </tr>
+                                        <tr class="header-row">
+                                            <th class="text-center" rowspan="3">Universitas</th>
+                                            <th class="text-center" rowspan="3">Jurusan</th>
+                                            <th class="text-center" rowspan="3">Lulus</th>
+                                            <th class="text-center" rowspan="3">Universitas</th>
+                                            <th class="text-center" rowspan="3">Jurusan</th>
+                                            <th class="text-center" rowspan="3">Lulus</th>
+                                            <th class="text-center" rowspan="3">Universitas</th>
+                                            <th class="text-center" rowspan="3">Jurusan</th>
+                                            <th class="text-center" rowspan="3">Lulus</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($data as $d)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $d->name }}</td>
-                                                <td>{{ $d->username }}</td>
-                                                <td>{{ $d->nik }}</td>
-                                                <td>{{ $d->email }}</td>
-                                                <td>{{ $d->role }}</td>
-                                                <td class="text-center">
-                                                    <button class="btn btn-primary editButton" data-id="{{ $d->id }}"
-                                                        data-nama="{{ $d->name }}" data-username="{{ $d->username }}"
-                                                        data-nik="{{ $d->nik }}" data-email="{{ $d->email }}"
-                                                        data-role="{{ $d->role }}" data-bs-toggle="modal"
-                                                        data-bs-target="#editDataModal">
-                                                        <i class="fas fa-pen"></i>
-                                                    </button>
-
-                                                    <button class="btn btn-danger deleteButton"
-                                                        data-id="{{ $d->id }}" data-nama="{{ $d->name }}">
-                                                        <i class="fas fa-trash-alt"></i>
-                                                    </button>
+                                                <td>
+                                                    @if (optional($d->userProfile)->pas_foto)
+                                                        <img src="{{ asset('uploads/pas_foto/' . $d->userProfile->pas_foto) }}"
+                                                            width="100">
+                                                    @else
+                                                        Belum diisi
+                                                    @endif
                                                 </td>
+                                                <td>{{ $d->userProfile->gelar_depan ?? 'Belum diisi' }}.
+                                                    {{ $d->userProfile->nama_lengkap ?? 'Belum diisi' }},
+                                                    {{ $d->userProfile->gelar_belakang ?? 'Belum diisi' }}
+                                                </td>
+                                                <td>{{ $d->userProfile->nik ?? 'Belum diisi' }}</td>
+                                                <td>{{ $d->userProfile->tempat_lahir ?? 'Belum diisi' }},
+                                                    {{ $d->userProfile->tanggal_lahir ?? 'Belum diisi' }}</td>
+                                                <td>{{ $d->userProfile->jenis_kelamin ?? 'Belum diisi' }}</td>
+                                                <td>{{ $d->userProfile->alamat ?? 'Belum diisi' }}</td>
+                                                <td>{{ $d->userProfile->no_handphone ?? 'Belum diisi' }}</td>
+                                                <td>{{ $d->userProfile->kalangan ?? 'Belum diisi' }}</td>
+                                                <td>{{ $d->userFiles->universitas_sarjana ?? 'Belum diisi' }}
+                                                </td>
+                                                <td>{{ $d->userFiles->jurusan_sarjana ?? 'Belum diisi' }}</td>
+                                                <td>{{ $d->userFiles->lulus_sarjana ?? 'Belum diisi' }}</td>
+                                                <td>{{ $d->userFiles->universitas_magister ?? 'Belum diisi' }}</td>
+                                                <td>{{ $d->userFiles->jurusan_magister ?? 'Belum diisi' }}</td>
+                                                <td>{{ $d->userFiles->lulus_magister ?? 'Belum diisi' }}</td>
+                                                <td>{{ $d->userFiles->universitas_doktoral ?? 'Belum diisi' }}</td>
+                                                <td>{{ $d->userFiles->jurusan_doktoral ?? 'Belum diisi' }}</td>
+                                                <td>{{ $d->userFiles->lulus_doktoral ?? 'Belum diisi' }}</td>
+                                                <td>{{ $d->userFiles->org_pengusul ?? 'Belum diisi' }}</td>
+                                                <td>{{ $d->userFiles->rek_pakar1 ?? 'Belum diisi' }}</td>
+                                                <td>{{ $d->userFiles->rek_pakar2 ?? 'Belum diisi' }}</td>
+                                                <td>{{ $d->userFiles->rek_pakar3 ?? 'Belum diisi' }}</td>
+
                                             </tr>
                                         @endforeach
 
@@ -300,6 +333,4 @@
         </div>
     </div>
     <!-- /.content-header -->
-
-
 @endsection

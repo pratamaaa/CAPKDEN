@@ -43,9 +43,10 @@ class UserFiles extends Model
     'surat_sehat',
     'skck'
     ];
-// Relasi ke tabel users
-public function user()
-{
-    return $this->belongsTo(User::class);
-}
+
+    // Relasi ke tabel users
+    public function user()
+        {
+            return $this->belongsTo(User::class, 'user_id', 'id');
+        }
 }

@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\UserProfile;
+use App\Models\UserFiles;
 use App\Models\PengumumanPdf;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
@@ -142,12 +143,12 @@ public function upl_pengumuman()
         'nama_lengkap' => 'required|string|max:255',
         'gelar_depan' => 'nullable|string|max:50',
         'gelar_belakang' => 'nullable|string|max:50',
-        'nik' => 'required|numeric|digits:16|unique:user_profiles,nik',
-        'tempat_lahir' => 'required|string|max:100',
-        'tanggal_lahir' => 'required|date',
-        'jenis_kelamin' => 'required|in:Laki-laki,Perempuan',
-        'alamat' => 'required|string',
-        'no_handphone' => 'required|numeric|digits_between:10,15',
+        'nik' => 'required|numeric|min:16|unique:user_profiles,nik',
+        'tempat_lahir' => 'nullable|string|max:255',
+        'tanggal_lahir' => 'nullable|date',
+        'jenis_kelamin' => 'nullable|in:Laki-laki,Perempuan',
+        'alamat' => 'nullable|string',
+        'no_handphone' => 'nullable|numeric|digits_between:10,15',
         'pas_foto' => 'nullable|image|mimes:jpeg,png,jpg|max:1024',
         'kalangan' => 'required|in:Akademisi,Industri,Teknologi,Lingkungan Hidup,Konsumen'
     ]);
@@ -167,5 +168,15 @@ public function upl_pengumuman()
     UserProfile::create($data);
 
     return redirect()->back()->with('success', 'Data berhasil diperbarui!');
+}
+
+public function daftarpelamar()
+{
+    $greeting = $this->getGreeting();
+    $data = User::where('role', 'user')
+    ->with(['userProfile', 'userFiles']) // Pastikan relasi di-load
+    ->get();
+    
+    return view('admin.daftarpelamar', compact('data', 'greeting'));
 }
 }

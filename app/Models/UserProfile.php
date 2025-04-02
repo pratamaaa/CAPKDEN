@@ -23,4 +23,9 @@ class UserProfile extends Model
         'pas_foto', 
         'kalangan'
     ];
+   
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
 }

@@ -165,18 +165,95 @@
                                     </div>
                                     <!-- /.tab-pane -->
                                     <div class="tab-pane" id="timeline">
+                                        
                                         <table class="table table-bordered">
                                             <thead class="table-secondary">
                                                 <tr>
                                                     <th class="text-center">No.</th>
                                                     <th class="text-center">Dokumen</th>
                                                     <th class="text-center">Status Dokumen</th>
+                                                    <th class="text-center">Aksi</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <td class="text-center">1</td>
-                                                <td class="text-center">Kartu Keluarga</td>
-                                                <td class="text-center">Sudah Upload</td>
+                                                @php
+                                                $fieldNames = [
+                                                    'ktp', 
+                                                    'ijazah_sarjana', 
+                                                    'transkrip_sarjana', 
+                                                    'ijazah_magister', 
+                                                    'transkrip_magister', 
+                                                    'ijazah_doktoral', 
+                                                    'transkrip_doktoral', 
+                                                    'org_pengusul',
+                                                    'upl_rek_pakar1', 
+                                                    'upl_rek_pakar2', 
+                                                    'upl_rek_pakar3', 
+                                                    'lamaran', 
+                                                    'rangkap_jabatan', 
+                                                    'cv', 
+                                                    'pidana', 
+                                                    'makalah', 
+                                                    'surat_sehat', 
+                                                    'skck'
+                                                ];
+                                        
+                                                $documents = [
+                                                    'KTP/SIM/PASPOR', 
+                                                    'Ijazah Sarjana', 
+                                                    'Transkrip Sarjana', 
+                                                    'Ijazah Magister <small class="text-muted">*opsional</small>', 
+                                                    'Transkrip Magister <small class="text-muted">*opsional</small>', 
+                                                    'Ijazah Doktoral <small class="text-muted">*opsional</small>',
+                                                    'Transkrip Doktoral <small class="text-muted">*opsional</small>',
+                                                    'Organisasi Pengusul',
+                                                    'Rekomendasi Pakar-1',
+                                                    'Rekomendasi Pakar-2', 
+                                                    'Rekomendasi Pakar-3',
+                                                    'Surat Lamaran',
+                                                    'Surat Keterangan Tidak Rangkap Jabatan',
+                                                    'Curiculum Vitae',
+                                                    'Surat Pernyataan sedang tidak menjalani proses pidana / pernah dipidana',
+                                                    'Makalah',
+                                                    'Surat Keterangan Sehat Jasmani dan Rohani',
+                                                    'SKCK'
+                                                ]; 
+                                        
+                                                $userFiles = Auth::user()->userfiles()->get(); // Ambil semua file milik pengguna
+                                                @endphp
+                                        
+                                                @foreach($documents as $index => $doc)
+                                                    <tr>
+                                                        <td class="text-center">{{ $index + 1 }}.</td>
+                                                        <td>{!! $doc !!}</td> 
+                                        
+                                                        <td class="text-center">
+                                                            @php
+                                                            $fieldName = $fieldNames[$index] ?? null;
+                                                            $file = $userFiles->where('file_name', $fieldName)->first();
+                                                            @endphp
+                                                            
+                                                            @if($fieldName && $file && $file->file_path)
+                                                                <span class="badge bg-success">Sudah Upload</span>
+                                                            @else
+                                                                <span class="badge bg-danger">Belum Upload</span>
+                                                            @endif
+                                                        </td>
+                                                        
+                                                        <td class="text-center">
+                                                            <a href="{{ $file ? route('edit.file', $file->id) : '#' }}" class="btn btn-sm btn-primary">
+                                                                <i class="fas fa-pen"></i>
+                                                            </a>
+                                                            <form action="{{ $file ? route('delete.file', $file->id) : '#' }}" method="POST" class="d-inline">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin menghapus file ini?')">
+                                                                    <i class="fas fa-trash-alt"></i>
+                                                                </button>
+                                                            </form>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>

@@ -50,6 +50,8 @@ Route::post('/store', [DashboardController::class, 'store'])->name('store');
 Route::put('/pengguna/update/{id}', [DashboardController::class, 'update'])->name('pengguna.update');
 Route::delete('/pengguna/delete/{id}', [DashboardController::class, 'destroy'])->name('pengguna.delete');
 
+Route::get('/daftarpelamar', [DashboardController::class, 'daftarpelamar'])->name('daftarpelamar');
+
 Route::get('/pengumuman', [PengumumanController::class, 'index'])->name('pengumuman.index');
 Route::post('/pengumuman/upload', [PengumumanController::class, 'upload'])->name('pengumuman.upload');
 Route::get('/pengumuman/{filename}', [PengumumanController::class, 'index'])->name('pengumuman.index');

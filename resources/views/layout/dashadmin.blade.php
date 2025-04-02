@@ -30,6 +30,11 @@
     <link rel="stylesheet" href="{{ asset('bs/plugins/summernote/summernote-bs4.min.css') }}">
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- DataTables -->
+    <link rel="stylesheet" href="{{ asset('bs/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bs/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bs/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bs/dist/css/adminlte.min.css') }}">
 
     <!-- AdminLTE JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/js/adminlte.min.js"></script>
@@ -60,7 +65,7 @@
 
         <!-- Preloader -->
         <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__shake" src="{{ asset('bs/dist/img/den.png') }}" alt="AdminLTELogo" height="60"
+            <img class="animation__shake" src="{{ asset('bs/dist/img/den.png') }}" alt="logoDEN" height="60"
                 width="60">
         </div>
 
@@ -170,7 +175,7 @@
                         @if (auth()->user()->role === 'administrator' || auth()->user()->role === 'verifikator')
                             <li class="nav-header">MENU UTAMA</li>
                             <li class="nav-item">
-                                <a href="pages/calendar.html" class="nav-link">
+                                <a href="{{ url('/daftarpelamar') }}" class="nav-link">
                                     <i class="nav-icon far fa-list-alt"></i>
                                     <p>
                                         Daftar Pelamar
@@ -596,6 +601,41 @@
         })
     </script>
 
+<script>
+    $(function() {
+        $("#example1").DataTable({
+            "responsive": true,
+            "lengthChange": false,
+            "autoWidth": false,
+            "buttons": ["excel", "pdf", "print", "colvis"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "scrollX": true, 
+            "info": true,
+            "autoWidth": true,
+            "responsive": false,
+        });
+        $.fn.dataTable.ext.errMode = 'throw';
+    });
+</script>
+
+<!-- DataTables  & Plugins -->
+<script src="{{ asset('bs/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('bs/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('bs/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+<script src="{{ asset('bs/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('bs/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
+<script src="{{ asset('bs/plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('bs/plugins/jszip/jszip.min.js') }}"></script>
+<script src="{{ asset('bs/plugins/pdfmake/pdfmake.min.js') }}"></script>
+<script src="{{ asset('bs/plugins/pdfmake/vfs_fonts.js') }}"></script>
+<script src="{{ asset('bs/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
+<script src="{{ asset('bs/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
+<script src="{{ asset('bs/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
 </body>
 
 </html>

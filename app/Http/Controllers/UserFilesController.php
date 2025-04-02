@@ -65,4 +65,11 @@ class UserFileController extends Controller
 
         return redirect()->back()->with('success', 'Berkas berhasil diunggah!');
     }
+
+    public function index()
+{
+    $userFiles = UserFiles::where('user_id', Auth::id())->first();
+    return view('berkas.index', compact('userFiles'));
+}
+
 }
