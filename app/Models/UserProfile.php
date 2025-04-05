@@ -28,4 +28,18 @@ class UserProfile extends Model
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
+    
+    public function userFiles()
+    {
+    return $this->hasMany(UserFiles::class, 'user_id', 'user_id');
+    }
+    public function pendidikan()
+    {
+    return $this->hasMany(Pendidikan::class, 'user_id', 'user_id');
+    }
+
+    public function pengusul()
+    {
+    return $this->hasOne(Pengusul::class, 'user_id', 'user_id');
+    }
 }

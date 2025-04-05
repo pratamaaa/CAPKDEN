@@ -13,7 +13,7 @@ use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
-class UserFileController extends Controller
+class UserFilesController extends Controller
 {
     public function store(Request $request)
     {

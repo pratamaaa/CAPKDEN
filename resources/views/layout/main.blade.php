@@ -87,8 +87,7 @@
     <!-- Pengumuman -->
     @yield('pengumuman')
     <!-- End Pengumuman -->
-
-
+    
     <!-- Footer -->
     <footer class="footer">
         <div class="container">

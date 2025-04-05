@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="d-flex justify-content-center align-items-center">
+            <div class="d-flex justify-content-center align-items-center" style="height: 120vh;">
                 <div class="card shadow p-4" style="width: 600px;">
                     <h3 class="text-center mb-4">Form Pendaftaran</h3>
 
@@ -41,7 +41,7 @@
                                 required>
                             <div class="input-group-append">
                                 <div class="input-group-text">
-                                    <span class="fas fa-user"></span>
+                                    <span class="fas fa-pencil-alt"></span>
                                 </div>
                             </div>
                         </div>
@@ -51,7 +51,7 @@
                                 required>
                             <div class="input-group-append">
                                 <div class="input-group-text">
-                                    <span class="fas fa-user"></span>
+                                    <span class="fas fa-comment-dots"></span>
                                 </div>
                             </div>
                         </div>

@@ -604,22 +604,11 @@
 <script>
     $(function() {
         $("#example1").DataTable({
-            "responsive": true,
-            "lengthChange": false,
-            "autoWidth": false,
-            "buttons": ["excel", "pdf", "print", "colvis"]
+            scrollX: true,
+            responsive: false, // matikan jika kamu pakai colspan
+            autoWidth: false,
+            buttons: ["excel", "pdf", "print", "colvis"]
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-        $('#example2').DataTable({
-            "paging": true,
-            "lengthChange": false,
-            "searching": false,
-            "ordering": true,
-            "scrollX": true, 
-            "info": true,
-            "autoWidth": true,
-            "responsive": false,
-        });
-        $.fn.dataTable.ext.errMode = 'throw';
     });
 </script>
 

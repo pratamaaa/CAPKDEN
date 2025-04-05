@@ -21,309 +21,312 @@
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr class="header-row">
-                                            <th class="align-top text-center" rowspan="3">No</th>
-                                            <th class="align-top text-center" rowspan="3">Foto Profile</th>
-                                            <th class="align-top text-center" rowspan="3">Nama</th>
-                                            <th class="align-top text-center" rowspan="3">NIK</th>
-                                            <th class="align-top text-center" rowspan="3">Tempat, Tanggal Lahir</th>
-                                            <th class="align-top text-center" rowspan="3">Jenis Kelamin</th>
-                                            <th class="align-top text-center" rowspan="3">Alamat</th>
-                                            <th class="align-top text-center" rowspan="3">No. Handphone</th>
-                                            <th class="align-top text-center" rowspan="3">Calon Kalangan</th>
-                                            <th class="text-center" colspan="9">Pendidikan</th>
-                                            <th class="text-center" colspan="4">Pengusul Calon Kalangan</th>
+                                            <th class="align-top text-center" rowspan="2">No</th>
+                                            <th class="align-top text-center" rowspan="2">Foto</th>
+                                            <th class="align-top text-center" rowspan="2" style="width: 250px;">Nama</th>
+                                            <th class="align-top text-center" rowspan="2">Calon Kalangan</th>
+                                
+                                            <!-- Header Pendidikan -->
+                                            <th class="align-top text-center" colspan="3">Pendidikan</th>
+                                
+                                            <!-- Header Pengusul Calon Kalangan -->
+                                            <th class="align-top text-center" colspan="4">Pengusul Calon Kalangan</th>
+                                            <th class="align-top text-center" rowspan="2">Aksi</th>
                                         </tr>
                                         <tr class="header-row">
-                                            <th class="text-center" colspan="3">Sarjana</th>
-                                            <th class="text-center" colspan="3">Magister</th>
-                                            <th class="text-center" colspan="3">Doktoral</th>
-                                            <th class="text-center" rowspan="3">Organisasi Pengusul</th>
-                                            <th class="text-center" rowspan="3">Rekomendasi Pakar-1</th>
-                                            <th class="text-center" rowspan="3">Rekomendasi Pakar-2</th>
-                                            <th class="text-center" rowspan="3">Rekomendasi Pakar-3</th>
-                                        </tr>
-                                        <tr class="header-row">
-                                            <th class="text-center" rowspan="3">Universitas</th>
-                                            <th class="text-center" rowspan="3">Jurusan</th>
-                                            <th class="text-center" rowspan="3">Lulus</th>
-                                            <th class="text-center" rowspan="3">Universitas</th>
-                                            <th class="text-center" rowspan="3">Jurusan</th>
-                                            <th class="text-center" rowspan="3">Lulus</th>
-                                            <th class="text-center" rowspan="3">Universitas</th>
-                                            <th class="text-center" rowspan="3">Jurusan</th>
-                                            <th class="text-center" rowspan="3">Lulus</th>
+                                            <!-- Pendidikan -->
+                                            <th class="align-top text-center" style="width: 200px;">Sarjana</th>
+                                            <th class="align-top text-center" style="width: 200px;">Magister</th>
+                                            <th class="align-top text-center" style="width: 200px;">Doktoral</th>
+                                
+                                            <!-- Pengusul Calon Kalangan -->
+                                            <th class="align-top text-center">Organisasi Pengusul</th>
+                                            <th class="align-top text-center">Rekomendasi Pakar-1</th>
+                                            <th class="align-top text-center">Rekomendasi Pakar-2</th>
+                                            <th class="align-top text-center">Rekomendasi Pakar-3</th>
                                         </tr>
                                     </thead>
+                                
                                     <tbody>
-                                        @foreach ($data as $d)
-                                            <tr>
-                                                <td>{{ $loop->iteration }}</td>
-                                                <td>
-                                                    @if (optional($d->userProfile)->pas_foto)
-                                                        <img src="{{ asset('uploads/pas_foto/' . $d->userProfile->pas_foto) }}"
-                                                            width="100">
-                                                    @else
-                                                        Belum diisi
-                                                    @endif
-                                                </td>
-                                                <td>{{ $d->userProfile->gelar_depan ?? 'Belum diisi' }}.
-                                                    {{ $d->userProfile->nama_lengkap ?? 'Belum diisi' }},
-                                                    {{ $d->userProfile->gelar_belakang ?? 'Belum diisi' }}
-                                                </td>
-                                                <td>{{ $d->userProfile->nik ?? 'Belum diisi' }}</td>
-                                                <td>{{ $d->userProfile->tempat_lahir ?? 'Belum diisi' }},
-                                                    {{ $d->userProfile->tanggal_lahir ?? 'Belum diisi' }}</td>
-                                                <td>{{ $d->userProfile->jenis_kelamin ?? 'Belum diisi' }}</td>
-                                                <td>{{ $d->userProfile->alamat ?? 'Belum diisi' }}</td>
-                                                <td>{{ $d->userProfile->no_handphone ?? 'Belum diisi' }}</td>
-                                                <td>{{ $d->userProfile->kalangan ?? 'Belum diisi' }}</td>
-                                                <td>{{ $d->userFiles->universitas_sarjana ?? 'Belum diisi' }}
-                                                </td>
-                                                <td>{{ $d->userFiles->jurusan_sarjana ?? 'Belum diisi' }}</td>
-                                                <td>{{ $d->userFiles->lulus_sarjana ?? 'Belum diisi' }}</td>
-                                                <td>{{ $d->userFiles->universitas_magister ?? 'Belum diisi' }}</td>
-                                                <td>{{ $d->userFiles->jurusan_magister ?? 'Belum diisi' }}</td>
-                                                <td>{{ $d->userFiles->lulus_magister ?? 'Belum diisi' }}</td>
-                                                <td>{{ $d->userFiles->universitas_doktoral ?? 'Belum diisi' }}</td>
-                                                <td>{{ $d->userFiles->jurusan_doktoral ?? 'Belum diisi' }}</td>
-                                                <td>{{ $d->userFiles->lulus_doktoral ?? 'Belum diisi' }}</td>
-                                                <td>{{ $d->userFiles->org_pengusul ?? 'Belum diisi' }}</td>
-                                                <td>{{ $d->userFiles->rek_pakar1 ?? 'Belum diisi' }}</td>
-                                                <td>{{ $d->userFiles->rek_pakar2 ?? 'Belum diisi' }}</td>
-                                                <td>{{ $d->userFiles->rek_pakar3 ?? 'Belum diisi' }}</td>
-
-                                            </tr>
+                                        @foreach($data as $index => $d)
+                                        <tr>
+                                            <td>{{ $index + 1 }}</td>
+                                            <td>
+                                                @if (optional($d->userProfile)->pas_foto)
+                                                    <img src="{{ asset('uploads/pas_foto/' . $d->userProfile->pas_foto) }}" width="100">
+                                                @else
+                                                    <span class="badge bg-danger">Belum diisi</span>
+                                                @endif
+                                            </td>
+                                
+                                            <td style="width: 250px;">
+                                                {!! $d->userProfile->gelar_depan ?? '' !!}. {{ $d->userProfile->nama_lengkap ?? 'Belum diisi' }}, {{ $d->userProfile->gelar_belakang ?? '' }}
+                                            </td>
+                                
+                                            <td>{{ $d->userProfile->kalangan ?? 'Belum diisi' }}</td>
+                                
+                                            <td style="width: 200px;">
+                                                @if($d->userFiles?->universitas_sarjana)
+                                                    <strong>{{ $d->userFiles->universitas_sarjana }}</strong><br>
+                                                    {{ $d->userFiles->jurusan_sarjana }}<br>
+                                                    {{ $d->userFiles->lulus_sarjana }}
+                                                @else
+                                                    <span class="badge bg-danger">Belum diisi</span>
+                                                @endif
+                                            </td>
+                                
+                                            <td style="width: 200px;">
+                                                @if($d->userFiles?->universitas_magister)
+                                                    <strong>{{ $d->userFiles->universitas_magister }}</strong><br>
+                                                    {{ $d->userFiles->jurusan_magister }}<br>
+                                                    {{ $d->userFiles->lulus_magister }}
+                                                @else
+                                                    <span class="badge bg-danger">Belum diisi</span>
+                                                @endif
+                                            </td>
+                                
+                                            <td style="width: 200px;">
+                                                @if($d->userFiles?->universitas_doktoral)
+                                                    <strong>{{ $d->userFiles->universitas_doktoral }}</strong><br>
+                                                    {{ $d->userFiles->jurusan_doktoral }}<br>
+                                                    {{ $d->userFiles->lulus_doktoral }}
+                                                @else
+                                                    <span class="badge bg-danger">Belum diisi</span>
+                                                @endif
+                                            </td>
+                                
+                                            <td>{!! $d->userFiles->org_pengusul ?? '<span class="badge bg-danger">Belum diisi</span>' !!}</td>
+                                            <td>{!! $d->userFiles->rek_pakar1 ?? '<span class="badge bg-danger">Belum diisi</span>' !!}</td>
+                                            <td>{!! $d->userFiles->rek_pakar2 ?? '<span class="badge bg-danger">Belum diisi</span>' !!}</td>
+                                            <td>{!! $d->userFiles->rek_pakar3 ?? '<span class="badge bg-danger">Belum diisi</span>' !!}</td>
+                                
+                                            <td>
+                                                <button class="btn btn-primary btn-sm preview-btn" data-bs-toggle="modal" data-bs-target="#previewModal"
+                                                    data-nama="{{ $d->userProfile->nama_lengkap ?? 'Belum diisi' }}"
+                                                    data-nik="{{ $d->userProfile->nik ?? 'Belum diisi' }}"
+                                                    data-ttl="{{ ($d->userProfile->tempat_lahir ?? '-') . ', ' . ($d->userProfile->tanggal_lahir ?? '-') }}"
+                                                    data-jk="{{ $d->userProfile->jenis_kelamin ?? 'Belum diisi' }}"
+                                                    data-email="{{ $d->userProfile->user->email ?? 'Belum diisi' }}"
+                                                    data-alamat="{{ $d->userProfile->alamat ?? 'Belum diisi' }}"
+                                                    data-hp="{{ $d->userProfile->no_handphone ?? 'Belum diisi' }}"
+                                                    data-kalangan="{{ $d->userProfile->kalangan ?? 'Belum diisi' }}"
+                                                    data-universitas-sarjana="{{ $d->userFiles->universitas_sarjana ?? 'Belum diisi' }}"
+                                                    data-jurusan-sarjana="{{ $d->userFiles->jurusan_sarjana ?? 'Belum diisi' }}"
+                                                    data-lulus-sarjana="{{ $d->userFiles->lulus_sarjana ?? 'Belum diisi' }}"
+                                                    data-universitas-magister="{{ $d->userFiles->universitas_magister ?? 'Belum diisi' }}"
+                                                    data-jurusan-magister="{{ $d->userFiles->jurusan_magister ?? 'Belum diisi' }}"
+                                                    data-lulus-magister="{{ $d->userFiles->lulus_magister ?? 'Belum diisi' }}"
+                                                    data-universitas-doktoral="{{ $d->userFiles->universitas_doktoral ?? 'Belum diisi' }}"
+                                                    data-jurusan-doktoral="{{ $d->userFiles->jurusan_doktoral ?? 'Belum diisi' }}"
+                                                    data-lulus-doktoral="{{ $d->userFiles->lulus_doktoral ?? 'Belum diisi' }}"
+                                                    data-org-pengusul="{{ $d->userFiles->org_pengusul ?? 'Belum diisi' }}"
+                                                    data-rek-pakar1="{{ $d->userFiles->rek_pakar1 ?? 'Belum diisi' }}"
+                                                    data-rek-pakar2="{{ $d->userFiles->rek_pakar2 ?? 'Belum diisi' }}"
+                                                    data-rek-pakar3="{{ $d->userFiles->rek_pakar3 ?? 'Belum diisi' }}"
+                                                    data-foto="{{ asset('uploads/pas_foto/' . ($d->userProfile->pas_foto ?? 'default.jpg')) }}">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
                                         @endforeach
-
                                     </tbody>
                                 </table>
-                                <!-- Flash Message -->
-                                @if (session('success'))
-                                    <div class="alert alert-success">
-                                        {{ session('success') }}
-                                    </div>
-                                @endif
+                                
+                                
+                                <div class="modal fade" id="previewModal" tabindex="-1" aria-labelledby="previewModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                      <div class="modal-content shadow rounded-4 border-0">
+                                  
+                                        <!-- Modal Header -->
+                                        <div class="modal-header bg-secondary text-white rounded-top">
+                                            <img src="{{ asset('bs/dist/img/den.png') }}" alt="Logo DEN" style="width: 36px; height: auto; margin-right: 4px;">
 
-                                @if (session('error'))
-                                    <div class="alert alert-danger">
-                                        {{ session('error') }}
-                                    </div>
-                                @endif
-
-                                <!-- Modal Tambah Data -->
-                                <div class="modal fade @if ($errors->any()) show @endif" id="tambahDataModal"
-                                    tabindex="-1" aria-labelledby="tambahDataModalLabel" aria-hidden="true"
-                                    style="@if ($errors->any()) display:block; @endif">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="tambahDataModalLabel">Tambah Pengguna</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                @if ($errors->any())
-                                                    <div class="alert alert-danger">
-                                                        <ul>
-                                                            @foreach ($errors->all() as $error)
-                                                                <li>{{ $error }}</li>
-                                                            @endforeach
-                                                        </ul>
-                                                    </div>
-                                                @endif
-
-                                                <form action="{{ route('store') }}" method="POST">
-                                                    @csrf
-                                                    <div class="input-group mb-3">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text"><i
-                                                                    class="fas fa-user-alt"></i></span>
-                                                        </div>
-                                                        <input type="text"
-                                                            class="form-control @error('name') is-invalid @enderror"
-                                                            id="username" name="name" value="{{ old('name') }}"
-                                                            required placeholder="nama">
-                                                        @error('name')
-                                                            <div class="invalid-feedback">{{ $message }}</div>
-                                                        @enderror
-                                                    </div>
-
-                                                    <div class="input-group mb-3">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text"><i
-                                                                    class="fas fa-edit"></i></span>
-                                                        </div>
-                                                        <input type="text"
-                                                            class="form-control @error('username') is-invalid @enderror"
-                                                            id="username" name="username" value="{{ old('username') }}"
-                                                            required placeholder="username">
-
-                                                        @error('username')
-                                                            <div class="invalid-feedback">{{ $message }}</div>
-                                                        @enderror
-                                                    </div>
-
-                                                    <div class="input-group mb-3">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text"><i
-                                                                    class="fas fa-wind"></i></span>
-                                                        </div>
-                                                        <input type="text"
-                                                            class="form-control @error('nik') is-invalid @enderror"
-                                                            id="nik" name="nik" value="{{ old('nik') }}"
-                                                            required placeholder="nik">
-                                                        @error('nik')
-                                                            <div class="invalid-feedback">{{ $message }}</div>
-                                                        @enderror
-
-                                                    </div>
-
-                                                    <div class="input-group mb-3">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text">
-                                                                <i class="fas fa-envelope"></i></span>
-                                                        </div>
-
-                                                        <input type="email"
-                                                            class="form-control @error('email') is-invalid @enderror"
-                                                            id="email" name="email" value="{{ old('email') }}"
-                                                            required placeholder="email">
-                                                        @error('email')
-                                                            <div class="invalid-feedback">{{ $message }}</div>
-                                                        @enderror
-                                                    </div>
-                                                    <div class="input-group mb-3">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text"><i
-                                                                    class="fas fa-rocket"></i></span>
-                                                        </div>
-                                                        <select class="form-control @error('role') is-invalid @enderror"
-                                                            id="role" name="role" required>
-                                                            <option value="administrator"
-                                                                {{ old('role') == 'administrator' ? 'selected' : '' }}>
-                                                                Administrator</option>
-                                                            <option value="verifikator"
-                                                                {{ old('role') == 'verifikator' ? 'selected' : '' }}>
-                                                                Verifikator</option>
-                                                            <option value="user"
-                                                                {{ old('role') == 'user' ? 'selected' : '' }}>User</option>
-                                                        </select>
-                                                        @error('role')
-                                                            <div class="invalid-feedback">{{ $message }}</div>
-                                                        @enderror
-
-                                                    </div>
-
-                                                    <div class="input-group mb-3">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text"><i
-                                                                    class="fas fa-lock"></i></span>
-                                                        </div>
-                                                        <input type="password"
-                                                            class="form-control @error('password') is-invalid @enderror"
-                                                            id="password" name="password" required
-                                                            placeholder="password">
-                                                        @error('password')
-                                                            <div class="invalid-feedback">{{ $message }}</div>
-                                                        @enderror
-                                                    </div>
-
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
-                                                            data-bs-dismiss="modal">Batal</button>
-                                                        <button type="submit" class="btn btn-primary">Simpan</button>
-                                                    </div>
-                                                </form>
-                                            </div>
+                                            <h5 class="modal-title" id="previewModalLabel">
+                                                <i class="fas fa-user-circle me-2"></i> Detail Pelamar
+                                            </h5>
+                                            <a href="" class="btn btn-primary" id="downloadPdfBtn">
+                                                <i class="fas fa-download"></i> Download PDF
+                                            </a>
+                                          
                                         </div>
+                                  
+                                        <!-- Modal Body -->
+                                        <div class="modal-body p-0">
+                                          <div class="row g-0">
+                                  
+                                            <!-- Sidebar Info -->
+                                            <div class="col-md-4 bg-light text-dark text-center py-4 border-end">
+                                              <img id="previewFoto" src="" class="img-thumbnail rounded-circle border mb-3 shadow-sm" style="width: 120px; height: 120px; object-fit: cover;" alt="Foto Profile">
+                                              <h5 id="previewNama">Nama Lengkap</h5>
+                                              <p class="text-muted" id="previewKalangan">Kalangan</p>
+                                              <hr>
+                                              <div class="text-start px-4 small">
+                                                <p><i class="fas fa-id-card me-2 text-muted"></i><strong>NIK</strong><br><span id="previewNik"></span></p>
+                                                <p><i class="fas fa-calendar-alt me-2 text-muted"></i><strong>TTL</strong><br><span id="previewTtl"></span></p>
+                                                <p><i class="fas fa-venus-mars me-2 text-muted"></i><strong>Jenis Kelamin</strong><br><span id="previewJk"></span></p>
+                                                <p><i class="fas fa-phone me-2 text-muted"></i><strong>No. HP</strong><br><span id="previewHp"></span></p>
+                                                <p><i class="fas fa-envelope me-2 text-muted"></i><strong>Email</strong><br><span id="previewEmail"></span></p>
+                                                <p><i class="fas fa-map-marker-alt me-2 text-muted"></i><strong>Alamat</strong><br><span id="previewAlamat"></span></p>
+                                              </div>
+                                            </div>
+                                  
+                                            <!-- Konten Kanan -->
+                                            <div class="col-md-8 p-4 bg-light rounded-end">
+                                                <h5 class="mb-4 text-primary"><i class="fas fa-graduation-cap me-2"></i>Pendidikan</h5>
+                                                <div class="table-responsive">
+                                                    <table class="table table-sm align-middle">
+                                                        <thead class="table-light text-center">
+                                                            <tr>
+                                                                <th>Jenjang</th>
+                                                                <th>Universitas</th>
+                                                                <th>Jurusan</th>
+                                                                <th>Tahun Lulus</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td><b>Sarjana</b></td>
+                                                                <td><span id="previewSarjanaUniv"></span></td>
+                                                                <td><span id="previewSarjanaJurusan"></span></td>
+                                                                <td class="text-center"><span id="previewSarjanaLulus"></span></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><b>Magister</b></td>
+                                                                <td><span id="previewMagisterUniv"></span></td>
+                                                                <td><span id="previewMagisterJurusan"></span></td>
+                                                                <td class="text-center"><span id="previewMagisterLulus"></span></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><b>Doktoral</b></td>
+                                                                <td><span id="previewDoktoralUniv"></span></td>
+                                                                <td><span id="previewDoktoralJurusan"></span></td>
+                                                                <td class="text-center"><span id="previewDoktoralLulus"></span></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            
+                                                <h5 class="mt-5 mb-4 text-primary"><i class="fas fa-users me-2"></i>Pengusul Calon Kalangan</h5>
+                                                <div class="table-responsive">
+                                                    <table class="table table-sm">
+                                                        <tbody>
+                                                            <tr>
+                                                                <th class="w-50">Organisasi Pengusul</th>
+                                                                <td><span id="previewOrgPengusul"></span></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>Rekomendasi Pakar-1</th>
+                                                                <td><span id="previewPakar1"></span></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>Rekomendasi Pakar-2</th>
+                                                                <td><span id="previewPakar2"></span></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>Rekomendasi Pakar-3</th>
+                                                                <td><span id="previewPakar3"></span></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            
+                                            
+                                          </div>
+                                        </div>
+                                      </div>
                                     </div>
-                                </div>
+                                  </div>
+                                  
+                                
+                                
+                                <script>
+                                    document.addEventListener("DOMContentLoaded", function () {
+                                        document.querySelectorAll(".preview-btn").forEach(button => {
+                                            button.addEventListener("click", function () {
+                                                document.getElementById("previewNama").innerText = this.getAttribute("data-nama");
+                                                document.getElementById("previewKalangan").innerText = this.getAttribute("data-kalangan");
+                                                document.getElementById("previewNik").innerText = this.getAttribute("data-nik");
+                                                document.getElementById("previewTtl").innerText = this.getAttribute("data-ttl");
+                                                document.getElementById("previewJk").innerText = this.getAttribute("data-jk");
+                                                document.getElementById("previewHp").innerText = this.getAttribute("data-hp");
+                                                document.getElementById("previewEmail").innerText = this.getAttribute("data-email") || 'Belum diisi';
 
-                                <!-- Modal Script untuk Membuka Modal Jika Ada Error -->
-                                @if ($errors->any())
-                                    <script>
-                                        document.addEventListener("DOMContentLoaded", function() {
-                                            var myModal = new bootstrap.Modal(document.getElementById('tambahDataModal'));
-                                            myModal.show();
+                                                document.getElementById("previewAlamat").innerText = this.getAttribute("data-alamat");
+                                                document.getElementById("previewFoto").src = this.getAttribute("data-foto");
+                                
+                                                document.getElementById("previewSarjanaUniv").innerText = this.getAttribute("data-universitas-sarjana");
+                                                document.getElementById("previewSarjanaJurusan").innerText = this.getAttribute("data-jurusan-sarjana");
+                                                document.getElementById("previewSarjanaLulus").innerText = this.getAttribute("data-lulus-sarjana");
+                                
+                                                document.getElementById("previewMagisterUniv").innerText = this.getAttribute("data-universitas-magister");
+                                                document.getElementById("previewMagisterJurusan").innerText = this.getAttribute("data-jurusan-magister");
+                                                document.getElementById("previewMagisterLulus").innerText = this.getAttribute("data-lulus-magister");
+                                
+                                                document.getElementById("previewDoktoralUniv").innerText = this.getAttribute("data-universitas-doktoral");
+                                                document.getElementById("previewDoktoralJurusan").innerText = this.getAttribute("data-jurusan-doktoral");
+                                                document.getElementById("previewDoktoralLulus").innerText = this.getAttribute("data-lulus-doktoral");
+                                
+                                                document.getElementById("previewOrgPengusul").innerText = this.getAttribute("data-org-pengusul");
+                                                document.getElementById("previewPakar1").innerText = this.getAttribute("data-rek-pakar1");
+                                                document.getElementById("previewPakar2").innerText = this.getAttribute("data-rek-pakar2");
+                                                document.getElementById("previewPakar3").innerText = this.getAttribute("data-rek-pakar3");
+                                            });
                                         });
-                                    </script>
-                                @endif
+                                    });
+                                </script>
 
+                                <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<script>
+document.getElementById("downloadPdfBtn").addEventListener("click", function () {
+    let { jsPDF } = window.jspdf;
+    let doc = new jsPDF();
+
+    let nama = document.getElementById("previewNama").innerText || "Calon";
+    let kalangan = document.getElementById("previewKalangan").innerText || "Kalangan";
+    let filename = nama.replace(/\s+/g, "_") + "_" + kalangan.replace(/\s+/g, "_") + ".pdf";
+
+    doc.setFontSize(14);
+    doc.text("Data Pelamar", 10, 10);
+    doc.setFontSize(12);
+
+    let y = 20;
+    let data = [
+        `Nama Lengkap: ${nama}`,
+        `Calon Kalangan: ${document.getElementById("previewKalangan").innerText}`,
+        `NIK: ${document.getElementById("previewNik").innerText}`,
+        `TTL: ${document.getElementById("previewTtl").innerText}`,
+        `Jenis Kelamin: ${document.getElementById("previewJk").innerText}`,
+        `No. HP: ${document.getElementById("previewHp").innerText}`,
+        `Email: ${document.getElementById("previewEmail").innerText}`,
+        `Alamat: ${document.getElementById("previewAlamat").innerText}`,
+        ``,
+        `PENDIDIKAN`,
+        `Sarjana: ${document.getElementById("previewSarjanaUniv").innerText}, ${document.getElementById("previewSarjanaJurusan").innerText}, ${document.getElementById("previewSarjanaLulus").innerText}`,
+        `Magister: ${document.getElementById("previewMagisterUniv").innerText}, ${document.getElementById("previewMagisterJurusan").innerText}, ${document.getElementById("previewMagisterLulus").innerText}`,
+        `Doktoral: ${document.getElementById("previewDoktoralUniv").innerText}, ${document.getElementById("previewDoktoralJurusan").innerText}, ${document.getElementById("previewDoktoralLulus").innerText}`,
+        ``,
+        `PENGUSUL`,
+        `Organisasi Pengusul: ${document.getElementById("previewOrgPengusul").innerText}`,
+        `Rekomendasi Pakar 1: ${document.getElementById("previewPakar1").innerText}`,
+        `Rekomendasi Pakar 2: ${document.getElementById("previewPakar2").innerText}`,
+        `Rekomendasi Pakar 3: ${document.getElementById("previewPakar3").innerText}`
+    ];
+
+    data.forEach(line => {
+        doc.text(line, 10, y);
+        y += 7;
+    });
+
+    doc.save(filename);
+});
+</script>
+
+                            
                             </div>
-                            <!-- Modal Edit Data -->
-                            <div class="modal fade" id="editDataModal" tabindex="-1"
-                                aria-labelledby="editDataModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="editDataModalLabel">Edit Pengguna</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form id="editForm" method="POST">
-                                                @csrf
-                                                @method('PUT')
-                                                <div class="mb-3">
-                                                    <label for="edit_nama" class="form-label">Nama</label>
-                                                    <input type="text" class="form-control" id="edit_nama"
-                                                        name="nama" required>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="edit_username" class="form-label">Username</label>
-                                                    <input type="text" class="form-control" id="edit_username"
-                                                        name="username" required>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="edit_nik" class="form-label">NIK</label>
-                                                    <input type="text" class="form-control" id="edit_nik"
-                                                        name="nik" required>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="edit_email" class="form-label">Email</label>
-                                                    <input type="email" class="form-control" id="edit_email"
-                                                        name="email" required>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="edit_role" class="form-label">Role</label>
-                                                    <select class="form-control" id="edit_role" name="role" required>
-                                                        <option value="administrator">Administrator</option>
-                                                        <option value="verifikator">Verifikator</option>
-                                                        <option value="user">User</option>
-                                                    </select>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary"
-                                                        data-bs-dismiss="modal">Batal</button>
-                                                    <button type="submit" class="btn btn-primary">Update</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Modal Konfirmasi Hapus -->
-                            <div class="modal fade" id="deleteConfirmModal" tabindex="-1"
-                                aria-labelledby="deleteConfirmModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="deleteConfirmModalLabel">Konfirmasi Hapus</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p>Apakah Anda yakin ingin menghapus <strong id="delete_nama"></strong>?</p>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-bs-dismiss="modal">Batal</button>
-                                            <button type="button" class="btn btn-danger"
-                                                id="confirmDelete">Hapus</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            
+                            
                         </div>
                         <!-- /.card-body -->
                     </div>

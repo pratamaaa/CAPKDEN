@@ -3,7 +3,7 @@
 
     <div class="container">
 
-        <div class="container d-flex justify-content-center align-items-center" style="height: 70vh;">
+        <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
             <div class="card shadow p-4" style="width: 600px;">
                 <h3 class="text-center mb-4">Login</h3>
 

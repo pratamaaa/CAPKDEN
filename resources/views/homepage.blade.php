@@ -669,14 +669,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-12 mt-3 text-center">
-                            <p class="lead">
-                                Jika ada pertanyaan lebih lanjut silahkan hubungi <b>Panitia Penyaringan</b>, <a
-                                    href="{{ url('kontak') }}">Kontak Kami</a>
-                            </p>
-                        </div>
-                    </div>
+                    
                 </section>
             </div>
         </div>

@@ -12,6 +12,7 @@ use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\PengumumanController;
+use App\Http\Controllers\PdfController;
 
 class DashboardController extends Controller
 {
@@ -179,4 +180,6 @@ public function daftarpelamar()
     
     return view('admin.daftarpelamar', compact('data', 'greeting'));
 }
+
+
 }

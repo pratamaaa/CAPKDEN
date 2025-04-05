@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PengumumanController;
 use App\Http\Controllers\UserFilesController;
+use App\Http\Controllers\PdfController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -49,8 +50,9 @@ Route::get('/create', [DashboardController::class, 'create'])->name('create');
 Route::post('/store', [DashboardController::class, 'store'])->name('store');
 Route::put('/pengguna/update/{id}', [DashboardController::class, 'update'])->name('pengguna.update');
 Route::delete('/pengguna/delete/{id}', [DashboardController::class, 'destroy'])->name('pengguna.delete');
-
 Route::get('/daftarpelamar', [DashboardController::class, 'daftarpelamar'])->name('daftarpelamar');
+Route::get('/download-pdf/{id}', [PdfController::class, 'generatePdf'])->name('download.pdf');
+
 
 Route::get('/pengumuman', [PengumumanController::class, 'index'])->name('pengumuman.index');
 Route::post('/pengumuman/upload', [PengumumanController::class, 'upload'])->name('pengumuman.upload');
