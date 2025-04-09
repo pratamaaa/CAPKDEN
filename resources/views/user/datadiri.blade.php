@@ -29,6 +29,15 @@
                                 </div>
                             @endif
 
+                            @if ($profile)
+                                <div class="alert alert-info">
+                                    <strong>Info:</strong> Anda telah mengisi data diri sebelumnya.
+                                    @if($profile->updated_at)
+                                        Terakhir diperbarui: {{ $profile->updated_at->format('d M Y') }}.
+                                    @endif
+                                </div>
+                             @endif
+
                             <!-- Form -->
                             <form class="form-horizontal" method="POST" action="{{ route('storeUserProfile') }}"
                                 enctype="multipart/form-data">
@@ -37,80 +46,70 @@
 
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Nama Lengkap</label>
-                                        <div class="col-sm-5">
-                                            <input type="text" name="nama_lengkap"
-                                                class="form-control @error('nama_lengkap') is-invalid @enderror"
-                                                placeholder="Nama Lengkap" value="{{ old('nama_lengkap') }}">
-                                            @error('nama_lengkap')
-                                                <span class="text-danger">{{ $message }}</span>
-                                            @enderror
+                                        <div class="col-sm-2">
+                                            <input type="text" name="nama_lengkap" class="form-control" placeholder="Nama Lengkap"
+                                                value="{{ auth()->user()->name }}" readonly>
                                         </div>
                                         <div class="col-sm-2">
-                                            <input type="text" name="gelar_depan" class="form-control"
-                                                placeholder="Gelar Depan">
+                                            <input type="text" name="gelar_depan" class="form-control" placeholder="Gelar Depan" required>
                                         </div>
                                         <div class="col-sm-2">
-                                            <input type="text" name="gelar_belakang" class="form-control"
-                                                placeholder="Gelar Belakang">
+                                            <input type="text" name="gelar_belakang" class="form-control" placeholder="Gelar Belakang" required>
                                         </div>
                                     </div>
-
+                                
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">NIK</label>
-                                        <div class="col-sm-3">
-                                            <input type="text" name="nik"
-                                                class="form-control @error('nik') is-invalid @enderror" placeholder="NIK"
-                                                value="{{ old('nik') }}">
-                                            @error('nik')
-                                                <span class="text-danger">{{ $message }}</span>
-                                            @enderror
+                                        <div class="col-sm-2">
+                                            <input type="text" name="nik" class="form-control" value="{{ auth()->user()->nik }}" readonly>
                                         </div>
                                     </div>
-
+                                
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Tempat, Tanggal Lahir</label>
-                                        <div class="col-sm-3">
+                                        <div class="col-sm-2">
                                             <input type="text" name="tempat_lahir" class="form-control"
-                                                placeholder="Tempat Lahir">
+                                                value="{{ auth()->user()->tempat_lahir }}" readonly>
                                         </div>
                                         <div class="col-sm-3">
-                                            <input type="date" name="tanggal_lahir" class="form-control">
+                                            <input type="date" name="tanggal_lahir" class="form-control"
+                                                value="{{ auth()->user()->tanggal_lahir }}" readonly>
                                         </div>
                                     </div>
-
+                                
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Jenis Kelamin</label>
                                         <div class="col-sm-2">
-                                            <select class="form-control" name="jenis_kelamin">
+                                            <select class="form-control" name="jenis_kelamin" required>
                                                 <option selected>- Pilih -</option>
                                                 <option value="Laki-laki">Laki-laki</option>
                                                 <option value="Perempuan">Perempuan</option>
                                             </select>
                                         </div>
                                     </div>
-
+                                
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Alamat</label>
                                         <div class="col-sm-10">
-                                            <textarea name="alamat" class="form-control" rows="2" placeholder="Alamat"></textarea>
+                                            <textarea name="alamat" class="form-control" rows="2" placeholder="Alamat" required></textarea>
                                         </div>
                                     </div>
-
+                                
                                     <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">No. Handphone</label>
+                                        <label class="col-sm-2 col-form-label">No. Handphone (WA)</label>
                                         <div class="col-sm-2">
-                                            <input type="text" name="no_handphone" class="form-control">
+                                            <input type="text" name="no_handphone" class="form-control" required>
                                         </div>
                                     </div>
-
+                                
                                     <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">Pas Foto (4x6)</label>
+                                        <label class="col-sm-2 col-form-label">Pas Foto</label>
                                         <div class="col-sm-10">
                                             <input type="file" name="pas_foto" class="form-control-file">
                                             <small class="badge bg-danger">JPEG, min 500 KB max 1 MB, latar biru</small>
                                         </div>
                                     </div>
-
+                                
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Kalangan</label>
                                         <div class="col-sm-2">
@@ -124,8 +123,9 @@
                                             </select>
                                         </div>
                                     </div>
-
+                                
                                 </div>
+                                
 
                                 <!-- Tombol Submit -->
                                 <div class="card-footer">

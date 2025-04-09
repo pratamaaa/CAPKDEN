@@ -22,7 +22,7 @@
                                 <!-- Card Box "Daftar" -->
                                 <div class="col-md-3">
                                     <div class="card">
-                                        <div class="card-header bg-warning text-white">
+                                        <div class="card-header bg-secondary text-white">
                                             <h5>Daftar Pengumuman</h5>
                                         </div>
                                         <div class="card-body">
@@ -39,7 +39,7 @@
                                 <!-- Card Box "Preview" -->
                                 <div class="col-md-9">
                                     <div class="card">
-                                        <div class="card-header bg-primary text-white">
+                                        <div class="card-header bg-info text-white">
                                             <h5>Preview Dokumen</h5>
                                         </div>
                                         <div class="card-body">

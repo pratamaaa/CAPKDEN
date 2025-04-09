@@ -1,13 +1,14 @@
 <?php
 
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\PengumumanController;
-use App\Http\Controllers\UserFilesController;
-use App\Http\Controllers\PdfController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PdfController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UploadController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\UserFilesController;
+use App\Http\Controllers\PengumumanController;
 
 Route::get('/',[HomeController::class, 'homepage']);
 Route::get('/pengumuman',[HomeController::class, 'pengumuman']);
@@ -42,6 +43,7 @@ Route::post('/store-user-profile', [DashboardController::class, 'storeUserProfil
 Route::get('/updateberkas', [DashboardController::class, 'updateberkas'])->name('updateberkas');
 Route::post('/store-user-files', [UserFilesController::class, 'store'])->name('storeUserFiles');
 
+
 // ADMIN 
 Route::get('/pengguna', [DashboardController::class, 'pengguna'])->name('pengguna');
 Route::get('/upl_pengumuman', [DashboardController::class, 'upl_pengumuman'])->name('upl_pengumuman');
@@ -59,6 +61,8 @@ Route::post('/pengumuman/upload', [PengumumanController::class, 'upload'])->name
 Route::get('/pengumuman/{filename}', [PengumumanController::class, 'index'])->name('pengumuman.index');
 Route::put('/pengumuman/update', [PengumumanController::class, 'update'])->name('pengumuman.update');
 Route::delete('/pengumuman/destroy', [PengumumanController::class, 'destroy'])->name('pengumuman.destroy');
+
+Route::post('/upload/{field}', [UploadController::class, 'uploadFile'])->name('upload.file');
 
 
 

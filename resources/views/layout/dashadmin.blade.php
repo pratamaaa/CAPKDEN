@@ -36,6 +36,9 @@
     <link rel="stylesheet" href="{{ asset('bs/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('bs/dist/css/adminlte.min.css') }}">
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script  script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
     <!-- AdminLTE JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/js/adminlte.min.js"></script>
 
@@ -58,6 +61,25 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.js"></script>
 
+    <style>
+        /* Accordion yang tidak aktif (collapsed) */
+        .accordion-button.collapsed {
+            background-color: #d4edda !important; /* Hijau muda */
+            color: #155724 !important; /* Hijau tua */
+        }
+    
+        /* Accordion aktif */
+        .accordion-button:not(.collapsed) {
+            background-color: #198754 !important; /* Bootstrap green */
+            color: white !important;
+        }
+    
+        /* Border item agar rapi */
+        .accordion-item {
+            border: 1px solid #c3e6cb;
+        }
+    </style>
+    
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -184,32 +206,25 @@
                             <li class="nav-item">
                                 <a href="#" class="nav-link">
                                     <i class="nav-icon far fa-check-square"></i>
-
                                     <p>
                                         Verifikasi Data
                                         <i class="fas fa-angle-left right"></i>
                                     </p>
-                                </a>
+                                </a> 
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href="pages/mailbox/mailbox.html" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Data Lengkap</p>
-                                        </a>
+                                      <a href="../UI/general.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Sudah Verifikasi</p>
+                                      </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="pages/mailbox/compose.html" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Sudah Verifikasi</p>
-                                        </a>
+                                      <a href="../UI/icons.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Belum Verifikasi</p>
+                                      </a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a href="pages/mailbox/read-mail.html" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Belum Verifikasi</p>
-                                        </a>
-                                    </li>
-                                </ul>
+                                </ul>     
                             </li>
                         @endif
 
@@ -331,6 +346,7 @@
     <script src="{{ asset('bs/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset('bs/dist/js/adminlte.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         $(document).ready(function() {
             $('.editButton').click(function() {
@@ -625,6 +641,25 @@
 <script src="{{ asset('bs/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
 <script src="{{ asset('bs/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
 <script src="{{ asset('bs/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
+
+@if (session('status_updated'))
+<script>
+    Swal.fire({
+        icon: 'info',
+        title: 'Data Diri Sudah Pernah Diisi',
+        text: '{{ session('status_updated') }}',
+        toast: true,
+        position: 'center',
+        timer: 8000,
+        timerProgressBar: true,
+        showConfirmButton: false
+    });
+</script>
+
+
+
+@endif
+
 </body>
 
 </html>

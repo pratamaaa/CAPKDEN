@@ -7,6 +7,11 @@
             <div class="card shadow p-4" style="width: 600px;">
                 <h3 class="text-center mb-4">Login</h3>
 
+                @if (session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
                 {{-- Menampilkan error validasi jika ada --}}
                 @if ($errors->any())
                     <div class="alert alert-danger">
@@ -38,7 +43,7 @@
                         @enderror
                         <div class="input-group-append">
                             <div class="input-group-text">
-                                <span class="fas fa-envelope"></span>
+                                <span class="fas fa-user"></span>
                             </div>
                         </div>
                     </div>

@@ -40,7 +40,8 @@ class DashboardController extends Controller
 
     public function verifikatorDashboard()
     {
-        return view('dashboard.verifikator');
+        $greeting = $this->getGreeting();
+        return view('dashboard.verifikator', compact('greeting'));
     }
 
     public function userDashboard()
@@ -50,16 +51,26 @@ class DashboardController extends Controller
     }
 
     public function updatedata()
-    {
-        $greeting = $this->getGreeting();
-        return view('user.datadiri', compact('greeting'));
+{
+    $greeting = $this->getGreeting();
+    $user = auth()->user();
+    $profile = $user->profile;
+
+    if ($profile) {
+        session()->flash('status_updated', 'Anda sudah pernah mengisi data. Silakan perbarui jika ada perubahan.');
     }
 
-    public function updateberkas()
-    {
-        $greeting = $this->getGreeting();
-        return view('user.berkas', compact('greeting'));
-    }
+    return view('user.datadiri', compact('greeting', 'user', 'profile'));
+}
+
+
+
+public function updateberkas()
+{
+    $greeting = $this->getGreeting();
+    $userFiles = UserFiles::where('user_id', Auth::id())->first();
+    return view('user.berkas', compact('userFiles', 'greeting'));
+}
 
     public function pengguna()
 {
@@ -141,12 +152,8 @@ public function upl_pengumuman()
     public function storeUserProfile(Request $request)
 {
     $request->validate([
-        'nama_lengkap' => 'required|string|max:255',
         'gelar_depan' => 'nullable|string|max:50',
         'gelar_belakang' => 'nullable|string|max:50',
-        'nik' => 'required|numeric|min:16|unique:user_profiles,nik',
-        'tempat_lahir' => 'nullable|string|max:255',
-        'tanggal_lahir' => 'nullable|date',
         'jenis_kelamin' => 'nullable|in:Laki-laki,Perempuan',
         'alamat' => 'nullable|string',
         'no_handphone' => 'nullable|numeric|digits_between:10,15',
@@ -155,7 +162,8 @@ public function upl_pengumuman()
     ]);
 
     $data = $request->except(['_token', 'pas_foto']);
-    
+    $user = auth()->user();
+
     // Handle File Upload
     if ($request->hasFile('pas_foto')) {
         $file = $request->file('pas_foto');
@@ -164,12 +172,22 @@ public function upl_pengumuman()
         $data['pas_foto'] = $filename;
     }
 
-    // Simpan ke database
-    $data['user_id'] = auth()->id();
-    UserProfile::create($data);
+    $data['user_id'] = $user->id;
 
-    return redirect()->back()->with('success', 'Data berhasil diperbarui!');
+    // Cek apakah profil sudah ada, update jika iya
+    $profile = UserProfile::where('user_id', $user->id)->first();
+
+    if ($profile) {
+        $profile->update($data);
+        $message = 'Data berhasil diperbarui!';
+    } else {
+        UserProfile::create($data);
+        $message = 'Data berhasil disimpan!';
+    }
+
+    return redirect()->back()->with('success', $message);
 }
+
 
 public function daftarpelamar()
 {

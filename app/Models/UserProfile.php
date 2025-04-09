@@ -11,12 +11,8 @@ class UserProfile extends Model
 
     protected $fillable = [
         'user_id', 
-        'nama_lengkap',
         'gelar_depan', 
-        'gelar_belakang', 
-        'nik',
-        'tempat_lahir', 
-        'tanggal_lahir', 
+        'gelar_belakang',
         'jenis_kelamin', 
         'alamat', 
         'no_handphone',
@@ -33,13 +29,5 @@ class UserProfile extends Model
     {
     return $this->hasMany(UserFiles::class, 'user_id', 'user_id');
     }
-    public function pendidikan()
-    {
-    return $this->hasMany(Pendidikan::class, 'user_id', 'user_id');
-    }
-
-    public function pengusul()
-    {
-    return $this->hasOne(Pengusul::class, 'user_id', 'user_id');
-    }
+    
 }
