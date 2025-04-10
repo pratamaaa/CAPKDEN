@@ -431,12 +431,30 @@
         </div>
         </form>
 
-
         <!-- Tombol Navigasi -->
         <div class="d-flex justify-content-between mt-3">
             <button class="btn btn-secondary" id="prevBtn" disabled>Previous</button>
             <button class="btn btn-primary" id="nextBtn">Next</button>
         </div>
+
+        <div class="modal fade" id="confirmSubmitModal" tabindex="-1" aria-labelledby="confirmSubmitLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header bg-warning">
+                  <h5 class="modal-title" id="confirmSubmitLabel">Konfirmasi Pengiriman</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+                </div>
+                <div class="modal-body">
+                  Apakah Anda yakin ingin mengirimkan dokumen sekarang?
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                  <button type="button" class="btn btn-primary" id="confirmSubmitBtn">Ya, Kirim</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
     </div>
     <script>
         $(document).ready(function() {
@@ -461,7 +479,8 @@
                     currentStep++;
                     updateStep();
                 } else {
-                    $("#uploadForm").submit();
+                    // Tampilkan modal konfirmasi
+                    $('#confirmSubmitModal').modal('show');
                 }
             });
 
@@ -472,9 +491,12 @@
                 }
             });
 
-            $("#uploadForm").submit(function(e) {
-                alert("Dokumen berhasil diupload!");
+            $("#confirmSubmitBtn").click(function () {
+            $("#confirmSubmitModal").modal('hide');
+            $("#uploadForm").submit();
             });
+
+            
         });
     </script>
 

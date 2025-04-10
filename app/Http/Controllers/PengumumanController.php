@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\PengumumanPdf;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\DashboardController;
 
 class PengumumanController extends Controller
@@ -55,12 +56,33 @@ class PengumumanController extends Controller
 
 public function update(Request $request)
 {
-    $request->validate(['title' => 'required']);
-    $pengumuman = PengumumanPdf::findOrFail($request->id);
-    $pengumuman->update(['title' => $request->title]);
+    $request->validate([
+        'id' => 'required|exists:pengumuman_pdfs,id',
+        'title' => 'required|string|max:255',
+        'file_path' => 'nullable|file|mimes:pdf|max:20480', // maksimal 20MB
+    ]);
 
-    return redirect()->back()->with('success', 'Pengumuman berhasil diperbarui.');
+    $pengumuman = PengumumanPdf::findOrFail($request->id);
+    $pengumuman->title = $request->title;
+
+    // Jika ada file baru
+    if ($request->hasFile('file_path')) {
+        // Hapus file lama
+        if ($pengumuman->file_path && Storage::disk('public')->exists($pengumuman->file_path)) {
+            Storage::disk('public')->delete($pengumuman->file_path);
+        }
+
+        // Upload file baru
+        $file = $request->file('file_path');
+        $path = $file->store('uploads/pengumuman', 'public');
+        $pengumuman->file_path = $path;
+    }
+
+    $pengumuman->save();
+
+    return redirect()->back()->with('success', 'Pengumuman berhasil diperbarui!');
 }
+
 
 public function destroy(Request $request)
 {

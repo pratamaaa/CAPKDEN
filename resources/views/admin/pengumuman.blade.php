@@ -13,7 +13,7 @@
                     <!-- /.col -->
                 </div><!-- /.row -->
                 <div class="row">
-                    <div class="col-12">
+                    <div class="col-8">
                         <div class="card">
                             <div class="card-header">
                                 <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal"
@@ -65,11 +65,12 @@
                                                 <td>{{ $pengumuman->created_at->format('d-m-Y') }}</td>
                                                 <td>
                                                     <button class="btn btn-sm btn-primary edit-pengumuman-btn"
-                                                        data-id="{{ $pengumuman->id }}"
-                                                        data-title="{{ $pengumuman->title }}" data-toggle="modal"
-                                                        data-target="#editPengumumanModal">
-                                                        <i class="fas fa-edit"></i>
-                                                    </button>
+    data-id="{{ $pengumuman->id }}"
+    data-title="{{ $pengumuman->title }}"
+    data-pdf="{{ asset('storage/' . $pengumuman->file_path) }}"
+    data-toggle="modal" data-target="#editPengumumanModal">
+    <i class="fas fa-edit"></i>
+</button>
 
                                                     <button class="btn btn-sm btn-danger delete-pengumuman-btn"
                                                         data-id="{{ $pengumuman->id }}"
@@ -114,7 +115,7 @@
                                     </div>
                                 </div>
 
-                                <!-- Script untuk Mengubah PDF di Modal -->
+                                <!-- Script untuk melihat PDF di Modal -->
                                 <script>
                                     document.addEventListener("DOMContentLoaded", function() {
                                         var pdfModal = document.getElementById("pdfModal");
@@ -154,17 +155,16 @@
 
                                                     @csrf
 
-                                                    <!-- Input Judul -->
-                                                    <div class="input-group mb-3">
-                                                        <span class="input-group-text"><i class="fas fa-edit"></i></span>
-                                                        <input type="text"
-                                                            class="form-control @error('title') is-invalid @enderror"
+                                <!-- Input Judul -->
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text"><i class="fas fa-edit"></i></span>
+                                        <input type="text" class="form-control @error('title') is-invalid @enderror"
                                                             id="title" name="title" value="{{ old('title') }}"
                                                             required placeholder="Judul Pengumuman">
                                                         @error('title')
                                                             <div class="invalid-feedback">{{ $message }}</div>
                                                         @enderror
-                                                    </div>
+                                </div>
 
                                                     <!-- Input File -->
                                                     <div class="input-group mb-3">
@@ -201,33 +201,64 @@
                                 @endif
 
                             </div>
+
                             <div class="modal fade" id="editPengumumanModal" tabindex="-1" role="dialog">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title">Edit Pengumuman</h5>
-                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        </div>
-                                        <form action="{{ route('pengumuman.update') }}" method="POST">
-                                            @csrf
-                                            @method('PUT')
-                                            <div class="modal-body">
-                                                <input type="hidden" name="id" id="edit-pengumuman-id">
-                                                <div class="form-group">
-                                                    <label for="edit-pengumuman-title">Judul Pengumuman</label>
-                                                    <input type="text" name="title" id="edit-pengumuman-title"
-                                                        class="form-control" required>
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-dismiss="modal">Batal</button>
-                                                <button type="submit" class="btn btn-primary">Simpan</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
+    <div class="modal-dialog" role="document">
+        <form action="{{ route('pengumuman.update') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            @method('PUT')
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Pengumuman</h5>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="id" id="edit-pengumuman-id">
+
+                    <div class="form-group">
+                        <label for="edit-pengumuman-title">Judul Pengumuman</label>
+                        <input type="text" name="title" id="edit-pengumuman-title"
+                            class="form-control" required>
+                    </div>
+
+                    <div class="form-group mt-3">
+                        <label>Preview Dokumen:</label>
+                        <iframe id="edit-pdf-preview" src="" width="100%" height="300px" style="border:1px solid #ccc;"></iframe>
+                    </div>
+
+                    <div class="form-group mt-3">
+                        <label for="edit-file">Ganti Dokumen (opsional)</label>
+                        <input type="file" name="file_path" id="edit-file" class="form-control"
+                            accept="application/pdf">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const editButtons = document.querySelectorAll('.edit-pengumuman-btn');
+
+        editButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const id = this.getAttribute('data-id');
+                const title = this.getAttribute('data-title');
+                const pdfUrl = this.getAttribute('data-pdf');
+
+                document.getElementById('edit-pengumuman-id').value = id;
+                document.getElementById('edit-pengumuman-title').value = title;
+                document.getElementById('edit-pdf-preview').src = pdfUrl;
+            });
+        });
+    });
+</script>
+
 
                             <!-- Modal Konfirmasi Hapus -->
                             <div class="modal fade" id="deletePengumumanModal" tabindex="-1" role="dialog">

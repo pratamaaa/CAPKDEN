@@ -28,7 +28,7 @@
 
                         <div class="input-group mb-3">
                             <input type="text" name="name" class="form-control" id="name"
-                                placeholder="Nama Lengkap" required>
+                                placeholder="Nama Lengkap" required value="{{ old('name') }}">
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-user"></span>
@@ -38,7 +38,7 @@
 
                         <div class="input-group mb-3">
                             <input type="text" name="username" class="form-control" id="username" placeholder="Username"
-                                required>
+                                required value="{{ old('username') }}">
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-pencil-alt"></span>
@@ -48,7 +48,7 @@
 
                         <div class="input-group mb-3">
                             <input type="text" name="nik" class="form-control" id="nik" placeholder="NIK"
-                                required>
+                                required value="{{ old('nik') }}">
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-comment-dots"></span>
@@ -65,7 +65,7 @@
                                 </div>
                             </div>
                         </div>
-
+                        
                         <div class="input-group mb-3">
                             <input type="password" name="password_confirmation" class="form-control"
                                 id="password_confirmation" placeholder="Ketik Ulang Password" required>
@@ -79,7 +79,7 @@
 
                         <div class="input-group mb-3">
                             <input type="email" name="email" class="form-control" id="email"
-                                placeholder="Email Aktif" required>
+                                placeholder="Email Aktif" required value="{{ old('email') }}">
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-envelope"></span>
@@ -90,12 +90,12 @@
                         <div class="row">
                             <div class="col-md-6 mb-2">
                                 <label for="tempat_lahir" class="form-label">Tempat Lahir</label>
-                                <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" required>
+                                <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" required value="{{ old('tempat_lahir') }}">
 
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="tanggal_lahir" class="form-label">Tanggal Lahir</label>
-                                <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir" required>
+                                <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir" required value="{{ old('tanggal_lahir') }}">
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary w-100">Daftar</button>

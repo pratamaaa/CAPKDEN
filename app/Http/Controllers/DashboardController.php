@@ -201,5 +201,29 @@ public function daftarpelamar()
     return view('admin.daftarpelamar', compact('data', 'greeting'));
 }
 
+public function password()
+{
+    $greeting = $this->getGreeting();
+    return view('admin.password', compact('greeting'));
+}
+
+public function updatePassword(Request $request)
+{
+    $request->validate([
+        'current_password' => 'required',
+        'new_password' => 'required|min:6|confirmed',
+    ]);
+
+    $user = auth()->user();
+
+    if (!Hash::check($request->current_password, $user->password)) {
+        return back()->with('error', 'Password saat ini salah.');
+    }
+
+    $user->password = Hash::make($request->new_password);
+    $user->save();
+
+    return back()->with('success', 'Password berhasil diperbarui.');
+}
 
 }

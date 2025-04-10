@@ -132,9 +132,13 @@
             <div class="sidebar">
                 <!-- Sidebar user panel (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-
+                    @php
+                        $user = auth()->user();
+                        $userProfile = $user->userProfile;
+                        $userFiles = $user->userfiles()->get();
+                    @endphp
                     <div class="info">
-                        <small> {{ $greeting }},
+                        <small> {{ $greeting }}, {{ $user->name }}
                         </small>
                         <span class="d-block"><b>Selamat Datang di Aplikasi <br> CAPK DEN</b></span>
                     </div>
@@ -261,7 +265,7 @@
                         @endif
 
                         <li class="nav-item">
-                            <a href="pages/gallery.html" class="nav-link">
+                            <a href="{{ url('/password') }}" class="nav-link">
                                 <i class="nav-icon fas fa-lock"></i>
                                 <p>
                                     Ganti Password

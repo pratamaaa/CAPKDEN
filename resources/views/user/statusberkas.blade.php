@@ -66,6 +66,13 @@
                                                 <td class="text-center">
                                                     @if (!empty($userFiles->{$field}))
                                                         <div class="btn-group" role="group">
+                                                            <!-- Tombol Preview -->
+                                                            <button type="button" class="btn btn-sm btn-secondary"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#modalPreview{{ $field }}">
+                                                            <i class="fas fa-eye"></i>
+                                                            </button>
+
                                                             <!-- Tombol Edit -->
                                                             <button type="button" class="btn btn-sm btn-primary"
                                                                 data-bs-toggle="modal"
@@ -84,6 +91,30 @@
                                                                     <i class="fas fa-trash-alt"></i>
                                                                 </button>
                                                             </form>
+
+                                                            <!-- Modal Preview -->
+                                                            <div class="modal fade" id="modalPreview{{ $field }}" tabindex="-1"
+                                                            aria-labelledby="modalPreviewLabel{{ $field }}" aria-hidden="true">
+                                                            <div class="modal-dialog modal-xl">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title" id="modalPreviewLabel{{ $field }}">
+                                                                            Pratinjau Dokumen: {{ $label }}
+                                                                        </h5>
+                                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                                            aria-label="Tutup"></button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        @if (!empty($filePath) && file_exists($fullPath))
+                                                                            <embed src="{{ asset('storage/' . $filePath) }}" type="application/pdf"
+                                                                                width="100%" height="600px" />
+                                                                        @else
+                                                                            <div class="alert alert-warning">Dokumen tidak ditemukan atau belum diupload.</div>
+                                                                        @endif
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            </div>
 
                                                             <!-- Modal Edit -->
                                                             <div class="modal fade" id="modalEdit{{ $field }}"
