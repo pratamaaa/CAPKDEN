@@ -6,16 +6,33 @@
     RewriteEngine On
 
     # Handle Authorization Header
-    RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
-
+    RewriteBase /
+    RewriteRule ^index\.php$ - [L]
+    
     # Redirect Trailing Slashes If Not A Folder...
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_URI} (.+)/$
     RewriteRule ^ %1 [L,R=301]
 
-    # Send Requests To Front Controller...
+    # Handle Front Controller...
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
+
+    # Block access to .env file
+    <Files .env>
+        Order allow,deny
+        Deny from all
+    </Files>
+
+    # Block access to .git/config
+    RedirectMatch 404 /.git
+
+    # Block access to composer
+    <Files "composer.json">
+    Order Allow,Deny
+    Deny from all
+    </Files>
+
 </IfModule>

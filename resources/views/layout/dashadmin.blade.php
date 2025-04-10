@@ -187,11 +187,20 @@
                                     <i class="nav-icon fas fa-edit"></i>
                                     <p>
                                         Upload Kelengkapan
+                                    </p>
+                                </a>
+                            </li>
 
+                            <li class="nav-item">
+                                <a href="{{ route('statusberkas') }}" class="nav-link">
+                                    <i class="nav-icon fas fa-clipboard-check"></i>
+                                    <p>
+                                        Status Berkas
                                     </p>
                                 </a>
 
                             </li>
+
                         @endif
 
                         @if (auth()->user()->role === 'administrator' || auth()->user()->role === 'verifikator')

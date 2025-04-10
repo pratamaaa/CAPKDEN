@@ -11,6 +11,44 @@
         </div>
     </div>
 
+    {{-- Anchor Link Menu --}}
+    <div class="py-5" style="background: linear-gradient(to bottom, #3f4040, #e9ecef);">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-3 col-6 mb-2">
+                    <a href="#tusi" class="text-decoration-none text-dark">
+                        <img src="{{ asset('bs/assets/images/task2.png') }}" alt="Tusi" class="img-fluid mb-2" style="width: 60px;">
+                        <div class="fw-semibold">Tugas & Fungsi</div>
+                    </a>
+                </div>
+                <div class="col-md-3 col-6 mb-2">
+                    <a href="#apk" class="text-decoration-none text-dark">
+                        <img src="{{ asset('bs/assets/images/partners.png') }}" alt="Aplikasi" class="img-fluid mb-2" style="width: 60px;">
+                        <div class="fw-semibold">APK DEN</div>
+                    </a>
+                </div>
+                <div class="col-md-3 col-6 mb-2">
+                    <a href="#alur" class="text-decoration-none text-dark">
+                        <img src="{{ asset('bs/assets/images/planning.png') }}" alt="Alur Seleksi" class="img-fluid mb-2" style="width: 60px;">
+                        <div class="fw-semibold">Alur Seleksi</div>
+                    </a>
+                </div>
+                <div class="col-md-3 col-6 mb-2">
+                    <a href="#persyaratan" class="text-decoration-none text-dark">
+                        <img src="{{ asset('bs/assets/images/contract.png') }}" alt="Persyaratan" class="img-fluid mb-2" style="width: 60px;">
+                        <div class="fw-semibold">Persyaratan</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    {{-- End Anchor --}}
+
+    <!-- Anchor dummy untuk scroll -->
+    <div id="tusi"></div>
+    <!-- Anchor dummy untuk scroll -->
+
     <div id="about" class="about section">
         <div class="container">
             <div class="row">
@@ -67,6 +105,10 @@
             </div>
         </div>
     </div>
+
+    <!-- Anchor dummy untuk scroll -->
+    <div id="apk"></div>
+    <!-- Anchor dummy untuk scroll -->
 
     <div id="services" class="services section">
         <div class="container">
@@ -294,6 +336,9 @@
         </div>
     </div>
 
+    <!-- Anchor dummy untuk scroll -->
+    <div id="alur"></div>
+    <!-- Anchor dummy untuk scroll -->
     <div id="free-quote" class="free-quote">
         <div class="container">
             <div class="row">
@@ -440,6 +485,9 @@
         </div>
     </div>
 
+    <!-- Anchor dummy untuk scroll -->
+    <div id="persyaratan"></div>
+    <!-- Anchor dummy untuk scroll -->
     <div id="contact" class="contact-us section">
         <div class="container">
             <div class="row">

@@ -42,6 +42,12 @@ Route::get('/updatedata', [DashboardController::class, 'updatedata'])->name('upd
 Route::post('/store-user-profile', [DashboardController::class, 'storeUserProfile'])->name('storeUserProfile');
 Route::get('/updateberkas', [DashboardController::class, 'updateberkas'])->name('updateberkas');
 Route::post('/store-user-files', [UserFilesController::class, 'store'])->name('storeUserFiles');
+Route::get('/statusberkas', [UserFilesController::class, 'status'])->name('statusberkas');
+// Route::post('/userfiles/update/{field}', [UserFilesController::class, 'update'])->name('userfiles.update');
+Route::put('/userfiles/update/{field}', [UserFilesController::class, 'update'])->name('userfiles.update');
+
+// Route::delete('/userfiles/delete/{field}', [UserFilesController::class, 'delete'])->name('userfiles.delete');
+Route::delete('/userfiles/delete/{field}', [UserFilesController::class, 'destroy'])->name('userfiles.destroy');
 
 
 // ADMIN 

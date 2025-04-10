@@ -16,9 +16,9 @@
                     </div>
 
                     <!-- Tabel Monitoring -->
-                    <div class="col-md-4">
+                    {{-- <div class="col-md-4">
                         @include('user.layout-user.status')
-                    </div>
+                    </div> --}}
                 </div>
                 <script>
                     document.addEventListener("DOMContentLoaded", function () {

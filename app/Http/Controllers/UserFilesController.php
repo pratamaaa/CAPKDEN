@@ -32,92 +32,96 @@ class UserFilesController extends Controller
 
     public function store(Request $request)
 {
-
     $step = $request->input('step');
 
     $rules = [];
 
     if ($step == 1) {
         $rules = [
-            'ktp' => 'required|file|mimes:pdf|max:1024',
+            'ktp' => 'nullable|file|mimes:pdf|max:1024',
         ];
     } elseif ($step == 2) {
         $rules = [
-            // Wajib S1
-            'universitas_sarjana' => 'required|string|max:255',
-            'jurusan_sarjana' => 'required|string|max:255',
-            'lulus_sarjana' => 'required|string|max:255',
-            'ijazah_sarjana' => 'required|file|mimes:pdf|max:1024',
-            'transkrip_sarjana' => 'required|file|mimes:pdf|max:1024',
-    
-            // Opsional S2
+            'universitas_sarjana' => 'nullable|string|max:255',
+            'jurusan_sarjana' => 'nullable|string|max:255',
+            'lulus_sarjana' => 'nullable|string|max:255',
+            'ijazah_sarjana' => 'nullable|file|mimes:pdf|max:1024',
+            'transkrip_sarjana' => 'nullable|file|mimes:pdf|max:1024',
+
             'universitas_magister' => 'nullable|string|max:255',
             'jurusan_magister' => 'nullable|string|max:255',
             'lulus_magister' => 'nullable|string|max:255',
             'ijazah_magister' => 'nullable|file|mimes:pdf|max:1024',
             'transkrip_magister' => 'nullable|file|mimes:pdf|max:1024',
-    
-            // Opsional S3
+
             'universitas_doktoral' => 'nullable|string|max:255',
             'jurusan_doktoral' => 'nullable|string|max:255',
             'lulus_doktoral' => 'nullable|string|max:255',
             'ijazah_doktoral' => 'nullable|file|mimes:pdf|max:1024',
             'transkrip_doktoral' => 'nullable|file|mimes:pdf|max:1024',
         ];
-    
-    
     } elseif ($step == 3) {
         $rules = [
-            'org_pengusul' => 'required|string|max:255',
-            'upl_org' => 'required|file|mimes:pdf|max:1024',
-            'rek_pakar1' => 'required|string|max:255',
-            'upl_rek_pakar1' => 'required|file|mimes:pdf|max:1024',
-            'rek_pakar2' => 'required|string|max:255',
-            'upl_rek_pakar2' => 'required|file|mimes:pdf|max:1024',
-            'rek_pakar3' => 'required|string|max:255',
-            'upl_rek_pakar3' => 'required|file|mimes:pdf|max:1024',
-            
+            'org_pengusul' => 'nullable|string|max:255',
+            'upl_org' => 'nullable|file|mimes:pdf|max:1024',
+            'rek_pakar1' => 'nullable|string|max:255',
+            'upl_rek_pakar1' => 'nullable|file|mimes:pdf|max:1024',
+            'rek_pakar2' => 'nullable|string|max:255',
+            'upl_rek_pakar2' => 'nullable|file|mimes:pdf|max:1024',
+            'rek_pakar3' => 'nullable|string|max:255',
+            'upl_rek_pakar3' => 'nullable|file|mimes:pdf|max:1024',
         ];
     } elseif ($step == 4) {
         $rules = [
-            'lamaran' => 'required|file|mimes:pdf|max:1024',
-            'cv' => 'required|file|mimes:pdf|max:1024',
-            'rangkap_jabatan' => 'required|file|mimes:pdf|max:1024',
-            'pidana' => 'required|file|mimes:pdf|max:1024',
-            'makalah' => 'required|file|mimes:pdf|max:1024',
-            'surat_sehat' => 'required|file|mimes:pdf|max:1024',
-            'skck'=> 'required|file|mimes:pdf|max:1024',
+            'lamaran' => 'nullable|file|mimes:pdf|max:1024',
+            'cv' => 'nullable|file|mimes:pdf|max:1024',
+            'rangkap_jabatan' => 'nullable|file|mimes:pdf|max:1024',
+            'pidana' => 'nullable|file|mimes:pdf|max:1024',
+            'makalah' => 'nullable|file|mimes:pdf|max:1024',
+            'surat_sehat' => 'nullable|file|mimes:pdf|max:1024',
+            'skck' => 'nullable|file|mimes:pdf|max:1024',
         ];
     }
 
     $validator = Validator::make($request->all(), $rules);
 
-if ($validator->fails()) {
-    return redirect()->back()
-        ->withErrors($validator)
-        ->withInput()
-        ->with('active_step', $step); // menyimpan step yang gagal validasi
-}
-
-    // Simpan ke database
-    $data = [];
-    foreach ($request->allFiles() as $key => $file) {
-        $data[$key] = $file->store('uploads/user_files', 'public');
+    if ($validator->fails()) {
+        return redirect()->back()
+            ->withErrors($validator)
+            ->withInput()
+            ->with('active_step', $step);
     }
 
-    // Gabungkan dengan input teks
-    $data = array_merge($data, $request->except(['_token', 'step']));
+    // Simpan file yang diupload
+    $uploadedFiles = [];
+    foreach ($request->allFiles() as $field => $file) {
+        if ($file->isValid()) {
+            $uploadedFiles[$field] = $file->store('uploads/user_files', 'public');
+        } else {
+            return redirect()->back()
+                ->with('error', "File $field tidak valid.")
+                ->with('active_step', $step);
+        }
+    }
 
+    // Ambil input teks (non-file), buang file agar tidak overwrite path hasil store
+    $inputText = $request->except(array_merge(['_token', 'step'], array_keys($uploadedFiles)));
+
+    // Gabungkan semuanya
+    $data = array_merge($uploadedFiles, $inputText);
+
+    // Simpan ke database
     UserFiles::updateOrCreate(
         ['user_id' => auth()->id()],
         $data
     );
 
-    return redirect()->route('updateberkas')->with([
+    return redirect()->route('statusberkas')->with([
         'success' => 'Berkas berhasil diunggah!',
         'step' => $step
-    ]);    
+    ]);
 }
+
 
     public function index()
 {
@@ -126,6 +130,47 @@ if ($validator->fails()) {
     return view('user.berkas', compact('userFiles', 'greeting'));
 }
 
+public function status()
+{
+    $greeting = $this->getGreeting();
+    $userFiles = UserFiles::where('user_id', Auth::id())->first();
+    $success = session('success');
+    return view('user.statusberkas', compact('userFiles', 'greeting', 'success'));
+}
+
+public function update(Request $request, $field)
+{
+    $request->validate([
+        'dokumen' => 'required|file|mimes:pdf|max:1024',
+    ]);
+
+    $userFiles = UserFiles::where('user_id', Auth::id())->firstOrFail();
+
+    // Hapus file lama jika ada
+    if (!empty($userFiles->$field)) {
+        Storage::disk('public')->delete($userFiles->$field);
+    }
+
+    // Simpan file baru
+    $path = $request->file('dokumen')->store('uploads/user_files', 'public');
+    $userFiles->$field = $path;
+    $userFiles->save();
+
+    return redirect()->route('statusberkas')->with('success', 'Dokumen berhasil diperbarui.');
+}
+
+public function destroy($field)
+{
+    $userFiles = UserFiles::where('user_id', Auth::id())->firstOrFail();
+
+    if ($userFiles->$field && Storage::disk('public')->exists($userFiles->$field)) {
+        Storage::disk('public')->delete($userFiles->$field);
+        $userFiles->$field = null;
+        $userFiles->save();
+    }
+
+    return redirect()->route('statusberkas')->with('success', 'Dokumen berhasil dihapus.');
+}
 }
 
 
