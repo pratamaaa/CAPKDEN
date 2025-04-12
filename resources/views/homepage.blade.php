@@ -65,6 +65,50 @@
     </div>
   </div>
 
+  {{-- <div id="contact" class="contact-us section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 wow fadeInUp" data-wow-duration="0.5s" data-wow-delay="0.25s">
+          <form id="contact" action="" method="post">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="fill-form">
+                  <div class="row">
+                    <div class="col-lg-4">
+                      <div class="info-post">
+                        <div class="icon">
+                          <img src="assets/images/phone-icon.png" alt="">
+                          <a href="#">010-020-0340</a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-4">
+                      <div class="info-post">
+                        <div class="icon">
+                          <img src="assets/images/email-icon.png" alt="">
+                          <a href="#">our@email.com</a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-4">
+                      <div class="info-post">
+                        <div class="icon">
+                          <img src="assets/images/location-icon.png" alt="">
+                          <a href="#">123 Rio de Janeiro</a>
+                        </div>
+                      </div>
+                    </div>
+                  
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div> --}}
+
   <div id="about" class="about section" style="margin-top:-50px;">
     <div class="container">
       <div class="row">

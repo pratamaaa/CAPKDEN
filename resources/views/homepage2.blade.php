@@ -46,7 +46,7 @@
       </div> --}}
 
     {{-- Anchor Link Menu --}}
-    {{-- <div class="py-5" style="background: linear-gradient(to bottom, #3f4040, #e9ecef);">
+    <div class="py-5" style="background: linear-gradient(to bottom, #3f4040, #e9ecef);">
         <div class="container">
             <div class="row text-center">
                 <div class="col-md-3 col-6 mb-2">
@@ -75,8 +75,7 @@
                 </div>
             </div>
         </div>
-    </div> --}}
-    
+    </div>
     {{-- End Anchor --}}
 
     <!-- Anchor dummy untuk scroll -->
