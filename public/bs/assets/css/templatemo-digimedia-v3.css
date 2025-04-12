@@ -127,7 +127,7 @@ p {
   font-size: 15px;
   line-height: 30px;
   font-weight: 300;
-  color: #afafaf;
+  color: #212529;
 }
 
 img {
@@ -1382,10 +1382,55 @@ Services Style
   margin-right: 45px;
   margin-bottom: 20px;
   font-size: 15px;
-  font-weight: 400;
+  font-weight: 300;
+  line-height: 30px; 
 }
 
+.ndr-header {
+  background-color: #cdcdcd;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  padding: 0px;
+  text-align: center;
+  position: relative;
+  margin-top: 100px;
+}
 
+.fill {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden
+}
+.fill img {
+  flex-shrink: 0;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.ndr-footer {
+  background-color: #cdcdcd;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  padding: 0px;
+  text-align: center;
+  position: relative;
+  margin-top: 100px;
+}
+
+.fill-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden
+}
+.fill-footer img {
+  flex-shrink: 0;
+  min-width: 100%;
+  min-height: 100%;
+}
 
 /* 
 ---------------------------------------------
@@ -2100,4 +2145,21 @@ responsive
   form#contact {
     padding: 30px;
   }
+}
+
+.orderedlist{
+  color: #212529;
+  font-size: 15px; 
+  line-height: 30px; 
+  font-weight: 300;
+  margin-left: 15px;
+}
+
+.orderedlist-decimal{
+  list-style-type: decimal;
+  padding-left:0.6em
+}
+
+.warnagelap{
+  color: #212529 !important;
 }
