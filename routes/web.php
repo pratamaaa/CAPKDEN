@@ -13,6 +13,7 @@ use App\Http\Controllers\PengumumanController;
 Route::get('/',[HomeController::class, 'homepage']);
 Route::get('/home2',[HomeController::class, 'homepage2']);
 Route::get('/pengumuman',[HomeController::class, 'pengumuman']);
+Route::get('/pengumuman2',[HomeController::class, 'pengumuman2']);
 Route::get('/kontak',[HomeController::class, 'kontak']);
 
 // LOGIN 

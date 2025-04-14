@@ -1,441 +1,369 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layout/main')
+@section('content')
+<div id="header">
+  <div class="fill">
+    <img src="{{ asset('bs/assets/images/sliderbanner.png') }}">
+  </div>
+</div>
 
-  <head>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <title>Rekrutmen DEN</title>
-
-    <link href="{{ asset('bs/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('bs/assets/css/fontawesome.css') }}">
-    <link rel="stylesheet" href="{{ asset('bs/assets/css/templatemo-digimedia-v3.css') }}">
-    <link rel="stylesheet" href="{{ asset('bs/assets/css/animated.css') }}">
-    <link rel="stylesheet" href="{{ asset('bs/assets/css/owl.css') }}">
-
-    <link rel="shortcut icon" href="{{ asset('bs/assets/images/den.png') }}" />
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="{{ asset('bs/plugins/fontawesome-free/css/all.min.css') }}">
-    <!-- icheck bootstrap -->
-    <link rel="stylesheet" href="{{ asset('bs/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="{{ asset('bs/dist/css/adminlte.min.css') }}">
-  </head>
-
-<body>
-
-  <!-- ***** Header Area Start ***** -->
-  <header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
-    <div class="container">
-      <div class="row">
-        <div class="col-12">
-          <nav class="main-nav">
-            <a href="index.html" class="logo">
-              <img src="{{ asset('bs/assets/images/logo-den.png') }}" alt="" style="width: 320px;">
-            </a>
+<div class="anchor">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 wow fadeInUp" data-wow-duration="0.5s" data-wow-delay="0.25s">
+        
+        <div class="col-lg-12">
+          <div class="anchor-pad">
+            <div class="row">
+              <div class="col-lg-3" style="background">
+                <div class="info-post">
+                  <div class="icon">
+                    <a href="#tugasfungsi">
+                      <img src="{{ asset('bs/assets/images/anchor/tugasfungsi.png') }}" class="mb10" alt="">
+                      <span>Tugas dan Fungsi</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-3">
+                <div class="info-post">
+                  <div class="icon">
+                    <a href="#apk">
+                      <img src="{{ asset('bs/assets/images/anchor/apk.png') }}" class="mb10" alt="">
+                      APK DEN
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-3">
+                <div class="info-post">
+                  <div class="icon">
+                    <a href="#alurseleksi">
+                      <img src="{{ asset('bs/assets/images/anchor/syarat.png') }}" class="mb10" alt="">
+                      Alur Seleksi
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-3">
+                <div class="info-post">
+                  <div class="icon">
+                    <a href="#persyaratan">
+                      <img src="{{ asset('bs/assets/images/anchor/alurseleksi.png') }}" class="mb10" alt="">
+                      Persyaratan
+                    </a>
+                  </div>
+                </div>
+              </div>
             
-            <ul class="nav">
-              <li class="scroll-to-section"><a href="{{ url('/') }}" class="active">Home</a></li>
-              <li class="scroll-to-section"><a href="{{ url('/pengumuman') }}">Pengumuman</a></li>
-              <li class="scroll-to-section"><a href="{{ url('/kontak') }}">Kontak Kami</a></li>
-              <li class="scroll-to-section">
-                <div class="border-first-button">
-                  <a href="{{ url('/login') }}">LOGIN</a>
-                </div>
-              </li> 
-            </ul>        
-            <a class='menu-trigger'>
-                <span>Menu</span>
-            </a>
-          </nav>
-        </div>
-      </div>
-    </div>
-  </header>
-  <!-- ***** Header Area End ***** -->
-
-  <div id="header">
-    <div class="fill">
-      <img src="{{ asset('bs/assets/images/sliderbanner.png') }}">
-    </div>
-  </div>
-
-  {{-- <div id="contact" class="contact-us section">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12 wow fadeInUp" data-wow-duration="0.5s" data-wow-delay="0.25s">
-          <form id="contact" action="" method="post">
-            <div class="row">
-              <div class="col-lg-12">
-                <div class="fill-form">
-                  <div class="row">
-                    <div class="col-lg-4">
-                      <div class="info-post">
-                        <div class="icon">
-                          <img src="assets/images/phone-icon.png" alt="">
-                          <a href="#">010-020-0340</a>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-lg-4">
-                      <div class="info-post">
-                        <div class="icon">
-                          <img src="assets/images/email-icon.png" alt="">
-                          <a href="#">our@email.com</a>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-lg-4">
-                      <div class="info-post">
-                        <div class="icon">
-                          <img src="assets/images/location-icon.png" alt="">
-                          <a href="#">123 Rio de Janeiro</a>
-                        </div>
-                      </div>
-                    </div>
-                  
-                  </div>
-                </div>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div> --}}
-
-  <div id="about" class="about section" style="margin-top:-50px;">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="row">
-            <div class="col-lg-4">
-              <div class="about-left-image  wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0.5s">
-                <img src="{{ asset('bs/assets/images/about-dec-v3.png') }}" alt="">
-              </div>
-            </div>
-            <div class="col-lg-8 align-self-center  wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.5s">
-              <div class="about-right-content">
-                
-                <div class="section-heading">
-                  <h6>Dewan Energi Nasional</h6>
-                  <h4>Tugas <em>dan</em> Fungsi</h4>
-                  <div class="line-dec"></div>
-                </div>
-
-                <p style="margin-bottom:10px;">
-                  Sesuai dengan amanat UU No. 30 Tahun 2007, negara telah mengamanatkan dibentuknya suatu Dewan Energi Nasional (DEN)
-                  yang anggotanya terdiri dari 7 (tujuh) Menteri yang secara langsung bertanggungjawab atas penyediaan, transportasi, 
-                  penyaluran, dan pemanfaatan energi serta 8 (delapan) anggota dari Unsur Pemangku Kepentingan.  
-                  Dewan Energi Nasional yang dibentuk melalui Peraturan Presiden Nomor 26 Tahun 2008, diberi tugas untuk :
-                </p>
-                <ul class="orderedlist">
-                  <li class="orderedlist-decimal">Merancang dan merumuskan kebijakan energi nasional untuk ditetapkan oleh Pemerintah dengan persetujuan DPR</li>
-                  <li class="orderedlist-decimal">Menetapkan Rencana Umum Energi Nasional</li>
-                  <li class="orderedlist-decimal">Menetapkan langkah-langkah penanggulangan kondisi krisis dan darurat energi</li>
-                  <li class="orderedlist-decimal">Mengawasi pelaksanaan kebijakan di bidang energi yang bersifat lintas sektoral</li>
-                </ul>
-                
-              </div>
             </div>
           </div>
         </div>
+        
+      </div>
       </div>
     </div>
   </div>
+</div>
 
-  <div id="services" class="services section">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="section-heading  wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
-            <h6>Anggota DEN</h6>
-            <h4>Dari Pemangku Kepentingan <em>(APK)</em></h4>
-            <div class="line-dec"></div>
-          </div>
-        </div>
-        <div class="col-lg-12">
-          <div class="naccs">
-            <div class="grid">
-              <div class="row">
-                <div class="col-lg-12">
-                  <div class="menu">
-                    <div class="first-thumb active">
-                      <div class="thumb">
-                        <span class="icon"><img src="{{ asset('bs/assets/images/service-icon-01.png') }}" alt=""></span>
-                        Kalangan Akademisi<br>
-                      </div>
-                    </div>
-                    <div>
-                      <div class="thumb">                 
-                        <span class="icon"><img src="{{ asset('bs/assets/images/service-icon-02.png') }}" alt=""></span>
-                        Kalangan <br>Industri
-                      </div>
-                    </div>
-                    <div>
-                      <div class="thumb">                 
-                        <span class="icon"><img src="{{ asset('bs/assets/images/service-icon-03.png') }}" alt=""></span>
-                        Kalangan <br>Teknologi
-                      </div>
-                    </div>
-                    <div>
-                      <div class="thumb">                 
-                        <span class="icon"><img src="{{ asset('bs/assets/images/service-icon-04.png') }}" alt=""></span>
-                        Kalangan Lingkungan Hidup
-                      </div>
-                    </div>
-                    <div class="last-thumb">
-                      <div class="thumb">                 
-                        <span class="icon"><img src="{{ asset('bs/assets/images/service-icon-01.png') }}" alt=""></span>
-                        Kalangan Konsumen
-                      </div>
-                    </div>
-                  </div>
-                </div> 
-                <div class="col-lg-12">
-                  <ul class="nacc">
-                    <li class="active">
-                      <div>
-                        <div class="thumb">
-                          <div class="row">
-                            <div class="col-lg-6 align-self-center">
-                              <div class="left-text">
-                                <h4>Kalangan Akademisi</h4>
-                                <p>Mewakili perguruan tinggi dan lembaga penelitian, berperan dalam memberikan perspektif ilmiah dan akademik dalam kebijakan energi.</p>
-                                <div class="ticks-list">
-                                  <span ><i class="fa fa-check"></i> Memberikan kajian ilmiah dan akademik dalam penyusunan Kebijakan Energi Nasional (KEN) dan Rencana Umum Energi Nasional (RUEN)</span>
-                                  <span><i class="fa fa-check"></i> Melakukan riset dan analisis terkait teknologi energi, sumber daya energi, serta dampak ekonomi dan sosial dari kebijakan energi</span>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-lg-6 align-self-center">
-                              <div class="right-image">
-                                <img src="{{ asset('bs/assets/images/services-image.jpg') }}" alt="">
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div>
-                        <div class="thumb">
-                          <div class="row">
-                            <div class="col-lg-6 align-self-center">
-                              <div class="left-text">
-                                <h4>Kalangan Industri</h4>
-                                <p>Mewakili sektor industri yang terlibat dalam produksi, distribusi, dan konsumsi energi</p>
-                                <div class="ticks-list">
-                                  <span><i class="fa fa-check"></i> Mewakili kepentingan dunia usaha dalam penyediaan dan pemanfaatan energi.</span> 
-                                  <span><i class="fa fa-check"></i> Memberikan masukan terkait kebutuhan energi industri serta efisiensi energi dalam proses produksi</span> 
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-lg-6 align-self-center">
-                              <div class="right-image">
-                                <img src="{{ asset('bs/assets/images/services-image-02.jpg') }}" alt="">
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div>
-                        <div class="thumb">
-                          <div class="row">
-                            <div class="col-lg-6 align-self-center">
-                              <div class="left-text">
-                                <h4>Kalangan Teknologi</h4>
-                                <p>Berkontribusi dalam pengembangan inovasi dan teknologi energi, termasuk energi baru dan terbarukan</p>
-                                <div class="ticks-list">
-                                  <span><i class="fa fa-check"></i> Mengembangkan inovasi dan teknologi untuk mendukung diversifikasi sumber energi</span> 
-                                  <span><i class="fa fa-check"></i> Berperan dalam penelitian dan pengembangan (R&D) terkait energi, termasuk energi baru dan terbarukan</span> 
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-lg-6 align-self-center">
-                              <div class="right-image">
-                                <img src="{{ asset('bs/assets/images/services-image-03.jpg') }}" alt="">
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div>
-                        <div class="thumb">
-                          <div class="row">
-                            <div class="col-lg-6 align-self-center">
-                              <div class="left-text">
-                                <h4>Kalangan Lingkungan Hidup</h4>
-                                <p>Mengedepankan aspek keberlanjutan dan dampak lingkungan dalam kebijakan energi nasional</p>
-                                <div class="ticks-list">
-                                  <span><i class="fa fa-check"></i> Mengawasi dampak lingkungan dari kebijakan energi nasional</span> 
-                                  <span><i class="fa fa-check"></i> Mendorong transisi energi dari fosil ke energi bersih dan berkelanjutan</span> 
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-lg-6 align-self-center">
-                              <div class="right-image">
-                                <img src="{{ asset('bs/assets/images/services-image-04.jpg') }}" alt="">
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div>
-                        <div class="thumb">
-                          <div class="row">
-                            <div class="col-lg-6 align-self-center">
-                              <div class="left-text">
-                                <h4>Kalangan Konsumen</h4>
-                                <p>Mewakili kepentingan pengguna energi, baik dari sektor rumah tangga, komersial, maupun industri</p>
-                                <div class="ticks-list">
-                                  <span><i class="fa fa-check"></i> Mewakili kepentingan pengguna energi, termasuk rumah tangga, komersial, dan industri kecil-menengah</span> 
-                                  <span><i class="fa fa-check"></i> Mengawal implementasi kebijakan subsidi energi agar tepat sasaran</span> 
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-lg-6 align-self-center">
-                              <div class="right-image">
-                                <img src="{{ asset('bs/assets/images/services-image.jpg') }}" alt="">
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                </div>          
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  
-  <div id="free-quote" class="free-quote">
-    <div class="container">
-      <div class="row">
-        
-        <div class="col-lg-4 offset-lg-4">
-          <div class="section-heading  wow fadeIn" data-wow-duration="1s" data-wow-delay="0.3s">
-            <h6>Rekrutmen Dewan Energi Nasional</h6>
-            <h4>Alur & Jadwal Seleksi</h4>
-            <div class="line-dec"></div>
-          </div>
-        </div>
-        
-        
-        <div class="col-lg-12 wow fadeInUp" data-wow-duration="0.5s" data-wow-delay="0.25s">
-          <form id="contact" action="" method="post">
-            <div class="row">
-              <div class="col-lg-12">
-                <div class="fill-form">
-                  <div class="row" style="padding-left: 30px !important;">
-                    @for ($i=0; $i < count($icons); $i++)
-                      <div class="col-lg-2">
-                        <div class="info-post">
-                          <div class="icon">
-                            <img src="{{ asset('bs/assets/images/'.$icons[$i]['gambar']) }}" alt="">
-                            <br>
-                            {{-- <a href="#"> --}}
-                              @php
-                                 echo $icons[$i]['judul']; 
-                              @endphp
-                            {{-- </a> --}}
-                          </div>
-                        </div>
-                      </div>
-                    @endfor
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-          </form>
-        </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div id="contact" class="contact-us section">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-6 offset-lg-3">
-          <div class="section-heading wow fadeIn" data-wow-duration="1s" data-wow-delay="0.5s">
-            <h4>Persyaratan <em>Pendaftaran</em></h4>
-            <div class="line-dec"></div>
-          </div>
-        </div>
-        
-        <section class="content">
-          <div class="row">
-              <div class="col-12" id="accordion">
-                @if ($syarat->count() != 0)
-                    @foreach ($syarat->get() as $sya)
-                      <div class="card card-primary card-outline">
-                        <a class="d-block w-100" data-toggle="collapse" href="#{{ $sya->element_id }}" style="color: #212529 !important;">
-                          <div class="card-header" style="background-color: #FCFCFC !important;">
-                              <h4 class="card-title w-100">
-                                  {{ $sya->persyaratan }}
-                              </h4>
-                          </div>
-                        </a>
-                        <div id="{{ $sya->element_id }}" class="collapse {{ ($sya->urutan == 1 ? 'show' : '') }}" data-parent="#accordion">
-                          <div class="card-body">
-                            @php
-                                echo $sya->deskripsi;
-                            @endphp
-                          </div>
-                        </div>
-                      </div>        
-                    @endforeach
-                @endif
-              </div>
-          </div>
-        </section>
-      </div>
-    </div>
-  </div>
-
-  <footer class="footer">
-    <div class="container">
+<div id="tugasfungsi" class="about section" style="margin-top:-50px;">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
         <div class="row">
-            <div class="col-lg-12 text-center">
-                <p>Copyright © 2025 Sekretariat Jenderal Dewan Energi Nasional.</p>
+          <div class="col-lg-4">
+            <div class="about-left-image  wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0.5s">
+              <img src="{{ asset('bs/assets/images/about-dec-v3.png') }}" alt="" style="width: 80%;">
+            </div>
+          </div>
+          <div class="col-lg-8 align-self-center  wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.5s">
+            <div class="about-right-content">
+              
+              <div class="section-heading">
+                <h6>Dewan Energi Nasional</h6>
+                <h4>Tugas <em>dan</em> Fungsi</h4>
+                <div class="line-dec"></div>
+              </div>
+
+              <p style="margin-bottom:10px;">
+                Sesuai dengan amanat UU No. 30 Tahun 2007, negara telah mengamanatkan dibentuknya suatu Dewan Energi Nasional (DEN)
+                yang anggotanya terdiri dari 7 (tujuh) Menteri yang secara langsung bertanggungjawab atas penyediaan, transportasi, 
+                penyaluran, dan pemanfaatan energi serta 8 (delapan) anggota dari Unsur Pemangku Kepentingan.  
+                Dewan Energi Nasional yang dibentuk melalui Peraturan Presiden Nomor 26 Tahun 2008, diberi tugas untuk :
+              </p>
+              <ul class="orderedlist">
+                <li class="orderedlist-decimal">Merancang dan merumuskan kebijakan energi nasional untuk ditetapkan oleh Pemerintah dengan persetujuan DPR</li>
+                <li class="orderedlist-decimal">Menetapkan Rencana Umum Energi Nasional</li>
+                <li class="orderedlist-decimal">Menetapkan langkah-langkah penanggulangan kondisi krisis dan darurat energi</li>
+                <li class="orderedlist-decimal">Mengawasi pelaksanaan kebijakan di bidang energi yang bersifat lintas sektoral</li>
+              </ul>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="apk" class="services section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="section-heading  wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
+          <h6>Anggota DEN</h6>
+          <h4>Dari Pemangku Kepentingan <em>(APK)</em></h4>
+          <div class="line-dec"></div>
+        </div>
+      </div>
+      <div class="col-lg-12">
+        <div class="naccs">
+          <div class="grid">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="menu">
+                  <div class="first-thumb active">
+                    <div class="thumb">
+                      <span class="icon"><img src="{{ asset('bs/assets/images/service-icon-01.png') }}" alt=""></span>
+                      Kalangan Akademisi<br>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="thumb">                 
+                      <span class="icon"><img src="{{ asset('bs/assets/images/service-icon-02.png') }}" alt=""></span>
+                      Kalangan <br>Industri
+                    </div>
+                  </div>
+                  <div>
+                    <div class="thumb">                 
+                      <span class="icon"><img src="{{ asset('bs/assets/images/service-icon-03.png') }}" alt=""></span>
+                      Kalangan <br>Teknologi
+                    </div>
+                  </div>
+                  <div>
+                    <div class="thumb">                 
+                      <span class="icon"><img src="{{ asset('bs/assets/images/service-icon-04.png') }}" alt=""></span>
+                      Kalangan Lingkungan Hidup
+                    </div>
+                  </div>
+                  <div class="last-thumb">
+                    <div class="thumb">                 
+                      <span class="icon"><img src="{{ asset('bs/assets/images/service-icon-01.png') }}" alt=""></span>
+                      Kalangan Konsumen
+                    </div>
+                  </div>
+                </div>
+              </div> 
+              <div class="col-lg-12">
+                <ul class="nacc">
+                  <li class="active">
+                    <div>
+                      <div class="thumb">
+                        <div class="row">
+                          <div class="col-lg-6 align-self-center">
+                            <div class="left-text">
+                              <h4>Kalangan Akademisi</h4>
+                              <p>Mewakili perguruan tinggi dan lembaga penelitian, berperan dalam memberikan perspektif ilmiah dan akademik dalam kebijakan energi.</p>
+                              <div class="ticks-list">
+                                <span ><i class="fa fa-check"></i> Memberikan kajian ilmiah dan akademik dalam penyusunan Kebijakan Energi Nasional (KEN) dan Rencana Umum Energi Nasional (RUEN)</span>
+                                <span><i class="fa fa-check"></i> Melakukan riset dan analisis terkait teknologi energi, sumber daya energi, serta dampak ekonomi dan sosial dari kebijakan energi</span>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-6 align-self-center">
+                            <div class="right-image">
+                              <img src="{{ asset('bs/assets/images/services-image.jpg') }}" alt="">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <div class="thumb">
+                        <div class="row">
+                          <div class="col-lg-6 align-self-center">
+                            <div class="left-text">
+                              <h4>Kalangan Industri</h4>
+                              <p>Mewakili sektor industri yang terlibat dalam produksi, distribusi, dan konsumsi energi</p>
+                              <div class="ticks-list">
+                                <span><i class="fa fa-check"></i> Mewakili kepentingan dunia usaha dalam penyediaan dan pemanfaatan energi.</span> 
+                                <span><i class="fa fa-check"></i> Memberikan masukan terkait kebutuhan energi industri serta efisiensi energi dalam proses produksi</span> 
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-6 align-self-center">
+                            <div class="right-image">
+                              <img src="{{ asset('bs/assets/images/services-image-02.jpg') }}" alt="">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <div class="thumb">
+                        <div class="row">
+                          <div class="col-lg-6 align-self-center">
+                            <div class="left-text">
+                              <h4>Kalangan Teknologi</h4>
+                              <p>Berkontribusi dalam pengembangan inovasi dan teknologi energi, termasuk energi baru dan terbarukan</p>
+                              <div class="ticks-list">
+                                <span><i class="fa fa-check"></i> Mengembangkan inovasi dan teknologi untuk mendukung diversifikasi sumber energi</span> 
+                                <span><i class="fa fa-check"></i> Berperan dalam penelitian dan pengembangan (R&D) terkait energi, termasuk energi baru dan terbarukan</span> 
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-6 align-self-center">
+                            <div class="right-image">
+                              <img src="{{ asset('bs/assets/images/services-image-03.jpg') }}" alt="">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <div class="thumb">
+                        <div class="row">
+                          <div class="col-lg-6 align-self-center">
+                            <div class="left-text">
+                              <h4>Kalangan Lingkungan Hidup</h4>
+                              <p>Mengedepankan aspek keberlanjutan dan dampak lingkungan dalam kebijakan energi nasional</p>
+                              <div class="ticks-list">
+                                <span><i class="fa fa-check"></i> Mengawasi dampak lingkungan dari kebijakan energi nasional</span> 
+                                <span><i class="fa fa-check"></i> Mendorong transisi energi dari fosil ke energi bersih dan berkelanjutan</span> 
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-6 align-self-center">
+                            <div class="right-image">
+                              <img src="{{ asset('bs/assets/images/services-image-04.jpg') }}" alt="">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <div class="thumb">
+                        <div class="row">
+                          <div class="col-lg-6 align-self-center">
+                            <div class="left-text">
+                              <h4>Kalangan Konsumen</h4>
+                              <p>Mewakili kepentingan pengguna energi, baik dari sektor rumah tangga, komersial, maupun industri</p>
+                              <div class="ticks-list">
+                                <span><i class="fa fa-check"></i> Mewakili kepentingan pengguna energi, termasuk rumah tangga, komersial, dan industri kecil-menengah</span> 
+                                <span><i class="fa fa-check"></i> Mengawal implementasi kebijakan subsidi energi agar tepat sasaran</span> 
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-6 align-self-center">
+                            <div class="right-image">
+                              <img src="{{ asset('bs/assets/images/services-image.jpg') }}" alt="">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>          
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div id="alurseleksi" class="free-quote">
+  <div class="container">
+    <div class="row">
+      
+      <div class="col-lg-4 offset-lg-4">
+        <div class="section-heading  wow fadeIn" data-wow-duration="1s" data-wow-delay="0.3s">
+          <h6>Rekrutmen Dewan Energi Nasional</h6>
+          <h4>Alur & Jadwal Seleksi</h4>
+          <div class="line-dec"></div>
+        </div>
+      </div>
+      
+      
+      <div class="col-lg-12 wow fadeInUp" data-wow-duration="0.5s" data-wow-delay="0.25s">
+        <form id="contact" action="" method="post">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="fill-form">
+                <div class="row" style="padding-left: 30px !important;">
+                  @for ($i=0; $i < count($icons); $i++)
+                    <div class="col-lg-2">
+                      <div class="info-post">
+                        <div class="icon">
+                          <img src="{{ asset('bs/assets/images/'.$icons[$i]['gambar']) }}" alt="">
+                          <br>
+                          {{-- <a href="#"> --}}
+                            @php
+                               echo $icons[$i]['judul']; 
+                            @endphp
+                          {{-- </a> --}}
+                        </div>
+                      </div>
+                    </div>
+                  @endfor
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<div id="persyaratan" class="contact-us section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 offset-lg-3">
+        <div class="section-heading wow fadeIn" data-wow-duration="1s" data-wow-delay="0.5s">
+          <h4>Persyaratan <em>Pendaftaran</em></h4>
+          <div class="line-dec"></div>
+        </div>
+      </div>
+      
+      <section class="content">
+        <div class="row">
+            <div class="col-12" id="accordion">
+              @if ($syarat->count() != 0)
+                  @foreach ($syarat->get() as $sya)
+                    <div class="card card-primary card-outline">
+                      <a class="d-block w-100" data-toggle="collapse" href="#{{ $sya->element_id }}" style="color: #212529 !important;">
+                        <div class="card-header" style="background-color: #FCFCFC !important;">
+                            <h4 class="card-title w-100">
+                                {{ $sya->persyaratan }}
+                            </h4>
+                        </div>
+                      </a>
+                      <div id="{{ $sya->element_id }}" class="collapse {{ ($sya->urutan == 1 ? 'show' : '') }}" data-parent="#accordion">
+                        <div class="card-body">
+                          @php
+                              echo $sya->deskripsi;
+                          @endphp
+                        </div>
+                      </div>
+                    </div>        
+                  @endforeach
+              @endif
             </div>
         </div>
+      </section>
     </div>
-  </footer>
-
-
-  <!-- Scripts -->
-  <script src="{{ asset('bs/vendor/jquery/jquery.min.js') }}"></script>
-  <script src="{{ asset('bs/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-  <script src="{{ asset('bs/assets/js/owl-carousel.js') }}"></script>
-  <script src="{{ asset('bs/assets/js/animation.js') }}"></script>
-  <script src="{{ asset('bs/assets/js/imagesloaded.js') }}"></script>
-  <script src="{{ asset('bs/assets/js/custom.js') }}"></script>
-
-  <!-- jQuery -->
-  <script src="{{ asset('bs/plugins/jquery/jquery.min.js') }}"></script>
-  <!-- Bootstrap 4 -->
-  <script src="{{ asset('bs/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-  <!-- AdminLTE App -->
-  <script src="{{ asset('bs/dist/js/adminlte.min.js') }}"></script>
-
-</body>
-</html>
+  </div>
+</div>
+@endsection

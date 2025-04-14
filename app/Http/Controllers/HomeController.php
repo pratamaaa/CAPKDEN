@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\PengumumanController;
+use App\Models\PengumumanPdf;
 use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
@@ -40,10 +41,15 @@ class HomeController extends Controller
     }
 
     public function pengumuman(){
-        return view('header/pengumuman');
+        return view('pengumuman');
+    }
+
+    public function pengumuman2(){
+        $pengumumans = PengumumanPdf::all();
+        return view('pengumuman2', compact('pengumumans'));
     }
 
     public function kontak(){
-        return view('header/kontak');
+        return view('kontak');
     }
 }

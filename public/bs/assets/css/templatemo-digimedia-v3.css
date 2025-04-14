@@ -2163,3 +2163,57 @@ responsive
 .warnagelap{
   color: #212529 !important;
 }
+
+.mt0{
+  margin-top: 0px !important;
+}
+
+.mb10{
+  margin-bottom: 10px !important;
+}
+
+.anchor {
+  background-color: #E9EEF6;
+  background-position: center center;
+  background-size: cover;
+  padding: 19px 0px 0px 0px;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  margin-bottom: 150px;
+}
+
+.anchor-pad {
+  padding: 10px 60px 10px 30px;
+}
+
+.anchor-pad .info-post {
+  margin-bottom: 20px;
+}
+
+.anchor-pad .icon {
+  text-align: center;
+  box-shadow: 0px 0px 0px rgba(0,0,0,0.1);
+  border-radius: 0px;
+  padding: 20px 10px 20px 10px;
+  /* background-color: #ffffff; */
+}
+
+.anchor-pad .icon img {
+  max-width: 60px;
+  display: block;
+  margin: 0 auto;
+}
+
+.anchor-pad .icon a {
+  margin-top: 15px;
+  display: inline-block;
+  font-size: 15px;
+  font-weight: 500;
+  color: #2a2a2a;
+  transition: all .3s;
+}
+
+.anchor-pad .icon:hover a {
+  color: #4da6e7;
+}

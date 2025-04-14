@@ -6,9 +6,8 @@
                 <div class="col-lg-6 offset-lg-3">
                     <div class="section-heading wow fadeIn" data-wow-duration="1s" data-wow-delay="0.5s">
                         <h6>Kontak Kami</h6>
-                        <h4>Sekretariat Jenderal <em>
-                                <p></p> Dewan Energi Nasional
-                            </em></h4>
+                        <h4>Dewan Energi Nasional</h4>
+                        <h5 style="margin-top:-15px;">Sekretariat Jenderal</h5>
                         <div class="line-dec"></div>
                     </div>
                 </div>
