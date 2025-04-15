@@ -86,7 +86,7 @@
                                                 <tr>
                                                     <td>
                                                         <strong>Calon Kalangan : {{ optional($userProfile)->kalangan ?? 'Belum diisi' }}</strong><br>
-                                                        Tanggal Pendaftaran : {{ $user->created_at }}
+                                                        Tanggal Registrasi : {{ $user->created_at }}
                                                     </td>
                                                     <td>
                                                         <table class="table table-striped">

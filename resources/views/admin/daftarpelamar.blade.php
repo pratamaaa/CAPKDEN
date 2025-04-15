@@ -60,8 +60,15 @@
                                             </td>
                                 
                                             <td style="width: 250px;">
-                                                {!! $d->userProfile->gelar_depan ?? '' !!}. {{ $d->userProfile->nama_lengkap ?? 'Belum diisi' }}, {{ $d->userProfile->gelar_belakang ?? '' }}
+                                                @php
+                                                    $depan = $d->userProfile->gelar_depan ?? '';
+                                                    $nama = $d->name ?? 'Belum diisi';
+                                                    $belakang = $d->userProfile->gelar_belakang ?? '';
+                                                @endphp
+                                            
+                                                {{ trim("{$depan} {$nama}, {$belakang}", ' ,') }}
                                             </td>
+                                            
                                 
                                             <td>{{ $d->userProfile->kalangan ?? 'Belum diisi' }}</td>
                                 
@@ -102,10 +109,12 @@
                                 
                                             <td>
                                                 <button class="btn btn-primary btn-sm preview-btn" data-bs-toggle="modal" data-bs-target="#previewModal"
-                                                    data-nama="{{ $d->userProfile->nama_lengkap ?? 'Belum diisi' }}"
-                                                    data-nik="{{ $d->userProfile->nik ?? 'Belum diisi' }}"
-                                                    data-ttl="{{ ($d->userProfile->tempat_lahir ?? '-') . ', ' . ($d->userProfile->tanggal_lahir ?? '-') }}"
+                                                    data-nama="{{ $d->name ?? 'Belum diisi' }}"
+                                                    data-nik="{{ $d->nik ?? 'Belum diisi' }}"
+                                                    data-ttl="{{ ($d->tempat_lahir ?? '-') . ', ' . ($d->tanggal_lahir ?? '-') }}"
                                                     data-jk="{{ $d->userProfile->jenis_kelamin ?? 'Belum diisi' }}"
+                                                    data-gelar-depan="{{ $d->userProfile->gelar_depan ?? 'Belum diisi' }}"
+                                                    data-gelar-belakang="{{ $d->userProfile->gelar_belakang ?? 'Belum diisi' }}"
                                                     data-email="{{ $d->userProfile->user->email ?? 'Belum diisi' }}"
                                                     data-alamat="{{ $d->userProfile->alamat ?? 'Belum diisi' }}"
                                                     data-hp="{{ $d->userProfile->no_handphone ?? 'Belum diisi' }}"
@@ -244,7 +253,11 @@
                                     document.addEventListener("DOMContentLoaded", function () {
                                         document.querySelectorAll(".preview-btn").forEach(button => {
                                             button.addEventListener("click", function () {
-                                                document.getElementById("previewNama").innerText = this.getAttribute("data-nama");
+                                                const gelarDepan = this.getAttribute("data-gelar-depan") || '';
+const nama = this.getAttribute("data-nama") || '';
+const gelarBelakang = this.getAttribute("data-gelar-belakang") || '';
+document.getElementById("previewNama").innerText = `${gelarDepan} ${nama} ${gelarBelakang}`.replace(/\s+/g, ' ').trim();
+
                                                 document.getElementById("previewKalangan").innerText = this.getAttribute("data-kalangan");
                                                 document.getElementById("previewNik").innerText = this.getAttribute("data-nik");
                                                 document.getElementById("previewTtl").innerText = this.getAttribute("data-ttl");

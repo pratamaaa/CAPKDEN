@@ -21,10 +21,9 @@ class PengumumanController extends Controller
 {
     $request->validate([
         'title' => 'required|string|max:255',
-        'file_path' => 'required|mimes:pdf|max:2048' // Hanya menerima file PDF maksimal 2MB
+        'file_path' => 'required|mimes:pdf|max:20480'
     ]);
 
-    // Periksa apakah file benar-benar diunggah
     if ($request->hasFile('file_path')) {
         $filePath = $request->file('file_path')->store('pengumuman', 'public');
 
@@ -38,7 +37,6 @@ class PengumumanController extends Controller
         return redirect()->back()->withErrors(['file_path' => 'File tidak ditemukan. Silakan unggah kembali.']);
     }
 }
-
 
     public function show($filename)
 {
@@ -59,7 +57,7 @@ public function update(Request $request)
     $request->validate([
         'id' => 'required|exists:pengumuman_pdfs,id',
         'title' => 'required|string|max:255',
-        'file_path' => 'nullable|file|mimes:pdf|max:20480', // maksimal 20MB
+        'file_path' => 'nullable|file|mimes:pdf|max:20480',
     ]);
 
     $pengumuman = PengumumanPdf::findOrFail($request->id);
@@ -82,7 +80,6 @@ public function update(Request $request)
 
     return redirect()->back()->with('success', 'Pengumuman berhasil diperbarui!');
 }
-
 
 public function destroy(Request $request)
 {

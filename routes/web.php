@@ -9,6 +9,7 @@ use App\Http\Controllers\UploadController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserFilesController;
 use App\Http\Controllers\PengumumanController;
+use App\Http\Controllers\VerifikasiController;
 
 Route::get('/',[HomeController::class, 'homepage']);
 Route::get('/pengumuman',[HomeController::class, 'pengumuman']);
@@ -48,26 +49,25 @@ Route::get('/password', [DashboardController::class, 'password'])->name('user.pa
 Route::post('/password', [DashboardController::class, 'updatePassword'])->name('user.updatePassword');
 Route::delete('/userfiles/delete/{field}', [UserFilesController::class, 'destroy'])->name('userfiles.destroy');
 
-
 // ADMIN 
 Route::get('/pengguna', [DashboardController::class, 'pengguna'])->name('pengguna');
 Route::get('/upl_pengumuman', [DashboardController::class, 'upl_pengumuman'])->name('upl_pengumuman');
-
 Route::get('/create', [DashboardController::class, 'create'])->name('create');
 Route::post('/store', [DashboardController::class, 'store'])->name('store');
 Route::put('/pengguna/update/{id}', [DashboardController::class, 'update'])->name('pengguna.update');
 Route::delete('/pengguna/delete/{id}', [DashboardController::class, 'destroy'])->name('pengguna.delete');
 Route::get('/daftarpelamar', [DashboardController::class, 'daftarpelamar'])->name('daftarpelamar');
 Route::get('/download-pdf/{id}', [PdfController::class, 'generatePdf'])->name('download.pdf');
-
-
 Route::get('/pengumuman', [PengumumanController::class, 'index'])->name('pengumuman.index');
 Route::post('/pengumuman/upload', [PengumumanController::class, 'upload'])->name('pengumuman.upload');
 Route::get('/pengumuman/{filename}', [PengumumanController::class, 'index'])->name('pengumuman.index');
 Route::put('/pengumuman/update', [PengumumanController::class, 'update'])->name('pengumuman.update');
 Route::delete('/pengumuman/destroy', [PengumumanController::class, 'destroy'])->name('pengumuman.destroy');
-
 Route::post('/upload/{field}', [UploadController::class, 'uploadFile'])->name('upload.file');
+Route::get('verifikasi', [VerifikasiController::class, 'index'])->name('verifikasi.index');
+Route::put('/verifikasi/update-semua', [VerifikasiController::class, 'updateSemua'])->name('verifikasi.updateSemua');
+Route::get('/download-template/{type}', [DashboardController::class, 'download'])->name('template.download');
+
 
 
 

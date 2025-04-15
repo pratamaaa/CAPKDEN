@@ -104,13 +104,10 @@ class UserFilesController extends Controller
         }
     }
 
-    // Ambil input teks (non-file), buang file agar tidak overwrite path hasil store
     $inputText = $request->except(array_merge(['_token', 'step'], array_keys($uploadedFiles)));
 
-    // Gabungkan semuanya
     $data = array_merge($uploadedFiles, $inputText);
 
-    // Simpan ke database
     UserFiles::updateOrCreate(
         ['user_id' => auth()->id()],
         $data
@@ -121,7 +118,6 @@ class UserFilesController extends Controller
         'step' => $step
     ]);
 }
-
 
     public function index()
 {

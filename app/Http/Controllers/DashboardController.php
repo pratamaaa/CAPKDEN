@@ -53,7 +53,7 @@ class DashboardController extends Controller
     }
 
     public function updatedata()
-{
+    {
     $greeting = $this->getGreeting();
     $user = auth()->user();
     $profile = $user->profile;
@@ -63,31 +63,29 @@ class DashboardController extends Controller
     }
 
     return view('user.datadiri', compact('greeting', 'user', 'profile'));
-}
+    }
 
-
-
-public function updateberkas()
-{
+    public function updateberkas()
+    {
     $greeting = $this->getGreeting();
     $userFiles = UserFiles::where('user_id', Auth::id())->first();
     return view('user.berkas', compact('userFiles', 'greeting'));
-}
+    }
 
     public function pengguna()
-{
+    {
     $greeting = $this->getGreeting();
     $data = User::get();  
     return view('admin.pengguna', compact('data', 'greeting'));
-}
+    }
 
-public function upl_pengumuman()
-{
-    $pengumumanPdfs = PengumumanPdf::all();
-    $greeting = $this->getGreeting();
+    public function upl_pengumuman()
+    {
+        $pengumumanPdfs = PengumumanPdf::all();
+        $greeting = $this->getGreeting();
 
-    return view('admin.pengumuman', compact('pengumumanPdfs', 'greeting'));
-}
+        return view('admin.pengumuman', compact('pengumumanPdfs', 'greeting'));
+    }
 
     public function create()
     {
@@ -190,7 +188,6 @@ public function upl_pengumuman()
     return redirect()->back()->with('success', $message);
 }
 
-
 public function daftarpelamar()
 {
     $greeting = $this->getGreeting();
@@ -225,5 +222,21 @@ public function updatePassword(Request $request)
 
     return back()->with('success', 'Password berhasil diperbarui.');
 }
+
+public function download($type)
+{
+    $fileMap = [
+        'pengusul' => public_path('templates/template_pengusul.docx'),
+        'pakar'    => public_path('templates/template_rekomendasi_pakar.docx'),
+    ];
+
+    if (!array_key_exists($type, $fileMap) || !file_exists($fileMap[$type])) {
+        abort(404, 'File tidak ditemukan.');
+    }
+
+    $filename = 'Template_' . ucfirst($type) . '.docx';
+    return response()->download($fileMap[$type], $filename);
+}
+
 
 }

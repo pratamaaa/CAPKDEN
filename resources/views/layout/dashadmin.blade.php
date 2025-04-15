@@ -44,7 +44,9 @@
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
+    <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" />
+    <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+    
     <style>
         .step {
             display: none;
@@ -58,8 +60,6 @@
             transition: width 0.4s ease-in-out;
         }
     </style>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.js"></script>
 
     <style>
         /* Accordion yang tidak aktif (collapsed) */
@@ -122,7 +122,7 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-light-primary elevation-4">
             <!-- Brand Logo -->
-            <a href="index3.html" class="brand-link">
+            <a href="" class="brand-link">
                 <img src="{{ asset('bs/dist/img/Logo-DEN.png') }}" alt="Logo" class="" width="100%"
                     height="100%">
 
@@ -217,27 +217,14 @@
                                     </p>
                                 </a>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="{{ url('/verifikasi') }}" class="nav-link">
                                     <i class="nav-icon far fa-check-square"></i>
                                     <p>
                                         Verifikasi Data
-                                        <i class="fas fa-angle-left right"></i>
+                                        
                                     </p>
                                 </a> 
-                                <ul class="nav nav-treeview">
-                                    <li class="nav-item">
-                                      <a href="../UI/general.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Sudah Verifikasi</p>
-                                      </a>
-                                    </li>
-                                    <li class="nav-item">
-                                      <a href="../UI/icons.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Belum Verifikasi</p>
-                                      </a>
-                                    </li>
-                                </ul>     
+                                  
                             </li>
                         @endif
 
@@ -668,8 +655,6 @@
         showConfirmButton: false
     });
 </script>
-
-
 
 @endif
 

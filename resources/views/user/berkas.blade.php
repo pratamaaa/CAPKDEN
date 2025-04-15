@@ -11,14 +11,9 @@
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-8">
+                    <div class="col-md-12">
                         @include('user.layout-user.upload')
                     </div>
-
-                    <!-- Tabel Monitoring -->
-                    {{-- <div class="col-md-4">
-                        @include('user.layout-user.status')
-                    </div> --}}
                 </div>
                 <script>
                     document.addEventListener("DOMContentLoaded", function () {

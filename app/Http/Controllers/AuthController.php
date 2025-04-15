@@ -43,7 +43,6 @@ class AuthController extends Controller
     return back()->withErrors(['loginError' => 'Username/NIK atau password salah!'])->withInput();
 }
 
-
     public function registrasi()
     {
         return view('auth.registrasi');

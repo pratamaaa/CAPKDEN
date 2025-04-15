@@ -232,7 +232,7 @@
                                         <label class="col-sm-3 col-form-label">Nama Organisasi</label>
                                         <div class="col-sm-6">
                                             <input type="text" name="org_pengusul" class="form-control"
-                                                value="{{ old('org_pengusul') }}" required>
+                                                value="{{ old('org_pengusul') }}" onkeyup="set_pengusul(this)" required>
                                         </div>
                                     </div>
                                     <div class="form-group row mb-3">
@@ -246,7 +246,29 @@
                                 </div>
                             </div>
                         </div>
+<script>
+    function set_pengusul(ini){
+        var vals = $(ini).val();
+        if(vals!=''){ // ketika isi
+            $('input[name="rek_pakar1"]').attr('required',true);
+            $('input[name="rek_pakar2"]').removeAttr('required');
+            $('input[name="rek_pakar3"]').removeAttr('required');
 
+            $('.info_wajib1').show();
+            $('.info_wajib2').hide();
+            $('.info_wajib3').hide();
+
+        }else{ // Ketika Kosong
+            $('input[name="rek_pakar1"]').attr('required',true);
+            $('input[name="rek_pakar2"]').attr('required',true);
+            $('input[name="rek_pakar3"]').attr('required',true);
+
+            $('.info_wajib1').show();
+            $('.info_wajib2').show();
+            $('.info_wajib3').show();
+        }
+    }
+</script>
                         {{-- Pakar 1 --}}
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="headingPakar1">
@@ -264,6 +286,7 @@
                                         <div class="col-sm-6">
                                             <input type="text" name="rek_pakar1" class="form-control"
                                                 value="{{ old('rek_pakar1') }}" required>
+                                                <span class="info_wajib1 text-danger" style="display:none;">* Harus diisi</span>
                                         </div>
                                     </div>
                                     <div class="form-group row mb-3">
@@ -295,6 +318,8 @@
                                         <div class="col-sm-6">
                                             <input type="text" name="rek_pakar2" class="form-control"
                                                 value="{{ old('rek_pakar2') }}" required>
+                                                <span class="info_wajib2 text-danger" style="display:none;">* Harus diisi</span>
+
                                         </div>
                                     </div>
                                     <div class="form-group row mb-3">
@@ -326,6 +351,7 @@
                                         <div class="col-sm-6">
                                             <input type="text" name="rek_pakar3" class="form-control"
                                                 value="{{ old('rek_pakar3') }}" required>
+                                                <span class="info_wajib3 text-danger" style="display:none;">* Harus diisi</span>
                                         </div>
                                     </div>
                                     <div class="form-group row mb-3">
@@ -352,15 +378,19 @@
                             <input type="hidden" name="step" value="4">
 
                             {{-- Surat Lamaran --}}
-                            <div class="form-group row mb-3">
+                            <div class="form-group row mb-4">
                                 <label class="col-sm-5 col-form-label">Surat Lamaran</label>
-                                <div class="col-sm-5 d-flex align-items-center">
-                                    <input type="file" name="lamaran" accept="application/pdf"
-                                        class="form-control-file" required>
-                                    <small class="badge bg-danger ms-2">PDF, max 1MB</small>
+                                <div class="col-sm-7">
+                                    <input type="file" name="lamaran" accept="application/pdf" class="form-control" required>
+                                    <div class="mt-2 d-flex flex-column align-items-start">
+                                        <span class="badge bg-danger mb-1">PDF, max 1MB</span>
+                                        <a href="{{ asset('templates/lamaran.pdf') }}" class="text-decoration-underline text-primary small" download>
+                                            Unduh Template
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
-
+                            </div>             
+                            
                             {{-- CV --}}
                             <div class="form-group row mb-3">
                                 <label class="col-sm-5 col-form-label">Daftar Riwayat Hidup (CV)</label>
