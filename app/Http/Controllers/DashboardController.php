@@ -251,7 +251,7 @@ public function pelamardetail_pdf(Request $req){
 
     // return view('admin.pelamardetail_pdf', compact('files_check', 'pelamar'));
 
-    $pdf = PDF::loadView('admin.pelamardetail_pdf', compact('files_check', 'pelamar'))->setPaper('a5', 'portrait');
+    $pdf = PDF::loadView('admin.pelamardetail_pdf', compact('files_check', 'pelamar'))->setPaper('a4', 'portrait');
     return $pdf->stream('detailpelamar.pdf');
 }
 

@@ -17,7 +17,6 @@ Route::get('/pengumuman2',[HomeController::class, 'pengumuman2']);
 Route::get('/kontak',[HomeController::class, 'kontak']);
 
 // LOGIN 
-
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
@@ -25,7 +24,6 @@ Route::get('/registrasi', [AuthController::class, 'registrasi'])->name('registra
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 
 // MIDDLEWARE
-
 Route::middleware(['auth', 'role:administrator'])->group(function () {
     Route::get('/admin', [DashboardController::class, 'adminDashboard'])->name('administrator.dashboard');
 });
@@ -38,8 +36,8 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     Route::get('/user', [DashboardController::class, 'userDashboard'])->name('user.dashboard');
 });
 
+Route::group(['middleware' => 'auth'], function(){
 // USER 
-
 Route::get('/updatedata', [DashboardController::class, 'updatedata'])->name('updatedata');
 Route::post('/store-user-profile', [DashboardController::class, 'storeUserProfile'])->name('storeUserProfile');
 Route::get('/updateberkas', [DashboardController::class, 'updateberkas'])->name('updateberkas');
@@ -72,6 +70,8 @@ Route::put('/pengumuman/update', [PengumumanController::class, 'update'])->name(
 Route::delete('/pengumuman/destroy', [PengumumanController::class, 'destroy'])->name('pengumuman.destroy');
 
 Route::post('/upload/{field}', [UploadController::class, 'uploadFile'])->name('upload.file');
+});
+
 
 
 

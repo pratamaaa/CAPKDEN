@@ -5,7 +5,7 @@
     <h5 class="modal-title" id="previewModalLabel">
         <i class="fas fa-user-circle me-2"></i> Detail Pelamar
     </h5>
-    <a href="" class="btn btn-primary" id="downloadPdfBtn">
+    <a href="{{ url('/pelamardetail_pdf') }}?userid={{ $pelamar->user_id }}" target="_blank" class="btn btn-primary" id="downloadPdfBtn">
         <i class="fas fa-download"></i> Download PDF
     </a>
 </div>
