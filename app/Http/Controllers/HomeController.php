@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\PengumumanController;
 use App\Models\PengumumanPdf;
 use Illuminate\Support\Facades\DB;
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
 
 class HomeController extends Controller
 {
@@ -45,8 +46,13 @@ class HomeController extends Controller
     }
 
     public function pengumuman2(){
-        $pengumumans = PengumumanPdf::all();
-        return view('pengumuman2', compact('pengumumans'));
+        // $pengumumans = PengumumanPdf::all();
+        // return view('pengumuman2', compact('pengumumans'));
+        $data['judulhalaman'] = 'Judul Halamannya Disini';
+        $pdf = PDF::loadView('pengumuman2', $data)->setPaper('a5', 'portrait');
+        return $pdf->stream('namafile.pdf');
+
+        return view('pengumuman2');
     }
 
     public function kontak(){

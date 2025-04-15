@@ -87,8 +87,7 @@
 
         <!-- Preloader -->
         <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__shake" src="{{ asset('bs/dist/img/den.png') }}" alt="logoDEN" height="60"
-                width="60">
+            <img class="animation__shake" src="{{ asset('bs/dist/img/den.png') }}" alt="logoDEN" height="60" width="60">
         </div>
 
         <!-- Navbar -->
@@ -96,8 +95,7 @@
             <!-- Left navbar links -->
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i
-                            class="fas fa-bars"></i></a>
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
             </ul>
 
@@ -122,11 +120,9 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-light-primary elevation-4">
             <!-- Brand Logo -->
-            <a href="index3.html" class="brand-link">
-                <img src="{{ asset('bs/dist/img/Logo-DEN.png') }}" alt="Logo" class="" width="100%"
-                    height="100%">
-
-            </a>
+            {{-- <a href="{{ url('/') }}" class="brand-link">
+                <img src="{{ asset('bs/assets/images/logo-den.png') }}" alt="" style="width: 100%;">
+            </a> --}}
 
             <!-- Sidebar -->
             <div class="sidebar">
@@ -140,7 +136,7 @@
                     <div class="info">
                         <small> {{ $greeting }}, {{ $user->name }}
                         </small>
-                        <span class="d-block"><b>Selamat Datang di Aplikasi <br> CAPK DEN</b></span>
+                        {{-- <span class="d-block"><b>Selamat Datang di Aplikasi <br> CAPK DEN</b></span> --}}
                     </div>
                 </div>
 

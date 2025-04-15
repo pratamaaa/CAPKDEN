@@ -60,6 +60,8 @@ Route::post('/store', [DashboardController::class, 'store'])->name('store');
 Route::put('/pengguna/update/{id}', [DashboardController::class, 'update'])->name('pengguna.update');
 Route::delete('/pengguna/delete/{id}', [DashboardController::class, 'destroy'])->name('pengguna.delete');
 Route::get('/daftarpelamar', [DashboardController::class, 'daftarpelamar'])->name('daftarpelamar');
+Route::get('/pelamardetail', [DashboardController::class, 'pelamardetail']);
+Route::get('/pelamardetail_pdf', [DashboardController::class, 'pelamardetail_pdf']);
 Route::get('/download-pdf/{id}', [PdfController::class, 'generatePdf'])->name('download.pdf');
 
 
