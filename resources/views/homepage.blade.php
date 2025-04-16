@@ -300,18 +300,32 @@
             <div class="col-lg-12">
               <div class="fill-form">
                 <div class="row" style="padding-left: 30px !important;">
-                  @for ($i=0; $i < count($icons); $i++)
-                    <div class="col-lg-2">
+                  @for ($i=0; $i < count($jadwalseleksi); $i++)
+                    <div class="col-lg-3">
                       <div class="info-post">
-                        <div class="icon">
-                          <img src="{{ asset('bs/assets/images/'.$icons[$i]['gambar']) }}" alt="">
-                          <br>
-                          {{-- <a href="#"> --}}
+                        <div class="blog-post">
+                          <div class="down-content">
+                            <span class="category" style="font-size: 13px !important;font-weight:bold;">{{ $jadwalseleksi[$i]['tanggal']}}</span>
+                            <br><br>
                             @php
-                               echo $icons[$i]['judul']; 
+                                echo $jadwalseleksi[$i]['judul']; 
                             @endphp
-                          {{-- </a> --}}
+                          </div>
                         </div>
+
+                        {{-- <div class="icon">
+                          { {-- <img src="{{ asset('bs/assets/images/'.$jadwalseleksi[$i]['gambar']) }}" alt=""> --} }
+                          <div class="border-first-button__">
+                            <a href="javascript:void(0)" style="background-color: #4DA6E7;color:#000000;">
+                              <span class="date">{{ $jadwalseleksi[$i]['tanggal']}}</span>
+                            </a>
+                          </div>
+                          
+                          <br>
+                          @php
+                              echo $jadwalseleksi[$i]['judul']; 
+                          @endphp
+                        </div> --}}
                       </div>
                     </div>
                   @endfor

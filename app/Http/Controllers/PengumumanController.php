@@ -16,12 +16,6 @@ class PengumumanController extends Controller
         return view('pengumuman', compact('pengumumans'));
     }
 
-    // public function pengumuman2()
-    // {
-    //     $pengumumans = PengumumanPdf::all();
-    //     return view('pengumuman2', compact('pengumumans'));
-    // }
-
     // Proses upload PDF
     public function upload(Request $request)
 {
