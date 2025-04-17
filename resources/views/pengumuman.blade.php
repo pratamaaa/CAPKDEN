@@ -19,12 +19,12 @@
                             <!-- Card Box "Daftar" -->
                             <div class="col-md-3">
                                 <div class="card">
-                                    <div class="card-header bg-secondary text-white">
+                                    <div class="card-header text-white" style="background-color: #1F3BB3;">
                                         <h5>Daftar Pengumuman</h5>
                                     </div>
-                                    <div class="card-body">
+                                    <div class="card-body" style="padding-bottom:40px;">
                                         @foreach ($pengumumans as $pengumuman)
-                                            <div class="list-group-item list-group-item-action" style="cursor: pointer;" onclick="loadPdfPreview('{{ asset('storage/' . $pengumuman->file_path) }}')">
+                                            <div class="list-group-item list-group-item-action" style="cursor: pointer;margin-top:12px;" onclick="loadPdfPreview('{{ asset('storage/' . $pengumuman->file_path) }}');">
                                                 <i class="fas fa-file-pdf text-danger"></i> {{ $pengumuman->title }}
                                             </div>
                                         @endforeach
@@ -35,7 +35,7 @@
                             <!-- Card Box "Preview" -->
                             <div class="col-md-9">
                                 <div class="card">
-                                    <div class="card-header bg-secondary text-white">
+                                    <div class="card-header text-white" style="background-color: #1F3BB3;">
                                         <h5>Preview Dokumen</h5>
                                     </div>
                                     <div class="card-body">

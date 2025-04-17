@@ -19,7 +19,7 @@
                   <div class="icon">
                     <a href="#tugasfungsi">
                       <img src="{{ asset('bs/assets/images/anchor/tugasfungsi.png') }}" class="mb10" alt="">
-                      <span>Tugas dan Fungsi</span>
+                      Tugas dan Fungsi
                     </a>
                   </div>
                 </div>
@@ -357,9 +357,9 @@
             <div class="col-12" id="accordion">
               @if ($syarat->count() != 0)
                   @foreach ($syarat->get() as $sya)
-                    <div class="card card-primary card-outline">
-                      <a class="d-block w-100" data-toggle="collapse" href="#{{ $sya->element_id }}" style="color: #212529 !important;">
-                        <div class="card-header" style="background-color: #F2F2F2 !important;">
+                    <div class="card card-warning card-outline">
+                      <a class="d-block w-100" data-toggle="collapse" href="#{{ $sya->element_id }}" style="color: #ffffff !important;">
+                        <div class="card-header" style="background-color: #1F3BB3 !important;">
                             <h4 class="card-title w-100">
                                 {{ $sya->persyaratan }}
                             </h4>
