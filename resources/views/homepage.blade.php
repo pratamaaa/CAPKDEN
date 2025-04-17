@@ -313,20 +313,6 @@
                             @endphp
                           </div>
                         </div>
-
-                        {{-- <div class="icon">
-                          { {-- <img src="{{ asset('bs/assets/images/'.$jadwalseleksi[$i]['gambar']) }}" alt=""> --} }
-                          <div class="border-first-button__">
-                            <a href="javascript:void(0)" style="background-color: #4DA6E7;color:#000000;">
-                              <span class="date">{{ $jadwalseleksi[$i]['tanggal']}}</span>
-                            </a>
-                          </div>
-                          
-                          <br>
-                          @php
-                              echo $jadwalseleksi[$i]['judul']; 
-                          @endphp
-                        </div> --}}
                       </div>
                     </div>
                   @endfor

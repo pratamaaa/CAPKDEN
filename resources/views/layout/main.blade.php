@@ -48,8 +48,8 @@
           <div class="row">
             <div class="col-12">
               <nav class="main-nav">
-                <a href="index.html" class="logo">
-                  {{-- <img src="{{ asset('bs/assets/images/logo-den.png') }}" alt="" style="width: 320px;"> --}}
+                <a href="{{ url('/') }}" class="logo">
+                  <img src="{{ asset('bs/assets/images/logo-den.png') }}" alt="" style="width: 320px;">
                 </a>
                 
                 <ul class="nav">
