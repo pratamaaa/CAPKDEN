@@ -65,7 +65,7 @@
   </div>
 </div>
 
-<div id="tugasfungsi" class="about section" style="margin-top:-50px;">
+<div id="tugasfungsi" class="about section" style="margin-top:-150px;padding-top:100px;padding-bottom: 100px;background-image: url({{ asset('bs/assets/images/blog-left-dec.jpg') }});background-size: cover;">
   <div class="container">
     <div class="row">
       <div class="col-lg-12">
@@ -110,11 +110,12 @@
     <div class="row">
       <div class="col-lg-12">
         <div class="section-heading  wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
-          <h6>Anggota DEN</h6>
-          <h4>Dari Pemangku Kepentingan <em>(APK)</em></h4>
-          <div class="line-dec"></div>
+          <h6 class="whitecolor">Anggota DEN</h6>
+          <h4 class="whitecolor">Dari Pemangku Kepentingan (APK)</h4>
+          {{-- <div class="line-dec whitecolor"></div> --}}
         </div>
       </div>
+
       <div class="col-lg-12">
         <div class="naccs">
           <div class="grid">
@@ -124,19 +125,19 @@
                   <div class="first-thumb active">
                     <div class="thumb">
                       <span class="icon"><img src="{{ asset('bs/assets/images/service-icon-01.png') }}" alt=""></span>
-                      Kalangan Akademisi<br>
+                      Kalangan Akademisi<br><br>
                     </div>
                   </div>
                   <div>
                     <div class="thumb">                 
                       <span class="icon"><img src="{{ asset('bs/assets/images/service-icon-02.png') }}" alt=""></span>
-                      Kalangan <br>Industri
+                      Kalangan <br>Industri<br><br>
                     </div>
                   </div>
                   <div>
                     <div class="thumb">                 
                       <span class="icon"><img src="{{ asset('bs/assets/images/service-icon-03.png') }}" alt=""></span>
-                      Kalangan <br>Teknologi
+                      Kalangan <br>Teknologi<br><br>
                     </div>
                   </div>
                   <div>
@@ -148,7 +149,7 @@
                   <div class="last-thumb">
                     <div class="thumb">                 
                       <span class="icon"><img src="{{ asset('bs/assets/images/service-icon-01.png') }}" alt=""></span>
-                      Kalangan Konsumen
+                      Kalangan Konsumen<br><br>
                     </div>
                   </div>
                 </div>
@@ -171,7 +172,7 @@
                           </div>
                           <div class="col-lg-6 align-self-center">
                             <div class="right-image">
-                              <img src="{{ asset('bs/assets/images/services-image.jpg') }}" alt="">
+                              <img src="{{ asset('bs/assets/images/services-image-02.jpg') }}" alt="">
                             </div>
                           </div>
                         </div>
@@ -194,7 +195,7 @@
                           </div>
                           <div class="col-lg-6 align-self-center">
                             <div class="right-image">
-                              <img src="{{ asset('bs/assets/images/services-image-02.jpg') }}" alt="">
+                              <img src="{{ asset('bs/assets/images/services-image.jpg') }}" alt="">
                             </div>
                           </div>
                         </div>
@@ -358,7 +359,7 @@
                   @foreach ($syarat->get() as $sya)
                     <div class="card card-primary card-outline">
                       <a class="d-block w-100" data-toggle="collapse" href="#{{ $sya->element_id }}" style="color: #212529 !important;">
-                        <div class="card-header" style="background-color: #FCFCFC !important;">
+                        <div class="card-header" style="background-color: #F2F2F2 !important;">
                             <h4 class="card-title w-100">
                                 {{ $sya->persyaratan }}
                             </h4>
