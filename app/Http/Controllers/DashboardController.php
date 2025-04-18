@@ -14,7 +14,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\PengumumanController;
 use App\Http\Controllers\PdfController;
-
+use App\Helpers\Bantuan;
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
 
 class DashboardController extends Controller
 {
@@ -188,14 +189,67 @@ class DashboardController extends Controller
     return redirect()->back()->with('success', $message);
 }
 
+public function daftarpelamar__()
+{
+    $greeting = $this->getGreeting();
+    $data = User::where('role', 'user')
+            ->with(['userProfile', 'userFiles']) // Pastikan relasi di-load
+            ->get();
+    
+    return view('admin.daftarpelamar', compact('data', 'greeting'));
+}
+
 public function daftarpelamar()
 {
     $greeting = $this->getGreeting();
     $data = User::where('role', 'user')
-    ->with(['userProfile', 'userFiles']) // Pastikan relasi di-load
-    ->get();
+            ->with(['userProfile', 'userFiles']) // Pastikan relasi di-load
+            ->get();
+    $pelamar = DB::table('users as us')
+               ->join('user_profiles as pr', 'us.id', '=', 'pr.user_id');
     
-    return view('admin.daftarpelamar', compact('data', 'greeting'));
+    return view('admin.daftarpelamar', compact('data', 'pelamar', 'greeting'));
+}
+
+public function pelamardetail(Request $req){
+    $user_id = $req->get('userid');
+
+    $files_check = DB::table('user_files')->where('user_id', $user_id)->count();
+
+    if ($files_check == 0){
+        $pelamar = DB::table('users as us')
+                   ->join('user_profiles as pr', 'us.id', '=', 'pr.user_id')
+                   ->where('us.id', $user_id)->first();
+    }else{
+        $pelamar = DB::table('users as us')
+                   ->join('user_profiles as pr', 'us.id', '=', 'pr.user_id')
+                   ->join('user_files as fi', 'us.id', '=', 'fi.user_id')
+                   ->where('us.id', $user_id)->first();
+    }
+
+    return view('admin.pelamardetail', compact('files_check', 'pelamar'));
+}
+
+public function pelamardetail_pdf(Request $req){
+    $user_id = $req->get('userid');
+
+    $files_check = DB::table('user_files')->where('user_id', $user_id)->count();
+
+    if ($files_check == 0){
+        $pelamar = DB::table('users as us')
+                   ->join('user_profiles as pr', 'us.id', '=', 'pr.user_id')
+                   ->where('us.id', $user_id)->first();
+    }else{
+        $pelamar = DB::table('users as us')
+                   ->join('user_profiles as pr', 'us.id', '=', 'pr.user_id')
+                   ->join('user_files as fi', 'us.id', '=', 'fi.user_id')
+                   ->where('us.id', $user_id)->first();
+    }
+
+    // return view('admin.pelamardetail_pdf', compact('files_check', 'pelamar'));
+
+    $pdf = PDF::loadView('admin.pelamardetail_pdf', compact('files_check', 'pelamar'))->setPaper('a4', 'portrait');
+    return $pdf->stream('detailpelamar.pdf');
 }
 
 public function password()

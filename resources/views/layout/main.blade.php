@@ -9,8 +9,7 @@
     <meta name="author" content="">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <title>CAPK DEN</title>
 
@@ -33,9 +32,7 @@
 </head>
 
 <body>
-
-    <!-- ***** Preloader Start ***** -->
-    <div id="js-preloader" class="js-preloader">
+    {{-- <div id="js-preloader" class="js-preloader">
         <div class="preloader-inner">
             <span class="dot"></span>
             <div class="dots">
@@ -44,48 +41,42 @@
                 <span></span>
             </div>
         </div>
-    </div>
-    <!-- ***** Preloader End ***** -->
+    </div> --}}
 
-    <!-- ***** Header Area Start ***** -->
-    <header class="header-area header-sticky wow slideInDown">
+    <header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
         <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <nav class="main-nav">
-                        <!-- ***** Logo Start ***** -->
-                        <a href="index.html" class="logo">
-                            <img src="{{ asset('bs/assets/images/logodepan.png') }}" width="80" height="80">
-                        </a>
-                        <!-- ***** Logo End ***** -->
-                        <!-- ***** Menu Start ***** -->
-                        <ul class="nav">
-                            <li class="scroll-to-section"><a href="{{ url('/') }}" class="active">Home</a></li>
-                            <li class="scroll-to-section"><a href="{{ url('/pengumuman') }}">Pengumuman</a></li>
-                            <li class="scroll-to-section"><a href="{{ url('/kontak') }}">Kontak Kami</a></li>
-                            <li class="scroll-to-section">
-                                <div class="border-first-button">
-                                    <a href="{{ url('/login') }}">LOGIN</a>
-                                </div>
-                            </li>
-                        </ul>
-                        <a class='menu-trigger'>
-                            <span>Menu</span>
-                        </a>
-                        <!-- ***** Menu End ***** -->
-                    </nav>
-                </div>
+          <div class="row">
+            <div class="col-12">
+              <nav class="main-nav">
+                <a href="index.html" class="logo">
+                  {{-- <img src="{{ asset('bs/assets/images/logo-den.png') }}" alt="" style="width: 320px;"> --}}
+                </a>
+                
+                <ul class="nav">
+                  <li class="scroll-to-section"><a href="{{ url('/') }}" class="active">Home</a></li>
+                  <li class="scroll-to-section"><a href="{{ url('/pengumuman') }}">Pengumuman</a></li>
+                  <li class="scroll-to-section"><a href="{{ url('/kontak') }}">Kontak Kami</a></li>
+                  <li class="scroll-to-section">
+                    <div class="border-first-button">
+                      <a href="{{ url('/login') }}">LOGIN</a>
+                    </div>
+                  </li> 
+                </ul>        
+                <a class='menu-trigger'>
+                    <span>Menu</span>
+                </a>
+              </nav>
             </div>
+          </div>
         </div>
-    </header>
-    <!-- ***** Header Area End ***** -->
+      </header>
 
     <!-- Content -->
     @yield('content')
     <!-- End Content -->
 
     <!-- Pengumuman -->
-    @yield('pengumuman')
+    {{-- @yield('pengumuman') --}}
     <!-- End Pengumuman -->
     
     <!-- Footer -->

@@ -12,11 +12,12 @@ use App\Http\Controllers\PengumumanController;
 use App\Http\Controllers\VerifikasiController;
 
 Route::get('/',[HomeController::class, 'homepage']);
+Route::get('/home2',[HomeController::class, 'homepage2']);
 Route::get('/pengumuman',[HomeController::class, 'pengumuman']);
+Route::get('/pengumuman2',[HomeController::class, 'pengumuman2']);
 Route::get('/kontak',[HomeController::class, 'kontak']);
 
 // LOGIN 
-
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
@@ -24,7 +25,6 @@ Route::get('/registrasi', [AuthController::class, 'registrasi'])->name('registra
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 
 // MIDDLEWARE
-
 Route::middleware(['auth', 'role:administrator'])->group(function () {
     Route::get('/admin', [DashboardController::class, 'adminDashboard'])->name('administrator.dashboard');
 });
@@ -37,8 +37,8 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     Route::get('/user', [DashboardController::class, 'userDashboard'])->name('user.dashboard');
 });
 
+Route::group(['middleware' => 'auth'], function(){
 // USER 
-
 Route::get('/updatedata', [DashboardController::class, 'updatedata'])->name('updatedata');
 Route::post('/store-user-profile', [DashboardController::class, 'storeUserProfile'])->name('storeUserProfile');
 Route::get('/updateberkas', [DashboardController::class, 'updateberkas'])->name('updateberkas');
@@ -57,6 +57,8 @@ Route::post('/store', [DashboardController::class, 'store'])->name('store');
 Route::put('/pengguna/update/{id}', [DashboardController::class, 'update'])->name('pengguna.update');
 Route::delete('/pengguna/delete/{id}', [DashboardController::class, 'destroy'])->name('pengguna.delete');
 Route::get('/daftarpelamar', [DashboardController::class, 'daftarpelamar'])->name('daftarpelamar');
+Route::get('/pelamardetail', [DashboardController::class, 'pelamardetail']);
+Route::get('/pelamardetail_pdf', [DashboardController::class, 'pelamardetail_pdf']);
 Route::get('/download-pdf/{id}', [PdfController::class, 'generatePdf'])->name('download.pdf');
 Route::get('/pengumuman', [PengumumanController::class, 'index'])->name('pengumuman.index');
 Route::post('/pengumuman/upload', [PengumumanController::class, 'upload'])->name('pengumuman.upload');

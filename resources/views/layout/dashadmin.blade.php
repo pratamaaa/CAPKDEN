@@ -37,16 +37,14 @@
     <link rel="stylesheet" href="{{ asset('bs/dist/css/adminlte.min.css') }}">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script  script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- AdminLTE JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/js/adminlte.min.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" />
-    <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
-    
+
     <style>
         .step {
             display: none;
@@ -64,22 +62,25 @@
     <style>
         /* Accordion yang tidak aktif (collapsed) */
         .accordion-button.collapsed {
-            background-color: #d4edda !important; /* Hijau muda */
-            color: #155724 !important; /* Hijau tua */
+            background-color: #d4edda !important;
+            /* Hijau muda */
+            color: #155724 !important;
+            /* Hijau tua */
         }
-    
+
         /* Accordion aktif */
         .accordion-button:not(.collapsed) {
-            background-color: #198754 !important; /* Bootstrap green */
+            background-color: #198754 !important;
+            /* Bootstrap green */
             color: white !important;
         }
-    
+
         /* Border item agar rapi */
         .accordion-item {
             border: 1px solid #c3e6cb;
         }
     </style>
-    
+
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -127,6 +128,9 @@
                     height="100%">
 
             </a>
+            {{-- <a href="{{ url('/') }}" class="brand-link">
+                <img src="{{ asset('bs/assets/images/logo-den.png') }}" alt="" style="width: 100%;">
+            </a> --}}
 
             <!-- Sidebar -->
             <div class="sidebar">
@@ -140,7 +144,7 @@
                     <div class="info">
                         <small> {{ $greeting }}, {{ $user->name }}
                         </small>
-                        <span class="d-block"><b>Selamat Datang di Aplikasi <br> CAPK DEN</b></span>
+                        {{-- <span class="d-block"><b>Selamat Datang di Aplikasi <br> CAPK DEN</b></span> --}}
                     </div>
                 </div>
 
@@ -204,7 +208,6 @@
                                 </a>
 
                             </li>
-
                         @endif
 
                         @if (auth()->user()->role === 'administrator' || auth()->user()->role === 'verifikator')
@@ -221,10 +224,23 @@
                                     <i class="nav-icon far fa-check-square"></i>
                                     <p>
                                         Verifikasi Data
-                                        
+                                        <i class="fas fa-angle-left right"></i>
                                     </p>
-                                </a> 
-                                  
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="../UI/general.html" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Sudah Verifikasi</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="../UI/icons.html" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Belum Verifikasi</p>
+                                        </a>
+                                    </li>
+                                </ul>
                             </li>
                         @endif
 
@@ -617,46 +633,45 @@
         })
     </script>
 
-<script>
-    $(function() {
-        $("#example1").DataTable({
-            scrollX: true,
-            responsive: false, // matikan jika kamu pakai colspan
-            autoWidth: false,
-            buttons: ["excel", "pdf", "print", "colvis"]
-        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-    });
-</script>
+    <script>
+        $(function() {
+            $("#example1").DataTable({
+                scrollX: true,
+                responsive: false, // matikan jika kamu pakai colspan
+                autoWidth: false,
+                buttons: ["excel", "pdf", "print", "colvis"]
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        });
+    </script>
 
-<!-- DataTables  & Plugins -->
-<script src="{{ asset('bs/plugins/datatables/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('bs/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
-<script src="{{ asset('bs/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
-<script src="{{ asset('bs/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
-<script src="{{ asset('bs/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
-<script src="{{ asset('bs/plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
-<script src="{{ asset('bs/plugins/jszip/jszip.min.js') }}"></script>
-<script src="{{ asset('bs/plugins/pdfmake/pdfmake.min.js') }}"></script>
-<script src="{{ asset('bs/plugins/pdfmake/vfs_fonts.js') }}"></script>
-<script src="{{ asset('bs/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
-<script src="{{ asset('bs/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
-<script src="{{ asset('bs/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
+    <!-- DataTables  & Plugins -->
+    <script src="{{ asset('bs/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('bs/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('bs/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('bs/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('bs/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('bs/plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('bs/plugins/jszip/jszip.min.js') }}"></script>
+    <script src="{{ asset('bs/plugins/pdfmake/pdfmake.min.js') }}"></script>
+    <script src="{{ asset('bs/plugins/pdfmake/vfs_fonts.js') }}"></script>
+    <script src="{{ asset('bs/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('bs/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
+    <script src="{{ asset('bs/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
 
-@if (session('status_updated'))
-<script>
-    Swal.fire({
-        icon: 'info',
-        title: 'Data Diri Sudah Pernah Diisi',
-        text: '{{ session('status_updated') }}',
-        toast: true,
-        position: 'center',
-        timer: 8000,
-        timerProgressBar: true,
-        showConfirmButton: false
-    });
-</script>
-
-@endif
+    @if (session('status_updated'))
+        <script>
+            Swal.fire({
+                icon: 'info',
+                title: 'Data Diri Sudah Pernah Diisi',
+                text: '{{ session('status_updated') }}',
+                toast: true,
+                position: 'center',
+                timer: 8000,
+                timerProgressBar: true,
+                showConfirmButton: false
+            });
+        </script>
+    @endif
 
 </body>
 
