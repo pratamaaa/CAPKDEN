@@ -6,7 +6,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="card card-primary">
+                        <div class="card card-success">
                             <div class="card-header">
                                 <h3 class="card-title">Status Kelengkapan Berkas</h3>
                             </div>
@@ -75,6 +75,7 @@
 
                                                             <!-- Tombol Edit -->
                                                             <button type="button" class="btn btn-sm btn-primary"
+                                                             {{ ($userFiles != null && $userFiles->status_data == 1) ? 'disabled' : '' }}
                                                                 data-bs-toggle="modal"
                                                                 data-bs-target="#modalEdit{{ $field }}">
                                                                 <i class="fas fa-pen"></i>
@@ -87,6 +88,7 @@
                                                                 @csrf
                                                                 @method('DELETE')
                                                                 <button type="submit" class="btn btn-sm btn-danger"
+                                                                {{ ($userFiles != null && $userFiles->status_data == 1) ? 'disabled' : '' }}
                                                                     onclick="return confirm('Yakin ingin menghapus dokumen ini?')">
                                                                     <i class="fas fa-trash-alt"></i>
                                                                 </button>
@@ -104,7 +106,15 @@
                                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                                             aria-label="Tutup"></button>
                                                                     </div>
+                                                                    @php
+
+                                                                        $filePath = $userFiles->{$field};
+                                                                        $fullPath = public_path(
+                                                                            'storage/' . $filePath,
+                                                                        );
+                                                                    @endphp
                                                                     <div class="modal-body">
+                                                                        
                                                                         @if (!empty($filePath) && file_exists($fullPath))
                                                                             <embed src="{{ asset('storage/' . $filePath) }}" type="application/pdf"
                                                                                 width="100%" height="600px" />
@@ -135,6 +145,7 @@
                                                                                     Edit
                                                                                     Dokumen: {{ $label }}</h5>
                                                                                 <button type="button" class="btn-close"
+                                                                                
                                                                                     data-bs-dismiss="modal"
                                                                                     aria-label="Tutup"></button>
                                                                             </div>
@@ -147,7 +158,7 @@
                                                                                 );
                                                                             @endphp
                                                                             <div class="modal-body">
-                                                                                <p><strong>Dokumen Saat Ini:</strong></p>
+                                                                                <p><strong>Dokumen Saat Ini {{$field}}:</strong></p>
 
                                                                                 @if (!empty($filePath) && file_exists($fullPath))
                                                                                     <embed
@@ -196,6 +207,18 @@
                                     </tbody>
 
                                 </table>
+                                <hr>
+                                <form
+                                action="{{ route('userfiles.updatestatus', ['field' => $userFiles->id]) }}"
+                                method="POST" style="display:inline;">
+                                @csrf
+                                @method('PUT')
+                                <button type="submit" class="btn btn-success px-4 py-2"
+                                {{ ($userFiles != null && $userFiles->status_data == 1) ? 'disabled' : '' }}
+                                onclick="return confirm('Yakin ingin Menyelesaikan dokumen ini?')">
+                                    <i class="fa fa-upload" aria-hidden="true"></i> Submit Final
+                                </button>
+                            </form>
                             </div>
                         </div>
                     </div>

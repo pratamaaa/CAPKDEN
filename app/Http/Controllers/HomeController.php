@@ -42,18 +42,19 @@ class HomeController extends Controller
     }
 
     public function pengumuman(){
-        return view('pengumuman');
+        $pengumumans = PengumumanPdf::all();
+        return view('pengumuman', compact('pengumumans'));
     }
 
-    public function pengumuman2(){
-        // $pengumumans = PengumumanPdf::all();
-        // return view('pengumuman2', compact('pengumumans'));
-        $data['judulhalaman'] = 'Judul Halamannya Disini';
-        $pdf = PDF::loadView('pengumuman2', $data)->setPaper('a5', 'portrait');
-        return $pdf->stream('namafile.pdf');
+    // public function pengumuman2(){
+    //     // $pengumumans = PengumumanPdf::all();
+    //     // return view('pengumuman2', compact('pengumumans'));
+    //     $data['judulhalaman'] = 'Judul Halamannya Disini';
+    //     $pdf = PDF::loadView('pengumuman2', $data)->setPaper('a5', 'portrait');
+    //     return $pdf->stream('namafile.pdf');
 
-        return view('pengumuman2');
-    }
+    //     return view('pengumuman2');
+    // }
 
     public function kontak(){
         return view('kontak');

@@ -88,8 +88,7 @@
 
         <!-- Preloader -->
         <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__shake" src="{{ asset('bs/dist/img/den.png') }}" alt="logoDEN" height="60"
-                width="60">
+            <img class="animation__shake" src="{{ asset('bs/dist/img/den.png') }}" alt="logoDEN" height="60" width="60">
         </div>
 
         <!-- Navbar -->
@@ -97,8 +96,7 @@
             <!-- Left navbar links -->
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i
-                            class="fas fa-bars"></i></a>
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
             </ul>
 
@@ -224,23 +222,9 @@
                                     <i class="nav-icon far fa-check-square"></i>
                                     <p>
                                         Verifikasi Data
-                                        <i class="fas fa-angle-left right"></i>
                                     </p>
                                 </a>
-                                <ul class="nav nav-treeview">
-                                    <li class="nav-item">
-                                        <a href="../UI/general.html" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Sudah Verifikasi</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="../UI/icons.html" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Belum Verifikasi</p>
-                                        </a>
-                                    </li>
-                                </ul>
+
                             </li>
                         @endif
 

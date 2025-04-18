@@ -42,7 +42,11 @@ class UserFiles extends Model
     'pidana',
     'makalah',
     'surat_sehat',
-    'skck'
+    'skck',
+    'nama_jabatan',
+    'unit_kerja',
+    'tmt_jabatan',
+    'uraian_jabatan'
     ];
 
     // Relasi ke tabel users

@@ -42,6 +42,9 @@
 
         <tbody>
             @foreach ($data as $index => $d)
+            {{-- @php
+                $status_verifikasi = ((($d->userFiles->status_ktp == 'diterima' && $d->userFiles->status_ijazah_sarjana == 'diterima' && $d->userFiles->status_transkrip_sarjana == 'diterima' && $d->userFiles->status_upl_org == 'diterima' && $d->userFiles->status_upl_rek_pakar1 == 'diterima' && $d->userFiles->status_upl_rek_pakar2 == 'diterima' && $d->userFiles->status_upl_rek_pakar3 == 'diterima' && $d->userFiles->status_lamaran == 'diterima' && $d->userFiles->status_rangkap_jabatan == 'diterima' && $d->userFiles->status_cv == 'diterima' && $d->userFiles->status_pidana == 'diterima' && $d->userFiles->status_makalah == 'diterima' && $d->userFiles->status_surat_sehat == 'diterima' && $d->userFiles->status_skck == 'diterima')?'Lulus Administrasi':'Tidak Lulus Administrasi'));
+            @endphp --}}
                 <tr>
                     <td>{{ $index + 1 }}</td>
                     <td>
@@ -66,12 +69,12 @@
                     <td>{{ $d->userProfile->kalangan ?? 'Belum diisi' }}</td>
 
                     <td class="text-center" style="width: 200px;">
-                        @php
+                        {{-- @php
                             $file = $d->userFiles->ktp;
                             $status = $d->userFiles->status_ktp;
-                        @endphp
+                        @endphp --}}
 
-                        @if (!$file)
+                        {{-- @if (!$file)
                             <span class="badge bg-danger">Belum upload</span>
                         @else
                             @if (!$status)
@@ -86,12 +89,12 @@
                                 @endphp
                                 <span class="badge {{ $badgeClass }}">{{ ucfirst($status) }}</span>
                             @endif
-                        @endif
+                        @endif --}}
                     </td>
 
 
                     <td class="text-center" style="width: 200px;">
-                        @php
+                        {{-- @php
                             $file = $d->userFiles->ijazah_sarjana;
                             $status = $d->userFiles->status_ijazah_sarjana;
                         @endphp
@@ -110,11 +113,11 @@
                             @endphp
                             <span class="badge" style="background-color: #ffc107; color: #000;">Belum
                                 diverifikasi</span>
-                        @endif
+                        @endif --}}
                     </td>
 
                     <td class="text-center" style="width: 200px;">
-                        @php
+                        {{-- @php
                             $file = $d->userFiles->transkrip_sarjana;
                             $status = $d->userFiles->status_transkrip_sarjana;
                         @endphp
@@ -133,11 +136,11 @@
                             @endphp
                             <span class="badge" style="background-color: #ffc107; color: #000;">Belum
                                 diverifikasi</span>
-                        @endif
+                        @endif --}}
                     </td>
 
                     <td class="text-center" style="width: 200px;">
-                        @php
+                        {{-- @php
                             $file = $d->userFiles->ijazah_magister;
                             $status = $d->userFiles->status_ijazah_magister;
                         @endphp
@@ -156,11 +159,11 @@
                             @endphp
                             <span class="badge" style="background-color: #ffc107; color: #000;">Belum
                                 diverifikasi</span>
-                        @endif
+                        @endif --}}
                     </td>
 
                     <td class="text-center" style="width: 200px;">
-                        @php
+                        {{-- @php
                             $file = $d->userFiles->transkrip_magister;
                             $status = $d->userFiles->status_transkrip_magister;
                         @endphp
@@ -179,11 +182,11 @@
                             @endphp
                             <span class="badge" style="background-color: #ffc107; color: #000;">Belum
                                 diverifikasi</span>
-                        @endif
+                        @endif --}}
                     </td>
 
                     <td class="text-center" style="width: 200px;">
-                        @php
+                        {{-- @php
                             $file = $d->userFiles->ijazah_doktoral;
                             $status = $d->userFiles->status_ijazah_doktoral;
                         @endphp
@@ -202,11 +205,11 @@
                             @endphp
                             <span class="badge" style="background-color: #ffc107; color: #000;">Belum
                                 diverifikasi</span>
-                        @endif
+                        @endif --}}
                     </td>
 
                     <td class="text-center" style="width: 200px;">
-                        @php
+                        {{-- @php
                             $file = $d->userFiles->transkrip_doktoral;
                             $status = $d->userFiles->status_transkrip_doktoral;
                         @endphp
@@ -225,11 +228,11 @@
                             @endphp
                             <span class="badge" style="background-color: #ffc107; color: #000;">Belum
                                 diverifikasi</span>
-                        @endif
+                        @endif --}}
                     </td>
 
                     <td class="text-center" style="width: 200px;">
-                        @php
+                        {{-- @php
                             $file = $d->userFiles->org_pengusul;
                             $status = $d->userFiles->status_org_pengusul;
                         @endphp
@@ -248,11 +251,11 @@
                             @endphp
                             <span class="badge" style="background-color: #ffc107; color: #000;">Belum
                                 diverifikasi</span>
-                        @endif
+                        @endif --}}
                     </td>
 
                     <td class="text-center" style="width: 200px;">
-                        @php
+                        {{-- @php
                             $file = $d->userFiles->upl_rek_pakar1;
                             $status = $d->userFiles->status_upl_rek_pakar1;
                         @endphp
@@ -271,11 +274,11 @@
                             @endphp
                             <span class="badge" style="background-color: #ffc107; color: #000;">Belum
                                 diverifikasi</span>
-                        @endif
+                        @endif --}}
                     </td>
 
                     <td class="text-center" style="width: 200px;">
-                        @php
+                        {{-- @php
                             $file = $d->userFiles->upl_rek_pakar2;
                             $status = $d->userFiles->status_upl_rek_pakar2;
                         @endphp
@@ -294,11 +297,11 @@
                             @endphp
                             <span class="badge" style="background-color: #ffc107; color: #000;">Belum
                                 diverifikasi</span>
-                        @endif
+                        @endif --}}
                     </td>
 
                     <td class="text-center" style="width: 200px;">
-                        @php
+                        {{-- @php
                             $file = $d->userFiles->upl_rek_pakar3;
                             $status = $d->userFiles->status_upl_rek_pakar3;
                         @endphp
@@ -317,11 +320,11 @@
                             @endphp
                             <span class="badge" style="background-color: #ffc107; color: #000;">Belum
                                 diverifikasi</span>
-                        @endif
+                        @endif --}}
                     </td>
 
                     <td class="text-center" style="width: 200px;">
-                        @php
+                        {{-- @php
                             $file = $d->userFiles->lamaran;
                             $status = $d->userFiles->status_lamaran;
                         @endphp
@@ -340,11 +343,11 @@
                             @endphp
                             <span class="badge" style="background-color: #ffc107; color: #000;">Belum
                                 diverifikasi</span>
-                        @endif
+                        @endif --}}
                     </td>
 
                     <td class="text-center" style="width: 200px;">
-                        @php
+                        {{-- @php
                             $file = $d->userFiles->rangkap_jabatan;
                             $status = $d->userFiles->status_rangkap_jabatan;
                         @endphp
@@ -363,11 +366,11 @@
                             @endphp
                             <span class="badge" style="background-color: #ffc107; color: #000;">Belum
                                 diverifikasi</span>
-                        @endif
+                        @endif --}}
                     </td>
 
                     <td class="text-center" style="width: 200px;">
-                        @php
+                        {{-- @php
                             $file = $d->userFiles->cv;
                             $status = $d->userFiles->status_cv;
                         @endphp
@@ -386,11 +389,11 @@
                             @endphp
                             <span class="badge" style="background-color: #ffc107; color: #000;">Belum
                                 diverifikasi</span>
-                        @endif
+                        @endif --}}
                     </td>
 
                     <td class="text-center" style="width: 200px;">
-                        @php
+                        {{-- @php
                             $file = $d->userFiles->pidana;
                             $status = $d->userFiles->status_pidana;
                         @endphp
@@ -409,11 +412,11 @@
                             @endphp
                             <span class="badge" style="background-color: #ffc107; color: #000;">Belum
                                 diverifikasi</span>
-                        @endif
+                        @endif --}}
                     </td>
 
                     <td class="text-center" style="width: 200px;">
-                        @php
+                        {{-- @php
                             $file = $d->userFiles->makalah;
                             $status = $d->userFiles->status_makalah;
                         @endphp
@@ -432,11 +435,11 @@
                             @endphp
                             <span class="badge" style="background-color: #ffc107; color: #000;">Belum
                                 diverifikasi</span>
-                        @endif
+                        @endif --}}
                     </td>
 
                     <td class="text-center" style="width: 200px;">
-                        @php
+                        {{-- @php
                             $file = $d->userFiles->surat_sehat;
                             $status = $d->userFiles->status_surat_sehat;
                         @endphp
@@ -455,16 +458,18 @@
                             @endphp
                             <span class="badge" style="background-color: #ffc107; color: #000;">Belum
                                 diverifikasi</span>
-                        @endif
+                        @endif --}}
                     </td>
 
                     <td class="text-center" style="width: 200px;">
-                        @php
+                        {{-- @php
                             $file = $d->userFiles->skck;
                             $status = $d->userFiles->status_skck;
-                        @endphp
-
-                        @if (!$file)
+                            $status_file = (($file==null)?'Belum upload':$status);
+                            $status_file_class = (($file==null)?'bg-danger':(($status=='belum diverifikasi')?'bg-warning':(($status=='diterima')?'bg-success':'bg-danger')));
+                        @endphp --}}
+{{-- <span class="badge {{ $status_file_class }}">{{ ucfirst($status_file) }}</span> --}}
+                        {{-- @if (!$file)
                             <span class="badge bg-danger">Belum upload</span>
                         @elseif (!$status)
                             <span class="badge bg-warning">Belum diverifikasi</span>
@@ -478,10 +483,10 @@
                             @endphp
                             <span class="badge" style="background-color: #ffc107; color: #000;">Belum
                                 diverifikasi</span>
-                        @endif
+                        @endif --}}
                     </td>
 
-                    <td class="text-center">Status Administrasi Berkas</td>
+                    <td class="text-center"></td>
                     <td class="text-center">Keterangan</td>
                     <td class="text-center">Last Update</td>
                     <td class="text-center">

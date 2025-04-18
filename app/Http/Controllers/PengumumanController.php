@@ -13,7 +13,7 @@ class PengumumanController extends Controller
     public function index()
     {
         $pengumumans = PengumumanPdf::all();
-        return view('pengumuman', compact('pengumumans'));
+        return view('pengumuman2', compact('pengumumans'));
     }
 
     // public function pengumuman2()

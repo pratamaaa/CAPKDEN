@@ -7,6 +7,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UploadController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\UserExperienceController;
 use App\Http\Controllers\UserFilesController;
 use App\Http\Controllers\PengumumanController;
 use App\Http\Controllers\VerifikasiController;
@@ -14,7 +15,7 @@ use App\Http\Controllers\VerifikasiController;
 Route::get('/',[HomeController::class, 'homepage']);
 Route::get('/home2',[HomeController::class, 'homepage2']);
 Route::get('/pengumuman',[HomeController::class, 'pengumuman']);
-Route::get('/pengumuman2',[HomeController::class, 'pengumuman2']);
+// Route::get('/pengumuman2',[HomeController::class, 'pengumuman2']);
 Route::get('/kontak',[HomeController::class, 'kontak']);
 
 // LOGIN 
@@ -37,7 +38,7 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     Route::get('/user', [DashboardController::class, 'userDashboard'])->name('user.dashboard');
 });
 
-Route::group(['middleware' => 'auth'], function(){
+Route::group(['middleware' => 'auth'], function () {
 // USER 
 Route::get('/updatedata', [DashboardController::class, 'updatedata'])->name('updatedata');
 Route::post('/store-user-profile', [DashboardController::class, 'storeUserProfile'])->name('storeUserProfile');
@@ -48,6 +49,10 @@ Route::put('/userfiles/update/{field}', [UserFilesController::class, 'update'])-
 Route::get('/password', [DashboardController::class, 'password'])->name('user.password');
 Route::post('/password', [DashboardController::class, 'updatePassword'])->name('user.updatePassword');
 Route::delete('/userfiles/delete/{field}', [UserFilesController::class, 'destroy'])->name('userfiles.destroy');
+Route::put('/userfiles/updatestatus/{field}', [UserFilesController::class, 'updatestatus'])->name('userfiles.updatestatus');
+Route::post('/pengalaman/store', [UserExperienceController::class, 'store'])->name('pengalaman.store');
+Route::delete('/pengalaman/delete/{id}', [UserExperienceController::class, 'destroy'])->name('pengalaman.destroy');
+
 
 // ADMIN 
 Route::get('/pengguna', [DashboardController::class, 'pengguna'])->name('pengguna');
@@ -60,16 +65,14 @@ Route::get('/daftarpelamar', [DashboardController::class, 'daftarpelamar'])->nam
 Route::get('/pelamardetail', [DashboardController::class, 'pelamardetail']);
 Route::get('/pelamardetail_pdf', [DashboardController::class, 'pelamardetail_pdf']);
 Route::get('/download-pdf/{id}', [PdfController::class, 'generatePdf'])->name('download.pdf');
-Route::get('/pengumuman', [PengumumanController::class, 'index'])->name('pengumuman.index');
+// Route::get('/pengumuman', [PengumumanController::class, 'index'])->name('pengumuman.index');
 Route::post('/pengumuman/upload', [PengumumanController::class, 'upload'])->name('pengumuman.upload');
 Route::get('/pengumuman/{filename}', [PengumumanController::class, 'index'])->name('pengumuman.index');
 Route::put('/pengumuman/update', [PengumumanController::class, 'update'])->name('pengumuman.update');
 Route::delete('/pengumuman/destroy', [PengumumanController::class, 'destroy'])->name('pengumuman.destroy');
 Route::post('/upload/{field}', [UploadController::class, 'uploadFile'])->name('upload.file');
-Route::get('verifikasi', [VerifikasiController::class, 'index'])->name('verifikasi.index');
+Route::get('/verifikasi', [VerifikasiController::class, 'index'])->name('verifikasi.index');
 Route::put('/verifikasi/update-semua', [VerifikasiController::class, 'updateSemua'])->name('verifikasi.updateSemua');
 Route::get('/download-template/{type}', [DashboardController::class, 'download'])->name('template.download');
-
-
-
+});
 

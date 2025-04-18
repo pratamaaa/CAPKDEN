@@ -23,7 +23,8 @@
                         </div>
                     @endif
 
-                    <form action="{{ route('register') }}" method="POST">
+                    <form action="{{ route('register') }}" method="POST" id="formDaftar">
+
                         @csrf
 
                         <div class="input-group mb-3">
@@ -98,7 +99,10 @@
                                 <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir" required value="{{ old('tanggal_lahir') }}">
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary w-100">Daftar</button>
+                        <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#konfirmasiModal">
+                            Daftar
+                        </button>
+                        
                     </form>
 
 
@@ -108,5 +112,44 @@
                 </div>
             </div>
         </div>
+        <!-- Modal Konfirmasi -->
+<div class="modal fade" id="konfirmasiModal" tabindex="-1" aria-labelledby="konfirmasiModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="konfirmasiModalLabel">Konfirmasi Pendaftaran</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+      </div>
+      <div class="modal-body">
+        Apakah Anda yakin semua data sudah benar dan ingin mendaftar?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+        <button type="submit" class="btn btn-primary" onclick="document.getElementById('formDaftar').submit();">Ya, Daftar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+        <!-- Modal Konfirmasi -->
+        <div class="modal fade" id="konfirmasiModal" tabindex="-1" aria-labelledby="konfirmasiModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="konfirmasiModalLabel">Konfirmasi Pendaftaran</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+                </div>
+                <div class="modal-body">
+                Apakah kamu yakin semua data sudah benar dan ingin mendaftar?
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                <button type="submit" class="btn btn-primary" onclick="document.getElementById('formDaftar').submit();">Ya, Daftar</button>
+                </div>
+            </div>
+            </div>
+        </div>
+  
+
     </div>
 @endsection

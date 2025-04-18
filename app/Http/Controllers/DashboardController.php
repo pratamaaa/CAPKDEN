@@ -70,7 +70,8 @@ class DashboardController extends Controller
     {
     $greeting = $this->getGreeting();
     $userFiles = UserFiles::where('user_id', Auth::id())->first();
-    return view('user.berkas', compact('userFiles', 'greeting'));
+   
+    return view('user.berkas2', compact('userFiles', 'greeting'));
     }
 
     public function pengguna()
@@ -158,14 +159,15 @@ class DashboardController extends Controller
         'jenis_kelamin' => 'nullable|in:Laki-laki,Perempuan',
         'alamat' => 'nullable|string',
         'no_handphone' => 'nullable|numeric|digits_between:10,15',
-        'pas_foto' => 'nullable|image|mimes:jpeg,png,jpg|max:1024',
-        'kalangan' => 'required|in:Akademisi,Industri,Teknologi,Lingkungan Hidup,Konsumen'
+        'pas_foto' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+        'kalangan' => 'required|in:Akademisi,Industri,Teknologi,Lingkungan Hidup,Konsumen',
+        'ktp' => 'nullable|file|mimes:pdf|max:2048'
     ]);
 
-    $data = $request->except(['_token', 'pas_foto']);
+    $data = $request->except(['_token', 'pas_foto', 'ktp']);
     $user = auth()->user();
 
-    // Handle File Upload
+    // Handle Upload Pas Foto
     if ($request->hasFile('pas_foto')) {
         $file = $request->file('pas_foto');
         $filename = time() . '.' . $file->getClientOriginalExtension();
@@ -175,9 +177,8 @@ class DashboardController extends Controller
 
     $data['user_id'] = $user->id;
 
-    // Cek apakah profil sudah ada, update jika iya
+    // Simpan ke tabel user_profiles
     $profile = UserProfile::where('user_id', $user->id)->first();
-
     if ($profile) {
         $profile->update($data);
         $message = 'Data berhasil diperbarui!';
@@ -186,8 +187,29 @@ class DashboardController extends Controller
         $message = 'Data berhasil disimpan!';
     }
 
+    // Handle Upload KTP (PDF ke user_files)
+    if ($request->hasFile('file_ktp')) {
+        $ktp = $request->file('file_ktp');
+        $ktpName = 'ktp_' . time() . '.' . $ktp->getClientOriginalExtension();
+        $path = $ktp->storeAs('uploads/user_files', $ktpName, 'public');
+    
+        // Cek apakah sudah ada data user_files untuk user ini
+        $userFile = \App\Models\UserFiles::where('user_id', $user->id)->first();
+    
+        if ($userFile) {
+            $userFile->update(['ktp' => $path]);
+        } else {
+            \App\Models\UserFiles::create([
+                'user_id' => $user->id,
+                'ktp' => $path
+            ]);
+        }
+    }
+    
+
     return redirect()->back()->with('success', $message);
 }
+
 
 public function daftarpelamar__()
 {

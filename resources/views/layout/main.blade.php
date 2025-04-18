@@ -32,7 +32,7 @@
 </head>
 
 <body>
-    {{-- <div id="js-preloader" class="js-preloader">
+    <div id="js-preloader" class="js-preloader">
         <div class="preloader-inner">
             <span class="dot"></span>
             <div class="dots">
@@ -41,7 +41,7 @@
                 <span></span>
             </div>
         </div>
-    </div> --}}
+    </div>
 
     <header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
         <div class="container">
@@ -49,7 +49,7 @@
             <div class="col-12">
               <nav class="main-nav">
                 <a href="index.html" class="logo">
-                  {{-- <img src="{{ asset('bs/assets/images/logo-den.png') }}" alt="" style="width: 320px;"> --}}
+                  <img src="{{ asset('bs/assets/images/logo-den.png') }}" alt="" style="width: 320px;">
                 </a>
                 
                 <ul class="nav">

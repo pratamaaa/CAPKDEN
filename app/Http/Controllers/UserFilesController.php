@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 use App\Models\UserProfile;
 use App\Models\UserFiles;
+use App\Models\UserExperience;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\DB;
@@ -32,80 +33,116 @@ class UserFilesController extends Controller
 
     public function store(Request $request)
 {
-    $step = $request->input('step');
+    // dd($request->all());
+    $tab = $request->input('tab'); 
 
     $rules = [];
+    $userFiles = UserFiles::where('user_id', Auth::id())->first();
+    
+    switch ($tab) {
+    
 
-    if ($step == 1) {
-        $rules = [
-            'ktp' => 'nullable|file|mimes:pdf|max:1024',
-        ];
-    } elseif ($step == 2) {
-        $rules = [
-            'universitas_sarjana' => 'nullable|string|max:255',
-            'jurusan_sarjana' => 'nullable|string|max:255',
-            'lulus_sarjana' => 'nullable|string|max:255',
-            'ijazah_sarjana' => 'nullable|file|mimes:pdf|max:1024',
-            'transkrip_sarjana' => 'nullable|file|mimes:pdf|max:1024',
+        case 'pendidikan':
+            $rules = [
+                'universitas_sarjana' => 'required|string|max:255',
+                'jurusan_sarjana' => 'required|string|max:255',
+                'lulus_sarjana' => 'required|string|max:255',
+                'ijazah_sarjana' => (($userFiles != null && $userFiles->ijazah_sarjana == null)?'required':'nullable').'|file|mimes:pdf|max:2048',
+                'transkrip_sarjana' => (($userFiles != null && $userFiles->transkrip_sarjana == null)?'required':'nullable').'|file|mimes:pdf|max:2048',
 
-            'universitas_magister' => 'nullable|string|max:255',
-            'jurusan_magister' => 'nullable|string|max:255',
-            'lulus_magister' => 'nullable|string|max:255',
-            'ijazah_magister' => 'nullable|file|mimes:pdf|max:1024',
-            'transkrip_magister' => 'nullable|file|mimes:pdf|max:1024',
+                'universitas_magister' => 'nullable|string|max:255',
+                'jurusan_magister' => 'nullable|string|max:255',
+                'lulus_magister' => 'nullable|string|max:255',
+                'ijazah_magister' => 'nullable|file|mimes:pdf|max:2048',
+                'transkrip_magister' => 'nullable|file|mimes:pdf|max:2048',
 
-            'universitas_doktoral' => 'nullable|string|max:255',
-            'jurusan_doktoral' => 'nullable|string|max:255',
-            'lulus_doktoral' => 'nullable|string|max:255',
-            'ijazah_doktoral' => 'nullable|file|mimes:pdf|max:1024',
-            'transkrip_doktoral' => 'nullable|file|mimes:pdf|max:1024',
-        ];
-    } elseif ($step == 3) {
-        $rules = [
-            'org_pengusul' => 'nullable|string|max:255',
-            'upl_org' => 'nullable|file|mimes:pdf|max:1024',
-            'rek_pakar1' => 'nullable|string|max:255',
-            'upl_rek_pakar1' => 'nullable|file|mimes:pdf|max:1024',
-            'rek_pakar2' => 'nullable|string|max:255',
-            'upl_rek_pakar2' => 'nullable|file|mimes:pdf|max:1024',
-            'rek_pakar3' => 'nullable|string|max:255',
-            'upl_rek_pakar3' => 'nullable|file|mimes:pdf|max:1024',
-        ];
-    } elseif ($step == 4) {
-        $rules = [
-            'lamaran' => 'nullable|file|mimes:pdf|max:1024',
-            'cv' => 'nullable|file|mimes:pdf|max:1024',
-            'rangkap_jabatan' => 'nullable|file|mimes:pdf|max:1024',
-            'pidana' => 'nullable|file|mimes:pdf|max:1024',
-            'makalah' => 'nullable|file|mimes:pdf|max:1024',
-            'surat_sehat' => 'nullable|file|mimes:pdf|max:1024',
-            'skck' => 'nullable|file|mimes:pdf|max:1024',
-        ];
+                'universitas_doktoral' => 'nullable|string|max:255',
+                'jurusan_doktoral' => 'nullable|string|max:255',
+                'lulus_doktoral' => 'nullable|string|max:255',
+                'ijazah_doktoral' => 'nullable|file|mimes:pdf|max:2048',
+                'transkrip_doktoral' => 'nullable|file|mimes:pdf|max:2048',
+            ];
+            break;
+
+            case 'pengalaman':
+                $rules = [
+                    'nama_jabatan' => 'required|string|max:255',
+                    'unit_kerja' => 'required|string|max:255',
+                    'tmt_jabatan' => 'required|date',
+                    'uraian_jabatan' => 'required|string',
+                ];
+            
+                $validator = Validator::make($request->all(), $rules);
+                if ($validator->fails()) {
+                    return back()->withErrors($validator)->withInput()->with('tab', $tab);
+                }
+            
+                if ($request->tab === 'pengalaman') {
+                    foreach ($request->nama_jabatan as $i => $jabatan) {
+                        UserExperience::create([
+                            'user_id'        => auth()->id(),
+                            'nama_jabatan'   => $jabatan,
+                            'unit_kerja'     => $request->unit_kerja[$i],
+                            'tmt_jabatan'    => $request->tmt_jabatan[$i],
+                            'uraian_jabatan' => $request->uraian_jabatan[$i],
+                        ]);
+                    }
+                }
+                
+                return redirect()->route('statusberkas')->with([
+                    'success' => "Data pengalaman berhasil disimpan.",
+                    'active_tab' => $tab
+                ]);
+            
+            break;
+            
+        case 'pengusul':
+            $rules = [
+                'org_pengusul' => 'nullable|string|max:255',
+                'upl_org' => 'nullable|file|mimes:pdf|max:2048',
+                'rek_pakar1' => 'nullable|string|max:255',
+                'upl_rek_pakar1' => 'nullable|file|mimes:pdf|max:2048',
+                'rek_pakar2' => 'nullable|string|max:255',
+                'upl_rek_pakar2' => 'nullable|file|mimes:pdf|max:2048',
+                'rek_pakar3' => 'nullable|string|max:255',
+                'upl_rek_pakar3' => 'nullable|file|mimes:pdf|max:2048',
+            ];
+            break;
+
+        case 'pendukung':
+            $rules = [
+                'lamaran' => 'nullable|file|mimes:pdf|max:2048',
+                'cv' => 'nullable|file|mimes:pdf|max:2048',
+                'rangkap_jabatan' => 'nullable|file|mimes:pdf|max:2048',
+                'pidana' => 'nullable|file|mimes:pdf|max:2048',
+                'makalah' => 'nullable|file|mimes:pdf|max:10240',
+                'surat_sehat' => 'nullable|file|mimes:pdf|max:2048',
+                'skck' => 'nullable|file|mimes:pdf|max:2048',
+            ];
+            break;
+
+        default:
+            return back()->with('error', 'Tab tidak dikenal.');
     }
-
+    
     $validator = Validator::make($request->all(), $rules);
-
     if ($validator->fails()) {
-        return redirect()->back()
+        return back()
             ->withErrors($validator)
             ->withInput()
-            ->with('active_step', $step);
+            ->with('tab', $tab);
     }
 
-    // Simpan file yang diupload
     $uploadedFiles = [];
     foreach ($request->allFiles() as $field => $file) {
         if ($file->isValid()) {
             $uploadedFiles[$field] = $file->store('uploads/user_files', 'public');
         } else {
-            return redirect()->back()
-                ->with('error', "File $field tidak valid.")
-                ->with('active_step', $step);
+            return back()->with('error', "File $field tidak valid.");
         }
     }
 
-    $inputText = $request->except(array_merge(['_token', 'step'], array_keys($uploadedFiles)));
-
+    $inputText = $request->except(array_merge(['_token', 'tab'], array_keys($uploadedFiles)));
     $data = array_merge($uploadedFiles, $inputText);
 
     UserFiles::updateOrCreate(
@@ -114,9 +151,10 @@ class UserFilesController extends Controller
     );
 
     return redirect()->route('statusberkas')->with([
-        'success' => 'Berkas berhasil diunggah!',
-        'step' => $step
+        'success' => "Data pada tab '$tab' berhasil disimpan.",
+        'active_tab' => $tab
     ]);
+    
 }
 
     public function index()
@@ -129,11 +167,25 @@ class UserFilesController extends Controller
 public function status()
 {
     $greeting = $this->getGreeting();
-    $userFiles = UserFiles::where('user_id', Auth::id())->first();
+    $userFiles = UserFiles::where('user_id', auth()->id())->first();
+
+if (!$userFiles) {
+    return redirect()->route('updateberkas')->with('warning', 'Silakan lengkapi data terlebih dahulu.');
+}
+
+
+    
     $success = session('success');
     return view('user.statusberkas', compact('userFiles', 'greeting', 'success'));
 }
+public function updatestatus(Request $request, $field)
+{
+    $userFiles = UserFiles::where('user_id', Auth::id())->first();
+    $userFiles->status_data = 1;
+    $userFiles->save();
+    return redirect()->route('statusberkas')->with('success', 'Status Berkas berhasil diperbarui.');
 
+}
 public function update(Request $request, $field)
 {
     $request->validate([
