@@ -88,7 +88,8 @@
 
         <!-- Preloader -->
         <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__shake" src="{{ asset('bs/dist/img/den.png') }}" alt="logoDEN" height="60" width="60">
+            <img class="animation__shake" src="{{ asset('bs/dist/img/den.png') }}" alt="logoDEN" height="60"
+                width="60">
         </div>
 
         <!-- Navbar -->
@@ -96,7 +97,8 @@
             <!-- Left navbar links -->
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i
+                            class="fas fa-bars"></i></a>
                 </li>
             </ul>
 
@@ -127,8 +129,9 @@
 
             </a>
             {{-- <a href="{{ url('/') }}" class="brand-link">
+            <a href="{{ url('/') }}" class="brand-link">
                 <img src="{{ asset('bs/assets/images/logo-den.png') }}" alt="" style="width: 100%;">
-            </a> --}}
+            </a>
 
             <!-- Sidebar -->
             <div class="sidebar">
@@ -143,163 +146,160 @@
                         <small> {{ $greeting }}, {{ $user->name }}
                         </small>
                         {{-- <span class="d-block"><b>Selamat Datang di Aplikasi <br> CAPK DEN</b></span> --}}
-                    </div>
-                </div>
+    </div>
+    </div>
 
-                <!-- Sidebar Menu -->
-                <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                        data-accordion="false">
-                        <!-- Add icons to the links using the .nav-icon class
+    <!-- Sidebar Menu -->
+    <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
 
-                        @if (auth()->user()->role === 'administrator' || auth()->user()->role === 'verifikator')
-                            <li class="nav-item menu-open">
-                                <a href="{{ url('/admin') }}" class="nav-link active">
-                                    <i class="nav-icon fas fa-tachometer-alt"></i>
-                                    <p>
-                                        Dashboard
-                                    </p>
-                                </a>
-                            </li>
-                        @endif
+            @if (auth()->user()->role === 'administrator' || auth()->user()->role === 'verifikator')
+                <li class="nav-item menu-open">
+                    <a href="{{ url('/admin') }}" class="nav-link active">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            Dashboard
+                        </p>
+                    </a>
+                </li>
+            @endif
 
-                        @if (auth()->user()->role === 'user')
-                            <li class="nav-item">
-                                <a href="{{ url('/user') }}" class="nav-link">
-                                    <i class="nav-icon fas fa-home"></i>
-                                    <p>
-                                        Beranda
-                                    </p>
-                                </a>
+            @if (auth()->user()->role === 'user')
+                <li class="nav-item">
+                    <a href="{{ url('/user') }}" class="nav-link">
+                        <i class="nav-icon fas fa-home"></i>
+                        <p>
+                            Beranda
+                        </p>
+                    </a>
 
-                            </li>
-                        @endif
+                </li>
+            @endif
 
-                        @if (auth()->user()->role === 'user')
-                            <li class="nav-header">PROFILE</li>
-                            <li class="nav-item">
-                                <a href="{{ url('/updatedata') }}" class="nav-link">
-                                    <i class="nav-icon fas fa-user"></i>
-                                    <p>
-                                        Update Data Diri
+            @if (auth()->user()->role === 'user')
+                <li class="nav-header">PROFILE</li>
+                <li class="nav-item">
+                    <a href="{{ url('/updatedata') }}" class="nav-link">
+                        <i class="nav-icon fas fa-user"></i>
+                        <p>
+                            Update Data Diri
 
-                                    </p>
-                                </a>
-                            </li>
+                        </p>
+                    </a>
+                </li>
 
-                            <li class="nav-item">
-                                <a href="{{ url('/updateberkas') }}" class="nav-link">
-                                    <i class="nav-icon fas fa-edit"></i>
-                                    <p>
-                                        Upload Kelengkapan
-                                    </p>
-                                </a>
-                            </li>
+                <li class="nav-item">
+                    <a href="{{ url('/updateberkas') }}" class="nav-link">
+                        <i class="nav-icon fas fa-edit"></i>
+                        <p>
+                            Upload Kelengkapan
+                        </p>
+                    </a>
+                </li>
 
-                            <li class="nav-item">
-                                <a href="{{ route('statusberkas') }}" class="nav-link">
-                                    <i class="nav-icon fas fa-clipboard-check"></i>
-                                    <p>
-                                        Status Berkas
-                                    </p>
-                                </a>
+                <li class="nav-item">
+                    <a href="{{ route('statusberkas') }}" class="nav-link">
+                        <i class="nav-icon fas fa-clipboard-check"></i>
+                        <p>
+                            Status Berkas
+                        </p>
+                    </a>
 
-                            </li>
-                        @endif
+                </li>
+            @endif
 
-                        @if (auth()->user()->role === 'administrator' || auth()->user()->role === 'verifikator')
-                            <li class="nav-header">MENU UTAMA</li>
-                            <li class="nav-item">
-                                <a href="{{ url('/daftarpelamar') }}" class="nav-link">
-                                    <i class="nav-icon far fa-list-alt"></i>
-                                    <p>
-                                        Daftar Pelamar
-                                    </p>
-                                </a>
-                            <li class="nav-item">
-                                <a href="{{ url('/verifikasi') }}" class="nav-link">
-                                    <i class="nav-icon far fa-check-square"></i>
-                                    <p>
-                                        Verifikasi Data
-                                    </p>
-                                </a>
+            @if (auth()->user()->role === 'administrator' || auth()->user()->role === 'verifikator')
+                <li class="nav-header">MENU UTAMA</li>
+                <li class="nav-item">
+                    <a href="{{ url('/daftarpelamar') }}" class="nav-link">
+                        <i class="nav-icon far fa-list-alt"></i>
+                        <p>
+                            Daftar Pelamar
+                        </p>
+                    </a>
+                <li class="nav-item">
+                    <a href="{{ url('/verifikasi') }}" class="nav-link">
+                        <i class="nav-icon far fa-check-square"></i>
+                        <p>
+                            Verifikasi Data
+                        </p>
+                    </a>
 
-                            </li>
-                        @endif
+                </li>
+            @endif
 
-                        </li>
-                        <li class="nav-header">PENGATURAN</li>
+            </li>
+            <li class="nav-header">PENGATURAN</li>
 
-                        @if (auth()->user()->role === 'administrator')
-                            <li class="nav-item">
-                                <a href="{{ url('/pengguna') }}" class="nav-link">
-                                    <i class="nav-icon far fa-user-circle"></i>
-                                    <p>
-                                        Pengguna
-                                    </p>
-                                </a>
-                            </li>
+            @if (auth()->user()->role === 'administrator')
+                <li class="nav-item">
+                    <a href="{{ url('/pengguna') }}" class="nav-link">
+                        <i class="nav-icon far fa-user-circle"></i>
+                        <p>
+                            Pengguna
+                        </p>
+                    </a>
+                </li>
 
-                            <li class="nav-item">
-                                <a href="{{ url('/upl_pengumuman') }}" class="nav-link">
-                                    <i class="nav-icon far fa-file"></i>
-                                    <p>
-                                        Pengumuman
-                                    </p>
-                                </a>
-                            </li>
-                        @endif
+                <li class="nav-item">
+                    <a href="{{ url('/upl_pengumuman') }}" class="nav-link">
+                        <i class="nav-icon far fa-file"></i>
+                        <p>
+                            Pengumuman
+                        </p>
+                    </a>
+                </li>
+            @endif
 
-                        <li class="nav-item">
-                            <a href="{{ url('/password') }}" class="nav-link">
-                                <i class="nav-icon fas fa-lock"></i>
-                                <p>
-                                    Ganti Password
-                                </p>
-                            </a>
-                        </li>
+            <li class="nav-item">
+                <a href="{{ url('/password') }}" class="nav-link">
+                    <i class="nav-icon fas fa-lock"></i>
+                    <p>
+                        Ganti Password
+                    </p>
+                </a>
+            </li>
 
-                        <li class="nav-header">Keluar</li>
-                        <li class="nav-item">
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                style="display: none;">
-                                @csrf
-                            </form>
-                            <a href="#"
-                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                                class="nav-link">
-                                <i class="nav-icon far fa-arrow-alt-circle-right"></i>
-                                <p>
-                                    Logout
-                                </p>
-                            </a>
-                        </li>
+            <li class="nav-header">Keluar</li>
+            <li class="nav-item">
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+                <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                    class="nav-link">
+                    <i class="nav-icon far fa-arrow-alt-circle-right"></i>
+                    <p>
+                        Logout
+                    </p>
+                </a>
+            </li>
 
-                    </ul>
-                    </li>
+        </ul>
+        </li>
 
-                    </ul>
-                </nav>
-                <!-- /.sidebar-menu -->
-            </div>
-            <!-- /.sidebar -->
-        </aside>
+        </ul>
+    </nav>
+    <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+    </aside>
 
-        @yield('content')
-        <footer class="main-footer">
-            <strong>Copyright &copy; 2025 Panitia Seleksi APK DEN.</strong>
+    @yield('content')
+    <footer class="main-footer">
+        <strong>Copyright &copy; 2025 Panitia Seleksi APK DEN.</strong>
 
-            <div class="float-right d-none d-sm-inline-block">
-                <b>Versi</b> 1.0.0
-            </div>
-        </footer>
+        <div class="float-right d-none d-sm-inline-block">
+            <b>Versi</b> 1.0.0
+        </div>
+    </footer>
 
-        <!-- Control Sidebar -->
-        <aside class="control-sidebar control-sidebar-dark">
-            <!-- Control sidebar content goes here -->
-        </aside>
-        <!-- /.control-sidebar -->
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
     </div>
     <!-- ./wrapper -->
 

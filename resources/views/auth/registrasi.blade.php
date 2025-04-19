@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="d-flex justify-content-center align-items-center" style="height: 120vh;">
-                <div class="card shadow p-4" style="width: 600px;">
+                <div class="card p-5" style="width: 600px;background-image: url({{ asset('bs/assets/images/blog-left-dec.jpg') }}) !important;box-shadow: 0px 0px 15px rgba(0,0,0,0.4);">
                     <h3 class="text-center mb-4">Form Pendaftaran</h3>
 
                     @if ($errors->any())
