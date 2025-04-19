@@ -89,8 +89,13 @@
                                             <tbody>
                                                 <tr>
                                                     <td>
-                                                        <strong>Calon Kalangan : {{ optional($userProfile)->kalangan ?? 'Belum diisi' }}</strong><br>
+                                                        <table>
+                                                            <td>Calon Kalangan : {{ optional($userProfile)->kalangan ?? 'Belum diisi' }}</td>
+                                                        </table>
+                                                        {{-- <strong>Calon Kalangan : {{ optional($userProfile)->kalangan ?? 'Belum diisi' }}</strong><br>
                                                         Tanggal Registrasi : {{ $user->created_at }}
+                                                        Pendidikan : 
+                                                        Pengalaman :  --}}
                                                     </td>
                                                     <td>
                                                         <table class="table table-striped">
@@ -167,7 +172,7 @@
                                 <div>
                                     <h6 class="mb-1 fw-bold text-dark">Mohon diperhatikan!</h6>
                                     <ul class="mb-0 ps-3 text-dark">
-                                        <li>Pastikan Anda sudah mengupdate <strong>Data Diri dan Kelengkapan Berkas </strong>, pada menu yang sudah disediakan.</li>
+                                        <li>Pastikan Anda sudah mengupdate <strong>Data Diri dan Kelengkapan Berkas</strong>, pada menu yang sudah disediakan.</li>
                                         <li>Cek kembali data yang sudah di submit sebelum melakukan <strong>Submit Data Final</strong> dihalaman <strong>Status Berkas</strong>.
                                         </li>
                                         <li>
