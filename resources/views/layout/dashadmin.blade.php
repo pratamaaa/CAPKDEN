@@ -128,12 +128,8 @@
                     height="100%">
 
             </a>
-            {{-- <a href="{{ url('/') }}" class="brand-link">
-            <a href="{{ url('/') }}" class="brand-link">
-                <img src="{{ asset('bs/assets/images/logo-den.png') }}" alt="" style="width: 100%;">
-            </a>
 
-            <!-- Sidebar -->
+         <!-- Sidebar -->
             <div class="sidebar">
                 <!-- Sidebar user panel (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
@@ -145,7 +141,7 @@
                     <div class="info">
                         <small> {{ $greeting }}, {{ $user->name }}
                         </small>
-                        {{-- <span class="d-block"><b>Selamat Datang di Aplikasi <br> CAPK DEN</b></span> --}}
+                        <span class="d-block"><b>Selamat Datang di Aplikasi <br> CAPK DEN</b></span>
     </div>
     </div>
 
