@@ -59,7 +59,7 @@
 
                         <div class="input-group mb-3">
                             <input type="password" name="password" class="form-control" id="password"
-                                placeholder="Password" required>
+                                placeholder="Password (minimal 6 karakter)" required>
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-lock"></span>

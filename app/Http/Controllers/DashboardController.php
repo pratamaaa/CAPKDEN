@@ -50,20 +50,21 @@ class DashboardController extends Controller
     public function userDashboard()
     {
         $greeting = $this->getGreeting();
-        return view('dashboard.user', compact('greeting'));
+        $userfiles = UserFiles::where('user_id', auth()->id())->first();
+        return view('dashboard.user', compact('greeting', 'userfiles'));
     }
 
     public function updatedata()
     {
     $greeting = $this->getGreeting();
     $user = auth()->user();
+    $userFiles = UserFiles::where('user_id', $user->id)->first();
     $profile = $user->profile;
 
-    if ($profile) {
+    if ($profile) 
         session()->flash('status_updated', 'Anda sudah pernah mengisi data. Silakan perbarui jika ada perubahan.');
-    }
-
-    return view('user.datadiri', compact('greeting', 'user', 'profile'));
+    
+    return view('user.datadiri', compact('greeting', 'user', 'profile', 'userFiles'));
     }
 
     public function updateberkas()

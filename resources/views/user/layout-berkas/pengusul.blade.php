@@ -42,7 +42,7 @@
                     <label class="col-lg-3 col-form-label">Nama Organisasi Pengusul</label>
                     <div class="col-lg-4">
                         <input type="text" class="form-control" placeholder="Organisasi Pengusul" name="org_pengusul"
-                            value="{{ old('org_pengusul') }}" required>
+                        value="{{ $userFiles != null ? $userFiles->org_pengusul : old('org_pengusul') }}" required>
                     </div>
                 </div>
 
@@ -52,17 +52,25 @@
                             <span class="fw-semibold">({{ $label }})</span>
                         </label>
                         <div class="col-lg-6 d-flex align-items-center">
-                            <div class="me-3">
-
+                            <div class="d-flex align-items-center mb-2">
                                 <input type="file" name="{{ $name }}" accept="application/pdf"
-                                    class="form-control-file" id="{{ $name }}_input" required>
-                                <div id="{{ $name }}_preview_container" class="mt-2">
-                                    <span id="{{ $name }}_filename"
-                                        class="text-muted small d-block mt-1"></span>
-                                    <iframe id="{{ $name }}_preview_iframe"
-                                        style="width: 100%; height: 300px; border: 1px solid #ccc; display: none;"></iframe>
-                                </div>
+                                    class="form-control me-2" id="{{ $name }}_input" required>
+                            
+                                <a href="{{ route('template.download', ['type' => 'pengusul']) }}"
+                                    class="badge bg-success text-decoration-none" target="_blank">
+                                    <i class="fa fa-download me-1"></i> Download Template
+                                </a>
                             </div>
+                            
+                            <div id="{{ $name }}_preview_container" class="mb-3">
+                                <span id="{{ $name }}_filename" class="text-muted small d-block"></span>
+                            
+                                <iframe id="{{ $name }}_preview_iframe"
+                                    src="{{ $userFiles != null && $userFiles->$name != null ? asset('storage/' . $userFiles->$name) : '' }}"
+                                    style="width: 100%; height: 300px; border: 1px solid #ccc; display: {{ $userFiles != null && $userFiles->$name != null ? 'block' : 'none' }};">
+                                </iframe>
+                            </div>
+                            
                         </div>
                     </div>
                 @endforeach
@@ -76,7 +84,7 @@
                         <label class="col-lg-3 col-form-label">{{ $label }}</label>
                         <div class="col-lg-4">
                             <input type="text" class="form-control" name="{{ $name }}"
-                                placeholder="{{ $label }}" value="{{ old($name) }}">
+                                placeholder="{{ $label }}" value="{{ old($name, data_get($userFiles, $name)) }}">
                         </div>
                     </div>
                 @endforeach
@@ -86,16 +94,25 @@
                         <label class="col-lg-3 col-form-label">Upload Data <span
                                 class="fw-semibold">({{ $label }})</span></label>
                         <div class="col-lg-6 d-flex align-items-center">
-                            <div class="me-3">
+                            <div class="d-flex align-items-center mb-2">
                                 <input type="file" name="{{ $name }}" accept="application/pdf"
-                                    class="form-control-file" id="{{ $name }}_input" required>
-                                <div id="{{ $name }}_preview_container" class="mt-2">
-                                    <span id="{{ $name }}_filename"
-                                        class="text-muted small d-block mt-1"></span>
-                                    <iframe id="{{ $name }}_preview_iframe"
-                                        style="width: 100%; height: 300px; border: 1px solid #ccc; display: none;"></iframe>
-                                </div>
+                                    class="form-control me-2" id="{{ $name }}_input" required>
+                            
+                                <a href="{{ route('template.download', ['type' => 'pakar']) }}"
+                                    class="badge bg-success text-decoration-none" target="_blank">
+                                    <i class="fa fa-download me-1"></i> Download Template
+                                </a>
                             </div>
+                            
+                            <div id="{{ $name }}_preview_container" class="mb-3">
+                                <span id="{{ $name }}_filename" class="text-muted small d-block"></span>
+                            
+                                <iframe id="{{ $name }}_preview_iframe"
+                                    src="{{ $userFiles != null && $userFiles->$name != null ? asset('storage/' . $userFiles->$name) : '' }}"
+                                    style="width: 100%; height: 300px; border: 1px solid #ccc; display: {{ $userFiles != null && $userFiles->$name != null ? 'block' : 'none' }};">
+                                </iframe>
+                            </div>
+
                         </div>
                     </div>
                 @endforeach
@@ -105,8 +122,13 @@
         </div>
     </div>
     <div class="mt-6">
-        <button type="submit" form="uploadFormPengusul" class="btn btn-success px-4 py-2">
+        {{-- <button type="submit" form="uploadFormPengusul" class="btn btn-success px-4 py-2">
             <i class="fa fa-upload" aria-hidden="true"></i> Simpan & Upload
+        </button> --}}
+        <button type="submit" form="uploadFormPengusul" class="btn btn-success px-4 py-2"
+            {{ $userFiles != null && $userFiles->status_data == 1 ? 'disabled' : '' }}>
+            <i class="fa fa-upload" aria-hidden="true"></i> Simpan & Upload
+            {{ $userFiles != null && $userFiles->status_data == 1 ? '(Berkas Sudah Di Submit)' : '' }}
         </button>
     </div>
     <script>

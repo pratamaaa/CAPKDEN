@@ -115,7 +115,6 @@ class UserFilesController extends Controller
                 'cv' => 'nullable|file|mimes:pdf|max:2048',
                 'rangkap_jabatan' => 'nullable|file|mimes:pdf|max:2048',
                 'pidana' => 'nullable|file|mimes:pdf|max:2048',
-                'makalah' => 'nullable|file|mimes:pdf|max:10240',
                 'surat_sehat' => 'nullable|file|mimes:pdf|max:2048',
                 'skck' => 'nullable|file|mimes:pdf|max:2048',
             ];
@@ -219,6 +218,56 @@ public function destroy($field)
 
     return redirect()->route('statusberkas')->with('success', 'Dokumen berhasil dihapus.');
 }
+
+public function uploadMakalah()
+{
+    $greeting = $this->getGreeting();
+    $userfiles = UserFiles::where('user_id', auth()->id())->sole();
+
+    if ($userfiles->administrasi_status !== 'lulus') {
+        return redirect()->route('dashboard.user')->with('error', 'Anda belum lulus tahap administrasi.');
+    }
+
+    return view('user.makalah', compact('userfiles','greeting'));
+}
+public function storeMakalah(Request $request)
+{
+    $request->validate([
+        'judul_makalah' => 'required|string|max:255',
+        'makalah' => 'required|mimes:pdf|max:10048',
+    ]);
+
+    $userfiles = UserFiles::where('user_id', auth()->id())->sole();
+
+    // Simpan file
+    $path = $request->file('makalah')->store('uploads/makalah', 'public');
+
+    // Simpan path ke DB
+    $userfiles->update([
+        'makalah' => $path
+    ]);
+
+    return redirect()->back()->with('success', 'Makalah berhasil diupload.');
+}
+
+public function deleteMakalah($id)
+{
+    $makalah = UserFiles::where('id', $id)
+        ->where('user_id', auth()->id())
+        ->whereNotNull('judul_makalah')
+        ->firstOrFail();
+
+    // Hapus file dari storage kalau ada
+    if ($makalah->makalah && \Storage::disk('public')->exists($makalah->makalah)) {
+        \Storage::disk('public')->delete($makalah->makalah);
+    }
+
+    $makalah->delete();
+
+    return redirect()->back()->with('success', 'Makalah berhasil dihapus.');
+}
+
+
 }
 
 

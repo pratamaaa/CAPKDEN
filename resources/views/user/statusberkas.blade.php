@@ -45,7 +45,7 @@
                                             'cv' => 'Daftar Riwayat Hidup (CV)',
                                             'pidana' =>
                                                 'Surat Pernyataan Tidak Sedang Menjalani Proses Pidana atau Pernah Dipidana Penjara Berdasarkan Putusan Pengadilan yang Telah Berkekuatan Hukum Tetap',
-                                            'makalah' => 'Penulisan Makalah',
+                                            // 'makalah' => 'Penulisan Makalah',
                                             'surat_sehat' => 'Surat Keterangan Sehat Jasmani dan Rohani',
                                             'skck' => 'SKCK',
                                         ];
@@ -213,11 +213,17 @@
                                 method="POST" style="display:inline;">
                                 @csrf
                                 @method('PUT')
-                                <button type="submit" class="btn btn-success px-4 py-2"
+                                {{-- <button type="submit" class="btn btn-success px-4 py-2"
                                 {{ ($userFiles != null && $userFiles->status_data == 1) ? 'disabled' : '' }}
                                 onclick="return confirm('Yakin ingin Menyelesaikan dokumen ini?')">
                                     <i class="fa fa-upload" aria-hidden="true"></i> Submit Final
+                                </button> --}}
+                                <button type="button" class="btn btn-success px-4 py-2"
+                                    id="submitFinalBtn"
+                                    {{ ($userFiles != null && $userFiles->status_data == 1) ? 'disabled' : '' }}>
+                                    <i class="fa fa-upload" aria-hidden="true"></i> Submit Final
                                 </button>
+
                             </form>
                             </div>
                         </div>
@@ -226,4 +232,24 @@
             </div>
         </section>
     </div>
+    <script>
+        document.getElementById('submitFinalBtn').addEventListener('click', function () {
+            Swal.fire({
+                title: 'Selesaikan Dokumen?',
+                text: "Pastikan semua dokumen sudah lengkap sebelum disubmit!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#198754',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, Submit!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Cari form terdekat dan submit
+                    this.closest('form').submit();
+                }
+            });
+        });
+    </script>
+    
 @endsection

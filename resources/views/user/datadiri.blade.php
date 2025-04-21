@@ -108,7 +108,7 @@
                                             <input type="file" name="pas_foto" id="pas_foto" accept="image/*" class="form-control">
                                             <small class="form-text text-muted mt-1 px-2 py-1" 
                                             style="background-color: #e0f7fa; color: #006064; border-left: 4px solid #00bcd4; border-radius: 4px; display: inline-block;">
-        JPEG, Min. 500 KB Max 2 MB, latar belakang foto berwana <strong>BIRU</strong>
+        Format <strong>JPEG, PNG, JPG</strong>, Max 2 MB.
     </small>
     <div class="mt-2">
         <img id="preview_foto" src="{{ $userProfile->pas_foto_url ?? '' }}" 
@@ -124,7 +124,7 @@
                                             <input type="file" name="file_ktp" id="file_ktp" accept="application/pdf" class="form-control">
                                             <small class="form-text text-muted mt-1 px-2 py-1" 
        style="background-color: #e0f7fa; color: #006064; border-left: 4px solid #00bcd4; border-radius: 4px; display: inline-block;">
-    Format <strong>PDF</strong>, Max. 2 MB
+    Format <strong>PDF</strong>, Max. 2 MB.
 </small>
 
                                             <div class="mt-2" id="ktp_preview" style="display: none;">
@@ -153,38 +153,16 @@
 
                                 <!-- Tombol Submit -->
                                 <div class="card-footer">
-                                    {{-- <button type="button" class="btn btn-primary" data-toggle="modal"
-                                        data-target="#confirmModal">
-                                        Update Data
-                                    </button> --}}
-                                    <button type="submit" form="uploadForm" class="btn btn-success px-4 py-2">
+                                    {{-- <button type="submit" form="uploadForm" class="btn btn-success px-4 py-2">
                                         <i class="fa fa-upload" aria-hidden="true"></i> Simpan & Upload
-                                    </button>
+                                    </button> --}}
+                                    <button type="submit" form="uploadForm" class="btn btn-success px-4 py-2"
+            {{ $userFiles != null && $userFiles->status_data == 1 ? 'disabled' : '' }}>
+            <i class="fa fa-upload" aria-hidden="true"></i> Simpan & Upload
+            {{ $userFiles != null && $userFiles->status_data == 1 ? '(Berkas Sudah Di Submit)' : '' }}
+        </button>
                                 </div>
 
-                                <!-- Modal Konfirmasi -->
-                                {{-- <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel"
-                                    aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title">Konfirmasi</h5>
-                                                <button type="button" class="close" data-dismiss="modal"
-                                                    aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                Apakah Anda yakin ingin menyimpan perubahan data ini?
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-dismiss="modal">Batal</button>
-                                                <button type="submit" class="btn btn-primary">Ya, Simpan</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> --}}
                             </form>
                             <script>
                                 document.getElementById('file_ktp').addEventListener('change', function(e) {

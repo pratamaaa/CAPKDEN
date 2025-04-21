@@ -68,105 +68,7 @@
                 <!-- KANAN -->
                 <div class="col-md-9">
                     <div class="card">
-                        <div class="card-header p-2">
-                            <ul class="nav nav-pills">
-                                <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Status Pelamar</a></li>
-                            </ul>
-                        </div>
-                        <div class="card-body">
-                            <div class="tab-content">
-
-                                <!-- STATUS PELAMAR -->
-                                <div class="active tab-pane" id="activity">
-                                    <div class="post">
-                                        <table class="table table-bordered">
-                                            <thead class="table-secondary">
-                                                <tr>
-                                                    <th class="text-center" width="40%">Detail Pendaftaran</th>
-                                                    <th class="text-center" width="60%">Status Seleksi</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>
-                                                        <table>
-                                                            <td>Calon Kalangan : {{ optional($userProfile)->kalangan ?? 'Belum diisi' }}</td>
-                                                        </table>
-                                                        {{-- <strong>Calon Kalangan : {{ optional($userProfile)->kalangan ?? 'Belum diisi' }}</strong><br>
-                                                        Tanggal Registrasi : {{ $user->created_at }}
-                                                        Pendidikan : 
-                                                        Pengalaman :  --}}
-                                                    </td>
-                                                    <td>
-                                                        <table class="table table-striped">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th class="text-center" style="width: 10px">#</th>
-                                                                    <th class="text-center" style="width: 20px">Tahapan</th>
-                                                                    <th class="text-center" style="width: 5px"></th>
-                                                                    <th class="text-center" style="width: 40px">Status</th>
-                                                                    <th class="text-center" style="width: 40px">Keterangan</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td>1</td>
-                                                                    <td>Administrasi</td>
-                                                                    <td class="text-center">:</td>
-                                                                    <td class="text-center">
-                                                                        <span class="badge bg-danger">Belum Upload</span><br>
-                                                            <span class="badge bg-primary">Proses Verifikasi</span><br>
-                                                            <span class="badge bg-success">Selesai Verifikasi</span>
-                                                                    </td>
-                                                                    <td class="text-center">
-                                                                        <span class="badge bg-success">Lulus</span><br>
-                                                                        <span class="badge bg-danger">Tidak Lulus</span>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>2</td>
-                                                                    <td>Assesment</td>
-                                                                    <td class="text-center">:</td>
-                                                                    <td class="text-center">
-                                                                        <span class="badge bg-warning">-</span><br>
-                                                                        <span class="badge bg-primary">Proses Assesment</span>
-                                                                        <span class="badge bg-success">Selesai Assesment</span>
-                                                                    </td>
-                                                                    <td class="text-center">
-                                                                        <span class="badge bg-warning">-</span><br>
-                                                                        <span class="badge bg-success">Lulus</span><br>
-                                                                        <span class="badge bg-danger">Tidak Lulus</span>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>3</td>
-                                                                    <td>Wawancara</td>
-                                                                    <td class="text-center">:</td>
-                                                                    <td class="text-center">
-                                                                        <span class="badge bg-warning">-</span><br>
-                                                                        <span class="badge bg-primary">Proses Wawancara</span>
-                                                                        <span class="badge bg-success">Selesai Wawancara</span>
-                                                                    </td>
-                                                                    <td class="text-center"><span class="badge bg-warning">-</span><br>
-                                                                        <span class="badge bg-success">Lulus</span><br>
-                                                                        <span class="badge bg-danger">Tidak Lulus</span></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>4</td>
-                                                                    <td>Fit and Proper Test</td>
-                                                                    <td class="text-center">:</td>
-                                                                    <td class="text-center"><span class="badge bg-warning">Menunggu</span></td>
-                                                                    <td class="text-center"><span class="badge bg-warning">Menunggu</span></td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                                <div class="alert alert-warning d-flex align-items-start gap-3 p-3" role="alert"
+                        <div class="alert alert-warning d-flex align-items-start gap-3 p-3" role="alert"
                                 style="border-radius: 8px;">
                                 <i class="fas fa-exclamation-triangle fa-lg text-warning mt-1"></i>
                                 <div>
@@ -225,6 +127,251 @@
                                     </ul>
                                 </div>
                             </div>
+                        {{-- <div class="card-header p-2">
+                            <ul class="nav nav-pills">
+                                <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Status Pelamar</a></li>
+                            </ul>
+                        </div> --}}
+                        <div class="card-body">
+                            <div class="tab-content">
+
+                                <!-- STATUS PELAMAR -->
+                                <div class="active tab-pane" id="activity">
+                                    <div class="post">
+                                        <table class="table table-bordered">
+                                            <thead class="table-primary">
+                                                <tr>
+                                                    <th class="text-center" width="60%">Detail Pendaftaran</th>
+                                                    <th class="text-center" width="40%">Status Seleksi</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <table class="table table-striped">
+                                                            <tr>
+                                                                <td><strong>Calon Kalangan</strong></td>
+                                                                <td>{{ optional($userProfile)->kalangan ?? 'Belum diisi' }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><strong>Tanggal Registrasi</strong></td>
+                                                                <td>{{ optional($user)->created_at ?? 'Belum diisi' }}</td>
+                                                            </tr>
+                                                        </table>
+                                                        
+                                                        <h6 class="text-primary fw-bold">Riwayat Pendidikan</h6>
+                                                        <table class="table table-striped">
+                                                            <tr>
+                                                                <td class="text-center"><strong>Jenjang</strong></td>
+                                                                <td class="text-center"><strong>Universitas</strong></td>
+                                                                <td class="text-center"><strong>Jurusan</strong></td>
+                                                                <td class="text-center"><strong>Lulus</strong></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><strong>Sarjana</strong></td>
+                                                                <td>
+                                                                    @if ($userfiles && $userfiles->universitas_sarjana)
+                                                                        {{ $userfiles->universitas_sarjana }}
+                                                                    @else
+                                                                        <span class="badge bg-danger">Belum diisi</span>
+                                                                    @endif
+                                                                </td>
+                                                                <td>
+                                                                    @if ($userfiles && $userfiles->jurusan_sarjana)
+                                                                        {{ $userfiles->jurusan_sarjana }}
+                                                                    @else
+                                                                        <span class="badge bg-danger">Belum diisi</span>
+                                                                    @endif
+                                                                </td>
+                                                                <td>
+                                                                    @if ($userfiles && $userfiles->lulus_sarjana)
+                                                                        {{ $userfiles->lulus_sarjana }}
+                                                                    @else
+                                                                        <span class="badge bg-danger">Belum diisi</span>
+                                                                    @endif
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><strong>Magister</strong></td>
+                                                                <td>
+                                                                    @if ($userfiles && $userfiles->universitas_magister)
+                                                                        {{ $userfiles->universitas_magister }}
+                                                                    @else
+                                                                        <span class="badge bg-danger">Belum diisi</span>
+                                                                    @endif
+                                                                </td>
+                                                                <td>
+                                                                    @if ($userfiles && $userfiles->jurusan_magister)
+                                                                        {{ $userfiles->jurusan_magister }}
+                                                                    @else
+                                                                        <span class="badge bg-danger">Belum diisi</span>
+                                                                    @endif
+                                                                </td>
+                                                                <td>
+                                                                    @if ($userfiles && $userfiles->lulus_magister)
+                                                                        {{ $userfiles->lulus_magister }}
+                                                                    @else
+                                                                        <span class="badge bg-danger">Belum diisi</span>
+                                                                    @endif
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><strong>Doktoral</strong></td>
+                                                                <td>
+                                                                    @if ($userfiles && $userfiles->universitas_doktoral)
+                                                                        {{ $userfiles->universitas_doktoral }}
+                                                                    @else
+                                                                        <span class="badge bg-danger">Belum diisi</span>
+                                                                    @endif
+                                                                </td>
+                                                                <td>
+                                                                    @if ($userfiles && $userfiles->jurusan_doktoral)
+                                                                        {{ $userfiles->jurusan_doktoral }}
+                                                                    @else
+                                                                        <span class="badge bg-danger">Belum diisi</span>
+                                                                    @endif
+                                                                </td>
+                                                                <td>
+                                                                    @if ($userfiles && $userfiles->lulus_doktoral)
+                                                                        {{ $userfiles->lulus_doktoral }}
+                                                                    @else
+                                                                        <span class="badge bg-danger">Belum diisi</span>
+                                                                    @endif
+                                                                </td>
+                                                            </tr>
+                                                            
+                                                        </table>
+
+                                                        <h6 class="text-primary fw-bold">Pengalaman Kerja</h6>
+                                                        <table class="table table-striped">
+                                                            <tr>
+                                                                <td class="text-center"><strong>Nama Jabatan</strong></td>
+                                                                <td class="text-center"><strong>Unit Kerja</strong></td>
+                                                                <td class="text-center"><strong>TMT Jabatan</strong></td>
+                                                            </tr>
+                                                            @php
+                        $user = auth()->user();
+                        $experiences = $user && $user->experiences ? $user->experiences : collect();
+                    @endphp
+                                                            <tr>
+                                                                @if ($experiences->count())
+                        @foreach ($experiences as $i => $pengalaman)
+                            <tr>
+                                <td>{{ $pengalaman->nama_jabatan }}</td>
+                                <td>{{ $pengalaman->unit_kerja }}</td>
+                                <td>{{ $pengalaman->tmt_jabatan }}</td>
+                            </tr>
+                        @endforeach
+                    @else
+                        <tr>
+                            <td colspan="3" class="text-center text-muted">Belum ada data pengalaman.</td>
+                        </tr>
+                    @endif
+                                                            </tr>
+                                                            
+                                                            
+                                                        </table>
+
+                                                        <h6 class="text-primary fw-bold">Pengusul Calon Kalangan</h6>
+                                                        <table class="table table-striped">
+                                                           
+                                                            <tr>
+                                                                <td><strong>Organisasi Pengusul</strong></td>
+                                                                <td>
+                                                                    @if ($userfiles && $userfiles->org_pengusul)
+                                                                        {{ $userfiles->org_pengusul }}
+                                                                    @else
+                                                                        <span class="badge bg-danger">Belum diisi</span>
+                                                                    @endif
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><strong>Rekomendasi Pakar-1</strong></td>
+                                                                <td>
+                                                                    @if ($userfiles && $userfiles->rek_pakar1)
+                                                                        {{ $userfiles->rek_pakar1 }}
+                                                                    @else
+                                                                        <span class="badge bg-danger">Belum diisi</span>
+                                                                    @endif
+                                                                </td>
+                                                                
+                                                            </tr>
+                                                            <tr>
+                                                                <td><strong>Rekomendasi Pakar-2</strong></td>
+                                                                <td>
+                                                                    @if ($userfiles && $userfiles->rek_pakar2)
+                                                                        {{ $userfiles->rek_pakar2 }}
+                                                                    @else
+                                                                        <span class="badge bg-danger">Belum diisi</span>
+                                                                    @endif
+                                                                </td>
+                                                                
+                                                            </tr>
+                                                            <tr>
+                                                                <td><strong>Rekomendasi Pakar-3</strong></td>
+                                                                <td>
+                                                                    @if ($userfiles && $userfiles->rek_pakar3)
+                                                                        {{ $userfiles->rek_pakar3 }}
+                                                                    @else
+                                                                        <span class="badge bg-danger">Belum diisi</span>
+                                                                    @endif
+                                                                </td>
+                                                                
+                                                            </tr>
+                                                            
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                              
+                                                    
+                                                    </td>
+                                                    {{-- Status Seleksi --}}
+                            <td class="align-top">
+                                <table class="table table-bordered table-hover table-sm text-center">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Tahapan</th>
+                                            <th>Status</th>
+                                            <th>Keterangan</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ([
+                                        ['label' => 'Administrasi', 'status' => $userfiles?->administrasi_status, 'catatan' => $userfiles?->administrasi_catatan],
+                                        ['label' => 'Wawancara', 'status' => $userfiles?->wawancara_status, 'catatan' => $userfiles?->wawancara_catatan],
+                                        ['label' => 'Assesment', 'status' => $userfiles?->assessment_status, 'catatan' => $userfiles?->assessment_catatan],
+                                        ['label' => 'Fit and Proper Test', 'status' => $userfiles?->propertest_status, 'catatan' => $userfiles?->propertest_catatan],
+                                    ] as $index => $item)
+
+                                            @php
+                                                $badgeClass = match ($item['status']) {
+                                                    'lulus' => 'bg-success',
+                                                    'tidak lulus' => 'bg-danger',
+                                                    default => 'bg-warning text-dark',
+                                                };
+                                                $statusText = match ($item['status']) {
+                                                    'lulus' => 'Lulus',
+                                                    'tidak lulus' => 'Tidak Lulus',
+                                                    default => 'Dalam Proses',
+                                                };
+                                            @endphp
+                                            <tr>
+                                                <td>{{ $index + 1 }}</td>
+                                                <td>{{ $item['label'] }}</td>
+                                                <td><span class="badge {{ $badgeClass }}">{{ $statusText }}</span></td>
+                                                <td>{{ $item['catatan'] ?? '-' }}</td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                    
+                                </table>
+                            </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
                                 
                             </div> <!-- /.tab-content -->
                         </div> <!-- /.card-body -->

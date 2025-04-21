@@ -139,9 +139,8 @@
                         $userFiles = $user->userfiles()->get();
                     @endphp
                     <div class="info">
-                        <small> {{ $greeting }}, {{ $user->name }}
+                        <small> {{ $greeting }}, <strong>{{ $user->name }}</strong>
                         </small>
-                        <span class="d-block"><b>Selamat Datang di Aplikasi <br> CAPK DEN</b></span>
     </div>
     </div>
 
@@ -204,6 +203,16 @@
                     </a>
 
                 </li>
+
+                @if ($userfiles?->administrasi_status === 'lulus')
+    <li class="nav-item">
+        <a href="{{ route('upload.makalah') }}" class="nav-link">
+            <i class="nav-icon fas fa-file"></i>
+            <p>Upload Makalah</p>
+        </a>
+    </li>
+@endif
+
             @endif
 
             @if (auth()->user()->role === 'administrator' || auth()->user()->role === 'verifikator')

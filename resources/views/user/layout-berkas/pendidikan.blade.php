@@ -98,14 +98,14 @@
                 </div>
 
                 @foreach (['universitas_magister' => 'Nama Universitas', 'jurusan_magister' => 'Jurusan', 'lulus_magister' => 'Tahun Lulus'] as $name => $label)
-                    <div class="mb-3 row">
-                        <label class="col-lg-3 col-form-label">{{ $label }}</label>
-                        <div class="col-lg-4">
-                            <input type="text" class="form-control" name="{{ $name }}"
-                                placeholder="{{ $label }}" value="{{ old($name) }}">
-                        </div>
-                    </div>
-                @endforeach
+    <div class="mb-3 row">
+        <label class="col-lg-3 col-form-label">{{ $label }}</label>
+        <div class="col-lg-4">
+            <input type="text" class="form-control" name="{{ $name }}"
+                placeholder="{{ $label }}" value="{{ old($name, data_get($userFiles, $name)) }}">
+        </div>
+    </div>
+@endforeach
 
                 @foreach (['ijazah_magister' => 'Ijazah Magister', 'transkrip_magister' => 'Transkrip Magister'] as $name => $label)
                     <div class="mb-3 row">
@@ -133,14 +133,14 @@
                 </div>
 
                 @foreach (['universitas_doktoral' => 'Nama Universitas', 'jurusan_doktoral' => 'Jurusan', 'lulus_doktoral' => 'Tahun Lulus'] as $name => $label)
-                    <div class="mb-3 row">
-                        <label class="col-lg-3 col-form-label">{{ $label }}</label>
-                        <div class="col-lg-4">
-                            <input type="text" class="form-control" name="{{ $name }}"
-                                placeholder="{{ $label }}" value="{{ old($name) }}">
-                        </div>
-                    </div>
-                @endforeach
+    <div class="mb-3 row">
+        <label class="col-lg-3 col-form-label">{{ $label }}</label>
+        <div class="col-lg-4">
+            <input type="text" class="form-control" name="{{ $name }}"
+                placeholder="{{ $label }}" value="{{ old($name, data_get($userFiles, $name)) }}">
+        </div>
+    </div>
+@endforeach
 
                 @foreach (['ijazah_doktoral' => 'Ijazah Doktoral', 'transkrip_doktoral' => 'Transkrip Doktoral'] as $name => $label)
                     <div class="mb-3 row">
@@ -154,7 +154,9 @@
                                     <span id="{{ $name }}_filename"
                                         class="text-muted small d-block mt-1"></span>
                                     <iframe id="{{ $name }}_preview_iframe"
-                                        style="width: 100%; height: 300px; border: 1px solid #ccc; display: none;"></iframe>
+                                    src="{{ $userFiles != null && $userFiles->$name != null ? 'storage/' . $userFiles->$name : '' }}"
+                                    style="width: 100%; height: 300px; border: 1px solid #ccc; display: {{ $userFiles != null && $userFiles->$name != null ? 'block' : 'none' }};"></iframe>
+
                                 </div>
                             </div>
 

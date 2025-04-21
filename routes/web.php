@@ -50,8 +50,17 @@ Route::get('/password', [DashboardController::class, 'password'])->name('user.pa
 Route::post('/password', [DashboardController::class, 'updatePassword'])->name('user.updatePassword');
 Route::delete('/userfiles/delete/{field}', [UserFilesController::class, 'destroy'])->name('userfiles.destroy');
 Route::put('/userfiles/updatestatus/{field}', [UserFilesController::class, 'updatestatus'])->name('userfiles.updatestatus');
-Route::post('/pengalaman/store', [UserExperienceController::class, 'store'])->name('pengalaman.store');
-Route::delete('/pengalaman/delete/{id}', [UserExperienceController::class, 'destroy'])->name('pengalaman.destroy');
+Route::middleware(['auth'])->group(function () {
+    Route::resource('pengalaman', UserExperienceController::class)->only([
+        'store', 'update', 'destroy'
+    ]);
+});
+Route::middleware(['auth'])->group(function () {
+    Route::get('/user/upload-makalah', [UserFilesController::class, 'uploadMakalah'])->name('upload.makalah');
+    Route::post('/user/upload-makalah', [UserFilesController::class, 'storeMakalah'])->name('upload.makalah.store');
+});
+Route::delete('/user/upload-makalah/delete/{id}', [UserFilesController::class, 'deleteMakalah'])->name('upload.makalah.delete');
+
 
 
 // ADMIN 

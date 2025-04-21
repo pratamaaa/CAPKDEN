@@ -28,44 +28,65 @@
                     </div>
                 </div>
 
-                @foreach ([
+                @php
+    $dokumenPendukung = [
         'lamaran' => 'Surat Lamaran',
         'rangkap_jabatan' => 'Surat Rangkap Jabatan',
         'cv' => 'Daftar Riwayat Hidup (CV)',
-        'pidana' => 'Surat Pernyataan Tidak Sedang Menjalani Proses
-                Pidana atau Pernah Dipidana Penjara Berdasarkan Putusan Pengadilan yang Telah
-                Berkekuatan Hukum Tetap',
-        'makalah' => 'Penulisan Makalah',
-        'surat_sehat' => 'Surat Keterangan Sehat Jasmani dan
-                                    Rohani',
+        'pidana' => 'Surat Pernyataan Tidak Sedang Menjalani Proses Pidana atau Pernah Dipidana',
+        'surat_sehat' => 'Surat Keterangan Sehat Jasmani dan Rohani',
         'skck' => 'SKCK',
-    ] as $name => $label)
-                    <div class="mb-3 row">
-                        <label class="col-lg-3 col-form-label">Upload Dokumen
-                            <span class="fw-semibold">({{ $label }})</span>
-                        </label>
-                        <div class="col-lg-6 d-flex align-items-center">
-                            <div class="me-3">
+    ];
 
-                                <input type="file" name="{{ $name }}" accept="application/pdf"
-                                    class="form-control-file" id="{{ $name }}_input" required>
-                                <div id="{{ $name }}_preview_container" class="mt-2">
-                                    <span id="{{ $name }}_filename"
-                                        class="text-muted small d-block mt-1"></span>
-                                    <iframe id="{{ $name }}_preview_iframe"
-                                        style="width: 100%; height: 300px; border: 1px solid #ccc; display: none;"></iframe>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
+    $templateLinks = [
+        'lamaran' => route('template.download', ['type' => 'lamaran']),
+        'rangkap_jabatan' => route('template.download', ['type' => 'rangkap_jabatan']),
+        'cv' => route('template.download', ['type' => 'cv']),
+        'pidana' => route('template.download', ['type' => 'pidana']),
+        'surat_sehat' => route('template.download', ['type' => 'surat_sehat']),
+        'skck' => route('template.download', ['type' => 'skck']),
+    ];
+@endphp
+
+@foreach ($dokumenPendukung as $name => $label)
+    <div class="mb-3 row">
+        <label class="col-lg-3 col-form-label">Upload Dokumen
+            <span class="fw-semibold">({{ $label }})</span>
+        </label>
+        <div class="col-lg-6">
+            <div class="d-flex align-items-center gap-2 mb-2">
+                <input type="file" name="{{ $name }}" accept="application/pdf"
+                    class="form-control" id="{{ $name }}_input" required>
+                
+                @if (isset($templateLinks[$name]))
+                    <a href="{{ $templateLinks[$name] }}" class="badge bg-success text-decoration-none" target="_blank">
+                        <i class="fa fa-download me-1"></i> Download Template
+                    </a>
+                @endif
+            </div>
+
+            <div id="{{ $name }}_preview_container" class="mt-2">
+                <span id="{{ $name }}_filename"
+                    class="text-muted small d-block mt-1"></span>
+                <iframe id="{{ $name }}_preview_iframe"
+                    src="{{ $userFiles != null && $userFiles->$name != null ? asset('storage/' . $userFiles->$name) : '' }}"
+                    style="width: 100%; height: 300px; border: 1px solid #ccc; display: {{ $userFiles != null && $userFiles->$name != null ? 'block' : 'none' }};"></iframe>
+            </div>
+        </div>
+    </div>
+@endforeach
 
             </div>
         </div>
     </div>
     <div class="mt-6">
-        <button type="submit" form="uploadFormPendukung" class="btn btn-success px-4 py-2">
+        {{-- <button type="submit" form="uploadFormPendukung" class="btn btn-success px-4 py-2">
             <i class="fa fa-upload" aria-hidden="true"></i> Simpan & Upload
+        </button> --}}
+        <button type="submit" form="uploadFormPendukung" class="btn btn-success px-4 py-2"
+            {{ $userFiles != null && $userFiles->status_data == 1 ? 'disabled' : '' }}>
+            <i class="fa fa-upload" aria-hidden="true"></i> Simpan & Upload
+            {{ $userFiles != null && $userFiles->status_data == 1 ? '(Berkas Sudah Di Submit)' : '' }}
         </button>
     </div>
     <script>

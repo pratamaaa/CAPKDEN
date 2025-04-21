@@ -40,6 +40,7 @@ class UserFiles extends Model
     'rangkap_jabatan',
     'cv',
     'pidana',
+    'judul_makalah',
     'makalah',
     'surat_sehat',
     'skck',
