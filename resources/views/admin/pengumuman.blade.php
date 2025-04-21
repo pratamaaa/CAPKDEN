@@ -1,30 +1,24 @@
 @extends('layout/dashadmin')
 @section('content')
-    <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
 
-        <!-- Content Header (Page header) -->
         <div class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
                         <h1 class="m-0">Daftar Pengumuman</h1>
-                    </div><!-- /.col -->
-                    <!-- /.col -->
-                </div><!-- /.row -->
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-8">
-                        <div class="card">
+                        <div class="card" style="padding:15px">
                             <div class="card-header">
-                                <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal"
-                                    data-bs-target="#tambahDataModal">
+                                <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#tambahDataModal">
                                     Tambah Data
                                 </button>
 
-
                                 <div class="card-tools">
                                     <div class="input-group input-group-sm" style="width: 250px;">
-
                                         <input type="text" id="searchInput" class="form-control" placeholder="Search">
                                         <div class="input-group-append">
                                             <button type="submit" class="btn btn-default">
@@ -34,7 +28,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- /.card-header -->
+                            
                             <div class="card-body table-responsive p-0">
                                 <table class="table table-hover text-nowrap" id="userTable">
                                     <thead>

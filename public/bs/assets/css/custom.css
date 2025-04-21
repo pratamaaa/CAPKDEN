@@ -1,0 +1,20 @@
+.radiolabel-danger{
+  color: #ffffff; 
+  background-color: #DC3545;
+  padding:2px 6px 3px 6px;
+  font-size:12px;
+  font-weight:bold;
+  border-radius:8px;
+}
+.radiolabel-success{
+  color: #ffffff; 
+  background-color: #198754;
+  padding:2px 6px 3px 6px;
+  font-size:12px;
+  font-weight:bold;
+  border-radius:8px;
+}
+.marginleft-10{
+    margin-left: 10px;
+}
+

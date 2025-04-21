@@ -10,7 +10,7 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    <div class="card">
+                    <div class="card" style="padding:15px">
 
                         <div class="card-body table-responsive p-0" style="overflow-x: auto;">
                             <table id="example1" class="table table-bordered table-striped">
@@ -133,7 +133,7 @@
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    <button class="btn btn-primary btn-sm preview-btn" onclick="detailPelamar({{ $pel->user_id }})" data-bs-toggle="modal" data-bs-target="#previewModal">
+                                                    <button class="btn btn-primary btn-sm preview-btn" onclick="detailPelamar({{ $pel->user_id }})" data-bs-toggle="modal" data-bs-target="#modalpelamar">
                                                         <i class="fas fa-eye"></i>
                                                     </button>
                                                 </td>

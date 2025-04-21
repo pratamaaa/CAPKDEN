@@ -249,8 +249,9 @@ public function pelamardetail(Request $req){
                    ->join('user_files as fi', 'us.id', '=', 'fi.user_id')
                    ->where('us.id', $user_id)->first();
     }
+    $pengalaman = DB::table('user_experiences')->where('user_id', $user_id);
 
-    return view('admin.pelamardetail', compact('files_check', 'pelamar'));
+    return view('admin.pelamardetail', compact('files_check', 'pelamar', 'pengalaman'));
 }
 
 public function pelamardetail_pdf(Request $req){

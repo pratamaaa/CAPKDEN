@@ -48,7 +48,7 @@
 
     <!-- Konten Kanan -->
     <div class="col-md-8 p-4 bg-light rounded-end">
-        <h5 class="mb-4 text-primary"><i class="fas fa-graduation-cap me-2"></i>Pendidikan</h5>
+        <h5 class="mb-2 text-primary"><i class="fas fa-graduation-cap me-2"></i>Pendidikan</h5>
         <div class="table-responsive">
             <table class="table table-sm align-middle">
                 <thead class="table-light text-center">
@@ -82,7 +82,7 @@
             </table>
         </div>
     
-        <h5 class="mt-5 mb-4 text-primary"><i class="fas fa-users me-2"></i>Pengusul Calon Kalangan</h5>
+        <h5 class="mt-1 mb-2 text-primary"><i class="fas fa-users me-2"></i>Pengusul Calon Kalangan</h5>
         <div class="table-responsive">
             <table class="table table-sm">
                 <tbody>
@@ -102,6 +102,34 @@
                         <th>Rekomendasi Pakar-3</th>
                         <td><span>{{ ($files_check != 0) ? $pelamar->rek_pakar3 : '-'}}</span></td>
                     </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h5 class="mt-1 mb-2 text-primary"><i class="fas fa-users me-2"></i>Pengalaman</h5>
+        <div class="table-responsive">
+            <table class="table table-sm">
+                <tbody>
+                    @if ($pengalaman->count() != 0)
+                        <thead class="table-light text-center">
+                            <tr>
+                                <th>No</th>
+                                <th>Jabatan</th>
+                                <th>Unit Kerja</th>
+                                <th>Tahun</th>
+                            </tr>
+                        </thead>
+                        @foreach ($pengalaman->get() as $idx => $pe)
+                            <tr>
+                                <td>{{ $idx+1 }}</td>
+                                <td>{{ $pe->nama_jabatan }}</td>
+                                <td>{{ $pe->unit_kerja }}</td>
+                                <td>{{ $pe->tmt_jabatan }}</td>
+                            </tr>
+                        @endforeach
+                    @else
+                        <tr><td colspan="4">-</td></tr>
+                    @endif
                 </tbody>
             </table>
         </div>

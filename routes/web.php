@@ -62,7 +62,6 @@ Route::middleware(['auth'])->group(function () {
 Route::delete('/user/upload-makalah/delete/{id}', [UserFilesController::class, 'deleteMakalah'])->name('upload.makalah.delete');
 
 
-
 // ADMIN 
 Route::get('/pengguna', [DashboardController::class, 'pengguna'])->name('pengguna');
 Route::get('/upl_pengumuman', [DashboardController::class, 'upl_pengumuman'])->name('upl_pengumuman');
@@ -80,8 +79,11 @@ Route::get('/pengumuman/{filename}', [PengumumanController::class, 'index'])->na
 Route::put('/pengumuman/update', [PengumumanController::class, 'update'])->name('pengumuman.update');
 Route::delete('/pengumuman/destroy', [PengumumanController::class, 'destroy'])->name('pengumuman.destroy');
 Route::post('/upload/{field}', [UploadController::class, 'uploadFile'])->name('upload.file');
+Route::get('/download-template/{type}', [DashboardController::class, 'download'])->name('template.download');
+
 Route::get('/verifikasi', [VerifikasiController::class, 'index'])->name('verifikasi.index');
 Route::put('/verifikasi/update-semua', [VerifikasiController::class, 'updateSemua'])->name('verifikasi.updateSemua');
-Route::get('/download-template/{type}', [DashboardController::class, 'download'])->name('template.download');
+Route::get('/verifikasiform', [VerifikasiController::class, 'verifikasi_form'])->name('verifikasiform');
+Route::post('/verifikasi_saveupdate', [VerifikasiController::class, 'verifikasi_saveupdate'])->name('verifikasi_saveupdate');
 });
 
