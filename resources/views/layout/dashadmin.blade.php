@@ -88,10 +88,9 @@
     <div class="wrapper">
 
         <!-- Preloader -->
-        <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__shake" src="{{ asset('bs/dist/img/den.png') }}" alt="logoDEN" height="60"
-                width="60">
-        </div>
+        {{-- <div class="preloader flex-column justify-content-center align-items-center">
+            <img class="animation__shake" src="{{ asset('bs/dist/img/den.png') }}" alt="logoDEN" height="60" width="60">
+        </div> --}}
 
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -124,11 +123,9 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-light-primary elevation-4">
             <!-- Brand Logo -->
-            <a href="" class="brand-link">
-                <img src="{{ asset('bs/dist/img/Logo-DEN.png') }}" alt="Logo" class="" width="100%"
-                    height="100%">
-
-            </a>
+            {{-- <a href="" class="brand-link">
+                <img src="{{ asset('bs/dist/img/Logo-DEN.png') }}" alt="Logo" class="" width="100%" height="100%">
+            </a> --}}
 
          <!-- Sidebar -->
             <div class="sidebar">
@@ -221,19 +218,20 @@
                 <li class="nav-item">
                     <a href="{{ url('/daftarpelamar') }}" class="nav-link">
                         <i class="nav-icon far fa-list-alt"></i>
-                        <p>
-                            Daftar Pelamar
-                        </p>
+                        <p>Daftar Pelamar</p>
                     </a>
                 <li class="nav-item">
                     <a href="{{ url('/verifikasi') }}" class="nav-link">
                         <i class="nav-icon far fa-check-square"></i>
-                        <p>
-                            Verifikasi Data
-                        </p>
+                        <p>Verifikasi Data</p>
                     </a>
-
                 </li>
+                {{-- <li class="nav-item">
+                    <a href="{{ url('/tahapanstatus') }}" class="nav-link">
+                        <i class="nav-icon far fa-check-square"></i>
+                        <p>Tahapan Status</p>
+                    </a>
+                </li> --}}
             @endif
 
             </li>
@@ -243,18 +241,14 @@
                 <li class="nav-item">
                     <a href="{{ url('/pengguna') }}" class="nav-link">
                         <i class="nav-icon far fa-user-circle"></i>
-                        <p>
-                            Pengguna
-                        </p>
+                        <p>Pengguna</p>
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a href="{{ url('/upl_pengumuman') }}" class="nav-link">
                         <i class="nav-icon far fa-file"></i>
-                        <p>
-                            Pengumuman
-                        </p>
+                        <p>Pengumuman</p>
                     </a>
                 </li>
             @endif

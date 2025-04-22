@@ -67,19 +67,19 @@ class VerifikasiController extends Controller
         $status_transkrip_sarjana = ($request->post('status_transkrip_sarjana') == '' ? 'belum diverifikasi' : $request->post('status_transkrip_sarjana'));
         $status_ijazah_magister = ($request->post('status_ijazah_magister') == '' ? 'belum diverifikasi' : $request->post('status_ijazah_magister'));
         $status_transkrip_magister = ($request->post('status_transkrip_magister') == '' ? 'belum diverifikasi' : $request->post('status_transkrip_magister'));
-        $status_ijazah_doktoral = ($request->post('') == '' ? 'belum diverifikasi' : $request->post(''));
-        $status_transkrip_doktoral = ($request->post('ijazah_doktoral') == '' ? 'belum diverifikasi' : $request->post('ijazah_doktoral'));
-        $status_upl_org = ($request->post('upl_org') == '' ? 'belum diverifikasi' : $request->post('upl_org'));
-        $status_upl_rek_pakar1 = ($request->post('upl_rek_pakar1') == '' ? 'belum diverifikasi' : $request->post('upl_rek_pakar1'));
-        $status_upl_rek_pakar2 = ($request->post('upl_rek_pakar2') == '' ? 'belum diverifikasi' : $request->post('upl_rek_pakar2'));
-        $status_upl_rek_pakar3 = ($request->post('upl_rek_pakar3') == '' ? 'belum diverifikasi' : $request->post('upl_rek_pakar3'));
-        $status_lamaran = ($request->post('lamaran') == '' ? 'belum diverifikasi' : $request->post('lamaran'));
-        $status_rangkap_jabatan = ($request->post('rangkap_jabatan') == '' ? 'belum diverifikasi' : $request->post('rangkap_jabatan'));
-        $status_cv = ($request->post('cv') == '' ? 'belum diverifikasi' : $request->post('cv'));
-        $status_pidana = ($request->post('pidana') == '' ? 'belum diverifikasi' : $request->post('pidana'));
-        $status_makalah = ($request->post('makalah') == '' ? 'belum diverifikasi' : $request->post('makalah'));
-        $status_surat_sehat = ($request->post('surat_sehat') == '' ? 'belum diverifikasi' : $request->post('surat_sehat'));
-        $status_skck = ($request->post('skck') == '' ? 'belum diverifikasi' : $request->post('skck'));
+        $status_ijazah_doktoral = ($request->post('status_ijazah_doktoral') == '' ? 'belum diverifikasi' : $request->post('status_ijazah_doktoral'));
+        $status_transkrip_doktoral = ($request->post('status_transkrip_doktoral') == '' ? 'belum diverifikasi' : $request->post('status_transkrip_doktoral'));
+        $status_upl_org = ($request->post('status_upl_org') == '' ? 'belum diverifikasi' : $request->post('status_upl_org'));
+        $status_upl_rek_pakar1 = ($request->post('status_upl_rek_pakar1') == '' ? 'belum diverifikasi' : $request->post('status_upl_rek_pakar1'));
+        $status_upl_rek_pakar2 = ($request->post('status_upl_rek_pakar2') == '' ? 'belum diverifikasi' : $request->post('status_upl_rek_pakar2'));
+        $status_upl_rek_pakar3 = ($request->post('status_upl_rek_pakar3') == '' ? 'belum diverifikasi' : $request->post('status_upl_rek_pakar3'));
+        $status_lamaran = ($request->post('status_lamaran') == '' ? 'belum diverifikasi' : $request->post('status_lamaran'));
+        $status_rangkap_jabatan = ($request->post('status_rangkap_jabatan') == '' ? 'belum diverifikasi' : $request->post('status_rangkap_jabatan'));
+        $status_cv = ($request->post('status_cv') == '' ? 'belum diverifikasi' : $request->post('status_cv'));
+        $status_pidana = ($request->post('status_pidana') == '' ? 'belum diverifikasi' : $request->post('status_pidana'));
+        $status_makalah = ($request->post('status_makalah') == '' ? 'belum diverifikasi' : $request->post('status_makalah'));
+        $status_surat_sehat = ($request->post('status_surat_sehat') == '' ? 'belum diverifikasi' : $request->post('status_surat_sehat'));
+        $status_skck = ($request->post('status_skck') == '' ? 'belum diverifikasi' : $request->post('status_skck'));
         $status_verifikasi = $request->post('status_verifikasi');
         $catatan_verifikasi = $request->post('catatan_verifikasi');
         $user_id = $request->post('user_id');
@@ -107,6 +107,7 @@ class VerifikasiController extends Controller
                  'administrasi_status' => $status_verifikasi,
                  'administrasi_catatan' => $catatan_verifikasi,
                 ];
+        // var_dump($data);
         
         $pelamar = DB::table('users as us')
                    ->join('user_profiles as pro', 'us.id', '=', 'pro.user_id')

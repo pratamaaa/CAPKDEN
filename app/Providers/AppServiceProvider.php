@@ -21,12 +21,12 @@ class AppServiceProvider extends ServiceProvider
      * Bootstrap any application services.
      */
     public function boot()
-{
-    View::composer('*', function ($view) {
-        if (auth()->check()) {
-            $userfiles = UserFiles::where('user_id', auth()->id())->first();
-            $view->with('userfiles', $userfiles);
-        }
-    });
-}
+    {
+        View::composer('*', function ($view) {
+            if (auth()->check()) {
+                $userfiles = UserFiles::where('user_id', auth()->id())->first();
+                $view->with('userfiles', $userfiles);
+            }
+        });
+    }
 }
