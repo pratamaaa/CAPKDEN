@@ -14,26 +14,32 @@
                 </div><!-- /.row -->
                 <div class="row">
                     <div class="col-8">
+                        <div class="alert alert-warning d-flex align-items-start gap-3 p-3" role="alert"
+                    style="border-radius: 8px;">
+                    <i class="fas fa-exclamation-triangle fa-lg text-warning mt-1"></i>
+                    <div>
+                        <h6 class="mb-1 fw-bold text-dark">Perhatian sebelum mengisi!</h6>
+                        <ul class="mb-0 ps-3 text-dark">
+                            <li>Unggah Dokumen Makalah cukup <strong>1(satu)</strong> dokumen saja.</li>
+                            <li>File yang disarankan menggunakan format <strong>PDF</strong>.</li>
+                            <li>Ukuran maksimum file <strong>10 MB</strong>.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
                         <div class="card">
                             <div class="card-header">
-                                <button class="btn btn-success mb-3" data-bs-toggle="modal"
-                                    data-bs-target="#modalTambahMakalah">
-                                    + Tambah Makalah
-                                </button>
+                                @if (isset($userFiles) && $userFiles->makalah)
+    <button class="btn btn-secondary" disabled title="Makalah sudah diupload">
+        <i class="fa fa-check"></i> Makalah Sudah Diupload
+    </button>
+@else
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalTambahMakalah">
+        <i class="fa fa-plus"></i> Tambah Makalah
+    </button>
+@endif
 
-
-                                <div class="card-tools">
-                                    <div class="input-group input-group-sm" style="width: 250px;">
-
-                                        <input type="text" id="searchInput" class="form-control" placeholder="Search">
-                                        <div class="input-group-append">
-                                            <button type="submit" class="btn btn-default">
-                                                <i class="fas fa-search"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+</div>
                             <!-- /.card-header -->
                             <div class="card-body table-responsive p-0">
                                 <table class="table table-hover text-nowrap" id="userTable">
@@ -59,24 +65,22 @@
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $makalah->judul_makalah }}</td>
-                                                    <td class="text-center">
+                                                    <td>
                                                         @if ($makalah->makalah)
-                                                            <a href="{{ asset('storage/uploads/user_files/' . $makalah->makalah) }}"
-                                                                target="_blank" class="btn btn-sm btn-info">
-                                                                <i class="fas fa-eye"></i> Preview
-                                                            </a>
+                                                        <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
+                                                        data-bs-target="#modalPreviewMakalah" data-src="{{ asset('storage/' . $makalah->makalah) }}">
+                                                        <i class="fas fa-eye"></i> Lihat Dokumen
+                                                    </button>
+                                                    
                                                         @endif
                                                     </td>
-                                                    <td>{{ $makalah->created_at->format('d-m-Y') }}</td>
-                                                    <td class="text-center">
+                                                    <td>
                                                         {{-- Tombol Edit --}}
                                                         <button type="button" class="btn btn-sm btn-primary"
                                                             data-bs-toggle="modal"
                                                             data-bs-target="#modalEditMakalah{{ $makalah->id }}">
                                                             <i class="fas fa-pen"></i>
                                                         </button>
-
-
 
                                                         {{-- Tombol Hapus --}}
                                                         <form action="{{ route('upload.makalah.delete', $makalah->id) }}"
@@ -180,5 +184,35 @@
             </form>
         </div>
     </div>
+
+    <!-- Modal Preview Makalah -->
+<div class="modal fade" id="modalPreviewMakalah" tabindex="-1" aria-labelledby="modalPreviewLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Preview Makalah</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+            </div>
+            <div class="modal-body">
+                <iframe id="previewFrame" src="" frameborder="0"
+                    style="width: 100%; height: 80vh;"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const previewModal = document.getElementById('modalPreviewMakalah');
+    previewModal.addEventListener('show.bs.modal', function (event) {
+        const button = event.relatedTarget;
+        const fileSrc = button.getAttribute('data-src');
+        const iframe = document.getElementById('previewFrame');
+        iframe.src = fileSrc;
+    });
+
+    previewModal.addEventListener('hidden.bs.modal', function () {
+        document.getElementById('previewFrame').src = '';
+    });
+</script>
 
 @endsection

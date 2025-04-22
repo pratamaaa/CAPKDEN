@@ -222,13 +222,13 @@ public function destroy($field)
 public function uploadMakalah()
 {
     $greeting = $this->getGreeting();
-    $userfiles = UserFiles::where('user_id', auth()->id())->sole();
+    $userFiles = UserFiles::where('user_id', auth()->id())->first();
 
-    if ($userfiles->administrasi_status !== 'lulus') {
+    if ($userFiles->administrasi_status !== 'lulus') {
         return redirect()->route('dashboard.user')->with('error', 'Anda belum lulus tahap administrasi.');
     }
 
-    return view('user.makalah', compact('userfiles','greeting'));
+    return view('user.makalah', compact('userFiles','greeting'));
 }
 public function storeMakalah(Request $request)
 {
@@ -239,16 +239,18 @@ public function storeMakalah(Request $request)
 
     $userfiles = UserFiles::where('user_id', auth()->id())->sole();
 
-    // Simpan file
+    // Simpan file makalah
     $path = $request->file('makalah')->store('uploads/makalah', 'public');
 
-    // Simpan path ke DB
+    // Simpan path dan judul ke DB
     $userfiles->update([
-        'makalah' => $path
+        'makalah' => $path,
+        'judul_makalah' => $request->input('judul_makalah'),
     ]);
 
     return redirect()->back()->with('success', 'Makalah berhasil diupload.');
 }
+
 
 public function deleteMakalah($id)
 {

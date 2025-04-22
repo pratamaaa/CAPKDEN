@@ -1,9 +1,101 @@
 @extends('layout/main')
 @section('content')
 <div id="header">
-  <div class="fill">
-    <img src="{{ asset('bs/assets/images/sliderbanner.png') }}">
+  <style>
+    .carousel-container {
+      width: 1920px; /* Atur lebar sesuai kebutuhan */
+      height: 670px; /* Atur tinggi sesuai kebutuhan */
+      position: relative;
+      overflow: hidden;
+    }
+  
+    .carousel-slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+    }
+  
+    .carousel-slide.active {
+      opacity: 1;
+    }
+  
+    .carousel-indicators {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+    }
+  
+    .carousel-indicator {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: #bbb;
+      margin: 0 5px;
+      cursor: pointer;
+      border: none;
+      outline: none;
+    }
+  
+    .carousel-indicator.active {
+      background-color: #333;
+    }
+  </style>
+  
+  <div class="carousel-container">
+    <div class="carousel-slide active">
+      <img src="{{ asset('bs/assets/images/1.png') }}" style="width: 100%; height: 100%; object-fit: cover;">
+    </div>
+    <div class="carousel-slide">
+      <img src="{{ asset('bs/assets/images/2.png') }}" style="width: 100%; height: 100%; object-fit: cover;">
+    </div>
+    <div class="carousel-slide">
+      <img src="{{ asset('bs/assets/images/sliderbanner.png') }}" style="width: 100%; height: 100%; object-fit: cover;">
+    </div>
+    <div class="carousel-indicators">
+      <button class="carousel-indicator active" onclick="goToSlide(0)"></button>
+      <button class="carousel-indicator" onclick="goToSlide(1)"></button>
+      <button class="carousel-indicator" onclick="goToSlide(2)"></button>
+    </div>
   </div>
+  
+  <script>
+    const slides = document.querySelectorAll('.carousel-slide');
+    const indicators = document.querySelectorAll('.carousel-indicator');
+    let currentIndex = 0;
+  
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.remove('active');
+        indicators[i].classList.remove('active');
+      });
+      slides[index].classList.add('active');
+      indicators[index].classList.add('active');
+      currentIndex = index;
+    }
+  
+    function goToSlide(index) {
+      showSlide(index);
+    }
+  
+    function nextSlide() {
+      currentIndex = (currentIndex + 1) % slides.length;
+      showSlide(currentIndex);
+    }
+  
+    function prevSlide() {
+      currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+      showSlide(currentIndex);
+    }
+  
+    // Autoplay (opsional)
+    setInterval(nextSlide, 3000); // Ganti gambar setiap 3 detik
+  </script>
 </div>
 
 <div class="anchor">
@@ -124,31 +216,31 @@
                 <div class="menu">
                   <div class="first-thumb active">
                     <div class="thumb">
-                      <span class="icon"><img src="{{ asset('bs/assets/images/service-icon-01.png') }}" alt=""></span>
+                      <span class="icon"><img src="{{ asset('bs/assets/images/academic.png') }}" alt=""></span>
                       Kalangan Akademisi<br><br>
                     </div>
                   </div>
                   <div>
                     <div class="thumb">                 
-                      <span class="icon"><img src="{{ asset('bs/assets/images/service-icon-02.png') }}" alt=""></span>
+                      <span class="icon"><img src="{{ asset('bs/assets/images/eco-factory.png') }}" alt=""></span>
                       Kalangan <br>Industri<br><br>
                     </div>
                   </div>
                   <div>
                     <div class="thumb">                 
-                      <span class="icon"><img src="{{ asset('bs/assets/images/service-icon-03.png') }}" alt=""></span>
+                      <span class="icon"><img src="{{ asset('bs/assets/images/renewable-energy.png') }}" alt=""></span>
                       Kalangan <br>Teknologi<br><br>
                     </div>
                   </div>
                   <div>
                     <div class="thumb">                 
-                      <span class="icon"><img src="{{ asset('bs/assets/images/service-icon-04.png') }}" alt=""></span>
+                      <span class="icon"><img src="{{ asset('bs/assets/images/planet-earth.png') }}" alt=""></span>
                       Kalangan Lingkungan Hidup
                     </div>
                   </div>
                   <div class="last-thumb">
                     <div class="thumb">                 
-                      <span class="icon"><img src="{{ asset('bs/assets/images/service-icon-01.png') }}" alt=""></span>
+                      <span class="icon"><img src="{{ asset('bs/assets/images/person.png') }}" alt=""></span>
                       Kalangan Konsumen<br><br>
                     </div>
                   </div>

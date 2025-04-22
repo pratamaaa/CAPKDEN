@@ -353,7 +353,7 @@
                                                 $statusText = match ($item['status']) {
                                                     'lulus' => 'Lulus',
                                                     'tidak lulus' => 'Tidak Lulus',
-                                                    default => 'Dalam Proses',
+                                                    default => 'Menunggu',
                                                 };
                                             @endphp
                                             <tr>
