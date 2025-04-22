@@ -164,7 +164,7 @@
         <div class="row">
           <div class="col-lg-4">
             <div class="about-left-image  wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0.5s">
-              <img src="{{ asset('bs/assets/images/about-dec-v3.png') }}" alt="" style="width: 80%;">
+              <img src="{{ asset('bs/assets/images/den.png') }}" alt="" style="width: 80%;">
             </div>
           </div>
           <div class="col-lg-8 align-self-center  wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.5s">

@@ -48,6 +48,7 @@
                                             // 'makalah' => 'Penulisan Makalah',
                                             'surat_sehat' => 'Surat Keterangan Sehat Jasmani dan Rohani',
                                             'skck' => 'SKCK',
+                                            'surat_persetujuan' => 'Surat Persetujuan dari Pimpinan',
                                         ];
                                         $no = 1;
                                     @endphp

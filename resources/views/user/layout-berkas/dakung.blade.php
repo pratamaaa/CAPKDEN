@@ -36,6 +36,7 @@
         'pidana' => 'Surat Pernyataan Tidak Sedang Menjalani Proses Pidana atau Pernah Dipidana',
         'surat_sehat' => 'Surat Keterangan Sehat Jasmani dan Rohani',
         'skck' => 'SKCK',
+        'surat_persetujuan' => 'Surat Persetujuan dari Pimpinan',
     ];
 
     $templateLinks = [
@@ -45,6 +46,7 @@
         'pidana' => route('template.download', ['type' => 'pidana']),
         'surat_sehat' => route('template.download', ['type' => 'surat_sehat']),
         'skck' => route('template.download', ['type' => 'skck']),
+        'surat_persetujuan' => route('template.download', ['type' => 'skck']),
     ];
 @endphp
 
@@ -80,9 +82,6 @@
         </div>
     </div>
     <div class="mt-6">
-        {{-- <button type="submit" form="uploadFormPendukung" class="btn btn-success px-4 py-2">
-            <i class="fa fa-upload" aria-hidden="true"></i> Simpan & Upload
-        </button> --}}
         <button type="submit" form="uploadFormPendukung" class="btn btn-success px-4 py-2"
             {{ $userFiles != null && $userFiles->status_data == 1 ? 'disabled' : '' }}>
             <i class="fa fa-upload" aria-hidden="true"></i> Simpan & Upload
@@ -91,7 +90,7 @@
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const previewFields = ['lamaran', 'rangkap_jabatan', 'cv', 'pidana', 'makalah', 'surat_sehat', 'skck'];
+            const previewFields = ['lamaran', 'rangkap_jabatan', 'cv', 'pidana', 'makalah', 'surat_sehat', 'skck','surat_persetujuan'];
 
             previewFields.forEach(function(name) {
                 const input = document.getElementById(`${name}_input`);

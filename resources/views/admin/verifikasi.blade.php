@@ -66,9 +66,10 @@
                                         
                                                 <tbody>
                                                     @foreach ($data as $index => $d)
-                                                        @php
-                                                        $pelamardok = Bantuan::berkaspelamar($d->userProfile->user_id);
-                                                        @endphp
+                                                    @php
+                                                    $pelamardok = isset($d->userProfile) ? Bantuan::berkaspelamar($d->userProfile->user_id) : collect();
+                                                @endphp
+                                                
                                                         <tr>
                                                             <td>{{ $index + 1 }}</td>
                                                             <td>
@@ -251,26 +252,40 @@
                                                                     <span class="badge bg-secondary">-</span>
                                                                 @endif
                                                             </td>
+                                                            @php
+    $dok = $pelamardok->first();
+@endphp
+
+<td class="text-center">
+    @if ($dok && isset($dok->verified_by) && $dok->verified_by != '')
+        <span class="badge bg-warning">
+            {{ Bantuan::get_verifikator($dok->verified_by)->name }}
+        </span>
+        <hr style="margin-top: 5px;margin-bottom: 2px;">
+        {{ $dok->administrasi_catatan ?? '-' }}
+    @else
+        -
+    @endif
+</td>
+
+<td class="text-center">
+    @if ($pelamardok->count() != 0)
+        <span style="font-size: 12px;">
+            {{ optional($pelamardok->first())->verified_at ?? '-' }}
+        </span>
+    @else
+        -
+    @endif
+</td>
+
                                                             <td class="text-center">
-                                                                @if ($pelamardok->count() != 0 && $pelamardok->first()->verified_by != '')
-                                                                    <span class="badge bg-warning">{{ Bantuan::get_verifikator($pelamardok->first()->verified_by)->name }}</span>
-                                                                    <hr style="margin-top: 5px;margin-bottom: 2px;">
-                                                                    {{ $pelamardok->first()->administrasi_catatan }}
-                                                                @else 
-                                                                    -
-                                                                @endif
-                                                            </td>
-                                                            <td class="text-center">
-                                                                @if ($pelamardok->count() != 0)
-                                                                    <span style="font-size: 12px;">{{ $pelamardok->first()->verified_at }}</span>
-                                                                @else
-                                                                    -
-                                                                @endif
-                                                            </td>
-                                                            <td class="text-center">
-                                                                <button class="btn btn-primary btn-sm preview-btn" onclick="verifikasiBerkas({{ $d->userProfile->user_id }})" data-bs-toggle="modal" data-bs-target="#modalverifikasi">
-                                                                    <i class="fas fa-check"></i>
-                                                                </button>
+                                                                <button class="btn btn-primary btn-sm preview-btn" 
+        onclick="verifikasiBerkas({{ $d->id }})" 
+        data-bs-toggle="modal" 
+        data-bs-target="#modalverifikasi">
+    <i class="fas fa-check"></i>
+</button>
+
                                                             </td>
                                                         </tr>
                                                     @endforeach
