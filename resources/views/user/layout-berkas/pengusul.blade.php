@@ -56,7 +56,7 @@
                                 <input type="file" name="{{ $name }}" accept="application/pdf"
                                     class="form-control me-2" id="{{ $name }}_input" required>
                             
-                                <a href="{{ route('template.download', ['type' => 'pengusul']) }}"
+                                <a href="{{ route('template.download', ['type' => 'orgpengusul']) }}"
                                     class="badge bg-success text-decoration-none" target="_blank">
                                     <i class="fa fa-download me-1"></i> Download Template
                                 </a>

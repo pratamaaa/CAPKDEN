@@ -3,72 +3,72 @@
 <div id="header">
   <style>
     .carousel-container {
-      width: 1920px; /* Atur lebar sesuai kebutuhan */
-      height: 670px; /* Atur tinggi sesuai kebutuhan */
-      position: relative;
-      overflow: hidden;
-    }
-  
-    .carousel-slide {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      opacity: 0;
-      transition: opacity 0.5s ease-in-out;
-    }
-  
-    .carousel-slide.active {
-      opacity: 1;
-    }
-  
-    .carousel-indicators {
-      position: absolute;
-      bottom: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-    }
-  
+    width: 100vw;
+    max-height: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .carousel-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    z-index: 0;
+  }
+
+  .carousel-slide.active {
+    opacity: 1;
+    z-index: 1;
+  }
+
+  .carousel-img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
     .carousel-indicator {
-      width: 10px;
-      height: 10px;
+      width: 12px;
+      height: 12px;
       border-radius: 50%;
-      background-color: #bbb;
+      background-color: rgba(255,255,255,0.6);
       margin: 0 5px;
       cursor: pointer;
       border: none;
-      outline: none;
+      transition: background-color 0.3s ease;
     }
-  
+
     .carousel-indicator.active {
-      background-color: #333;
+      background-color: rgba(255,255,255,1);
     }
   </style>
-  
-  <div class="carousel-container">
-    <div class="carousel-slide active">
-      <img src="{{ asset('bs/assets/images/1.png') }}" style="width: 100%; height: 100%; object-fit: cover;">
+
+  <div id="customCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="{{ asset('bs/assets/images/sliderbanner.png') }}" class="d-block w-100" alt="Slide 1">
+      </div>
+      <div class="carousel-item">
+        <img src="{{ asset('bs/assets/images/2.png') }}" class="d-block w-100" alt="Slide 2">
+      </div>
     </div>
-    <div class="carousel-slide">
-      <img src="{{ asset('bs/assets/images/2.png') }}" style="width: 100%; height: 100%; object-fit: cover;">
-    </div>
-    <div class="carousel-slide">
-      <img src="{{ asset('bs/assets/images/sliderbanner.png') }}" style="width: 100%; height: 100%; object-fit: cover;">
-    </div>
-    <div class="carousel-indicators">
-      <button class="carousel-indicator active" onclick="goToSlide(0)"></button>
-      <button class="carousel-indicator" onclick="goToSlide(1)"></button>
-      <button class="carousel-indicator" onclick="goToSlide(2)"></button>
-    </div>
+
+    <!-- Optional Next/Prev controls -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#customCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#customCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </button>
   </div>
-  
+
+
   <script>
     const slides = document.querySelectorAll('.carousel-slide');
     const indicators = document.querySelectorAll('.carousel-indicator');
     let currentIndex = 0;
-  
+
     function showSlide(index) {
       slides.forEach((slide, i) => {
         slide.classList.remove('active');
@@ -78,23 +78,18 @@
       indicators[index].classList.add('active');
       currentIndex = index;
     }
-  
+
     function goToSlide(index) {
       showSlide(index);
     }
-  
+
     function nextSlide() {
       currentIndex = (currentIndex + 1) % slides.length;
       showSlide(currentIndex);
     }
-  
-    function prevSlide() {
-      currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-      showSlide(currentIndex);
-    }
-  
-    // Autoplay (opsional)
-    setInterval(nextSlide, 3000); // Ganti gambar setiap 3 detik
+
+    // Autoplay
+    setInterval(nextSlide, 3000);
   </script>
 </div>
 

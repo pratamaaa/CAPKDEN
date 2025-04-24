@@ -310,8 +310,12 @@ public function updatePassword(Request $request)
 public function download($type)
 {
     $fileMap = [
-        'pengusul' => public_path('templates/template_pengusul.docx'),
-        'pakar'    => public_path('templates/template_rekomendasi_pakar.docx'),
+        'orgpengusul' => public_path('templates/Lampiran-IV_Format-Surat-Usulan-Instansi-Pengusul.docx'),
+        'pakar'    => public_path('templates/Lampiran-V_Format-Surat-Rekomendasi-Pakar-di-Bidang-Energi.docx'),
+        'lamaran'    => public_path('templates/Lampiran-I_Format-Surat-Lamaran.docx'),
+        'pernyataan_3_point'    => public_path('templates/Lampiran-III_Format-Surat-Pernyataan-3-poin.docx'),
+        'cv'    => public_path('templates/Lampiran-II_Format-Curriculum-Vitae.docx'),
+        'pidana'    => public_path('templates/Lampiran-VI_Surat-Pernyataan-Tidak-Sedang-Menjalani-Proses-Pidana.docx'),
     ];
 
     if (!array_key_exists($type, $fileMap) || !file_exists($fileMap[$type])) {

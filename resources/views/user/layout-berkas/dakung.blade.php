@@ -46,7 +46,7 @@
         'pidana' => route('template.download', ['type' => 'pidana']),
         // 'surat_sehat' => route('template.download', ['type' => 'surat_sehat']),
         // 'skck' => route('template.download', ['type' => 'skck']),
-        'persetujuan' => route('template.download', ['type' => 'skck']),
+        // 'persetujuan' => route('template.download', ['type' => 'skck']),
     ];
 @endphp
 
