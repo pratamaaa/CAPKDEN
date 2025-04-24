@@ -25,7 +25,7 @@
                             Carbon::setLocale('id');
                         @endphp
                         <ul class="mb-0 ps-3 text-dark">
-                            <li>File yang disarankan menggunakan format <strong>PDF</strong>.</li>
+                            <li>File diharuskan menggunakan format <strong>PDF</strong>.</li>
                             <li>Ukuran maksimum file <strong>2 MB</strong>.</li>
 
                             @isset($userFiles->updated_at)

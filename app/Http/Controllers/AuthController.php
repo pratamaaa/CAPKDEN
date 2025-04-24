@@ -81,4 +81,31 @@ class AuthController extends Controller
 
         return redirect('/login')->with('success', 'Registrasi berhasil, silakan login!');
     }
+
+    public function showForm()
+    {
+        return view('auth.reset-password');
+    }
+
+    public function reset(Request $request)
+    {
+        $request->validate([
+            'username' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|confirmed|min:6',
+        ]);
+
+        $user = User::where('username', $request->username)
+                    ->where('email', $request->email)
+                    ->first();
+
+        if (!$user) {
+            return back()->withErrors(['username' => 'Data tidak ditemukan.'])->withInput();
+        }
+
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        return redirect()->route('login')->with('success', 'Password berhasil diubah!');
+    }
 }

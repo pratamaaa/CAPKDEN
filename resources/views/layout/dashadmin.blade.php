@@ -226,12 +226,12 @@
                         <p>Verifikasi Data</p>
                     </a>
                 </li>
-                {{-- <li class="nav-item">
-                    <a href="{{ url('/tahapanstatus') }}" class="nav-link">
-                        <i class="nav-icon far fa-check-square"></i>
-                        <p>Tahapan Status</p>
+                <li class="nav-item">
+                    <a href="{{ url('/wawancara') }}" class="nav-link">
+                        <i class="nav-icon far fa-user"></i>
+                        <p>Hasil Wawancara</p>
                     </a>
-                </li> --}}
+                </li>
             @endif
 
             </li>

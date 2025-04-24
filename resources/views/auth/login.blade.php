@@ -65,7 +65,7 @@
 
                     <div class="my-2 d-flex justify-content-between align-items-center">
                         <div class="form-check"></div>
-                        <a href="#" class="auth-link text-black">Lupa password?</a>
+                        <a href="{{ route('reset-password.form') }}" class="auth-link text-black">Lupa password?</a>
                     </div>
 
                     <button type="submit" class="btn btn-primary w-100">Login</button>

@@ -21,7 +21,7 @@
                     <div>
                         <h6 class="mb-1 fw-bold text-dark">Perhatian sebelum mengisi!</h6>
                         <ul class="mb-0 ps-3 text-dark">
-                            <li>File yang disarankan menggunakan format <strong>PDF</strong>.</li>
+                            <li>File diharuskan menggunakan format <strong>PDF</strong>.</li>
                             <li>Ukuran maksimum file <strong>2 MB</strong>.
                             </li>
                         </ul>

@@ -26,7 +26,7 @@
                             <li>Jika Anda tidak memiliki dukungan dari <strong>Lembaga Pendidikan, Organisasi Profesi, atau Asosiasi</strong></>, maka
                                 <strong>Rekomendasi Pakar wajib 3 (tiga) surat</strong>.
                             </li>
-                            <li>File yang disarankan menggunakan format <strong>PDF</strong>.</li>
+                            <li>File diharuskan menggunakan format <strong>PDF</strong>.</li>
                             <li>Ukuran maksimum file <strong>2 MB</strong>.
                             </li>
                         </ul>

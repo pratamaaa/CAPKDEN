@@ -29,13 +29,9 @@
 
         <h5 class="fw-bold mb-3">Riwayat Pengalaman Jabatan</h5>
 
-        {{-- Tombol Tambah --}}
-        {{-- <button class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#modalTambahPengalaman">
-            + Tambah Pengalaman
-        </button> --}}
         <button class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#modalTambahPengalaman"
             {{ $userFiles != null && $userFiles->status_data == 1 ? 'disabled' : '' }}>
-            <i class="fa fa-upload" aria-hidden="true"></i> + Tambah Pengalaman
+            <i class="fa fa-plus" aria-hidden="true"></i> Tambah Pengalaman
             {{ $userFiles != null && $userFiles->status_data == 1 ? '(Berkas Sudah Di Submit)' : '' }}
         </button>
 

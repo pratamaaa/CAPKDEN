@@ -1,17 +1,19 @@
 <?php
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PdfController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\UploadController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PdfController;
+use App\Http\Controllers\PengumumanController;
+use App\Http\Controllers\TahapanstatusController;
+use App\Http\Controllers\UploadController;
 use App\Http\Controllers\UserExperienceController;
 use App\Http\Controllers\UserFilesController;
-use App\Http\Controllers\PengumumanController;
 use App\Http\Controllers\VerifikasiController;
-use App\Http\Controllers\TahapanstatusController;
+use App\Http\Controllers\WawancaraController;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+
 
 Route::get('/',[HomeController::class, 'homepage']);
 Route::get('/home2',[HomeController::class, 'homepage2']);
@@ -25,6 +27,9 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/registrasi', [AuthController::class, 'registrasi'])->name('registrasi');
 Route::post('/register', [AuthController::class, 'register'])->name('register');
+Route::get('/reset-password', [AuthController::class, 'showForm'])->name('reset-password.form');
+Route::post('/reset-password', [AuthController::class, 'reset'])->name('reset-password.submit');
+
 
 // MIDDLEWARE
 Route::middleware(['auth', 'role:administrator'])->group(function () {
@@ -71,6 +76,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('/pengguna/update/{id}', [DashboardController::class, 'update'])->name('pengguna.update');
     Route::delete('/pengguna/delete/{id}', [DashboardController::class, 'destroy'])->name('pengguna.delete');
     Route::get('/daftarpelamar', [DashboardController::class, 'daftarpelamar'])->name('daftarpelamar');
+    Route::get('/wawancara', [WawancaraController::class, 'wawancara'])->name('wawancara');
     Route::get('/pelamardetail', [DashboardController::class, 'pelamardetail']);
     Route::get('/pelamardetail_pdf', [DashboardController::class, 'pelamardetail_pdf']);
     Route::get('/download-pdf/{id}', [PdfController::class, 'generatePdf'])->name('download.pdf');
