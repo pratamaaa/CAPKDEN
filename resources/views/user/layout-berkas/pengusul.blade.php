@@ -51,8 +51,8 @@
                         <label class="col-lg-3 col-form-label">Upload Dokumen
                             <span class="fw-semibold">({{ $label }})</span>
                         </label>
-                        <div class="col-lg-6 d-flex align-items-center">
-                            <div class="d-flex align-items-center mb-2">
+                        <div class="col-lg-6">
+                            <div class="d-flex align-items-center gap-2 mb-2">
                                 <input type="file" name="{{ $name }}" accept="application/pdf"
                                     class="form-control me-2" id="{{ $name }}_input" required>
                             
@@ -93,8 +93,8 @@
                     <div class="mb-3 row">
                         <label class="col-lg-3 col-form-label">Upload Data <span
                                 class="fw-semibold">({{ $label }})</span></label>
-                        <div class="col-lg-6 d-flex align-items-center">
-                            <div class="d-flex align-items-center mb-2">
+                                <div class="col-lg-6">
+                                    <div class="d-flex align-items-center gap-2 mb-2">
                                 <input type="file" name="{{ $name }}" accept="application/pdf"
                                     class="form-control me-2" id="{{ $name }}_input" required>
                             
