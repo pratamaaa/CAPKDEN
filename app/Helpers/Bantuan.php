@@ -38,7 +38,7 @@ class Bantuan{
 	public static function berkasstatus($id_pelamar, $namaberkas){
 		$data = DB::table('user_files')->where('user_id', $id_pelamar)->first();
 		$namakolom = "status_".$namaberkas;
-
+		// dd($data);
 		if ($data->$namaberkas != ''){
 			if ($data->$namakolom == 'belum diverifikasi'){
 				$warna = 'warning';

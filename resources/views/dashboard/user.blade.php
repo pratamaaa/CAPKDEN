@@ -75,7 +75,7 @@
                                     <h6 class="mb-1 fw-bold text-dark">Mohon diperhatikan!</h6>
                                     <ul class="mb-0 ps-3 text-dark">
                                         <li>Pastikan Anda sudah mengupdate <strong>Data Diri dan Kelengkapan Berkas</strong>, pada menu yang sudah disediakan.</li>
-                                        <li>Cek kembali data yang sudah di submit sebelum melakukan <strong>Submit Data Final</strong> dihalaman <strong>Status Berkas</strong>.
+                                        <li>Cek kembali data yang sudah di submit sebelum melakukan <strong>Submit Data Final</strong> dihalaman <strong>Status Berkas</strong>. Jika Anda tidak menyelesaikan dan belum mensubmit sampai batas waktu yang ditetapkan, maka akan dianggap gugur dalam proses Administrasi.
                                         </li>
                                         <li>
                                             Batas akhir penyampaian data:
@@ -89,7 +89,7 @@
                                                 padding: 4px 10px;
                                                 border-radius: 5px;
                                                 font-weight: bold;
-                                                font-size: 1.25rem;
+                                                font-size: 1rem;
                                                 animation: pulse 1.5s infinite;
                                             }
                                         

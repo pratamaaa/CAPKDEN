@@ -1,6 +1,5 @@
 <div class="modal-header">
     <h5 class="modal-title" id="verifikasiModalLabel">Verifikasi Dokumen</h5>
-    {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button> --}}
 </div>
 
 <form id="form-verifikasi" action="{{ route('verifikasi_saveupdate') }}" method="POST">
@@ -20,12 +19,13 @@
             'upl_rek_pakar2' => 'Rekomendasi Pakar-2',
             'upl_rek_pakar3' => 'Rekomendasi Pakar-3',
             'lamaran' => 'Surat Lamaran',
-            'rangkap_jabatan' => 'Surat Pernyataan Tidak Merangkap Jabatan',
+            'rangkap_jabatan' => 'Surat Pernyataan 3 Point',
             'cv' => 'Daftar Riwayat Hidup (CV)',
             'pidana' => 'Surat Pernyataan Tidak Sedang Dipidana',
             'makalah' => 'Penulisan Makalah',
             'surat_sehat' => 'Surat Keterangan Sehat',
             'skck' => 'SKCK',
+            'persetujuan' => 'Surat Persetujuan Pimpinan', //tambah baru tapi tidak muncul
         ];
 
         $berkaspelamar = Bantuan::berkaspelamar($user_id);
@@ -56,16 +56,7 @@
                                 @endphp
 
                                 @if ($berkas_isset != '')
-                                    {{-- <div class="btn-group" role="group">
-                                        <div class="btn-group" role="group">
-                                            <input type="radio" class="btn-check__" name="status_{{ $field }}" id="terima_{{ $field }}" value="diterima" autocomplete="off" {{ $berkas_status == 'diterima' ? 'checked' : '' }}>
-                                            <label class="btn btn-outline-success btn-sm" for="terima_{{ $field }}">Terima</label>
-
-                                            <input type="radio" class="btn-check__" name="status_{{ $field }}" id="tolak_{{ $field }}" value="ditolak" autocomplete="off" {{ $berkas_status == 'ditolak' ? 'checked' : '' }}>
-                                            <label class="btn btn-outline-danger btn-sm" for="tolak_{{ $field }}">Tolak</label>
-                                        </div>
-                                    </div> --}}
-
+                                    
                                     <div class="btn-group" role="group">
                                         <div class="btn-group" role="group">
                                             <input type="radio" style="width: 18px !important;margin-right: 4px;" name="status_{{ $field }}" id="terima_{{ $field }}" value="diterima" autocomplete="off" {{ $berkas_status == 'diterima' ? 'checked' : '' }}>

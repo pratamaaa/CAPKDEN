@@ -31,22 +31,22 @@
                 @php
     $dokumenPendukung = [
         'lamaran' => 'Surat Lamaran',
-        'rangkap_jabatan' => 'Surat Rangkap Jabatan',
+        'rangkap_jabatan' => 'Surat Pernyataan 3 Point',
         'cv' => 'Daftar Riwayat Hidup (CV)',
         'pidana' => 'Surat Pernyataan Tidak Sedang Menjalani Proses Pidana atau Pernah Dipidana',
         'surat_sehat' => 'Surat Keterangan Sehat Jasmani dan Rohani',
         'skck' => 'SKCK',
-        'surat_persetujuan' => 'Surat Persetujuan dari Pimpinan',
+        'persetujuan' => 'Surat Persetujuan dari Pimpinan',
     ];
 
     $templateLinks = [
         'lamaran' => route('template.download', ['type' => 'lamaran']),
-        'rangkap_jabatan' => route('template.download', ['type' => 'rangkap_jabatan']),
+        'rangkap_jabatan' => route('template.download', ['type' => 'pernyataan_3_point']),
         'cv' => route('template.download', ['type' => 'cv']),
         'pidana' => route('template.download', ['type' => 'pidana']),
-        'surat_sehat' => route('template.download', ['type' => 'surat_sehat']),
-        'skck' => route('template.download', ['type' => 'skck']),
-        'surat_persetujuan' => route('template.download', ['type' => 'skck']),
+        // 'surat_sehat' => route('template.download', ['type' => 'surat_sehat']),
+        // 'skck' => route('template.download', ['type' => 'skck']),
+        'persetujuan' => route('template.download', ['type' => 'skck']),
     ];
 @endphp
 

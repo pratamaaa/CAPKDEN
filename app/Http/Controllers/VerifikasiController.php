@@ -80,6 +80,7 @@ class VerifikasiController extends Controller
         $status_makalah = ($request->post('status_makalah') == '' ? 'belum diverifikasi' : $request->post('status_makalah'));
         $status_surat_sehat = ($request->post('status_surat_sehat') == '' ? 'belum diverifikasi' : $request->post('status_surat_sehat'));
         $status_skck = ($request->post('status_skck') == '' ? 'belum diverifikasi' : $request->post('status_skck'));
+        $status_persetujuan = ($request->post('status_persetujuan') == '' ? 'belum diverifikasi' : $request->post('status_persetujuan'));
         $status_verifikasi = $request->post('status_verifikasi');
         $catatan_verifikasi = $request->post('catatan_verifikasi');
         $user_id = $request->post('user_id');
@@ -102,6 +103,7 @@ class VerifikasiController extends Controller
                  'status_makalah' => $status_makalah,
                  'status_surat_sehat' => $status_surat_sehat,
                  'status_skck' => $status_skck,
+                 'status_persetujuan' => $status_persetujuan,
                  'verified_by' => auth()->user()->id,
                  'verified_at' => date('Y-m-d H:i:s'),
                  'administrasi_status' => $status_verifikasi,

@@ -27,12 +27,12 @@ class HomeController extends Controller
         //                   ['judul' => 'Pengangkatan<br><br>', 'gambar' => 'number/12.png'],
         //                  ];
         
-        $data['jadwalseleksi'] = [['judul' => 'Pengumuman Pendaftaran Penyaringan', 'gambar' => 'number/1.png', 'tanggal'=>'30 April s.d. 14 Mei 2025'], 
+        $data['jadwalseleksi'] = [['judul' => 'Pendaftaran Calon Anggota DEN', 'gambar' => 'number/1.png', 'tanggal'=>'30 April s.d. 14 Mei 2025'], 
                                     ['judul' => 'Pengumuman Hasil Seleksi Administrasi', 'gambar' => 'number/2.png', 'tanggal'=>'16 Mei 2025'],
-                                    ['judul' => 'Pelaksanaan Assessment<br><br>', 'gambar' => 'number/3.png', 'tanggal'=>'19 s.d. 21 Mei 2025'],
-                                    ['judul' => 'Pengumuman Hasil Assessment', 'gambar' => 'number/4.png', 'tanggal'=>'9 Juni 2025'],
-                                    ['judul' => 'Pelaksanaan Wawancara<br><br>', 'gambar' => 'number/5.png', 'tanggal'=>'11 s.d. 13 Juni 2025'],
-                                    ['judul' => 'Pengumuman Hasil Wawancara', 'gambar' => 'number/6.png', 'tanggal'=>'20 Juni 2025'],
+                                    ['judul' => 'Pelaksanaan Wawancara<br><br>', 'gambar' => 'number/3.png', 'tanggal'=>'19 s.d. 21 Mei 2025'],
+                                    ['judul' => 'Pengumuman Hasil Wawancara', 'gambar' => 'number/4.png', 'tanggal'=>'26 Mei 2025'],
+                                    ['judul' => 'Pelaksanaan Assessment<br><br>', 'gambar' => 'number/5.png', 'tanggal'=>'2 s.d. 4 Juni 2025'],
+                                    ['judul' => 'Pengumuman Hasil Assessment', 'gambar' => 'number/6.png', 'tanggal'=>'20 Juni 2025'],
                                     ['judul' => 'Fit & Proper Test (DPR RI)<br><br>', 'gambar' => 'number/7.png', 'tanggal'=>'Menyesuaikan'],
                                     ['judul' => 'Pengangkatan APK DEN Periode 2026-2029', 'gambar' => 'number/8.png', 'tanggal'=>'Menyesuaikan'],
                                 ];

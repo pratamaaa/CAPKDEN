@@ -48,7 +48,7 @@ class UserFiles extends Model
     'unit_kerja',
     'tmt_jabatan',
     'uraian_jabatan',
-    'surat_persetujuan'
+    'persetujuan'
     ];
 
     // Relasi ke tabel users

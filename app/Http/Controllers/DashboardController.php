@@ -38,13 +38,19 @@ class DashboardController extends Controller
     public function adminDashboard()
     {
         $greeting = $this->getGreeting();
-        return view('dashboard.admin', compact('greeting'));
+        $totalPelamar = DB::table('users')
+            ->where('role', 'user') 
+            ->count();
+        return view('dashboard.admin', compact('greeting', 'totalPelamar'));
     }
 
     public function verifikatorDashboard()
     {
         $greeting = $this->getGreeting();
-        return view('dashboard.verifikator', compact('greeting'));
+        $totalPelamar = DB::table('users')
+            ->where('role', 'user') 
+            ->count();
+        return view('dashboard.admin', compact('greeting', 'totalPelamar'));
     }
 
     public function userDashboard()

@@ -32,7 +32,7 @@
                                                         <th class="align-top text-center" rowspan="2">Calon Kalangan</th>
                                         
                                                         <!-- Header Pendidikan -->
-                                                        <th class="align-top text-center" colspan="18">Verifikasi Berkas</th>
+                                                        <th class="align-top text-center" colspan="19">Verifikasi Berkas</th>
                                         
                                                         <!-- Header Aksi -->
                                         
@@ -55,12 +55,14 @@
                                                         <th class="align-top text-center" style="width: 200px;">Rekomendasi Pakar-2</th>
                                                         <th class="align-top text-center" style="width: 200px;">Rekomendasi Pakar-3</th>
                                                         <th class="align-top text-center" style="width: 200px;">Surat Lamaran</th>
-                                                        <th class="align-top text-center" style="width: 200px;">Rangkap Jabatan</th>
+                                                        <th class="align-top text-center" style="width: 200px;">Surat Pernyataan 3 Point</th>
                                                         <th class="align-top text-center" style="width: 200px;">Daftar Riwayat Hidup</th>
                                                         <th class="align-top text-center" style="width: 200px;">Surat Tidak Ada Pidana</th>
                                                         <th class="align-top text-center" style="width: 200px;">Penulisan Makalah</th>
                                                         <th class="align-top text-center" style="width: 200px;">Surat Keterangan Sehat</th>
                                                         <th class="align-top text-center" style="width: 200px;">SKCK</th>
+                                                        <th class="align-top text-center" style="width: 200px;">Surat Persetujuan</th>
+                                                        
                                                     </tr>
                                                 </thead>
                                         
@@ -235,6 +237,13 @@
                                                                     <span class="badge bg-secondary">Belum upload</span>
                                                                 @endif
                                                             </td>
+                                                            <td class="text-center" style="width: 200px;">
+                                                                @if ($pelamardok->count() != 0)
+                                                                    @php echo Bantuan::berkasstatus($d->userProfile->user_id, 'persetujuan') @endphp
+                                                                @else
+                                                                    <span class="badge bg-secondary">Belum upload</span>
+                                                                @endif
+                                                            </td>
                                         
                                                             <td class="text-center">
                                                                 @if ($pelamardok->count() != 0)
@@ -301,116 +310,6 @@
             </div>
         </div>
     </div>
-
-    <!-- Modal Utama -->
-{{-- <div class="modal fade" id="verifikasiModal" tabindex="-1" aria-labelledby="verifikasiModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-            <form id="form-verifikasi" action="{{ route('verifikasi.updatedokumen') }}" method="POST">
-                @csrf
-                @method('PUT')
-
-                <div class="modal-header">
-                    <h5 class="modal-title" id="verifikasiModalLabel">Verifikasi Dokumen2: <span id="nama-user"></span></h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
-                </div>
-
-                <div class="modal-body">
-                    @php
-                        $dokumenList = [
-                            'ktp' => 'KTP/SIM/PASPOR',
-                            'ijazah_sarjana' => 'Ijazah Sarjana',
-                            'transkrip_sarjana' => 'Transkrip Sarjana',
-                            'ijazah_magister' => 'Ijazah Magister',
-                            'transkrip_magister' => 'Transkrip Magister',
-                            'ijazah_doktoral' => 'Ijazah Doktoral',
-                            'transkrip_doktoral' => 'Transkrip Doktoral',
-                            'upl_org' => 'Organisasi Pengusul',
-                            'upl_rek_pakar1' => 'Rekomendasi Pakar-1',
-                            'upl_rek_pakar2' => 'Rekomendasi Pakar-2',
-                            'upl_rek_pakar3' => 'Rekomendasi Pakar-3',
-                            'lamaran' => 'Surat Lamaran',
-                            'rangkap_jabatan' => 'Surat Pernyataan Tidak Merangkap Jabatan',
-                            'cv' => 'Daftar Riwayat Hidup (CV)',
-                            'pidana' => 'Surat Pernyataan Tidak Sedang Dipidana',
-                            'makalah' => 'Penulisan Makalah',
-                            'surat_sehat' => 'Surat Keterangan Sehat',
-                            'skck' => 'SKCK',
-                        ];
-                    @endphp
-
-                    <div class="table-responsive">
-                        <table class="table table-bordered align-middle">
-                            <thead class="table-light">
-                                <tr>
-                                    <th class="text-center">No</th>
-                                    <th class="text-center">Nama Dokumen</th>
-                                    <th class="text-center">Preview</th>
-                                    <th class="text-center">Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($dokumenList as $field => $label)
-                                    @php
-                                        $filePath = $d->userFiles?->$field;
-                                        $currentStatus = $d->userFiles?->{"status_$field"};
-                                    @endphp
-                                    <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $label }}</td>
-                                        <td class="text-center">
-                                            @if ($filePath)
-                                                <button type="button" id="btnPreview" class="btn btn-sm btn-outline-primary"
-                                                    data-bs-toggle="modal" data-bs-target="#previewModalNested"
-                                                    data-file="{{ asset('storage/' . $filePath) }}"
-                                                    data-judul="{{ $label }}">
-                                                    Preview
-                                                </button>
-                                            @else
-                                                <span class="badge bg-danger">Belum upload</span>
-                                            @endif
-                                        </td>
-                                        <td class="text-center">
-                                            @if ($filePath)
-                                                <div class="btn-group" role="group">
-                                                    <input type="radio" class="btn-check" name="status_{{ $field }}" id="terima_{{ $field }}" value="diterima" autocomplete="off" {{ $currentStatus == 'diterima' ? 'checked' : '' }}>
-                                                    <label class="btn btn-outline-success btn-sm" for="terima_{{ $field }}">Terima</label>
-
-                                                    <input type="radio" class="btn-check" name="status_{{ $field }}" id="tolak_{{ $field }}" value="ditolak" autocomplete="off" {{ $currentStatus == 'ditolak' ? 'checked' : '' }}>
-                                                    <label class="btn btn-outline-danger btn-sm" for="tolak_{{ $field }}">Tolak</label>
-                                                </div>
-                                            @else
-                                                <span class="badge bg-secondary">N/A</span>
-                                            @endif
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div class="row mb-3">
-                        <div class="col">
-                            <label for="tmt_jabatan" class="form-label">Status verifikasi berkas</label>
-                            <select class="form form-control" id="status_verifikasi" name="status_verifikasi">
-                                <option id="menunggu">Menunggu</option>
-                                <option id="lulus">Lulus</option>
-                                <option id="tidak lulus">Tidak Lulus</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <input type="text" class="form form-control" name="verified_by" value="{{ $d->userProfile->user_id }}">
-                </div>
-
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Simpan Verifikasi</button>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div> --}}
 
 <!-- Modal Preview Nested -->
 <div class="modal fade" id="previewModalNested" tabindex="-1" aria-labelledby="previewModalNestedLabel" aria-hidden="true">

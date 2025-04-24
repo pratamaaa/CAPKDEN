@@ -8,7 +8,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Update Kelengkapan Berkas</h1>
+                        <h1 class="m-0">UPDATE KELENGKAPAN BERKAS</h1>
                     </div><!-- /.col -->
                     <!-- /.col -->
                 </div><!-- /.row -->
@@ -32,26 +32,24 @@
                                                 <li class="nav-item">
                                                     <a class="nav-link active" id="custom-tabs-one-home-tab"
                                                         data-toggle="pill" href="#custom-tabs-one-home" role="tab"
-                                                        aria-controls="custom-tabs-one-home" aria-selected="true">Data
-                                                        Pendidikan</a>
+                                                        aria-controls="custom-tabs-one-home" aria-selected="true">RIWAYAT PENDIDIKAN</a>
                                                 </li>
                                                 <li class="nav-item">
                                                     <a class="nav-link" id="custom-tabs-one-profile-tab" data-toggle="pill"
                                                         href="#custom-tabs-one-profile" role="tab"
-                                                        aria-controls="custom-tabs-one-profile" aria-selected="false">Data
-                                                        Pengalaman</a>
+                                                        aria-controls="custom-tabs-one-profile" aria-selected="false">PENGALAMAN KERJA</a>
                                                 </li>
                                                 <li class="nav-item">
                                                     <a class="nav-link" id="custom-tabs-one-messages-tab" data-toggle="pill"
                                                         href="#custom-tabs-one-messages" role="tab"
                                                         aria-controls="custom-tabs-one-messages"
-                                                        aria-selected="false">Pengusul Kalangan</a>
+                                                        aria-selected="false">REKOMENDASI PENGUSUL</a>
                                                 </li>
                                                 <li class="nav-item">
                                                     <a class="nav-link" id="custom-tabs-one-setting-tab" data-toggle="pill"
                                                         href="#custom-tabs-one-setting" role="tab"
                                                         aria-controls="custom-tabs-one-setting"
-                                                        aria-selected="false">Dokumen Pendukung</a>
+                                                        aria-selected="false">DOKUMEN PENDUKUNG</a>
                                                 </li>
                                             </ul>
                                         </div>

@@ -42,9 +42,6 @@
 
         <tbody>
             @foreach ($data as $index => $d)
-            {{-- @php
-                $status_verifikasi = ((($d->userFiles->status_ktp == 'diterima' && $d->userFiles->status_ijazah_sarjana == 'diterima' && $d->userFiles->status_transkrip_sarjana == 'diterima' && $d->userFiles->status_upl_org == 'diterima' && $d->userFiles->status_upl_rek_pakar1 == 'diterima' && $d->userFiles->status_upl_rek_pakar2 == 'diterima' && $d->userFiles->status_upl_rek_pakar3 == 'diterima' && $d->userFiles->status_lamaran == 'diterima' && $d->userFiles->status_rangkap_jabatan == 'diterima' && $d->userFiles->status_cv == 'diterima' && $d->userFiles->status_pidana == 'diterima' && $d->userFiles->status_makalah == 'diterima' && $d->userFiles->status_surat_sehat == 'diterima' && $d->userFiles->status_skck == 'diterima')?'Lulus Administrasi':'Tidak Lulus Administrasi'));
-            @endphp --}}
                 <tr>
                     <td>{{ $index + 1 }}</td>
                     <td>

@@ -56,13 +56,21 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-12">
+                                        <div class="col-lg-4">
+                                            <div class="info-post">
+                                                <div class="icon">
+                                                    <img src="{{ asset('bs/assets/images/whatsapp.png') }}"
+                                                        alt="">
+                                                    <a href="https://wa.me/message/NQ2JHXK5KZFLB1">081214140425</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-8">
                                             <div class="info-post">
                                                 <div class="icon">
                                                     <img src="{{ asset('bs/assets/images/location-icon.png') }}"
                                                         alt="">
-                                                    <a href="#">Gedung Badan Pengembangan Sumber Daya Manusia
-                                                        (BPSDM) ESDM Lt. 4 <br>
+                                                    <a href="#">Gedung Widjajono Partowidagdo Lt. 6 <br>
                                                         Jl. Jenderal Gatot Subroto Kav.49 Jakarta Selatan 12950</a>
                                                 </div>
                                             </div>

@@ -122,10 +122,10 @@
 
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-light-primary elevation-4">
-            <!-- Brand Logo -->
-            {{-- <a href="" class="brand-link">
+            {{-- <!-- Brand Logo --> --}}
+            <a href="" class="brand-link">
                 <img src="{{ asset('bs/dist/img/Logo-DEN.png') }}" alt="Logo" class="" width="100%" height="100%">
-            </a> --}}
+            </a>
 
          <!-- Sidebar -->
             <div class="sidebar">
@@ -148,9 +148,9 @@
             <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
 
-            @if (auth()->user()->role === 'administrator' || auth()->user()->role === 'verifikator')
+            @if (auth()->user()->role === 'verifikator')
                 <li class="nav-item menu-open">
-                    <a href="{{ url('/admin') }}" class="nav-link active">
+                    <a href="{{ url('/verifikator') }}" class="nav-link active">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Dashboard

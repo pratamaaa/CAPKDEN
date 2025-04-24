@@ -33,7 +33,6 @@ class UserFilesController extends Controller
 
     public function store(Request $request)
 {
-    // dd($request->all());
     $tab = $request->input('tab'); 
 
     $rules = [];
@@ -117,7 +116,7 @@ class UserFilesController extends Controller
                 'pidana' => 'nullable|file|mimes:pdf|max:2048',
                 'surat_sehat' => 'nullable|file|mimes:pdf|max:2048',
                 'skck' => 'nullable|file|mimes:pdf|max:2048',
-                'surat_persetujuan' => 'nullable|file|mimes:pdf|max:2048',
+                'persetujuan' => 'nullable|file|mimes:pdf|max:2048',
             ];
             break;
 
