@@ -11,6 +11,7 @@ use App\Http\Controllers\UserExperienceController;
 use App\Http\Controllers\UserFilesController;
 use App\Http\Controllers\VerifikasiController;
 use App\Http\Controllers\WawancaraController;
+use App\Http\Controllers\PertanyaanWawancaraController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -95,4 +96,9 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/tahapanstatus', [TahapanstatusController::class, 'index']);
 });
+
+Route::get('/pertanyaan', [PertanyaanWawancaraController::class, 'pertanyaan'])->name('pertanyaan');
+Route::post('/pertanyaan', [PertanyaanWawancaraController::class, 'store'])->name('pertanyaan.store');
+Route::post('/pertanyaan/{id}/update', [PertanyaanWawancaraController::class, 'update'])->name('pertanyaan.update');
+Route::delete('/pertanyaan/{id}', [PertanyaanWawancaraController::class, 'destroy'])->name('pertanyaan.destroy');
 

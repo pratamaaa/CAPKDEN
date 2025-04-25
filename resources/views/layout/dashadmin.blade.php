@@ -251,6 +251,14 @@
                         <p>Pengumuman</p>
                     </a>
                 </li>
+
+                <li class="nav-item">
+                    <a href="{{ url('/pertanyaan') }}" class="nav-link">
+                        <i class="nav-icon far fa-question-circle "></i>
+                        <p>Pertanyaan</p>
+                    </a>
+                </li>
+                
             @endif
 
             <li class="nav-item">

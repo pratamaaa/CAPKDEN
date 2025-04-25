@@ -137,8 +137,8 @@
 
                                                     <td style="width: 100px; text-center">
                                                         <button class="btn btn-primary btn-sm preview-btn"
-                                                            onclick="detailPelamar({{ $pel->user_id }})"
-                                                            data-bs-toggle="modal" data-bs-target="#modalpelamar">Input
+                                                            onclick="intrvwModal({{ $pel->user_id }})"
+                                                            data-bs-toggle="modal" data-bs-target="#modalintrvw">Input
                                                             Nilai</i>
                                                         </button>
                                                     </td>
@@ -154,10 +154,10 @@
                                 </table>
 
 
-                                <div class="modal fade" id="modalpelamar" tabindex="-1" aria-labelledby="previewModalLabel"
+                                <div class="modal fade" id="modalintrvw" tabindex="-1" aria-labelledby="previewModalLabel"
                                     aria-hidden="true">
                                     <div class="modal-dialog modal-lg">
-                                        <div id="modalpelamar_content" class="modal-content shadow rounded-4 border-0">
+                                        <div id="modalintrvw_content" class="modal-content shadow rounded-4 border-0">
                                         </div>
                                     </div>
                                 </div>
@@ -171,8 +171,8 @@
     </div>
 
     <script>
-        function detailPelamar(user_id) {
-            $('#modalpelamar').modal('show').find('#modalpelamar_content').load("{{ url('pelamardetail') }}?userid=" +
+        function intrvwModal(user_id) {
+            $('#modalintrvw').modal('show').find('#modalintrvw_content').load("{{ url('pelamardetail') }}?userid=" +
                 user_id);
         }
     </script>
