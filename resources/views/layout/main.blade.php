@@ -29,7 +29,15 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('bs/dist/css/adminlte.min.css') }}">
 
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DPT9R5PBQ7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
+  gtag('config', 'G-DPT9R5PBQ7');
+</script>
 </head>
 
 <body>
