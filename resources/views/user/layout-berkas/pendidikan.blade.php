@@ -84,7 +84,7 @@
                                     <span id="{{ $name }}_filename"
                                         class="text-muted small d-block mt-1"></span>
                                     <iframe id="{{ $name }}_preview_iframe"
-                                        src="{{ $userFiles != null && $userFiles->$name != null ? 'storage/' . $userFiles->$name : '' }}"
+                                        src="{{ $userFiles != null && $userFiles->$name != null ? 'public/storage/' . $userFiles->$name : '' }}"
                                         style="width: 100%; height: 300px; border: 1px solid #ccc; display: {{ $userFiles != null && $userFiles->$name != null ? 'block' : 'none' }};"></iframe>
                                 </div>
                             </div>

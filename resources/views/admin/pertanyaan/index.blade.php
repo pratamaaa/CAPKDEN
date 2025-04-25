@@ -45,17 +45,23 @@
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $item->pertanyaan }}</td>
                                                 <td>
-                                                    <button class="btn btn-sm btn-primary edit-pengumuman-btn"
-                                                        {{-- data-id="{{ $pertanyaan->id }}"
-                                                        data-title="{{ $pertanyaan->title }}" data-toggle="modal" --}} data-target="#editPengumumanModal">
+                                                    <button class="btn btn-sm btn-primary edit-pertanyaan-btn"
+                                                        data-id="{{ $item->id }}"
+                                                        data-pertanyaan="{{ $item->pertanyaan }}"
+                                                        data-toggle="modal"
+                                                        data-target="#editPertanyaanModal">
                                                         <i class="fas fa-edit"></i>
                                                     </button>
 
+
+
                                                     <button class="btn btn-sm btn-danger delete-pengumuman-btn"
-                                                        {{-- {{-- data-id="{{ $pertanyaan->id }}"
-                                                        data-title="{{ $pertanyaan->title }}" data-toggle="modal" --}} data-target="#deletePengumumanModal">
-                                                        <i class="fas fa-trash"></i>
-                                                    </button>
+            data-id="{{ $item->id }}"
+            data-title="{{ $item->nama_pertanyaan }}"
+            data-toggle="modal"
+            data-target="#deletePertanyaanModal">
+            <i class="fas fa-trash"></i>
+        </button>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -98,19 +104,19 @@
                                                     </div>
                                                 @endif
 
-                                                <form action="{{ route('pengumuman.upload') }}" method="POST">
+                                                <form action="{{ route('pertanyaan.store') }}" method="POST">
 
                                                     @csrf
 
-                                                    <!-- Input Judul -->
+                                                    <!-- Input Pertanyaan -->
                                                     <div class="input-group mb-3">
                                                         <span class="input-group-text"><i class="fas fa-edit"></i></span>
                                                         <input type="text"
-                                                            class="form-control @error('title') is-invalid @enderror"
-                                                            id="title" name="title" value="{{ old('title') }}"
+                                                            class="form-control @error('pertanyaan') is-invalid @enderror"
+                                                            id="pertanyaan" name="pertanyaan" value="{{ old('pertanyaan') }}"
                                                             required placeholder="Pertanyaan Baru" autofocus>
 
-                                                        @error('title')
+                                                        @error('pertanyaan')
                                                             <div class="invalid-feedback">{{ $message }}</div>
                                                         @enderror
                                                     </div>
@@ -140,9 +146,10 @@
 
                             </div>
 
-                            <div class="modal fade" id="editPengumumanModal" tabindex="-1" role="dialog">
+                            <!-- Modal Edit Pertanyaan -->
+                            <div class="modal fade" id="editPertanyaanModal" tabindex="-1" role="dialog">
                                 <div class="modal-dialog" role="document">
-                                    <form action="{{ route('pengumuman.update') }}" method="POST">
+                                    <form id="editPertanyaanForm" method="POST">
                                         @csrf
                                         @method('PUT')
                                         <div class="modal-content">
@@ -151,65 +158,84 @@
                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                                             </div>
                                             <div class="modal-body">
-                                                <input type="hidden" name="id" id="edit-pengumuman-id">
-
+                                                <input type="hidden" name="id" id="edit-pertanyaan-id">
                                                 <div class="form-group">
-                                                    <label for="edit-pengumuman-title">Pertanyaan</label>
-                                                    <input type="text" name="title" id="edit-pengumuman-title"
+                                                    <label for="edit-pertanyaan-text">Pertanyaan</label>
+                                                    <input type="text" name="pertanyaan" id="edit-pertanyaan-text"
                                                         class="form-control" required>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-dismiss="modal">Batal</button>
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                                                 <button type="submit" class="btn btn-primary">Simpan</button>
                                             </div>
                                         </div>
                                     </form>
                                 </div>
-                            </div>
+                            </div>                            
 
                             <script>
-                                document.addEventListener("DOMContentLoaded", function() {
-                                    const editButtons = document.querySelectorAll('.edit-pengumuman-btn');
-
+                                document.addEventListener("DOMContentLoaded", function () {
+                                    const editButtons = document.querySelectorAll('.edit-pertanyaan-btn');
+                                    const form = document.getElementById('editPertanyaanForm');
+                            
                                     editButtons.forEach(button => {
-                                        button.addEventListener('click', function() {
+                                        button.addEventListener('click', function () {
                                             const id = this.getAttribute('data-id');
-                                            const title = this.getAttribute('data-title');
-                                            const pdfUrl = this.getAttribute('data-pdf');
-
-                                            document.getElementById('edit-pengumuman-id').value = id;
-                                            document.getElementById('edit-pengumuman-title').value = title;
-                                            document.getElementById('edit-pdf-preview').src = pdfUrl;
+                                            const text = this.getAttribute('data-pertanyaan');
+                            
+                                            document.getElementById('edit-pertanyaan-id').value = id;
+                                            document.getElementById('edit-pertanyaan-text').value = text;
+                            
+                                            // Set action ke /pertanyaan/{id}/update
+                                            form.action = `/pertanyaan/${id}/update`;
                                         });
                                     });
                                 });
                             </script>
-
-
+                            
+                            
                             <!-- Modal Konfirmasi Hapus -->
-                            <div class="modal fade" id="deletePengumumanModal" tabindex="-1" role="dialog">
+                            <div class="modal fade" id="deletePertanyaanModal" tabindex="-1" role="dialog">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title">Konfirmasi Hapus Pengumuman</h5>
                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                                         </div>
-                                        <form action="{{ route('pengumuman.destroy') }}" method="POST">
+                                        <form id="deletePertanyaanForm" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <div class="modal-body">
                                                 <input type="hidden" name="id" id="delete-pengumuman-id">
-                                                <p>Apakah Anda yakin ingin menghapus <b id="delete-pengumuman-title"></b>?
-                                                </p>
+                                                <p>Apakah Anda yakin ingin menghapus <b id="delete-pengumuman-title"></b>?</p>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-dismiss="modal">Batal</button>
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                                                 <button type="submit" class="btn btn-danger">Hapus</button>
                                             </div>
                                         </form>
+                                        <script>
+                                            document.addEventListener("DOMContentLoaded", function () {
+                                                const deleteButtons = document.querySelectorAll('.delete-pengumuman-btn');
+                                                const form = document.getElementById('deletePertanyaanForm');
+                                        
+                                                deleteButtons.forEach(button => {
+                                                    button.addEventListener('click', function () {
+                                                        const id = this.getAttribute('data-id');
+                                                        const title = this.getAttribute('data-title');
+                                        
+                                                        // Set isi konfirmasi
+                                                        document.getElementById('delete-pengumuman-id').value = id;
+                                                        document.getElementById('delete-pengumuman-title').textContent = title;
+                                        
+                                                        // Ganti action form secara dinamis
+                                                        form.action = `/pertanyaan/${id}`;
+                                                    });
+                                                });
+                                            });
+                                        </script>
+                                        
                                     </div>
                                 </div>
                             </div>

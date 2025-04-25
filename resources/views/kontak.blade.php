@@ -43,7 +43,7 @@
                                             <div class="info-post">
                                                 <div class="icon">
                                                     <img src="{{ asset('bs/assets/images/message.png') }}" alt="">
-                                                    <a href="#">panselden@den.go.id</a>
+                                                    <a href="#">capk@den.go.id</a>
                                                 </div>
                                             </div>
                                         </div>

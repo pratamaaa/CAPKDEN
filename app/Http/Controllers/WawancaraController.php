@@ -8,11 +8,13 @@ use App\Models\User;
 use App\Models\UserProfile;
 use App\Models\UserFiles;
 use App\Models\PengumumanPdf;
+use App\Models\PertanyaanWawancara;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\PengumumanController;
+use App\Http\Controllers\PertanyaanWawancaraController;
 use App\Http\Controllers\PdfController;
 use App\Helpers\Bantuan;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
@@ -41,10 +43,13 @@ class WawancaraController extends Controller
         $userfiles = UserFiles::where('user_id', auth()->id())->first();
 
         $data = User::where('role', 'user')
-            ->with(['userProfile', 'userFiles']) // Pastikan relasi di-load
+            ->with(['userProfile', 'userFiles']) 
             ->get();
         $pelamar = DB::table('users as us')
                ->join('user_profiles as pr', 'us.id', '=', 'pr.user_id');
-        return view('wawancara.intrvw', compact('data', 'pelamar', 'greeting', 'userfiles'));
-    }
+
+        $pertanyaan = PertanyaanWawancara::all();
+
+        return view('wawancara.intrvw', compact('data', 'pelamar', 'greeting', 'userfiles', 'pertanyaan'));
+           }
 }
