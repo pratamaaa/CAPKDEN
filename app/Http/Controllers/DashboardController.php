@@ -234,7 +234,7 @@ public function daftarpelamar()
 {
     $greeting = $this->getGreeting();
     $data = User::where('role', 'user')
-            ->with(['userProfile', 'userFiles']) // Pastikan relasi di-load
+            ->with(['userProfile', 'userFiles'])
             ->get();
     $pelamar = DB::table('users as us')
                ->join('user_profiles as pr', 'us.id', '=', 'pr.user_id');
@@ -277,8 +277,6 @@ public function pelamardetail_pdf(Request $req){
                    ->join('user_files as fi', 'us.id', '=', 'fi.user_id')
                    ->where('us.id', $user_id)->first();
     }
-
-    // return view('admin.pelamardetail_pdf', compact('files_check', 'pelamar'));
 
     $pdf = PDF::loadView('admin.pelamardetail_pdf', compact('files_check', 'pelamar'))->setPaper('a4', 'portrait');
     return $pdf->stream('detailpelamar.pdf');

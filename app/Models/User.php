@@ -38,8 +38,12 @@ class User extends Authenticatable
     }
 
     public function experiences()
-{
+    {
     return $this->hasMany(UserExperience::class);
-}
+    }
 
+    public function hasilWawancara()
+{
+    return $this->hasMany(HasilWawancara::class, 'user_id');
+}
 }

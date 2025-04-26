@@ -109,7 +109,6 @@ class VerifikasiController extends Controller
                  'administrasi_status' => $status_verifikasi,
                  'administrasi_catatan' => $catatan_verifikasi,
                 ];
-        // var_dump($data);
         
         $pelamar = DB::table('users as us')
                    ->join('user_profiles as pro', 'us.id', '=', 'pro.user_id')

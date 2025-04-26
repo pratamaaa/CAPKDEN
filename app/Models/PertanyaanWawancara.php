@@ -12,4 +12,9 @@ class PertanyaanWawancara extends Model
     protected $fillable = [
         'pertanyaan'
     ];
+
+    public function hasil()
+    {
+    return $this->hasMany(HasilWawancara::class, 'pertanyaan_id');
+    }
 }

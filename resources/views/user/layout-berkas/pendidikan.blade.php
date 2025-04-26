@@ -71,26 +71,31 @@
                 </div>
 
                 @foreach (['ijazah_sarjana' => 'Ijazah Sarjana', 'transkrip_sarjana' => 'Transkrip Sarjana'] as $name => $label)
-                    <div class="mb-3 row">
-                        <label class="col-lg-3 col-form-label">Upload Data
-                            <span class="fw-semibold">({{ $label }})</span>
-                        </label>
-                        <div class="col-lg-6 d-flex align-items-center">
-                            <div class="me-3">
-
-                                <input type="file" name="{{ $name }}" accept="application/pdf"
-                                    class="form-control-file" id="{{ $name }}_input" required>
-                                <div id="{{ $name }}_preview_container" class="mt-2">
-                                    <span id="{{ $name }}_filename"
-                                        class="text-muted small d-block mt-1"></span>
-                                    <iframe id="{{ $name }}_preview_iframe"
-                                        src="{{ $userFiles != null && $userFiles->$name != null ? 'public/storage/' . $userFiles->$name : '' }}"
-                                        style="width: 100%; height: 300px; border: 1px solid #ccc; display: {{ $userFiles != null && $userFiles->$name != null ? 'block' : 'none' }};"></iframe>
-                                </div>
-                            </div>
-
+                <div class="mb-3 row">
+                    <label class="col-lg-3 col-form-label">Upload Dokumen
+                        <span class="fw-semibold">({{ $label }})</span>
+                    </label>
+                    <div class="col-lg-6">
+                        <div class="d-flex align-items-center gap-2 mb-2">
+                            <input type="file" name="{{ $name }}" accept="application/pdf"
+                                class="form-control" id="{{ $name }}_input" required>
+                            
+                            @if (isset($templateLinks[$name]))
+                                <a href="{{ $templateLinks[$name] }}" class="badge bg-success text-decoration-none" target="_blank">
+                                    <i class="fa fa-download me-1"></i> Download Template
+                                </a>
+                            @endif
+                        </div>
+            
+                        <div id="{{ $name }}_preview_container" class="mt-2">
+                            <span id="{{ $name }}_filename"
+                                class="text-muted small d-block mt-1"></span>
+                            <iframe id="{{ $name }}_preview_iframe"
+                                src="{{ $userFiles != null && $userFiles->$name != null ? asset('storage/' . $userFiles->$name) : '' }}"
+                                style="width: 100%; height: 300px; border: 1px solid #ccc; display: {{ $userFiles != null && $userFiles->$name != null ? 'block' : 'none' }};"></iframe>
                         </div>
                     </div>
+                </div>
                 @endforeach
 
                 <div class="card-header text-success mt-4 mb-3" style="background-color: #d4edda; border-radius: 5px;">
@@ -108,24 +113,31 @@
 @endforeach
 
                 @foreach (['ijazah_magister' => 'Ijazah Magister', 'transkrip_magister' => 'Transkrip Magister'] as $name => $label)
-                    <div class="mb-3 row">
-                        <label class="col-lg-3 col-form-label">Upload Data<span
-                                class="fw-semibold">({{ $label }})</span></label>
-                        <div class="col-lg-6 d-flex align-items-center">
-                            <div class="me-3">
-                                <input type="file" name="{{ $name }}" accept="application/pdf"
-                                    class="form-control-file" id="{{ $name }}_input" required>
-                                <div id="{{ $name }}_preview_container" class="mt-2">
-                                    <span id="{{ $name }}_filename"
-                                        class="text-muted small d-block mt-1"></span>
-                                    <iframe id="{{ $name }}_preview_iframe"
-                                        src="{{ $userFiles != null && $userFiles->$name != null ? 'storage/' . $userFiles->$name : '' }}"
-                                        style="width: 100%; height: 300px; border: 1px solid #ccc; display: {{ $userFiles != null && $userFiles->$name != null ? 'block' : 'none' }};"></iframe>
-                                </div>
-                            </div>
-
+                <div class="mb-3 row">
+                    <label class="col-lg-3 col-form-label">Upload Dokumen
+                        <span class="fw-semibold">({{ $label }})</span>
+                    </label>
+                    <div class="col-lg-6">
+                        <div class="d-flex align-items-center gap-2 mb-2">
+                            <input type="file" name="{{ $name }}" accept="application/pdf"
+                                class="form-control" id="{{ $name }}_input" required>
+                            
+                            @if (isset($templateLinks[$name]))
+                                <a href="{{ $templateLinks[$name] }}" class="badge bg-success text-decoration-none" target="_blank">
+                                    <i class="fa fa-download me-1"></i> Download Template
+                                </a>
+                            @endif
+                        </div>
+            
+                        <div id="{{ $name }}_preview_container" class="mt-2">
+                            <span id="{{ $name }}_filename"
+                                class="text-muted small d-block mt-1"></span>
+                            <iframe id="{{ $name }}_preview_iframe"
+                                src="{{ $userFiles != null && $userFiles->$name != null ? asset('storage/' . $userFiles->$name) : '' }}"
+                                style="width: 100%; height: 300px; border: 1px solid #ccc; display: {{ $userFiles != null && $userFiles->$name != null ? 'block' : 'none' }};"></iframe>
                         </div>
                     </div>
+                </div>
                 @endforeach
 
                 <div class="card-header text-success mt-4 mb-3" style="background-color: #d4edda; border-radius: 5px;">
@@ -143,25 +155,31 @@
 @endforeach
 
                 @foreach (['ijazah_doktoral' => 'Ijazah Doktoral', 'transkrip_doktoral' => 'Transkrip Doktoral'] as $name => $label)
-                    <div class="mb-3 row">
-                        <label class="col-lg-3 col-form-label">Upload Data <span
-                                class="fw-semibold">({{ $label }})</span></label>
-                        <div class="col-lg-6 d-flex align-items-center">
-                            <div class="me-3">
-                                <input type="file" name="{{ $name }}" accept="application/pdf"
-                                    class="form-control-file" id="{{ $name }}_input" required>
-                                <div id="{{ $name }}_preview_container" class="mt-2">
-                                    <span id="{{ $name }}_filename"
-                                        class="text-muted small d-block mt-1"></span>
-                                    <iframe id="{{ $name }}_preview_iframe"
-                                    src="{{ $userFiles != null && $userFiles->$name != null ? 'storage/' . $userFiles->$name : '' }}"
-                                    style="width: 100%; height: 300px; border: 1px solid #ccc; display: {{ $userFiles != null && $userFiles->$name != null ? 'block' : 'none' }};"></iframe>
-
-                                </div>
-                            </div>
-
+                <div class="mb-3 row">
+                    <label class="col-lg-3 col-form-label">Upload Dokumen
+                        <span class="fw-semibold">({{ $label }})</span>
+                    </label>
+                    <div class="col-lg-6">
+                        <div class="d-flex align-items-center gap-2 mb-2">
+                            <input type="file" name="{{ $name }}" accept="application/pdf"
+                                class="form-control" id="{{ $name }}_input" required>
+                            
+                            @if (isset($templateLinks[$name]))
+                                <a href="{{ $templateLinks[$name] }}" class="badge bg-success text-decoration-none" target="_blank">
+                                    <i class="fa fa-download me-1"></i> Download Template
+                                </a>
+                            @endif
+                        </div>
+            
+                        <div id="{{ $name }}_preview_container" class="mt-2">
+                            <span id="{{ $name }}_filename"
+                                class="text-muted small d-block mt-1"></span>
+                            <iframe id="{{ $name }}_preview_iframe"
+                                src="{{ $userFiles != null && $userFiles->$name != null ? asset('storage/' . $userFiles->$name) : '' }}"
+                                style="width: 100%; height: 300px; border: 1px solid #ccc; display: {{ $userFiles != null && $userFiles->$name != null ? 'block' : 'none' }};"></iframe>
                         </div>
                     </div>
+                </div>
                 @endforeach
             </div>
         </div>

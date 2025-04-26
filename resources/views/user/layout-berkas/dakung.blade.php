@@ -44,9 +44,6 @@
         'rangkap_jabatan' => route('template.download', ['type' => 'pernyataan_3_point']),
         'cv' => route('template.download', ['type' => 'cv']),
         'pidana' => route('template.download', ['type' => 'pidana']),
-        // 'surat_sehat' => route('template.download', ['type' => 'surat_sehat']),
-        // 'skck' => route('template.download', ['type' => 'skck']),
-        // 'persetujuan' => route('template.download', ['type' => 'skck']),
     ];
 @endphp
 

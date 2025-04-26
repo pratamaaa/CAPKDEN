@@ -51,10 +51,13 @@
                                                 value="{{ auth()->user()->name }}" readonly>
                                         </div>
                                         <div class="col-sm-2">
-                                            <input type="text" name="gelar_depan" class="form-control" placeholder="Gelar Depan" required>
+                                            <input type="text" name="gelar_depan" class="form-control" placeholder="Gelar Depan" value="{{ $profile->gelar_depan ?? '' }}"
+                                            required>
                                         </div>
                                         <div class="col-sm-2">
-                                            <input type="text" name="gelar_belakang" class="form-control" placeholder="Gelar Belakang" required>
+                                            <input type="text" name="gelar_belakang" class="form-control" placeholder="Gelar Belakang" 
+                                            value="{{ $profile->gelar_belakang ?? '' }}"
+                                             required>
                                         </div>
                                     </div>
                                 
@@ -81,9 +84,10 @@
                                         <label class="col-sm-2 col-form-label">Jenis Kelamin</label>
                                         <div class="col-sm-2">
                                             <select class="form-control" name="jenis_kelamin" required>
-                                                <option selected>- Pilih -</option>
-                                                <option value="Laki-laki">Laki-laki</option>
-                                                <option value="Perempuan">Perempuan</option>
+                                                <option value="">- Pilih -</option>
+<option value="Laki-laki" {{ ($profile->jenis_kelamin ?? '') == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
+<option value="Perempuan" {{ ($profile->jenis_kelamin ?? '') == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
+
                                             </select>
                                         </div>
                                     </div>
@@ -91,14 +95,15 @@
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Alamat</label>
                                         <div class="col-sm-5">
-                                            <textarea name="alamat" class="form-control" rows="2" placeholder="Alamat" required></textarea>
+                                            <textarea name="alamat" class="form-control" rows="2" placeholder="Alamat" required>{{ $profile->alamat ?? '' }}</textarea>
+
                                         </div>
                                     </div>
                                 
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">No. Handphone (WA)</label>
                                         <div class="col-sm-2">
-                                            <input type="text" name="no_handphone" class="form-control" required>
+                                            <input type="text" name="no_handphone" class="form-control" value="{{ $profile->no_handphone ?? '' }}" required>
                                         </div>
                                     </div>
                                 
@@ -111,10 +116,12 @@
         Format <strong>JPEG, PNG, JPG</strong>, Max 2 MB.
     </small>
     <div class="mt-2">
-        <img id="preview_foto" src="{{ $userProfile->pas_foto_url ?? '' }}" 
-             alt="Preview Pas Foto" 
-             style="max-height: 200px; display: {{ isset($userProfile->pas_foto_url) ? 'block' : 'none' }};">
+        <img id="preview_foto"
+            src="{{ isset($profile) && $profile->pas_foto ? asset('uploads/pas_foto/' . $profile->pas_foto) : '' }}"
+            alt="Preview Pas Foto"
+            style="max-height: 200px; display: {{ isset($profile) && $profile->pas_foto ? 'block' : 'none' }};">
     </div>
+    
                                         </div>
                                     </div>
                                 
@@ -127,24 +134,29 @@
     Format <strong>PDF</strong>, Max. 2 MB.
 </small>
 
-                                            <div class="mt-2" id="ktp_preview" style="display: none;">
-                                                <iframe id="ktp_iframe" src="" width="100%" height="400px" style="border: 1px solid #ccc;"></iframe>
-                                            </div>
-                                        </div>
+<div class="mt-2" id="ktp_preview" style="{{ isset($userFiles) && $userFiles->ktp ? 'display: block;' : 'display: none;' }}">
+    <iframe id="ktp_iframe"
+        src="{{ isset($userFiles) && $userFiles->ktp ? asset('storage/' . $userFiles->ktp) : '' }}"
+        width="100%" height="400px" style="border: 1px solid #ccc;">
+    </iframe>
+</div>
+
+ </div>
                                     </div>
                                         
 
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Kalangan</label>
                                         <div class="col-sm-2">
-                                            <select class="form-control" name="kalangan">
-                                                <option selected>- Pilih Calon Kalangan -</option>
-                                                <option value="Akademisi">Akademisi</option>
-                                                <option value="Industri">Industri</option>
-                                                <option value="Teknologi">Teknologi</option>
-                                                <option value="Lingkungan Hidup">Lingkungan Hidup</option>
-                                                <option value="Konsumen">Konsumen</option>
+                                            <select class="form-control" name="kalangan" required>
+                                                <option disabled {{ old('kalangan', $profile->kalangan ?? '') == '' ? 'selected' : '' }}>- Pilih Calon Kalangan -</option>
+                                                <option value="Akademisi" {{ old('kalangan', $profile->kalangan ?? '') == 'Akademisi' ? 'selected' : '' }}>Akademisi</option>
+                                                <option value="Industri" {{ old('kalangan', $profile->kalangan ?? '') == 'Industri' ? 'selected' : '' }}>Industri</option>
+                                                <option value="Teknologi" {{ old('kalangan', $profile->kalangan ?? '') == 'Teknologi' ? 'selected' : '' }}>Teknologi</option>
+                                                <option value="Lingkungan Hidup" {{ old('kalangan', $profile->kalangan ?? '') == 'Lingkungan Hidup' ? 'selected' : '' }}>Lingkungan Hidup</option>
+                                                <option value="Konsumen" {{ old('kalangan', $profile->kalangan ?? '') == 'Konsumen' ? 'selected' : '' }}>Konsumen</option>
                                             </select>
+                                            
                                         </div>
                                     </div>
                                 

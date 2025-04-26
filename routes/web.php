@@ -78,7 +78,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('/pengguna/delete/{id}', [DashboardController::class, 'destroy'])->name('pengguna.delete');
     Route::get('/daftarpelamar', [DashboardController::class, 'daftarpelamar'])->name('daftarpelamar');
     Route::get('/wawancara', [WawancaraController::class, 'wawancara'])->name('wawancara');
-    Route::post('/wawancara/store', [PenilaianWawancaraController::class, 'store'])->name('wawancara.store');
+    Route::post('/wawancara/store', [WawancaraController::class, 'store'])->name('wawancara.store');
     Route::get('/pelamardetail', [DashboardController::class, 'pelamardetail']);
     Route::get('/pelamardetail_pdf', [DashboardController::class, 'pelamardetail_pdf']);
     Route::get('/download-pdf/{id}', [PdfController::class, 'generatePdf'])->name('download.pdf');
