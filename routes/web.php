@@ -11,6 +11,7 @@ use App\Http\Controllers\UserExperienceController;
 use App\Http\Controllers\UserFilesController;
 use App\Http\Controllers\VerifikasiController;
 use App\Http\Controllers\WawancaraController;
+use App\Http\Controllers\AssesmentController;
 use App\Http\Controllers\PertanyaanWawancaraController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -62,11 +63,11 @@ Route::group(['middleware' => 'auth'], function () {
             'store', 'update', 'destroy'
         ]);
     });
-    Route::middleware(['auth'])->group(function () {
-        Route::get('/user/upload-makalah', [UserFilesController::class, 'uploadMakalah'])->name('upload.makalah');
-        Route::post('/user/upload-makalah', [UserFilesController::class, 'storeMakalah'])->name('upload.makalah.store');
-    });
-    Route::delete('/user/upload-makalah/delete/{id}', [UserFilesController::class, 'deleteMakalah'])->name('upload.makalah.delete');
+    // Route::middleware(['auth'])->group(function () {
+    //     Route::get('/user/upload-makalah', [UserFilesController::class, 'uploadMakalah'])->name('upload.makalah');
+    //     Route::post('/user/upload-makalah', [UserFilesController::class, 'storeMakalah'])->name('upload.makalah.store');
+    // });
+    // Route::delete('/user/upload-makalah/delete/{id}', [UserFilesController::class, 'deleteMakalah'])->name('upload.makalah.delete');
 
 
     // ADMIN 
@@ -79,6 +80,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/daftarpelamar', [DashboardController::class, 'daftarpelamar'])->name('daftarpelamar');
     Route::get('/wawancara', [WawancaraController::class, 'wawancara'])->name('wawancara');
     Route::post('/wawancara/store', [WawancaraController::class, 'store'])->name('wawancara.store');
+    Route::get('/assesment', [AssesmentController::class, 'assesment'])->name('assesment');
+    Route::post('/assesment/store', [AssesmentController::class, 'store'])->name('assesment.store');
     Route::get('/pelamardetail', [DashboardController::class, 'pelamardetail']);
     Route::get('/pelamardetail_pdf', [DashboardController::class, 'pelamardetail_pdf']);
     Route::get('/download-pdf/{id}', [PdfController::class, 'generatePdf'])->name('download.pdf');

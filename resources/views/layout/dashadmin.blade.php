@@ -202,14 +202,14 @@
 
                 </li>
 
-                @if ($userfiles?->administrasi_status === 'lulus')
+                {{-- @if ($userfiles?->administrasi_status === 'lulus')
     <li class="nav-item">
         <a href="{{ route('upload.makalah') }}" class="nav-link">
             <i class="nav-icon fas fa-file"></i>
             <p>Upload Makalah</p>
         </a>
     </li>
-@endif
+@endif --}}
 
             @endif
 
@@ -224,6 +224,12 @@
                     <a href="{{ url('/verifikasi') }}" class="nav-link">
                         <i class="nav-icon far fa-check-square"></i>
                         <p>Verifikasi Data</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ url('/assesment') }}" class="nav-link">
+                        <i class="nav-icon far fa-chart-bar"></i>
+                        <p>Hasil Assesment</p>
                     </a>
                 </li>
                 <li class="nav-item">

@@ -127,11 +127,7 @@
                                     </ul>
                                 </div>
                             </div>
-                        {{-- <div class="card-header p-2">
-                            <ul class="nav nav-pills">
-                                <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Status Pelamar</a></li>
-                            </ul>
-                        </div> --}}
+
                         <div class="card-body">
                             <div class="tab-content">
 
@@ -339,9 +335,9 @@
                                     <tbody>
                                         @foreach ([
                                         ['label' => 'Administrasi', 'status' => $userfiles?->administrasi_status, 'catatan' => $userfiles?->administrasi_catatan],
-                                        ['label' => 'Wawancara', 'status' => $userfiles?->wawancara_status, 'catatan' => $userfiles?->wawancara_catatan],
                                         ['label' => 'Assesment', 'status' => $userfiles?->assessment_status, 'catatan' => $userfiles?->assessment_catatan],
-                                        ['label' => 'Fit and Proper Test', 'status' => $userfiles?->propertest_status, 'catatan' => $userfiles?->propertest_catatan],
+                                        ['label' => 'Wawancara', 'status' => $userfiles?->wawancara_status, 'catatan' => $userfiles?->wawancara_catatan],
+                                        // ['label' => 'Fit and Proper Test', 'status' => $userfiles?->propertest_status, 'catatan' => $userfiles?->propertest_catatan],
                                     ] as $index => $item)
 
                                             @php

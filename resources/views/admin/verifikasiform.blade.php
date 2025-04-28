@@ -9,11 +9,11 @@
         $dokumenList = [
             'ktp' => 'KTP/SIM/PASPOR',
             'ijazah_sarjana' => 'Ijazah Sarjana',
-            'transkrip_sarjana' => 'Transkrip Sarjana',
+            // 'transkrip_sarjana' => 'Transkrip Sarjana',
             'ijazah_magister' => 'Ijazah Magister',
-            'transkrip_magister' => 'Transkrip Magister',
+            // 'transkrip_magister' => 'Transkrip Magister',
             'ijazah_doktoral' => 'Ijazah Doktoral',
-            'transkrip_doktoral' => 'Transkrip Doktoral',
+            // 'transkrip_doktoral' => 'Transkrip Doktoral',
             'upl_org' => 'Organisasi Pengusul',
             'upl_rek_pakar1' => 'Rekomendasi Pakar-1',
             'upl_rek_pakar2' => 'Rekomendasi Pakar-2',
@@ -22,7 +22,7 @@
             'rangkap_jabatan' => 'Surat Pernyataan 3 Point',
             'cv' => 'Daftar Riwayat Hidup (CV)',
             'pidana' => 'Surat Pernyataan Tidak Sedang Dipidana',
-            'makalah' => 'Penulisan Makalah',
+            // 'makalah' => 'Penulisan Makalah',
             'surat_sehat' => 'Surat Keterangan Sehat',
             'skck' => 'SKCK',
             'persetujuan' => 'Surat Persetujuan Pimpinan', //tambah baru tapi tidak muncul

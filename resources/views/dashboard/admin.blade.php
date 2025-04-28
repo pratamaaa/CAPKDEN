@@ -80,6 +80,8 @@
                                                 <th>Total Pelamar</th>
                                                 <th>Lulus Administrasi</th>
                                                 <th>Tidak Lulus Administrasi</th>
+                                                <th>Lulus Assesment</th>
+                                                <th>Tidak Lulus Assesment</th>
                                                 <th>Lulus Wawancara</th>
                                                 <th>Tidak Lulus Wawancara</th>
                                             </tr>
@@ -91,6 +93,8 @@
                                                 <td>{{ $kalangan->total_pelamar }}</td>
                                                 <td>{{ $kalangan->lulus_administrasi }}</td>
                                                 <td>{{ $kalangan->tidak_lulus_administrasi }}</td>
+                                                <td>{{ $kalangan->lulus_administrasi }}</td>
+                                                <td>{{ $kalangan->tidak_lulus_administrasi }}</td>
                                                 <td>{{ $kalangan->lulus_wawancara }}</td>
                                                 <td>{{ $kalangan->tidak_lulus_wawancara }}</td>
                                             </tr>
@@ -100,6 +104,8 @@
                                             <tr class="table-success font-weight-bold">
                                                 <td>Total</td>
                                                 <td>{{ $totalPelamar }}</td>
+                                                <td>{{ $totalLulusAdministrasi }}</td>
+                                                <td>{{ $totalTidakLulusAdministrasi }}</td>
                                                 <td>{{ $totalLulusAdministrasi }}</td>
                                                 <td>{{ $totalTidakLulusAdministrasi }}</td>
                                                 <td>{{ $totalLulusWawancara }}</td>

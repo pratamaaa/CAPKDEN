@@ -47,18 +47,18 @@ class UserFilesController extends Controller
                 'jurusan_sarjana' => 'required|string|max:255',
                 'lulus_sarjana' => 'required|string|max:255',
                 'ijazah_sarjana' => (($userFiles != null && $userFiles->ijazah_sarjana == null)?'required':'nullable').'|file|mimes:pdf|max:2048',
-                'transkrip_sarjana' => (($userFiles != null && $userFiles->transkrip_sarjana == null)?'required':'nullable').'|file|mimes:pdf|max:2048',
+                // 'transkrip_sarjana' => (($userFiles != null && $userFiles->transkrip_sarjana == null)?'required':'nullable').'|file|mimes:pdf|max:2048',
 
                 'universitas_magister' => 'nullable|string|max:255',
                 'jurusan_magister' => 'nullable|string|max:255',
                 'lulus_magister' => 'nullable|string|max:255',
-                'ijazah_magister' => 'nullable|file|mimes:pdf|max:2048',
+                // 'ijazah_magister' => 'nullable|file|mimes:pdf|max:2048',
                 'transkrip_magister' => 'nullable|file|mimes:pdf|max:2048',
 
                 'universitas_doktoral' => 'nullable|string|max:255',
                 'jurusan_doktoral' => 'nullable|string|max:255',
                 'lulus_doktoral' => 'nullable|string|max:255',
-                'ijazah_doktoral' => 'nullable|file|mimes:pdf|max:2048',
+                // 'ijazah_doktoral' => 'nullable|file|mimes:pdf|max:2048',
                 'transkrip_doktoral' => 'nullable|file|mimes:pdf|max:2048',
             ];
             break;

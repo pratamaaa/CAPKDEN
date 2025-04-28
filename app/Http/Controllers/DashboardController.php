@@ -14,6 +14,7 @@ use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\PengumumanController;
+use App\Http\Controllers\AssesmentController;
 use App\Http\Controllers\PertanyaanWawancaraController;
 use App\Http\Controllers\PdfController;
 use App\Helpers\Bantuan;
@@ -49,6 +50,8 @@ class DashboardController extends Controller
         $sudahVerifikasi = $users->filter(fn($user) => $user->userFiles && in_array($user->userFiles->administrasi_status, ['lulus', 'tidak lulus'])
         )->count();
         $belumVerifikasi = $totalPelamar - $sudahVerifikasi;
+        $sudahAssesment = $users->filter(fn($user) => $user->userFiles?->assessment_status != null)->count();
+        $belumAssesment = $totalPelamar - $sudahAssesment;
         $sudahWawancara = $users->filter(fn($user) => $user->userFiles?->wawancara_status != null)->count();
         $belumWawancara = $totalPelamar - $sudahWawancara;
 
@@ -63,6 +66,8 @@ class DashboardController extends Controller
         DB::raw('COUNT(user_profiles.user_id) as total_pelamar'),
         DB::raw("COUNT(CASE WHEN user_files.administrasi_status = 'lulus' THEN 1 END) as lulus_administrasi"),
         DB::raw("COUNT(CASE WHEN user_files.administrasi_status = 'tidak lulus' THEN 1 END) as tidak_lulus_administrasi"),
+        DB::raw("COUNT(CASE WHEN user_files.assessment_status = 'lulus' THEN 1 END) as lulus_assesment"),
+        DB::raw("COUNT(CASE WHEN user_files.assessment_status = 'tidak lulus' THEN 1 END) as tidak_lulus_assesment"),
         DB::raw("COUNT(CASE WHEN user_files.wawancara_status = 'lulus' THEN 1 END) as lulus_wawancara"),
         DB::raw("COUNT(CASE WHEN user_files.wawancara_status = 'tidak lulus' THEN 1 END) as tidak_lulus_wawancara")
     )
@@ -106,6 +111,8 @@ class DashboardController extends Controller
         $sudahVerifikasi = $users->filter(fn($user) => $user->userFiles && in_array($user->userFiles->administrasi_status, ['lulus', 'tidak lulus'])
         )->count();
         $belumVerifikasi = $totalPelamar - $sudahVerifikasi;
+        $sudahAssesment = $users->filter(fn($user) => $user->userFiles?->assessment_status != null)->count();
+        $belumAssesment = $totalPelamar - $sudahAssesment;
         $sudahWawancara = $users->filter(fn($user) => $user->userFiles?->wawancara_status != null)->count();
         $belumWawancara = $totalPelamar - $sudahWawancara;
 
@@ -120,6 +127,8 @@ class DashboardController extends Controller
         DB::raw('COUNT(user_profiles.user_id) as total_pelamar'),
         DB::raw("COUNT(CASE WHEN user_files.administrasi_status = 'lulus' THEN 1 END) as lulus_administrasi"),
         DB::raw("COUNT(CASE WHEN user_files.administrasi_status = 'tidak lulus' THEN 1 END) as tidak_lulus_administrasi"),
+        DB::raw("COUNT(CASE WHEN user_files.assessment_status = 'lulus' THEN 1 END) as lulus_assesment"),
+        DB::raw("COUNT(CASE WHEN user_files.assessment_status = 'tidak lulus' THEN 1 END) as tidak_lulus_assesment"),
         DB::raw("COUNT(CASE WHEN user_files.wawancara_status = 'lulus' THEN 1 END) as lulus_wawancara"),
         DB::raw("COUNT(CASE WHEN user_files.wawancara_status = 'tidak lulus' THEN 1 END) as tidak_lulus_wawancara")
     )

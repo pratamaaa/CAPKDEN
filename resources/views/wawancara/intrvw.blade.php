@@ -123,7 +123,7 @@
                                     <td colspan="16" class="text-center">Data tidak tersedia</td>
                                 </tr>
                             @endforelse
-                            </tbody>
+                        </tbody>
                             
                     </table>
                 </div>

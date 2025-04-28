@@ -9,7 +9,6 @@ use App\Models\UserProfile;
 use App\Models\UserFiles;
 use App\Models\PengumumanPdf;
 use App\Models\HasilWawancara;
-use App\Http\Controllers\AssesmentController;
 use App\Models\PertanyaanWawancara;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
@@ -21,7 +20,7 @@ use App\Http\Controllers\PdfController;
 use App\Helpers\Bantuan;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
 
-class WawancaraController extends Controller
+class AssesmentController extends Controller
 {
     private function getGreeting()
     {
@@ -39,61 +38,39 @@ class WawancaraController extends Controller
         }
     }
 
-    public function wawancara()
+    public function assesment()
 {
     $greeting = $this->getGreeting();
     $userfiles = UserFiles::where('user_id', auth()->id())->first();
 
     $data = User::where('role', 'user')
     ->whereHas('userFiles', function ($query) {
-        $query->where('assessment_status', 'Lulus');
+        $query->where('administrasi_status', 'Lulus');
     })
     ->with(['userProfile', 'userFiles', 'hasilWawancara'])
     ->get();
-
-
-    $pertanyaan = PertanyaanWawancara::all();
-
-    return view('wawancara.intrvw', compact('data', 'greeting', 'userfiles', 'pertanyaan'));
+    return view('assesment.assesment', compact('data', 'greeting', 'userfiles'));
 }
 
 public function store(Request $request)
 {
-
-    $validated = $request->validate([
+    $request->validate([
         'user_id' => 'required|exists:users,id',
-        'jawaban' => 'required|array',
-        'jawaban.*.kriteria' => 'required|string|in:Tinggi,Sedang,Rendah',
-        'jawaban.*.nilai' => 'required|numeric|min:60|max:98',
-        'wawancara_status' => 'required|string|in:Lulus,Tidak Lulus',
-        'wawancara_catatan' => 'nullable|string',
+        'assessment_status' => 'required|in:Lulus,Tidak Lulus',
+        'assessment_catatan' => 'nullable|string',
     ]);
 
-    $userFiles = UserFiles::where('user_id', $validated['user_id'])->first();
+    $userFiles = UserFiles::where('user_id', $request->user_id)->first();
+
     if ($userFiles) {
         $userFiles->update([
-            'wawancara_status' => $validated['wawancara_status'],
-            'wawancara_catatan' => $validated['wawancara_catatan'],
+            'assessment_status' => $request->assessment_status,
+            'assessment_catatan' => $request->assessment_catatan,
+            'verified_by' => auth()->id(),
         ]);
     }
 
-    HasilWawancara::where('user_id', $validated['user_id'])->delete();
-
-    $jawabanList = [];
-    foreach ($validated['jawaban'] as $pertanyaanId => $jawaban) {
-        $jawabanList[] = [
-            'user_id' => $validated['user_id'],
-            'pertanyaan_id' => $pertanyaanId,
-            'kriteria' => $jawaban['kriteria'],
-            'nilai' => $jawaban['nilai'],
-            'created_at' => now(),
-            'updated_at' => now(),
-        ];
-    }
-    HasilWawancara::insert($jawabanList);
-
-    return redirect()->back()->with('success', 'Hasil wawancara berhasil disimpan.');
+    return redirect()->back()->with('success', 'Status assesment berhasil diupdate.');
 }
-
 
 }

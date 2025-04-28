@@ -70,7 +70,7 @@
                     </div>
                 </div>
 
-                @foreach (['ijazah_sarjana' => 'Ijazah Sarjana', 'transkrip_sarjana' => 'Transkrip Sarjana'] as $name => $label)
+                @foreach (['ijazah_sarjana' => 'Ijazah Sarjana'] as $name => $label)
                 <div class="mb-3 row">
                     <label class="col-lg-3 col-form-label">Upload Dokumen
                         <span class="fw-semibold">({{ $label }})</span>
@@ -112,7 +112,7 @@
     </div>
 @endforeach
 
-                @foreach (['ijazah_magister' => 'Ijazah Magister', 'transkrip_magister' => 'Transkrip Magister'] as $name => $label)
+                @foreach (['ijazah_magister' => 'Ijazah Magister'] as $name => $label)
                 <div class="mb-3 row">
                     <label class="col-lg-3 col-form-label">Upload Dokumen
                         <span class="fw-semibold">({{ $label }})</span>
@@ -154,7 +154,7 @@
     </div>
 @endforeach
 
-                @foreach (['ijazah_doktoral' => 'Ijazah Doktoral', 'transkrip_doktoral' => 'Transkrip Doktoral'] as $name => $label)
+                @foreach (['ijazah_doktoral' => 'Ijazah Doktoral'] as $name => $label)
                 <div class="mb-3 row">
                     <label class="col-lg-3 col-form-label">Upload Dokumen
                         <span class="fw-semibold">({{ $label }})</span>
