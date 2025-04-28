@@ -38,21 +38,117 @@ class DashboardController extends Controller
     }
 
     public function adminDashboard()
-    {
+{
+    $users = User::where('role', 'user')
+        ->with('userFiles')
+        ->get();
         $greeting = $this->getGreeting();
         $totalPelamar = DB::table('users')
             ->where('role', 'user') 
             ->count();
-        return view('dashboard.admin', compact('greeting', 'totalPelamar'));
+        $sudahVerifikasi = $users->filter(fn($user) => $user->userFiles && in_array($user->userFiles->administrasi_status, ['lulus', 'tidak lulus'])
+        )->count();
+        $belumVerifikasi = $totalPelamar - $sudahVerifikasi;
+        $sudahWawancara = $users->filter(fn($user) => $user->userFiles?->wawancara_status != null)->count();
+        $belumWawancara = $totalPelamar - $sudahWawancara;
+
+        // Data untuk Chart Pie
+        $kalanganData = $users->groupBy(fn($user) => $user->userProfile?->kalangan ?? 'Tidak Diketahui')->map->count();
+        $kalanganLabels = $kalanganData->keys();
+        $kalanganValues = $kalanganData->values();
+
+        $kalanganData = DB::table('user_profiles')
+    ->select(
+        'kalangan',
+        DB::raw('COUNT(user_profiles.user_id) as total_pelamar'),
+        DB::raw("COUNT(CASE WHEN user_files.administrasi_status = 'lulus' THEN 1 END) as lulus_administrasi"),
+        DB::raw("COUNT(CASE WHEN user_files.administrasi_status = 'tidak lulus' THEN 1 END) as tidak_lulus_administrasi"),
+        DB::raw("COUNT(CASE WHEN user_files.wawancara_status = 'lulus' THEN 1 END) as lulus_wawancara"),
+        DB::raw("COUNT(CASE WHEN user_files.wawancara_status = 'tidak lulus' THEN 1 END) as tidak_lulus_wawancara")
+    )
+    ->leftJoin('user_files', 'user_profiles.user_id', '=', 'user_files.user_id')
+    ->groupBy('kalangan')
+    ->get();
+
+    $totalPelamar = $kalanganData->sum('total_pelamar');
+    $totalLulusAdministrasi = $kalanganData->sum('lulus_administrasi');
+    $totalTidakLulusAdministrasi = $kalanganData->sum('tidak_lulus_administrasi');
+    $totalLulusWawancara = $kalanganData->sum('lulus_wawancara');
+    $totalTidakLulusWawancara = $kalanganData->sum('tidak_lulus_wawancara');
+
+        // Data untuk Tabel Rekap
+    $rekapKalangan = [];
+    foreach ($kalanganData as $kalangan => $jumlah) {
+        $usersInKalangan = $users->filter(fn($user) => ($user->userFiles?->kalangan ?? 'Tidak Diketahui') == $kalangan);
+
+        $rekapKalangan[] = [
+            'kalangan' => $kalangan,
+            'total' => $jumlah,
+            'sudah_verifikasi' => $usersInKalangan->filter(fn($u) => $u->userFiles?->status_verifikasi == 'Sudah Verifikasi')->count(),
+            'belum_verifikasi' => $usersInKalangan->filter(fn($u) => $u->userFiles?->status_verifikasi != 'Sudah Verifikasi')->count(),
+            'sudah_wawancara' => $usersInKalangan->filter(fn($u) => $u->userFiles?->wawancara_status != null)->count(),
+            'belum_wawancara' => $usersInKalangan->filter(fn($u) => $u->userFiles?->wawancara_status == null)->count(),
+        ];
+    }
+        
+            return view('dashboard.admin', compact('greeting', 'totalPelamar', 'sudahVerifikasi', 'belumVerifikasi', 'sudahWawancara', 'belumWawancara',        'kalanganLabels', 'kalanganValues', 'rekapKalangan', 'kalanganData', 'totalLulusAdministrasi', 'totalTidakLulusAdministrasi', 'totalLulusWawancara', 'totalTidakLulusWawancara'));
     }
 
     public function verifikatorDashboard()
     {
+        $users = User::where('role', 'user')
+        ->with('userFiles')
+        ->get();
         $greeting = $this->getGreeting();
         $totalPelamar = DB::table('users')
             ->where('role', 'user') 
             ->count();
-        return view('dashboard.admin', compact('greeting', 'totalPelamar'));
+        $sudahVerifikasi = $users->filter(fn($user) => $user->userFiles && in_array($user->userFiles->administrasi_status, ['lulus', 'tidak lulus'])
+        )->count();
+        $belumVerifikasi = $totalPelamar - $sudahVerifikasi;
+        $sudahWawancara = $users->filter(fn($user) => $user->userFiles?->wawancara_status != null)->count();
+        $belumWawancara = $totalPelamar - $sudahWawancara;
+
+        // Data untuk Chart Pie
+        $kalanganData = $users->groupBy(fn($user) => $user->userProfile?->kalangan ?? 'Tidak Diketahui')->map->count();
+        $kalanganLabels = $kalanganData->keys();
+        $kalanganValues = $kalanganData->values();
+
+        $kalanganData = DB::table('user_profiles')
+    ->select(
+        'kalangan',
+        DB::raw('COUNT(user_profiles.user_id) as total_pelamar'),
+        DB::raw("COUNT(CASE WHEN user_files.administrasi_status = 'lulus' THEN 1 END) as lulus_administrasi"),
+        DB::raw("COUNT(CASE WHEN user_files.administrasi_status = 'tidak lulus' THEN 1 END) as tidak_lulus_administrasi"),
+        DB::raw("COUNT(CASE WHEN user_files.wawancara_status = 'lulus' THEN 1 END) as lulus_wawancara"),
+        DB::raw("COUNT(CASE WHEN user_files.wawancara_status = 'tidak lulus' THEN 1 END) as tidak_lulus_wawancara")
+    )
+    ->leftJoin('user_files', 'user_profiles.user_id', '=', 'user_files.user_id')
+    ->groupBy('kalangan')
+    ->get();
+
+    $totalPelamar = $kalanganData->sum('total_pelamar');
+    $totalLulusAdministrasi = $kalanganData->sum('lulus_administrasi');
+    $totalTidakLulusAdministrasi = $kalanganData->sum('tidak_lulus_administrasi');
+    $totalLulusWawancara = $kalanganData->sum('lulus_wawancara');
+    $totalTidakLulusWawancara = $kalanganData->sum('tidak_lulus_wawancara');
+
+        // Data untuk Tabel Rekap
+    $rekapKalangan = [];
+    foreach ($kalanganData as $kalangan => $jumlah) {
+        $usersInKalangan = $users->filter(fn($user) => ($user->userFiles?->kalangan ?? 'Tidak Diketahui') == $kalangan);
+
+        $rekapKalangan[] = [
+            'kalangan' => $kalangan,
+            'total' => $jumlah,
+            'sudah_verifikasi' => $usersInKalangan->filter(fn($u) => $u->userFiles?->status_verifikasi == 'Sudah Verifikasi')->count(),
+            'belum_verifikasi' => $usersInKalangan->filter(fn($u) => $u->userFiles?->status_verifikasi != 'Sudah Verifikasi')->count(),
+            'sudah_wawancara' => $usersInKalangan->filter(fn($u) => $u->userFiles?->wawancara_status != null)->count(),
+            'belum_wawancara' => $usersInKalangan->filter(fn($u) => $u->userFiles?->wawancara_status == null)->count(),
+        ];
+    }
+        
+            return view('dashboard.admin', compact('greeting', 'totalPelamar', 'sudahVerifikasi', 'belumVerifikasi', 'sudahWawancara', 'belumWawancara',        'kalanganLabels', 'kalanganValues', 'rekapKalangan', 'kalanganData', 'totalLulusAdministrasi', 'totalTidakLulusAdministrasi', 'totalLulusWawancara', 'totalTidakLulusWawancara'));
     }
 
     public function userDashboard()

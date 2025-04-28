@@ -35,7 +35,6 @@
                                     class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
-                   
                 </div>
                 <!-- Main content -->
                 <section class="content">

@@ -113,7 +113,7 @@
                                         <button class="btn btn-primary btn-sm"
                                             onclick="intrvwModal({{ $pel->id }})"
                                             data-bs-toggle="modal" data-bs-target="#modalintrvw">
-                                            <i class="fas fa-edit"></i>
+                                            <i class="fas fa-check"></i>
                                         </button>
                                     </td>
                                 </tr>
