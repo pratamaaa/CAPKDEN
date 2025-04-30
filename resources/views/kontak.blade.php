@@ -56,16 +56,21 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-4">
+                                        <div class="col-lg-12">
                                             <div class="info-post">
                                                 <div class="icon">
                                                     <img src="{{ asset('bs/assets/images/whatsapp.png') }}"
                                                         alt="">
-                                                    <a href="https://wa.me/message/NQ2JHXK5KZFLB1">081214140425</a>
+                                                    <a href="https://wa.me/message/NQ2JHXK5KZFLB1">081214140425 <br>
+                                                    
+                                                        <strong>(tidak menerima panggilan seluler dan panggilan
+                                                            whatsapp, hanya menerima pesan whatsapp pada jam kerja, kecuali jam
+                                                            istirahat) <br>Pada hari Senin s.d. Jumat pukul 08.00 s.d. 16.00 WIB.</strong>
+                                                        </a>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-8">
+                                        <div class="col-lg-12">
                                             <div class="info-post">
                                                 <div class="icon">
                                                     <img src="{{ asset('bs/assets/images/location-icon.png') }}"
