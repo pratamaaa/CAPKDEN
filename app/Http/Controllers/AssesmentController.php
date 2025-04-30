@@ -54,6 +54,10 @@ class AssesmentController extends Controller
 
 public function store(Request $request)
 {
+    if (!in_array(auth()->user()->role, ['admin', 'verifikator'])) {
+        abort(403, 'Unauthorized action.');
+    }
+    
     $request->validate([
         'user_id' => 'required|exists:users,id',
         'assessment_status' => 'required|in:Lulus,Tidak Lulus',
