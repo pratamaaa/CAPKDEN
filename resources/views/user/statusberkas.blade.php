@@ -5,11 +5,29 @@
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-8">
                         <div class="card card-success">
                             <div class="card-header">
                                 <h3 class="card-title">Status Kelengkapan Berkas</h3>
                             </div>
+
+                            <div class="alert alert-warning d-flex align-items-start gap-3 p-3" role="alert"
+                    style="border-radius: 8px;">
+                    <i class="fas fa-exclamation-triangle fa-lg text-warning mt-1"></i>
+                    <div>
+                        <h6 class="mb-1 fw-bold text-dark">Perhatian sebelum <strong>SUBMIT FINAL!</strong></h6>
+                        <ul class="mb-0 ps-3 text-dark">
+                            <li>Seluruh dokumen wajib diisi dan diunggah/ upload.</li>
+                            <li>Dokumen terkait Riwayat Pendidikan yang wajib diisi dan diunggah adalah data pendidikan Sarjana (S1).</li>
+                            <li>Dokumen terkait Rekomendasi Pengusul wajib diisi dan diunggah dengan ketentuan:</li>
+                            <li>1. Jika Anda memiliki dukungan dari <strong>Lembaga Pendidikan, Organisasi Profesi, atau Asosiasi</strong>, maka <strong>Rekomendasi
+                                Pakar cukup 1 (satu) surat</strong>.</li>
+                        <li>2. Jika Anda <strong>tidak</strong> memiliki dukungan dari <strong>Lembaga Pendidikan, Organisasi Profesi, atau Asosiasi</strong></>, maka
+                            <strong>Rekomendasi Pakar wajib 3 (tiga) surat</strong>.
+                        </li>
+                        </ul>
+                    </div>
+                </div>
                             <div class="card-body">
                                 @if ($success)
                                     <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -41,7 +59,7 @@
                                             'upl_rek_pakar2' => 'Rekomendasi Pakar-2',
                                             'upl_rek_pakar3' => 'Rekomendasi Pakar-3',
                                             'lamaran' => 'Surat Lamaran',
-                                            'rangkap_jabatan' => 'Surat Pernyataan Tidak Merangkap Jabatan',
+                                            'rangkap_jabatan' => 'Surat Pernyataan 3 Poin',
                                             'cv' => 'Daftar Riwayat Hidup (CV)',
                                             'pidana' =>
                                                 'Surat Pernyataan Tidak Sedang Menjalani Proses Pidana atau Pernah Dipidana Penjara Berdasarkan Putusan Pengadilan yang Telah Berkekuatan Hukum Tetap',

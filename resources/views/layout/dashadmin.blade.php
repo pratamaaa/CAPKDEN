@@ -302,7 +302,7 @@
 
     @yield('content')
     <footer class="main-footer">
-        <strong>Copyright &copy; 2025 Panitia Seleksi APK DEN.</strong>
+        <strong>Copyright &copy; 2025 Panitia Penyaringan Calon APK DEN.</strong>
 
         <div class="float-right d-none d-sm-inline-block">
             <b>Versi</b> 1.0.0

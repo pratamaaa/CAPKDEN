@@ -21,10 +21,10 @@
                     <div>
                         <h6 class="mb-1 fw-bold text-dark">Perhatian sebelum mengisi!</h6>
                         <ul class="mb-0 ps-3 text-dark">
-                            <li>Jika Anda memiliki dukungan dari <strong>Lembaga Pendidikan, Organisasi Profesi, atau Asosiasi</strong>, maka <strong>Rekomendasi
-                                    Pakar cukup 1 (satu) surat</strong>.</li>
-                            <li>Jika Anda tidak memiliki dukungan dari <strong>Lembaga Pendidikan, Organisasi Profesi, atau Asosiasi</strong></>, maka
-                                <strong>Rekomendasi Pakar wajib 3 (tiga) surat</strong>.
+                            <li>Jika Anda memiliki dukungan dari <strong>Organisasi Pengusul (Lembaga Pendidikan, Organisasi Profesi, atau Asosiasi)</strong>, maka <strong>Rekomendasi
+                                    Pakar tidak wajib diisi</strong>.</li>
+                            <li>Jika Anda <strong>tidak</strong> memiliki dukungan dari <strong>Organisasi Pengusul (Lembaga Pendidikan, Organisasi Profesi, atau Asosiasi)</strong></>, maka
+                                <strong>Rekomendasi Pakar wajib 3 (tiga)</strong>.
                             </li>
                             <li>File diharuskan menggunakan format <strong>PDF</strong>.</li>
                             <li>Ukuran maksimum file <strong>2 MB</strong>.

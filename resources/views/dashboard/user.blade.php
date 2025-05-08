@@ -74,8 +74,9 @@
                                 <div>
                                     <h6 class="mb-1 fw-bold text-dark">Mohon diperhatikan!</h6>
                                     <ul class="mb-0 ps-3 text-dark">
-                                        <li>Pastikan Anda sudah mengupdate <strong>Data Diri dan Kelengkapan Berkas</strong>, pada menu yang sudah disediakan.</li>
-                                        <li>Cek kembali data yang sudah di submit sebelum melakukan <strong>Submit Data Final</strong> dihalaman <strong>Status Berkas</strong>. Jika Anda tidak menyelesaikan dan belum mensubmit sampai batas waktu yang ditetapkan, maka akan dianggap gugur dalam proses Administrasi.
+                                        <li>Pastikan Anda sudah mengupdate <strong>Data Diri dan Upload Kelengkapan Berkas</strong>, pada menu yang sudah disediakan.</li>
+                                        <li>Cek kembali data yang sudah di upload sebelum melakukan <strong>Submit Data Final</strong> pada menu <strong>Status Berkas</strong>. </li>
+                                            <li>Jika Anda tidak menyelesaikan dan belum mengklik <strong>Submit Data Final</strong> sampai batas waktu yang ditetapkan, maka akan dianggap gugur dalam proses Administrasi.
                                         </li>
                                         <li>
                                             Batas akhir penyampaian data:
@@ -101,7 +102,7 @@
                                         </style>
                                         
                                         <script>
-                                            const deadline = new Date("May 14, 2025 23:59:59").getTime();
+                                            const deadline = new Date("May 30, 2025 23:59:59").getTime();
                                         
                                             const x = setInterval(function () {
                                                 const now = new Date().getTime();
@@ -329,7 +330,7 @@
                                             <th>#</th>
                                             <th>Tahapan</th>
                                             <th>Status</th>
-                                            <th>Keterangan</th>
+                                            {{-- <th>Keterangan</th> --}}
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -355,8 +356,10 @@
                                             <tr>
                                                 <td>{{ $index + 1 }}</td>
                                                 <td>{{ $item['label'] }}</td>
-                                                <td><span class="badge {{ $badgeClass }}">{{ $statusText }}</span></td>
-                                                <td>{{ $item['catatan'] ?? '-' }}</td>
+                                                <td>
+                                                    {{-- <span class="badge {{ $badgeClass }}">{{ $statusText }}</span> --}}
+                                                </td>
+                                                {{-- <td>{{ $item['catatan'] ?? '-' }}</td> --}}
                                             </tr>
                                         @endforeach
                                     </tbody>
