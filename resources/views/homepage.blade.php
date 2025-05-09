@@ -47,7 +47,7 @@
   <div id="customCarousel" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img src="{{ asset('bs/assets/images/sliderbanner.png') }}" class="d-block w-100" alt="Slide 1">
+        <img src="{{ asset('bs/assets/images/sliderbanner2.png') }}" class="d-block w-100" alt="Slide 1">
       </div>
       {{-- <div class="carousel-item">
         <img src="{{ asset('bs/assets/images/5.png') }}" class="d-block w-100" alt="Slide 2">
