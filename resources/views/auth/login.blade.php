@@ -68,7 +68,7 @@
                         <a href="{{ route('reset-password.form') }}" class="auth-link text-black">Lupa password?</a>
                     </div>
 
-                    <button type="submit" class="btn btn-primary w-100">Login</button>
+                    <button type="submit" class="btn btn-primary w-100">Login Page</button>
                 </form>
 
                 <div class="text-center mt-3">
