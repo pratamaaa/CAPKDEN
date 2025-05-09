@@ -50,7 +50,7 @@
         <img src="{{ asset('bs/assets/images/slidebannerden2.png') }}" class="d-block w-100" alt="Slide 1">
       </div>
       <div class="carousel-item">
-        <img src="{{ asset('bs/assets/images/4.jpg') }}" class="d-block w-100" alt="Slide 2">
+        <img src="{{ asset('bs/assets/images/3.png') }}" class="d-block w-100" alt="Slide 2">
       </div>
       
     </div>
