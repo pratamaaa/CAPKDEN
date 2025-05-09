@@ -52,6 +52,7 @@
       <div class="carousel-item">
         <img src="{{ asset('bs/assets/images/3.png') }}" class="d-block w-100" alt="Slide 2">
       </div>
+      
     </div>
 
     <!-- Optional Next/Prev controls -->
