@@ -66,7 +66,7 @@
                             <li class="scroll-to-section"><a href="{{ url('/') }}" class="active">Home</a></li>
                             <li class="scroll-to-section"><a href="{{ url('/pengumuman') }}">Pengumuman</a></li>
                             <li class="scroll-to-section"><a href="{{ url('/kontak') }}">Kontak Kami</a></li>
-                            <li class="scroll-to-section"><div class="border-first-button"><a href="{{ url('/login') }}">Login</a></div></li>
+                            <li class="scroll-to-section"><a href="{{ url('/login') }}">Login</a></li>
                             {{-- <li class="scroll-to-section">
                                 <div class="border-first-button">
                                     <a href="{{ url('/login') }}">LOGIN</a>
