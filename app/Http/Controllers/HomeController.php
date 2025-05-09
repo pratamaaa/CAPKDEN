@@ -37,8 +37,8 @@ class HomeController extends Controller
                                     ['judul' => 'Pengangkatan APK DEN Periode 2026-2030', 'gambar' => 'number/8.png', 'tanggal'=>'Menyesuaikan'],
                                 ];
         $data['syarat'] = DB::table('persyaratan')->orderBy('urutan', 'asc');
-        return view('homepage', $data);
-        // return view('undermaintenance', $data);
+        // return view('homepage', $data);
+        return view('undermaintenance', $data);
     }
 
     public function homepage2(){
