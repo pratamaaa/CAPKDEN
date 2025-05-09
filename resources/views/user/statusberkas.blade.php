@@ -255,7 +255,7 @@
         document.getElementById('submitFinalBtn').addEventListener('click', function () {
             Swal.fire({
                 title: 'Selesaikan Dokumen?',
-                text: "Pastikan semua dokumen sudah lengkap sebelum disubmit!",
+                text: "Pastikan semua dokumen sudah lengkap sebelum disubmit. Jika sudah submit, data Anda tidak bisa diubah lagi.",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#198754',
@@ -271,4 +271,36 @@
         });
     </script>
     
+    <!-- Modal -->
+<!-- Modal Final Submit -->
+<div class="modal fade" id="finalSubmitModal" tabindex="-1" aria-labelledby="finalSubmitModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content rounded-3">
+      <div class="modal-header bg-success text-white">
+        <h5 class="modal-title" id="finalSubmitModalLabel">Registrasi Berhasil!</h5>
+      </div>
+      <div class="modal-body text-center">
+        <p>Terima kasih, Anda telah menyelesaikan proses registrasi.</p>
+        <a href="{{ url('/pelamardetail_pdf') }}?userid={{ Auth::id() }}" 
+           class="btn btn-primary mb-3" target="_blank">
+          Download Resume
+        </a>
+      </div>
+      <div class="modal-footer justify-content-center">
+        <a href="{{ route('statusberkas') }}" class="btn btn-secondary">Selesai</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+@if(session('final_submit'))
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const modalEl = document.getElementById('finalSubmitModal');
+    const modal = new bootstrap.Modal(modalEl);
+    modal.show();
+  });
+</script>
+@endif
+
 @endsection

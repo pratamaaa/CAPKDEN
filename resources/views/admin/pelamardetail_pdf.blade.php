@@ -136,7 +136,14 @@
                 </table>
             </td>
         </tr>
+        <tr>
+    <tr>
+        <td colspan="2" class="row-gray" style="font-weight: bold;">
+            Status Pendaftaran: <span style="color: green;">Sudah Submit.</span> Tanggal Submit: {{ optional($pelamar)->updated_at ?? 'Belum diisi' }}
+        </td>
+    </tr>
 
+</tr>
     </table>
 </body>
 </html>

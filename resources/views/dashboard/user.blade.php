@@ -76,7 +76,7 @@
                                     <h6 class="mb-1 fw-bold text-dark">Mohon diperhatikan!</h6>
                                     <ul class="mb-0 ps-3 text-dark">
                                         <li>Pastikan Anda sudah mengupdate <strong>Data Diri dan Upload Kelengkapan Berkas</strong>, pada menu yang sudah disediakan.</li>
-                                        <li>Cek kembali data yang sudah di upload sebelum melakukan <strong>Submit Data Final</strong> pada menu <strong>Status Berkas</strong>. </li>
+                                        <li>Cek kembali data yang sudah di upload sebelum melakukan <strong>Submit Data Final</strong> pada menu <strong>Status Berkas</strong>. Jika sudah submit, data yang sudah di input <strong>tidak bisa diubah</strong> kembali</li>
                                             <li>Jika Anda tidak menyelesaikan dan belum mengklik <strong>Submit Data Final</strong> sampai batas waktu yang ditetapkan, maka akan dianggap gugur dalam proses Administrasi.
                                         </li>
                                         <li>

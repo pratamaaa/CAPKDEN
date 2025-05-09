@@ -19,6 +19,7 @@ use App\Http\Controllers\PertanyaanWawancaraController;
 use App\Http\Controllers\PdfController;
 use App\Helpers\Bantuan;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class DashboardController extends Controller
 {
@@ -369,7 +370,7 @@ public function pelamardetail(Request $req){
 
 public function pelamardetail_pdf(Request $req){
     $user_id = $req->get('userid');
-
+    $user = auth()->user();
     $files_check = DB::table('user_files')->where('user_id', $user_id)->count();
 
     if ($files_check == 0){
@@ -384,7 +385,7 @@ public function pelamardetail_pdf(Request $req){
     }
 
     $pdf = PDF::loadView('admin.pelamardetail_pdf', compact('files_check', 'pelamar'))->setPaper('a4', 'portrait');
-    return $pdf->stream('detailpelamar.pdf');
+    return $pdf->stream('detailpelamar.pdf', 'pelamar');
 }
 
 public function password()

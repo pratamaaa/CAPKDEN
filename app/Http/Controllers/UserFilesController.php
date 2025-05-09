@@ -177,14 +177,32 @@ if (!$userFiles) {
     $success = session('success');
     return view('user.statusberkas', compact('userFiles', 'greeting', 'success'));
 }
+// public function updatestatus(Request $request, $field)
+// {
+//     $userFiles = UserFiles::where('user_id', Auth::id())->first();
+//     $userFiles->status_data = 1;
+//     $userFiles->save();
+//     return redirect()->route('statusberkas')->with('success', 'Status Berkas berhasil diperbarui.');
+
+// }
+
 public function updatestatus(Request $request, $field)
 {
     $userFiles = UserFiles::where('user_id', Auth::id())->first();
-    $userFiles->status_data = 1;
-    $userFiles->save();
-    return redirect()->route('statusberkas')->with('success', 'Status Berkas berhasil diperbarui.');
 
+    if ($userFiles) {
+        $userFiles->status_data = 1;
+        $userFiles->save();
+    }
+
+    // Set session untuk trigger modal
+    return redirect()->back()->with([
+        'final_submit' => true,
+        'success' => 'Status Berkas berhasil diperbarui.'
+    ]);
 }
+
+
 public function update(Request $request, $field)
 {
     $request->validate([
