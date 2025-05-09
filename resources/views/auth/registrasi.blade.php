@@ -29,7 +29,7 @@
 
                         <div class="input-group mb-3">
                             <input type="text" name="name" class="form-control" id="name"
-                                placeholder="Nama Lengkap" required value="{{ old('name') }}">
+                                placeholder="Nama Lengkap (tanpa gelar)" required value="{{ old('name') }}">
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-user"></span>

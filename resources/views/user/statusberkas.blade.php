@@ -20,10 +20,10 @@
                             <li>Seluruh dokumen wajib diisi dan diunggah/ upload.</li>
                             <li>Dokumen terkait Riwayat Pendidikan yang wajib diisi dan diunggah adalah data pendidikan Sarjana (S1).</li>
                             <li>Dokumen terkait Rekomendasi Pengusul wajib diisi dan diunggah dengan ketentuan:</li>
-                            <li>1. Jika Anda memiliki dukungan dari <strong>Lembaga Pendidikan, Organisasi Profesi, atau Asosiasi</strong>, maka <strong>Rekomendasi
-                                Pakar cukup 1 (satu) surat</strong>.</li>
-                        <li>2. Jika Anda <strong>tidak</strong> memiliki dukungan dari <strong>Lembaga Pendidikan, Organisasi Profesi, atau Asosiasi</strong></>, maka
-                            <strong>Rekomendasi Pakar wajib 3 (tiga) surat</strong>.
+                            <p>1. Jika Anda memiliki dukungan dari <strong>Lembaga Pendidikan, Organisasi Profesi, atau Asosiasi</strong>, maka <strong>Rekomendasi
+                                Pakar cukup 1 (satu) surat</strong>. <br>
+                        2. Jika Anda <strong>tidak</strong> memiliki dukungan dari <strong>Lembaga Pendidikan, Organisasi Profesi, atau Asosiasi</strong></>, maka
+                            <strong>Rekomendasi Pakar wajib 3 (tiga) surat</strong>.</p>
                         </li>
                         </ul>
                     </div>

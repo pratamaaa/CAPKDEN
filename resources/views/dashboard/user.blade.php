@@ -18,9 +18,10 @@
                         <div class="card-body box-profile">
                             <div class="text-center">
                                 @if ($userProfile)
-                                    <img src="{{ asset('uploads/pas_foto/' . optional($userProfile)->pas_foto) }}"
-                                        alt="Foto Profil" class="img-thumbnail"
-                                        style="width: 250px; height: 250px; border-radius: 50%;">
+                                <img src="{{ asset('uploads/pas_foto/' . optional($userProfile)->pas_foto) }}"
+                                alt="Foto Profil"
+                                class="img-thumbnail"
+                                style="width: 250px; height: 250px; border-radius: 50%; object-fit: cover;">
                                 @else
                                     <img src="{{ asset('uploads/pas_foto/default.png') }}" alt="Default Foto"
                                         class="img-thumbnail" style="width: 250px; height: 250px; border-radius: 50%;">
