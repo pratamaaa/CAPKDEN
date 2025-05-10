@@ -281,7 +281,7 @@
       </div>
       <div class="modal-body text-center">
         <p>Terima kasih, Anda telah menyelesaikan proses registrasi.</p>
-        <a href="{{ url('/pelamardetail_pdf') }}?userid={{ Auth::id() }}" 
+        <a href="{{ url('/datapelamar_pdf') }}?userid={{ Auth::id() }}" 
            class="btn btn-primary mb-3" target="_blank">
           Download Resume
         </a>

@@ -57,6 +57,59 @@ class HomeController extends Controller
         return view('pengumuman', compact('pengumumans'));
     }
 
+    
+public function check_pelamar(Request $req){
+    $uuid = $req->get('code');
+    $user = DB::table('users')->where('uuid', $uuid)->first();
+    $status = false;
+    if($user){
+        $status = true;
+        $user_id = $user->id;
+    }
+
+    if($status){
+        $files_check = DB::table('user_files')->where('user_id', $user_id)->count();
+
+        if ($files_check == 0){
+            $pelamar = DB::table('users as us')
+                    ->join('user_profiles as pr', 'us.id', '=', 'pr.user_id')
+                    ->where('us.id', $user_id)->first();
+        }else{
+            $pelamar = DB::table('users as us')
+                    ->join('user_profiles as pr', 'us.id', '=', 'pr.user_id')
+                    ->join('user_files as fi', 'us.id', '=', 'fi.user_id')
+                    ->where('us.id', $user_id)->first();
+        }
+    }
+    if(!$status){
+        echo 'Anda Tidak Terdaftar';
+        die();
+    }
+
+    $barcode =  'barcode/'.$user_id.'.svg';
+    return view('user.datapelamar', compact('files_check', 'pelamar', 'barcode'));
+    echo '<pre>';
+    print_r($pelamar);
+    die();
+   
+    // $fileName = $user_id.'.svg';
+    // $path =  'barcode/'.$fileName;
+    // $secureID = md5($user_id);
+
+    // $qrCode = \SimpleSoftwareIO\QrCode\Facades\QrCode::format('svg')
+    // ->size(400)
+    // ->margin(5)
+    // // ->encoding('UTF-8')
+    // // ->errorCorrection('H')
+    // ->generate("http://capk.den.go.id/check_pelamar?code=".$secureID);
+    // Storage::put($path, $qrCode);
+    // $barcode = $path;
+
+    // $pdf = PDF::loadView('user.datapelamar', compact('files_check', 'pelamar', 'barcode'))->setPaper('a5', 'landscape');
+    // return $pdf->stream('detailpelamar.pdf', 'pelamar');
+}
+
+
     // public function pengumuman2(){
     //     // $pengumumans = PengumumanPdf::all();
     //     // return view('pengumuman2', compact('pengumumans'));

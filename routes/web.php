@@ -19,6 +19,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/',[HomeController::class, 'homepage']);
 Route::get('/home2',[HomeController::class, 'homepage2']);
+Route::get('/check_pelamar',[HomeController::class, 'check_pelamar']);
+
 Route::get('/pengumuman',[HomeController::class, 'pengumuman']);
 // Route::get('/pengumuman2',[HomeController::class, 'pengumuman2']);
 Route::get('/kontak',[HomeController::class, 'kontak']);
@@ -84,6 +86,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/assesment/store', [AssesmentController::class, 'store'])->name('assesment.store');
     Route::get('/pelamardetail', [DashboardController::class, 'pelamardetail']);
     Route::get('/pelamardetail_pdf', [DashboardController::class, 'pelamardetail_pdf']);
+    Route::get('/datapelamar_pdf', [DashboardController::class, 'datapelamar_pdf']);
+    Route::get('/barcode', [DashboardController::class, 'barcode']);
     Route::get('/download-pdf/{id}', [PdfController::class, 'generatePdf'])->name('download.pdf');
     // Route::get('/pengumuman', [PengumumanController::class, 'index'])->name('pengumuman.index');
     Route::post('/pengumuman/upload', [PengumumanController::class, 'upload'])->name('pengumuman.upload');

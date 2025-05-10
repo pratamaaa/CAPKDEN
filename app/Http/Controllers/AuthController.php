@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class AuthController extends Controller
 {
@@ -70,6 +71,7 @@ class AuthController extends Controller
 
         // Simpan ke Database
         User::create([
+            'uuid' => (string) Str::uuid(),
             'name' => $request->name,
             'username' => $request->username,
             'nik' => $request->nik,

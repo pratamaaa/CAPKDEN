@@ -23,6 +23,18 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class DashboardController extends Controller
 {
+    public function barcode()
+    {
+            $fileName = 'test.svg';
+            $path =  $fileName;
+            $qrCode = \SimpleSoftwareIO\QrCode\Facades\QrCode::format('svg')
+                ->size(400)
+                ->margin(5)
+                // ->encoding('UTF-8')
+                // ->errorCorrection('H')
+                ->generate("https://pupaperadi.or.id/checkttbp?code=");
+            Storage::put($path, $qrCode);
+    }
     private function getGreeting()
     {
         date_default_timezone_set('Asia/Jakarta');
@@ -367,6 +379,41 @@ public function pelamardetail(Request $req){
 
     return view('admin.pelamardetail', compact('files_check', 'pelamar', 'pengalaman'));
 }
+
+public function datapelamar_pdf(Request $req){
+    $user_id = $req->get('userid');
+    $user = auth()->user();
+        $datauser = DB::table('users')->where('id', $user_id)->first();
+    $files_check = DB::table('user_files')->where('user_id', $user_id)->count();
+
+    if ($files_check == 0){
+        $pelamar = DB::table('users as us')
+                   ->join('user_profiles as pr', 'us.id', '=', 'pr.user_id')
+                   ->where('us.id', $user_id)->first();
+    }else{
+        $pelamar = DB::table('users as us')
+                   ->join('user_profiles as pr', 'us.id', '=', 'pr.user_id')
+                   ->join('user_files as fi', 'us.id', '=', 'fi.user_id')
+                   ->where('us.id', $user_id)->first();
+    }
+
+    $fileName = $datauser->uuid.'.svg';
+    $path =  'barcode/'.$fileName;
+    $secureID = $datauser->uuid;
+
+    $qrCode = \SimpleSoftwareIO\QrCode\Facades\QrCode::format('svg')
+    ->size(400)
+    ->margin(5)
+    // ->encoding('UTF-8')
+    // ->errorCorrection('H')
+    ->generate("http://capk.den.go.id/check_pelamar?code=".$secureID);
+    Storage::put($path, $qrCode);
+    $barcode = $path;
+
+    $pdf = PDF::loadView('user.datapelamar', compact('files_check', 'pelamar', 'barcode'))->setPaper('a5', 'landscape');
+    return $pdf->stream('detailpelamar.pdf', 'pelamar');
+}
+
 
 public function pelamardetail_pdf(Request $req){
     $user_id = $req->get('userid');
