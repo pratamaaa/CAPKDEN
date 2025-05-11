@@ -149,20 +149,11 @@
         </tr>
     </table>
     @php
-        if ($pelamar->gelar_depan == '' || $pelamar->gelar_depan == '-') {
-            $gelardepan = '';
-        } else {
-            $gelardepan = $pelamar->gelar_depan;
-        }
+    $gelardepan = ($pelamar && $pelamar->gelar_depan && $pelamar->gelar_depan != '-') ? $pelamar->gelar_depan : '';
+    $gelarbelakang = ($pelamar && $pelamar->gelar_belakang && $pelamar->gelar_belakang != '-') ? $pelamar->gelar_belakang : '';
+    $namalengkap_pelamar = ($pelamar && $pelamar->name) ? $gelardepan . ' ' . $pelamar->name . ($gelarbelakang ? ', ' . $gelarbelakang : '') : '';
+@endphp
 
-        if ($pelamar->gelar_belakang == '' || $pelamar->gelar_belakang == '-') {
-            $gelarbelakang = '';
-        } else {
-            $gelarbelakang = $pelamar->gelar_belakang;
-        }
-
-        $namalengkap_pelamar = $gelardepan . ' ' . $pelamar->name . ', ' . $gelarbelakang;
-    @endphp
     <table width="100%"
         style="padding-left: 0px;padding-top: 10px;padding-right: 0px;padding-bottom: 10px;border:0px solid;">
         <tr>
