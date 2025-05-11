@@ -192,13 +192,16 @@
                         <tr>
                             <td width="60px" style="border:0px solid;vertical-align:top;">NIK</td>
                             <td width="10px" style="border:0px solid;vertical-align:top;">:</td>
-                            <td width="400px" style="border:0px solid;vertical-align:top;">{{ $pelamar->nik }}</td>
+                            <td width="400px" style="border:0px solid;vertical-align:top;">
+    {{ $pelamar->nik ?? '-' }}
+</td>
                         </tr>
                         <tr>
                             <td width="60px" style="border:0px solid;vertical-align:top;">Kalangan</td>
                             <td width="10px" style="border:0px solid;vertical-align:top;">:</td>
-                            <td width="400px" style="border:0px solid;vertical-align:top;">{{ $pelamar->kalangan }}
-                            </td>
+                            <td width="400px" style="border:0px solid;vertical-align:top;">
+    {{ $pelamar->kalangan ?? '-' }}
+</td>
                         </tr>
                     </table>
                 </div>
