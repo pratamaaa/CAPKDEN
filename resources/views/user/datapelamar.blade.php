@@ -118,12 +118,11 @@
 
 <body>
     @php
-    $gelardepan = ($pelamar?->gelar_depan && $pelamar->gelar_depan !== '-') ? $pelamar->gelar_depan : '';
-    $gelarbelakang = ($pelamar?->gelar_belakang && $pelamar->gelar_belakang !== '-') ? $pelamar->gelar_belakang : '';
-    $nama = $pelamar?->name ?? '[Nama tidak tersedia]';
-
-    $namalengkap_pelamar = trim($gelardepan . ' ' . $nama) . ($gelarbelakang ? ', ' . $gelarbelakang : '');
+    $gelardepan = ($pelamar && $pelamar->gelar_depan && $pelamar->gelar_depan != '-') ? $pelamar->gelar_depan : '';
+    $gelarbelakang = ($pelamar && $pelamar->gelar_belakang && $pelamar->gelar_belakang != '-') ? $pelamar->gelar_belakang : '';
+    $namalengkap_pelamar = ($pelamar && $pelamar->name) ? $gelardepan . ' ' . $pelamar->name . ($gelarbelakang ? ', ' . $gelarbelakang : '') : '';
 @endphp
+
 
     <img src="{{ storage_path('app/logo-den.png') }}" alt="" style="width: 300px; position:absolute">
     <img src="{{ storage_path('app/' . $barcode) }}" alt=""
