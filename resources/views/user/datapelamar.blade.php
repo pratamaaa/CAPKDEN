@@ -141,7 +141,7 @@
                 <div class="title">STATUS PENDAFTARAN</div>
 
                 <div class="status-box">
-                    Anda Telah Berhasil <span>SUBMIT</span>
+                    Terima Kasih Anda berhasil <span>SUBMIT</span>
                 </div>
 
                 <div class="submit-time">
