@@ -124,7 +124,8 @@
 @endphp
 
 
-    <img src="{{ storage_path('app/logo-den.png') }}" alt="" style="width: 300px; position:absolute">
+    <img src="{{ asset('bs/assets/images/logo-den.png') }}" alt="" style="width: 300px; position:absolute">
+
     <img src="{{ storage_path('app/' . $barcode) }}" alt=""
         style="width: 100px; position:absolute;right:0;top:-10">
 
