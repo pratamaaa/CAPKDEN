@@ -159,8 +159,24 @@
         <tr>
             <td width="25%" style="border:0px solid red;">
                 <div class="photo">
-                    <img src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('uploads/pas_foto/' . $pelamar->pas_foto))) }}"
-                        style="width:3cm;height:4cm;margin-right:10px;margin-left:10px;">
+                    @php
+    $defaultFotoPath = public_path('images/default_pas_foto.png'); // Gambar default jika tidak ada
+    $fotoPath = $pelamar && $pelamar->pas_foto
+        ? public_path('uploads/pas_foto/' . $pelamar->pas_foto)
+        : $defaultFotoPath;
+
+    $fotoBase64 = file_exists($fotoPath)
+        ? base64_encode(file_get_contents($fotoPath))
+        : '';
+@endphp
+
+@if ($fotoBase64)
+    <img src="data:image/png;base64,{{ $fotoBase64 }}"
+        style="width:3cm;height:4cm;margin-right:10px;margin-left:10px;">
+@else
+    <p>Foto tidak tersedia</p>
+@endif
+
                 </div>
             </td>
             <td width="100%" style="border:0px solid green; vertical-align:top;padding:0px" cellpadding="0"
