@@ -25,7 +25,7 @@
         <div class="small-box bg-info">
             <div class="inner">
                 <h3>{{ $totalPelamar }}</h3>
-                <p>Total Seluruh Pelamar</p>
+                <p>Total Seluruh Pelamar <br>(yang sudah update data diri)</p>
             </div>
             <div class="icon">
                 <i class="fas fa-users"></i>
