@@ -96,7 +96,7 @@ class DashboardController extends Controller
 
         // Data untuk Tabel Rekap
     $rekapKalangan = [];
-    foreach ($kalanganData as $kalangan => $jumlah) {
+    foreach ($kalanganDataPelamar as $kalangan => $jumlah) {
         $usersInKalangan = $users->filter(fn($user) => ($user->userFiles?->kalangan ?? 'Tidak Diketahui') == $kalangan);
 
         $rekapKalangan[] = [
@@ -109,18 +109,16 @@ class DashboardController extends Controller
         ];
     }
         
-            return view('dashboard.admin', compact('greeting', 'totalPelamar', 'sudahVerifikasi', 'belumVerifikasi', 'sudahWawancara', 'belumWawancara',        'kalanganLabels', 'kalanganValues', 'rekapKalangan', 'kalanganData', 'totalLulusAdministrasi', 'totalTidakLulusAdministrasi', 'totalLulusWawancara', 'totalTidakLulusWawancara'));
+            return view('dashboard.admin', compact('greeting', 'totalPelamar', 'sudahVerifikasi', 'belumVerifikasi', 'sudahWawancara', 'belumWawancara',        'kalanganLabels', 'kalanganValues', 'rekapKalangan', 'kalanganDataPelamar', 'totalLulusAdministrasi', 'totalTidakLulusAdministrasi', 'totalLulusWawancara', 'totalTidakLulusWawancara'));
     }
 
     public function verifikatorDashboard()
     {
-        $users = User::where('role', 'user')
-        ->with('userFiles')
-        ->get();
+        $users = User::with(['userFiles', 'userProfile'])->get();
+        
         $greeting = $this->getGreeting();
-        $totalPelamar = DB::table('users')
-            ->where('role', 'user') 
-            ->count();
+        $totalPelamar = User::where('role', 'user')->count();
+            
         $sudahVerifikasi = $users->filter(fn($user) => $user->userFiles && in_array($user->userFiles->administrasi_status, ['lulus', 'tidak lulus'])
         )->count();
         $belumVerifikasi = $totalPelamar - $sudahVerifikasi;
@@ -134,7 +132,7 @@ class DashboardController extends Controller
         $kalanganLabels = $kalanganData->keys();
         $kalanganValues = $kalanganData->values();
 
-        $kalanganData = DB::table('user_profiles')
+        $kalanganDataPelamar = DB::table('user_profiles')
     ->select(
         'kalangan',
         DB::raw('COUNT(user_profiles.user_id) as total_pelamar'),
@@ -149,7 +147,7 @@ class DashboardController extends Controller
     ->groupBy('kalangan')
     ->get();
 
-    $totalPelamar = $kalanganData->sum('total_pelamar');
+    $totalPelamar = $kalanganDataPelamar->sum('total_pelamar');
     $totalLulusAdministrasi = $kalanganData->sum('lulus_administrasi');
     $totalTidakLulusAdministrasi = $kalanganData->sum('tidak_lulus_administrasi');
     $totalLulusWawancara = $kalanganData->sum('lulus_wawancara');
@@ -170,7 +168,7 @@ class DashboardController extends Controller
         ];
     }
         
-            return view('dashboard.admin', compact('greeting', 'totalPelamar', 'sudahVerifikasi', 'belumVerifikasi', 'sudahWawancara', 'belumWawancara',        'kalanganLabels', 'kalanganValues', 'rekapKalangan', 'kalanganData', 'totalLulusAdministrasi', 'totalTidakLulusAdministrasi', 'totalLulusWawancara', 'totalTidakLulusWawancara'));
+            return view('dashboard.admin', compact('greeting', 'totalPelamar', 'sudahVerifikasi', 'belumVerifikasi', 'sudahWawancara', 'belumWawancara',        'kalanganLabels', 'kalanganValues', 'rekapKalangan', 'kalanganDataPelamar', 'totalLulusAdministrasi', 'totalTidakLulusAdministrasi', 'totalLulusWawancara', 'totalTidakLulusWawancara'));
     }
 
     public function userDashboard()
@@ -338,15 +336,15 @@ class DashboardController extends Controller
 }
 
 
-public function daftarpelamar__()
-{
-    $greeting = $this->getGreeting();
-    $data = User::where('role', 'user')
-            ->with(['userProfile', 'userFiles']) // Pastikan relasi di-load
-            ->get();
+// public function daftarpelamar__()
+// {
+//     $greeting = $this->getGreeting();
+//     $data = User::where('role', 'user')
+//             ->with(['userProfile', 'userFiles']) // Pastikan relasi di-load
+//             ->get();
     
-    return view('admin.daftarpelamar', compact('data', 'greeting'));
-}
+//     return view('admin.daftarpelamar', compact('data', 'greeting'));
+// }
 
 public function daftarpelamar()
 {
@@ -354,10 +352,11 @@ public function daftarpelamar()
     $data = User::where('role', 'user')
             ->with(['userProfile', 'userFiles'])
             ->get();
-    $pelamar = DB::table('users as us')
-               ->join('user_profiles as pr', 'us.id', '=', 'pr.user_id');
     
-    return view('admin.daftarpelamar', compact('data', 'pelamar', 'greeting'));
+    // $pelamar = DB::table('users as us')
+    //            ->join('user_profiles as pr', 'us.id', '=', 'pr.user_id');
+    
+    return view('admin.daftarpelamar', compact('data', 'greeting'));
 }
 
 public function pelamardetail(Request $req){

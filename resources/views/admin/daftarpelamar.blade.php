@@ -20,12 +20,14 @@
                                         <th class="align-top text-center" rowspan="2">Foto</th>
                                         <th class="align-top text-center" rowspan="2" style="width: 250px;">Nama</th>
                                         <th class="align-top text-center" rowspan="2">Calon Kalangan</th>
+                                        <th class="align-top text-center" rowspan="2">Status Submit Data</th>
                             
                                         <!-- Header Pendidikan -->
                                         <th class="align-top text-center" colspan="3">Pendidikan</th>
                             
                                         <!-- Header Pengusul Calon Kalangan -->
                                         <th class="align-top text-center" colspan="4">Pengusul Calon Kalangan</th>
+                                        
                                         <th class="align-top text-center" rowspan="2">Aksi</th>
                                     </tr>
                                     <tr class="header-row">
@@ -43,109 +45,92 @@
                                 </thead>
                             
                                 <tbody>
-                                    @if ($pelamar->count() != 0)
-                                        @foreach ($pelamar->get() as $nourut => $pel)
-                                            <tr>
-                                                <td>{{ $nourut+1 }}</td>
-                                                <td>
-                                                    @if ($pel->pas_foto != '')
-                                                        <img src="{{ asset('uploads/pas_foto/' . $pel->pas_foto) }}" width="100">
-                                                    @else
-                                                        <span class="badge bg-danger">Belum diisi</span>
-                                                    @endif
-                                                </td>
-                                                <td style="width: 250px;">
-                                                    @php
-                                                        if ($pel->gelar_depan == '' || $pel->gelar_depan == '-'){
-                                                            $gelardepan = '';
-                                                        }else{
-                                                            $gelardepan = $pel->gelar_depan;
-                                                        }
+    @if ($data->count() != 0)
+        @foreach ($data as $nourut => $pel)
+            <tr>
+                <td>{{ $nourut + 1 }}</td>
+                <td>
+                    @if ($pel->userProfile?->pas_foto)
+                        <img src="{{ asset('uploads/pas_foto/' . $pel->userProfile->pas_foto) }}" width="100">
+                    @else
+                        <span class="badge bg-danger">Belum diisi</span>
+                    @endif
+                </td>
+                <td style="width: 250px;">
+                    @php
+                        $gelardepan = ($pel->userProfile?->gelar_depan && $pel->userProfile->gelar_depan != '-') ? $pel->userProfile->gelar_depan : '';
+                        $gelarbelakang = ($pel->userProfile?->gelar_belakang && $pel->userProfile->gelar_belakang != '-') ? $pel->userProfile->gelar_belakang : '';
+                        $namalengkap_pelamar = trim("{$gelardepan} {$pel->name}" . ($gelarbelakang ? ", {$gelarbelakang}" : ''));
+                    @endphp
+                    {{ $namalengkap_pelamar }}
+                </td>
+                <td>{{ $pel->userProfile?->kalangan ?? '' }}</td>
+                <td class="text-center">
+                    @php
+                        $statusData = $pel->userFiles->status_data ?? null;
+                    @endphp
+                    @if ($statusData == 1)
+                        <span class="badge bg-success">Sudah Submit</span>
+                    @else
+                        <span class="badge bg-warning">Belum Submit</span>
+                    @endif
+                </td>
+                @php
+                    $berkaspelamar = \App\Helpers\Bantuan::berkaspelamar($pel->id);
+                @endphp
+                <td style="width: 200px;">
+                    @if ($berkaspelamar->count() != 0)
+                        <strong>{{ $berkaspelamar->first()->universitas_sarjana }}</strong>
+                        {{ $berkaspelamar->first()->jurusan_sarjana }}
+                        {{ $berkaspelamar->first()->lulus_sarjana }}
+                    @else
+                        <span class="badge bg-danger">Belum diisi</span>
+                    @endif
+                </td>
+                <td style="width: 200px;">
+                    @if ($berkaspelamar->count() != 0)
+                        <strong>{{ $berkaspelamar->first()->universitas_magister }}</strong>
+                        {{ $berkaspelamar->first()->jurusan_magister }}
+                        {{ $berkaspelamar->first()->lulus_magister }}
+                    @else
+                        <span class="badge bg-danger">Belum diisi</span>
+                    @endif
+                </td>
+                <td style="width: 200px;">
+                    @if ($berkaspelamar->count() != 0)
+                        <strong>{{ $berkaspelamar->first()->universitas_doktoral }}</strong>
+                        {{ $berkaspelamar->first()->jurusan_doktoral }}
+                        {{ $berkaspelamar->first()->lulus_doktoral }}
+                    @else
+                        <span class="badge bg-danger">Belum diisi</span>
+                    @endif
+                </td>
+                <td style="width: 200px;">
+                    {{ $berkaspelamar->first()->org_pengusul ?? 'Belum diisi' }}
+                </td>
+                <td style="width: 200px;">
+                    {{ $berkaspelamar->first()->rek_pakar1 ?? 'Belum diisi' }}
+                </td>
+                <td style="width: 200px;">
+                    {{ $berkaspelamar->first()->rek_pakar2 ?? 'Belum diisi' }}
+                </td>
+                <td style="width: 200px;">
+                    {{ $berkaspelamar->first()->rek_pakar3 ?? 'Belum diisi' }}
+                </td>
+                <td>
+                    <button class="btn btn-primary btn-sm preview-btn" onclick="detailPelamar({{ $pel->id }})" data-bs-toggle="modal" data-bs-target="#modalpelamar">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </td>
+            </tr>
+        @endforeach
+    @else
+        <tr>
+            <td colspan="13">Data tidak tersedia</td>
+        </tr>
+    @endif
+</tbody>
 
-                                                        if ($pel->gelar_belakang == '' || $pel->gelar_belakang == '-'){
-                                                            $gelarbelakang = '';
-                                                        }else{
-                                                            $gelarbelakang = $pel->gelar_belakang;
-                                                        }
-
-                                                        $namalengkap_pelamar = $gelardepan.' '.$pel->name.', '.$gelarbelakang;
-
-                                                        echo $namalengkap_pelamar;
-                                                    @endphp
-                                                </td>
-                                                <td>{{ $pel->kalangan != '' ? $pel->kalangan : '' }}</td>
-                                                @php
-                                                    $berkaspelamar = Bantuan::berkaspelamar($pel->user_id);                                                 
-                                                @endphp
-                                                <td style="width: 200px;">
-                                                    @if ($berkaspelamar->count() != 0)
-                                                        <strong>{{ $berkaspelamar->first()->universitas_sarjana }}</strong>
-                                                        {{ $berkaspelamar->first()->jurusan_sarjana }}
-                                                        {{ $berkaspelamar->first()->lulus_sarjana }}
-                                                    @else
-                                                        <span class="badge bg-danger">Belum diisi</span>
-                                                    @endif
-                                                </td>
-                                                <td style="width: 200px;">
-                                                    @if ($berkaspelamar->count() != 0)
-                                                        <strong>{{ $berkaspelamar->first()->universitas_magister }}</strong>
-                                                        {{ $berkaspelamar->first()->jurusan_magister }}
-                                                        {{ $berkaspelamar->first()->lulus_magister }}
-                                                    @else
-                                                        <span class="badge bg-danger">Belum diisi</span>
-                                                    @endif
-                                                </td>
-                                                <td style="width: 200px;">
-                                                    @if ($berkaspelamar->count() != 0)
-                                                        <strong>{{ $berkaspelamar->first()->universitas_doktoral }}</strong>
-                                                        {{ $berkaspelamar->first()->jurusan_doktoral }}
-                                                        {{ $berkaspelamar->first()->lulus_doktoral }}
-                                                    @else
-                                                        <span class="badge bg-danger">Belum diisi</span>
-                                                    @endif
-                                                </td>
-                                                <td style="width: 200px;">
-                                                    @if ($berkaspelamar->count() != 0)
-                                                        {{ $berkaspelamar->first()->org_pengusul }}
-                                                    @else
-                                                        <span class="badge bg-danger">Belum diisi</span>
-                                                    @endif
-                                                </td>
-                                                <td style="width: 200px;">
-                                                    @if ($berkaspelamar->count() != 0)
-                                                        {{ $berkaspelamar->first()->rek_pakar1 }}
-                                                    @else
-                                                        <span class="badge bg-danger">Belum diisi</span>
-                                                    @endif
-                                                </td>
-                                                <td style="width: 200px;">
-                                                    @if ($berkaspelamar->count() != 0)
-                                                        {{ $berkaspelamar->first()->rek_pakar2 }}
-                                                    @else
-                                                        <span class="badge bg-danger">Belum diisi</span>
-                                                    @endif
-                                                </td>
-                                                <td style="width: 200px;">
-                                                    @if ($berkaspelamar->count() != 0)
-                                                        {{ $berkaspelamar->first()->rek_pakar3 }}
-                                                    @else
-                                                        <span class="badge bg-danger">Belum diisi</span>
-                                                    @endif
-                                                </td>
-                                                <td>
-                                                    <button class="btn btn-primary btn-sm preview-btn" onclick="detailPelamar({{ $pel->user_id }})" data-bs-toggle="modal" data-bs-target="#modalpelamar">
-                                                        <i class="fas fa-eye"></i>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    @else
-                                        <tr>
-                                            <td colspan="12">Data tidak tersedia</td>
-                                        </tr>
-                                    @endif
-                                    
-                                </tbody>
                             </table>
                             
                             

@@ -87,7 +87,7 @@
                                             </tr>
                                         </thead>
                                         <tbody class="text-center">
-                                            @foreach($kalanganData as $kalangan)
+                                            @foreach($kalanganDataPelamar as $kalangan)
                                             <tr>
                                                 <td>{{ $kalangan->kalangan ?? '-' }}</td>
                                                 <td>{{ $kalangan->total_pelamar }}</td>

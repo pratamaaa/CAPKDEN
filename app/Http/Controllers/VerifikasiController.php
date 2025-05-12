@@ -34,6 +34,9 @@ class VerifikasiController extends Controller
         $greeting = $this->getGreeting();
         $dokumenList = UserFiles::with('userProfile.user')->get();
         $data = User::where('role', 'user')
+                ->whereHas('userFiles', function ($query) {
+                    $query->where('status_data', '1');
+                })
                 ->with(['userProfile', 'userFiles'])
                 ->get();
         return view('admin.verifikasi', compact('data','dokumenList', 'greeting'));

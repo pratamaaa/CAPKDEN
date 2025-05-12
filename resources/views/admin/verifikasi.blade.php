@@ -30,7 +30,7 @@
                                                         <th class="align-top text-center" rowspan="2">Foto</th>
                                                         <th class="align-top text-center" rowspan="2" style="width: 250px;">Nama</th>
                                                         <th class="align-top text-center" rowspan="2">Calon Kalangan</th>
-                                                        <th class="align-top text-center" rowspan="2">Status Submit Data</th>
+                                                        {{-- <th class="align-top text-center" rowspan="2">Status Submit Data</th> --}}
                                         
                                                         <!-- Header Pendidikan -->
                                                         <th class="align-top text-center" colspan="15">Verifikasi Berkas</th>
@@ -94,7 +94,7 @@
                                         
                                         
                                                             <td>{{ $d->userProfile->kalangan ?? 'Belum diisi' }}</td>
-                                                            <td class="text-center">
+                                                            {{-- <td class="text-center">
                                                                 @php
                                                                     $statusData = $d->userFiles->status_data ?? null;
                                                                 @endphp
@@ -104,7 +104,7 @@
                                                                 @else
                                                                     <span class="badge bg-warning">Belum Submit</span>
                                                                 @endif
-                                                            </td>
+                                                            </td> --}}
                                                          
                                                             <td class="text-center" style="width: 200px;">
                                                                 @if ($pelamardok->count() != 0)
