@@ -20,50 +20,77 @@
             <div class="container-fluid">
                 <!-- Small boxes (Stat box) -->
                 <div class="row">
-                    <div class="col-lg-3 col-6">
-                        <!-- small box -->
-                        <div class="small-box bg-info">
-                            <div class="inner">
-                                <h3>{{ $totalPelamar }}</h3>
+    <!-- 1. Total Pelamar -->
+    <div class="col-lg-3 col-6">
+        <div class="small-box bg-info">
+            <div class="inner">
+                <h3>{{ $totalPelamar }}</h3>
+                <p>Total Seluruh Pelamar</p>
+            </div>
+            <div class="icon">
+                <i class="fas fa-users"></i>
+            </div>
+            <a href="{{ url('/daftarpelamar') }}" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
 
-                                <p>Total Pelamar</p>
-                            </div>
-                            <div class="icon">
-                                <i class="ion ion-stats-bars"></i>
-                            </div>
-                            <a href="{{ url('/daftarpelamar') }}" class="small-box-footer">Detail <i
-                                    class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                   
-                    <div class="col-lg-3 col-6">
-                        <div class="small-box bg-success">
-                            <div class="inner">
-                                <h3>{{ $sudahVerifikasi }}</h3>
-                                <p>Sudah Verifikasi Administrasi</p>
-                            </div>
-                            <div class="icon">
-                                <i class="fas fa-check-circle"></i>
-                            </div>
-                            <a href="{{ url('/daftarpelamar') }}" class="small-box-footer">Detail <i
-                                class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
+    <!-- 2. Sudah Submit Final -->
+    <div class="col-lg-3 col-6">
+        <div class="small-box bg-success">
+            <div class="inner">
+                <h3>{{ $sudahSubmitFinal }}</h3>
+                <p>Sudah Submit Final</p>
+            </div>
+            <div class="icon">
+                <i class="fas fa-file-upload"></i>
+            </div>
+            <a href="{{ url('/daftarpelamar?submit_data=1') }}" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
 
-                    <div class="col-lg-3 col-6">
-                        <div class="small-box bg-danger">
-                            <div class="inner">
-                                <h3>{{ $belumVerifikasi }}</h3>
-                                <p>Belum Verifikasi Administrasi</p>
-                            </div>
-                            <div class="icon">
-                                <i class="fas fa-times-circle"></i>
-                            </div>
-                            <a href="{{ url('/daftarpelamar') }}" class="small-box-footer">Detail <i
-                                class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                </div>
+    <!-- 3. Belum Submit Final -->
+    <div class="col-lg-3 col-6">
+        <div class="small-box bg-warning">
+            <div class="inner">
+                <h3>{{ $belumSubmitFinal }}</h3>
+                <p>Belum Submit Final</p>
+            </div>
+            <div class="icon">
+                <i class="fas fa-file"></i>
+            </div>
+            <a href="{{ url('/daftarpelamar?submit_data=0') }}" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+
+    <!-- 4. Sudah Diverifikasi -->
+    <div class="col-lg-3 col-6">
+        <div class="small-box bg-primary">
+            <div class="inner">
+                <h3>{{ $sudahVerifikasi }}</h3>
+                <p>Sudah Diverifikasi</p>
+            </div>
+            <div class="icon">
+                <i class="fas fa-user-check"></i>
+            </div>
+            <a href="{{ url('/daftarpelamar?verifikasi=ya') }}" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+
+    <!-- 5. Belum Diverifikasi -->
+    <div class="col-lg-3 col-6">
+        <div class="small-box bg-danger">
+            <div class="inner">
+                <h3>{{ $belumVerifikasi }}</h3>
+                <p>Belum Diverifikasi</p>
+            </div>
+            <div class="icon">
+                <i class="fas fa-user-times"></i>
+            </div>
+            <a href="{{ url('/daftarpelamar?verifikasi=tidak') }}" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+</div>
+
                 <!-- Main content -->
                 <section class="content">
                     <div class="container-fluid">

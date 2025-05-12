@@ -26,7 +26,7 @@
                             <div class="inner">
                                 <h3>{{ $totalPelamar }}</h3>
 
-                                <p>Total Pelamar</p>
+                                <p>Total Pelamar (sudah update data diri)</p>
                             </div>
                             <div class="icon">
                                 <i class="ion ion-stats-bars"></i>
