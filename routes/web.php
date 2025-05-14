@@ -70,10 +70,14 @@ Route::middleware(['auth', 'role:user'])->group(function () {
 });
 
 // === VERIFIKATOR DASHBOARD ===
-Route::middleware(['auth', 'role:verifikator'])->group(function () {
-    Route::get('/verifikator', [DashboardController::class, 'verifikatordashboard'])->name('verifikator.dashboard');
+// Route::middleware(['auth', 'role:verifikator'])->group(function () {
+//     Route::get('/verifikator', [DashboardController::class, 'verifikatordashboard'])->name('verifikator.dashboard');
+// });
+Route::middleware(['auth'])->group(function () {
+    Route::get('/verifikator', function () {
+        return "Route berhasil diakses";
+    });
 });
-
 // === ADMIN DASHBOARD ===
 Route::middleware(['auth', 'role:administrator'])->group(function () {
     Route::get('/admin', [DashboardController::class, 'adminDashboard'])->name('administrator.dashboard');
