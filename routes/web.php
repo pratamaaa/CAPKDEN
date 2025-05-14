@@ -16,10 +16,7 @@ use App\Http\Controllers\{
     WawancaraController
 };
 use Illuminate\Support\Facades\Route;
-Route::get('/debug-role', function () {
-    $role = Auth::user()->role ?? 'Role tidak ditemukan';
-    dd($role);
-});
+
 // === PUBLIC ===
 Route::get('/clear-cache', function () {
     Artisan::call('config:clear');
@@ -73,7 +70,10 @@ Route::middleware(['auth', 'role:user'])->group(function () {
 });
 
 // === VERIFIKATOR DASHBOARD ===
-Route::middleware(['auth', 'role:verifikator'])->group(function () {
+// Route::middleware(['auth', 'role:verifikator'])->group(function () {
+//     Route::get('/verifikator', [DashboardController::class, 'verifikatorDashboard'])->name('verifikator.dashboard');
+// });
+Route::middleware(['auth'])->group(function () {
     Route::get('/verifikator', [DashboardController::class, 'verifikatorDashboard'])->name('verifikator.dashboard');
 });
 
