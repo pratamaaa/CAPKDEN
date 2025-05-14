@@ -358,12 +358,12 @@ class DashboardController extends Controller
     $request->validate([
         'gelar_depan' => 'nullable|string|max:50',
         'gelar_belakang' => 'nullable|string|max:50',
-        'jenis_kelamin' => 'nullable|in:Laki-laki,Perempuan',
-        'alamat' => 'nullable|string',
-        'no_handphone' => 'nullable|numeric|digits_between:10,15',
-        'pas_foto' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+        'jenis_kelamin' => 'required|in:Laki-laki,Perempuan',
+        'alamat' => 'required|string',
+        'no_handphone' => 'required|numeric|digits_between:10,15',
+        'pas_foto' => 'required|image|mimes:jpeg,png,jpg|max:2048',
         'kalangan' => 'required|in:Akademisi,Industri,Teknologi,Lingkungan Hidup,Konsumen',
-        'ktp' => 'nullable|file|mimes:pdf|max:2048'
+        'ktp' => 'required|file|mimes:pdf|max:2048'
     ]);
 
     $data = $request->except(['_token', 'pas_foto', 'ktp']);
