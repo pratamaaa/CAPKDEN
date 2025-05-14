@@ -20,6 +20,7 @@ class RoleMiddleware
         if (!in_array(Auth::user()->role, $rolesArray)) {
             echo '<pre>';
             print_r(Auth::user()->role);
+            print_r($rolesArray);
             die();
             abort(403, 'Role not matched');
         }
