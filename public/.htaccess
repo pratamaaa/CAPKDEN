@@ -1,4 +1,3 @@
-Redirect 302 /htaccess-test https://google.com
 <IfModule mod_rewrite.c>
     <IfModule mod_negotiation.c>
         Options -MultiViews -Indexes
@@ -36,9 +35,12 @@ Redirect 302 /htaccess-test https://google.com
     Deny from all
     </Files>
 
-    # <Directory "/var/www/html/public/bs/docs">
-    #     Options -Indexes
-    #     Order deny,allow
-    #     Deny from all
-    # </Directory>
+    <Directory "/var/www/html/public/bs/docs">
+    Options -Indexes
+    </Directory>
+
+    <Files "composer.lock">
+    Order Allow,Deny
+    Deny from all
+    </Files>
 </IfModule>
