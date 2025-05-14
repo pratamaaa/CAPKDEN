@@ -69,16 +69,11 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     Route::get('/barcode', [DashboardController::class, 'barcode']);
 });
 
-// === VERIFIKATOR DASHBOARD ===
-// Route::middleware(['auth', 'role:verifikator'])->group(function () {
-//     Route::get('/verifikator', [DashboardController::class, 'verifikatorDashboard'])->name('verifikator.dashboard');
-// });
-Route::middleware(['auth', 'role:administrator,verifikator'])->group(function () {
+=== VERIFIKATOR DASHBOARD ===
+Route::middleware(['auth', 'role:verifikator'])->group(function () {
     Route::get('/verifikator', [DashboardController::class, 'verifikatorDashboard'])->name('verifikator.dashboard');
 });
-// Route::middleware(['auth'])->group(function () {
-//     Route::get('/verifikator', [DashboardController::class, 'verifikatorDashboard'])->name('verifikator.dashboard');
-// });
+
 
 // === ADMIN DASHBOARD ===
 Route::middleware(['auth', 'role:administrator'])->group(function () {
@@ -115,8 +110,6 @@ Route::middleware(['auth', 'role:administrator,verifikator'])->group(function ()
     Route::get('/verifikasiform', [VerifikasiController::class, 'verifikasi_form'])->name('verifikasiform');
     Route::post('/verifikasi_saveupdate', [VerifikasiController::class, 'verifikasi_saveupdate'])->name('verifikasi_saveupdate');
 
-    // LAINNYA
-    // Route::get('/tahapanstatus', [TahapanstatusController::class, 'index']);
 });
 
 // === PERTANYAAN WAWANCARA ===
