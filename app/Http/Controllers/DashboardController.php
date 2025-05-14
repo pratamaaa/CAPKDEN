@@ -447,40 +447,54 @@ public function pelamardetail(Request $req){
     return view('admin.pelamardetail', compact('files_check', 'pelamar', 'pengalaman'));
 }
 
-public function datapelamar_pdf(Request $req){
-    $user_id = $req->get('userid');
-    $user = auth()->user();
-        $datauser = DB::table('users')->where('id', $user_id)->first();
-    $files_check = DB::table('user_files')->where('user_id', $user_id)->count();
+public function datapelamar_pdf(Request $req)
+{
+    $uuid = $req->get('uuid');
 
-    if ($files_check == 0){
-        $pelamar = DB::table('users as us')
-                   ->join('user_profiles as pr', 'us.id', '=', 'pr.user_id')
-                   ->where('us.id', $user_id)->first();
-    }else{
-        $pelamar = DB::table('users as us')
-                   ->join('user_profiles as pr', 'us.id', '=', 'pr.user_id')
-                   ->join('user_files as fi', 'us.id', '=', 'fi.user_id')
-                   ->where('us.id', $user_id)->first();
+    // Ambil user berdasarkan UUID
+    $datauser = DB::table('users')->where('uuid', $uuid)->first();
+    if (!$datauser) {
+    abort(404, 'User not found.');
+}
+
+    // Cegah akses oleh user lain (kecuali admin)
+    if (auth()->id() !== $datauser->id && auth()->user()->role !== 'admin') {
+        abort(403, 'Unauthorized access.');
     }
 
-    $fileName = $datauser->uuid.'.svg';
-    $path =  'barcode/'.$fileName;
+    $files_check = DB::table('user_files')->where('user_id', $datauser->id)->count();
+
+    if ($files_check == 0) {
+        $pelamar = DB::table('users as us')
+                    ->join('user_profiles as pr', 'us.id', '=', 'pr.user_id')
+                    ->where('us.id', $datauser->id)
+                    ->first();
+    } else {
+        $pelamar = DB::table('users as us')
+                    ->join('user_profiles as pr', 'us.id', '=', 'pr.user_id')
+                    ->join('user_files as fi', 'us.id', '=', 'fi.user_id')
+                    ->where('us.id', $datauser->id)
+                    ->first();
+    }
+
+    // QR Code generation
+    $fileName = $datauser->uuid . '.svg';
+    $path = 'barcode/' . $fileName;
     $secureID = $datauser->uuid;
 
     $qrCode = \SimpleSoftwareIO\QrCode\Facades\QrCode::format('svg')
-    ->size(400)
-    ->margin(5)
-    // ->encoding('UTF-8')
-    // ->errorCorrection('H')
-    ->generate("http://capk.den.go.id/check_pelamar?code=".$secureID);
+                ->size(400)
+                ->margin(5)
+                ->generate("http://capk.den.go.id/check_pelamar?code=" . $secureID);
     Storage::put($path, $qrCode);
     $barcode = $path;
 
-    $pdf = PDF::loadView('user.datapelamar', compact('files_check', 'pelamar', 'barcode'))->setPaper('a5', 'landscape');
-    return $pdf->stream('detailpelamar.pdf', 'pelamar');
-}
+    // Generate PDF
+    $pdf = PDF::loadView('user.datapelamar', compact('files_check', 'pelamar', 'barcode'))
+              ->setPaper('a5', 'landscape');
 
+    return $pdf->stream('detailpelamar.pdf');
+}
 
 public function pelamardetail_pdf(Request $req){
     $user_id = $req->get('userid');
