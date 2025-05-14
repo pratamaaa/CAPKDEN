@@ -70,9 +70,9 @@ Route::middleware(['auth', 'role:user'])->group(function () {
 });
 
 // === VERIFIKATOR DASHBOARD ===
-
-    Route::get('/verifikator', [DashboardController::class, 'verifikatorDashboard'])->name('verifikator.dashboard');
-
+Route::middleware(['auth', 'role:verifikator'])->group(function () {
+    Route::get('/verifikator', [DashboardController::class, 'verifikatordashboard'])->name('verifikator.dashboard');
+});
 
 // === ADMIN DASHBOARD ===
 Route::middleware(['auth', 'role:administrator'])->group(function () {

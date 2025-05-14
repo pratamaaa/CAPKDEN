@@ -149,7 +149,7 @@ class DashboardController extends Controller
     ));
     }
 
-    public function verifikatorDashboard()
+    public function verifikatordashboard()
 {
     $users = User::with(['userFiles', 'userProfile'])->get();
     
