@@ -47,7 +47,7 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     Route::put('/userfiles/updatestatus/{field}', [UserFilesController::class, 'updatestatus'])->name('userfiles.updatestatus');
     Route::get('/password', [DashboardController::class, 'password'])->name('user.password');
     Route::post('/password', [DashboardController::class, 'updatePassword'])->name('user.updatePassword');
-    Route::get('/datapelamar_pdf', [DashboardController::class, 'datapelamar_pdf']);
+    Route::get('/datapelamar_pdf/{uuid}', [DashboardController::class, 'datapelamar_pdf']);
     Route::resource('pengalaman', UserExperienceController::class)->only(['store', 'update', 'destroy']);
     Route::post('/upload/{field}', [UploadController::class, 'uploadFile'])->name('upload.file');
 
