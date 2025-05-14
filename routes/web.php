@@ -71,6 +71,8 @@ Route::middleware(['auth', 'role:user'])->group(function () {
 
 // === VERIFIKATOR DASHBOARD ===
 Route::middleware(['auth', 'role:verifikator'])->group(function () {
+    echo "Route berhasil diakses";
+    die();
     Route::get('/verifikator', [DashboardController::class, 'verifikatordashboard'])->name('verifikator.dashboard');
 });
 // Route::middleware(['auth'])->group(function () {
