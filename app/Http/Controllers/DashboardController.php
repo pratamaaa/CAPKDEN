@@ -414,7 +414,6 @@ class DashboardController extends Controller
 
 public function daftarpelamar()
 {
-    // Cek otorisasi role di controller
     if (!in_array(auth()->user()->role, ['administrator', 'verifikator'])) {
     abort(403, 'Unauthorized access.');
 }

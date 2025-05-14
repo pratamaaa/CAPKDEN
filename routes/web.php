@@ -36,6 +36,21 @@ Route::post('/reset-password', [AuthController::class, 'reset'])->name('reset-pa
 // === USER DASHBOARD ===
 Route::middleware(['auth', 'role:user'])->group(function () {
     Route::get('/user', [DashboardController::class, 'userDashboard'])->name('user.dashboard');
+    Route::get('/updatedata', [DashboardController::class, 'updatedata'])->name('updatedata');
+    Route::post('/store-user-profile', [DashboardController::class, 'storeUserProfile'])->name('storeUserProfile');
+
+    Route::get('/updateberkas', [DashboardController::class, 'updateberkas'])->name('updateberkas');
+    Route::post('/store-user-files', [UserFilesController::class, 'store'])->name('storeUserFiles');
+    Route::get('/statusberkas', [UserFilesController::class, 'status'])->name('statusberkas');
+    Route::put('/userfiles/update/{field}', [UserFilesController::class, 'update'])->name('userfiles.update');
+    Route::delete('/userfiles/delete/{field}', [UserFilesController::class, 'destroy'])->name('userfiles.destroy');
+    Route::put('/userfiles/updatestatus/{field}', [UserFilesController::class, 'updatestatus'])->name('userfiles.updatestatus');
+
+    Route::get('/password', [DashboardController::class, 'password'])->name('user.password');
+    Route::post('/password', [DashboardController::class, 'updatePassword'])->name('user.updatePassword');
+
+    Route::resource('pengalaman', UserExperienceController::class)->only(['store', 'update', 'destroy']);
+    Route::post('/upload/{field}', [UploadController::class, 'uploadFile'])->name('upload.file');
 });
 
 // === VERIFIKATOR DASHBOARD ===
@@ -90,23 +105,8 @@ Route::middleware(['auth', 'role:administrator,verifikator'])->group(function ()
     Route::get('/tahapanstatus', [TahapanstatusController::class, 'index']);
 });
 
-// === FORM USER & DOKUMEN (ADMIN + VERIFIKATOR) ===
 Route::middleware(['auth', 'role:administrator,verifikator'])->group(function () {
-    Route::get('/updatedata', [DashboardController::class, 'updatedata'])->name('updatedata');
-    Route::post('/store-user-profile', [DashboardController::class, 'storeUserProfile'])->name('storeUserProfile');
-
-    Route::get('/updateberkas', [DashboardController::class, 'updateberkas'])->name('updateberkas');
-    Route::post('/store-user-files', [UserFilesController::class, 'store'])->name('storeUserFiles');
-    Route::get('/statusberkas', [UserFilesController::class, 'status'])->name('statusberkas');
-    Route::put('/userfiles/update/{field}', [UserFilesController::class, 'update'])->name('userfiles.update');
-    Route::delete('/userfiles/delete/{field}', [UserFilesController::class, 'destroy'])->name('userfiles.destroy');
-    Route::put('/userfiles/updatestatus/{field}', [UserFilesController::class, 'updatestatus'])->name('userfiles.updatestatus');
-
-    Route::get('/password', [DashboardController::class, 'password'])->name('user.password');
-    Route::post('/password', [DashboardController::class, 'updatePassword'])->name('user.updatePassword');
-
-    Route::resource('pengalaman', UserExperienceController::class)->only(['store', 'update', 'destroy']);
-    Route::post('/upload/{field}', [UploadController::class, 'uploadFile'])->name('upload.file');
+    
 });
 
 // === PERTANYAAN WAWANCARA ===
