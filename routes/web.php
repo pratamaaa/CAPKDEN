@@ -18,6 +18,16 @@ use App\Http\Controllers\{
 use Illuminate\Support\Facades\Route;
 
 // === PUBLIC ===
+Route::get('/clear-cache', function () {
+    Artisan::call('config:clear');
+    Artisan::call('cache:clear');
+    Artisan::call('route:clear');
+    Artisan::call('view:clear');
+    Artisan::call('optimize:clear');
+
+    return "Cache is cleared";
+});
+
 Route::get('/', [HomeController::class, 'homepage']);
 Route::get('/home2', [HomeController::class, 'homepage2']);
 Route::get('/check_pelamar', [HomeController::class, 'check_pelamar']);
@@ -60,9 +70,9 @@ Route::middleware(['auth', 'role:user'])->group(function () {
 });
 
 // === VERIFIKATOR DASHBOARD ===
-Route::middleware(['auth', 'role:verifikator'])->group(function () {
+
     Route::get('/verifikator', [DashboardController::class, 'verifikatorDashboard'])->name('verifikator.dashboard');
-});
+
 
 // === ADMIN DASHBOARD ===
 Route::middleware(['auth', 'role:administrator'])->group(function () {
