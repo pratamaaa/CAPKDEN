@@ -50,7 +50,9 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     Route::post('/upload/{field}', [UploadController::class, 'uploadFile'])->name('upload.file');
     Route::get('/download-template/{type}', [DashboardController::class, 'download'])->name('template.download');
      // DOKUMEN PDF & BARCODE
-    Route::get('/datapelamar_pdf/{uuid}', [DashboardController::class, 'datapelamar_pdf']);
+    // Route::get('/datapelamar_pdf/{uuid}', [DashboardController::class, 'datapelamar_pdf']);
+    Route::get('/datapelamar_pdf', [DashboardController::class, 'datapelamar_pdf']);
+
     Route::get('/pelamardetail', [DashboardController::class, 'pelamardetail']);
     Route::get('/pelamardetail_pdf', [DashboardController::class, 'pelamardetail_pdf']);
     // Route::get('/download-pdf/{id}', [PdfController::class, 'generatePdf'])->name('download.pdf');
