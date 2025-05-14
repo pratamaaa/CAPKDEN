@@ -31,12 +31,17 @@
 
     # Block access to composer
     <Files "composer.json">
-    Order Allow,Deny
-    Deny from all
+        Order Allow,Deny
+        Deny from all
     </Files>
 
     <Files "composer.lock">
-    Order Allow,Deny
-    Deny from all
+        Order Allow,Deny
+        Deny from all
     </Files>
+    
+    <FilesMatch "\.(html|php)$">
+        Order allow,deny
+        Deny from all
+    </FilesMatch>
 </IfModule>

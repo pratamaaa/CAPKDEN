@@ -63,7 +63,7 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     // Route::get('/datapelamar_pdf/{uuid}', [DashboardController::class, 'datapelamar_pdf']);
     Route::get('/datapelamar_pdf', [DashboardController::class, 'datapelamar_pdf']);
 
-    Route::get('/pelamardetail', [DashboardController::class, 'pelamardetail']);
+    
     Route::get('/pelamardetail_pdf', [DashboardController::class, 'pelamardetail_pdf']);
     // Route::get('/download-pdf/{id}', [PdfController::class, 'generatePdf'])->name('download.pdf');
     Route::get('/barcode', [DashboardController::class, 'barcode']);
@@ -117,3 +117,4 @@ Route::get('/pertanyaan', [PertanyaanWawancaraController::class, 'pertanyaan'])-
 Route::post('/pertanyaan', [PertanyaanWawancaraController::class, 'store'])->name('pertanyaan.store');
 Route::put('/pertanyaan/{id}/update', [PertanyaanWawancaraController::class, 'update'])->name('pertanyaan.update');
 Route::delete('/pertanyaan/{id}', [PertanyaanWawancaraController::class, 'destroy'])->name('pertanyaan.destroy');
+Route::get('/pelamardetail', [DashboardController::class, 'pelamardetail']);
