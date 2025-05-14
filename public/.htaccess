@@ -35,10 +35,6 @@
     Deny from all
     </Files>
 
-    <Directory "/var/www/html/public/bs/docs">
-    Options -Indexes
-    </Directory>
-
     <Files "composer.lock">
     Order Allow,Deny
     Deny from all
