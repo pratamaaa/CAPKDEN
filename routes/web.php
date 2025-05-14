@@ -69,7 +69,7 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     Route::get('/barcode', [DashboardController::class, 'barcode']);
 });
 
-=== VERIFIKATOR DASHBOARD ===
+// === VERIFIKATOR DASHBOARD === 
 Route::middleware(['auth', 'role:verifikator'])->group(function () {
     Route::get('/verifikator', [DashboardController::class, 'verifikatorDashboard'])->name('verifikator.dashboard');
 });
