@@ -38,7 +38,6 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     Route::get('/user', [DashboardController::class, 'userDashboard'])->name('user.dashboard');
     Route::get('/updatedata', [DashboardController::class, 'updatedata'])->name('updatedata');
     Route::post('/store-user-profile', [DashboardController::class, 'storeUserProfile'])->name('storeUserProfile');
-
     Route::get('/updateberkas', [DashboardController::class, 'updateberkas'])->name('updateberkas');
     Route::post('/store-user-files', [UserFilesController::class, 'store'])->name('storeUserFiles');
     Route::get('/statusberkas', [UserFilesController::class, 'status'])->name('statusberkas');
@@ -47,14 +46,14 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     Route::put('/userfiles/updatestatus/{field}', [UserFilesController::class, 'updatestatus'])->name('userfiles.updatestatus');
     Route::get('/password', [DashboardController::class, 'password'])->name('user.password');
     Route::post('/password', [DashboardController::class, 'updatePassword'])->name('user.updatePassword');
-    Route::get('/datapelamar_pdf/{uuid}', [DashboardController::class, 'datapelamar_pdf']);
     Route::resource('pengalaman', UserExperienceController::class)->only(['store', 'update', 'destroy']);
     Route::post('/upload/{field}', [UploadController::class, 'uploadFile'])->name('upload.file');
-
+    Route::get('/download-template/{type}', [DashboardController::class, 'download'])->name('template.download');
      // DOKUMEN PDF & BARCODE
+    Route::get('/datapelamar_pdf/{uuid}', [DashboardController::class, 'datapelamar_pdf']);
     Route::get('/pelamardetail', [DashboardController::class, 'pelamardetail']);
     Route::get('/pelamardetail_pdf', [DashboardController::class, 'pelamardetail_pdf']);
-    Route::get('/download-pdf/{id}', [PdfController::class, 'generatePdf'])->name('download.pdf');
+    // Route::get('/download-pdf/{id}', [PdfController::class, 'generatePdf'])->name('download.pdf');
     Route::get('/barcode', [DashboardController::class, 'barcode']);
 });
 
@@ -99,8 +98,7 @@ Route::middleware(['auth', 'role:administrator,verifikator'])->group(function ()
     Route::post('/verifikasi_saveupdate', [VerifikasiController::class, 'verifikasi_saveupdate'])->name('verifikasi_saveupdate');
 
     // LAINNYA
-    Route::get('/download-template/{type}', [DashboardController::class, 'download'])->name('template.download');
-    Route::get('/tahapanstatus', [TahapanstatusController::class, 'index']);
+    // Route::get('/tahapanstatus', [TahapanstatusController::class, 'index']);
 });
 
 Route::middleware(['auth', 'role:administrator,verifikator'])->group(function () {

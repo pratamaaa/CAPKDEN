@@ -281,10 +281,11 @@
       </div>
       <div class="modal-body text-center">
         <p>Terima kasih, Anda telah menyelesaikan proses registrasi.</p>
-        <a href="{{ url('/datapelamar_pdf') }}?uuid={{ Auth::user()->uuid }}" 
-            class="btn btn-primary mb-3" target="_blank">
-            Download Resume
-        </a>
+        <a href="{{ url('/datapelamar_pdf/' . Auth::user()->uuid) }}" 
+   class="btn btn-primary mb-3" target="_blank">
+  Download Resume
+</a>
+
       </div>
       <div class="modal-footer justify-content-center">
         <a href="{{ route('statusberkas') }}" class="btn btn-secondary">Selesai</a>

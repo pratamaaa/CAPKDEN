@@ -13,19 +13,6 @@ use Barryvdh\DomPDF\Facade\Pdf as PDF;
 class HomeController extends Controller
 {
     public function homepage(){
-        // $data['jadwalseleksi'] = [['judul' => 'Pendaftaran<br><br><br>', 'gambar' => 'number/1.png'], 
-        //                   ['judul' => 'Seleksi Administrasi<br><br>', 'gambar' => 'number/2.png'],
-        //                   ['judul' => 'Pengumuman Hasil Seleksi Administrasi', 'gambar' => 'number/3.png'],
-        //                   ['judul' => 'Masa Sanggah<br><br><br>', 'gambar' => 'number/4.png'],
-        //                   ['judul' => 'Seleksi Assessment<br><br>', 'gambar' => 'number/5.png'],
-        //                   ['judul' => 'Pengumuman Hasil Seleksi Assessment', 'gambar' => 'number/6.png'],
-        //                   ['judul' => 'Wawancara<br><br>', 'gambar' => 'number/7.png'],
-        //                   ['judul' => 'Pengumuman Hasil Wawancara', 'gambar' => 'number/8.png'],
-        //                   ['judul' => 'Fit and Proper Test<br><br>', 'gambar' => 'number/9.png'],
-        //                   ['judul' => 'Pengumuman Hasil<br>', 'gambar' => 'number/10.png'],
-        //                   ['judul' => 'Pengumpulan Berkas Asli<br>', 'gambar' => 'number/11.png'],
-        //                   ['judul' => 'Pengangkatan<br><br>', 'gambar' => 'number/12.png'],
-        //                  ];
         
         $data['jadwalseleksi'] = [['judul' => 'Pendaftaran Calon Anggota DEN', 'gambar' => 'number/1.png', 'tanggal'=>'9 Mei s.d. 23 Mei 2025'], 
                                     ['judul' => 'Pengumuman Hasil Seleksi Administrasi', 'gambar' => 'number/2.png', 'tanggal'=>'28 Mei 2025'],
@@ -88,37 +75,8 @@ public function check_pelamar(Request $req){
 
     $barcode =  'barcode/'.$user_id.'.svg';
     return view('user.datapelamar', compact('files_check', 'pelamar', 'barcode'));
-    echo '<pre>';
-    print_r($pelamar);
-    die();
-   
-    // $fileName = $user_id.'.svg';
-    // $path =  'barcode/'.$fileName;
-    // $secureID = md5($user_id);
 
-    // $qrCode = \SimpleSoftwareIO\QrCode\Facades\QrCode::format('svg')
-    // ->size(400)
-    // ->margin(5)
-    // // ->encoding('UTF-8')
-    // // ->errorCorrection('H')
-    // ->generate("http://capk.den.go.id/check_pelamar?code=".$secureID);
-    // Storage::put($path, $qrCode);
-    // $barcode = $path;
-
-    // $pdf = PDF::loadView('user.datapelamar', compact('files_check', 'pelamar', 'barcode'))->setPaper('a5', 'landscape');
-    // return $pdf->stream('detailpelamar.pdf', 'pelamar');
 }
-
-
-    // public function pengumuman2(){
-    //     // $pengumumans = PengumumanPdf::all();
-    //     // return view('pengumuman2', compact('pengumumans'));
-    //     $data['judulhalaman'] = 'Judul Halamannya Disini';
-    //     $pdf = PDF::loadView('pengumuman2', $data)->setPaper('a5', 'portrait');
-    //     return $pdf->stream('namafile.pdf');
-
-    //     return view('pengumuman2');
-    // }
 
     public function kontak(){
         return view('kontak');
