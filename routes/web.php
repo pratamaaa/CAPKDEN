@@ -16,7 +16,10 @@ use App\Http\Controllers\{
     WawancaraController
 };
 use Illuminate\Support\Facades\Route;
-
+Route::get('/debug-role', function () {
+    $role = Auth::user()->role ?? 'Role tidak ditemukan';
+    dd($role);
+});
 // === PUBLIC ===
 Route::get('/clear-cache', function () {
     Artisan::call('config:clear');
@@ -71,13 +74,9 @@ Route::middleware(['auth', 'role:user'])->group(function () {
 
 // === VERIFIKATOR DASHBOARD ===
 Route::middleware(['auth', 'role:verifikator'])->group(function () {
-    Route::get('/verifikator', [DashboardController::class, 'verifikatordashboard'])->name('verifikator.dashboard');
+    Route::get('/verifikator', [DashboardController::class, 'verifikatorDashboard'])->name('verifikator.dashboard');
 });
-// Route::middleware(['auth'])->group(function () {
-//     Route::get('/verifikator', function () {
-//         return "Route berhasil diakses";
-//     });
-// });
+
 // === ADMIN DASHBOARD ===
 Route::middleware(['auth', 'role:administrator'])->group(function () {
     Route::get('/admin', [DashboardController::class, 'adminDashboard'])->name('administrator.dashboard');
@@ -115,10 +114,6 @@ Route::middleware(['auth', 'role:administrator,verifikator'])->group(function ()
 
     // LAINNYA
     // Route::get('/tahapanstatus', [TahapanstatusController::class, 'index']);
-});
-
-Route::middleware(['auth', 'role:administrator,verifikator'])->group(function () {
-    
 });
 
 // === PERTANYAAN WAWANCARA ===
