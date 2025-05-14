@@ -73,9 +73,12 @@ Route::middleware(['auth', 'role:user'])->group(function () {
 // Route::middleware(['auth', 'role:verifikator'])->group(function () {
 //     Route::get('/verifikator', [DashboardController::class, 'verifikatorDashboard'])->name('verifikator.dashboard');
 // });
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'role:administrator,verifikator'])->group(function () {
     Route::get('/verifikator', [DashboardController::class, 'verifikatorDashboard'])->name('verifikator.dashboard');
 });
+// Route::middleware(['auth'])->group(function () {
+//     Route::get('/verifikator', [DashboardController::class, 'verifikatorDashboard'])->name('verifikator.dashboard');
+// });
 
 // === ADMIN DASHBOARD ===
 Route::middleware(['auth', 'role:administrator'])->group(function () {
