@@ -362,7 +362,7 @@ class DashboardController extends Controller
         'alamat' => 'nullable|string',
         'no_handphone' => 'nullable|numeric|digits_between:10,15',
         // 'pas_foto' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-        'pas_foto' => 'required|file|mimetypes:image/jpeg,image/png|max:2048',
+        'pas_foto' => 'nullable|file|mimetypes:image/jpeg,image/png|max:2048',
         'kalangan' => 'nullable|in:Akademisi,Industri,Teknologi,Lingkungan Hidup,Konsumen',
         'ktp' => 'nullable|file|mimes:pdf|max:2048'
     ]);
