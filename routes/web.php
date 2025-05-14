@@ -45,7 +45,7 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     Route::put('/userfiles/update/{field}', [UserFilesController::class, 'update'])->name('userfiles.update');
     Route::delete('/userfiles/delete/{field}', [UserFilesController::class, 'destroy'])->name('userfiles.destroy');
     Route::put('/userfiles/updatestatus/{field}', [UserFilesController::class, 'updatestatus'])->name('userfiles.updatestatus');
-
+    Route::get('/barcode', [DashboardController::class, 'barcode']);
     Route::get('/password', [DashboardController::class, 'password'])->name('user.password');
     Route::post('/password', [DashboardController::class, 'updatePassword'])->name('user.updatePassword');
 
@@ -82,7 +82,6 @@ Route::middleware(['auth', 'role:administrator,verifikator'])->group(function ()
     Route::get('/pelamardetail', [DashboardController::class, 'pelamardetail']);
     Route::get('/pelamardetail_pdf', [DashboardController::class, 'pelamardetail_pdf']);
     Route::get('/datapelamar_pdf', [DashboardController::class, 'datapelamar_pdf']);
-    Route::get('/barcode', [DashboardController::class, 'barcode']);
     Route::get('/download-pdf/{id}', [PdfController::class, 'generatePdf'])->name('download.pdf');
 
     // PENGUMUMAN
