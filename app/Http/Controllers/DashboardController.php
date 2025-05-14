@@ -412,23 +412,12 @@ class DashboardController extends Controller
     return redirect()->back()->with('success', $message);
 }
 
-
-// public function daftarpelamar__()
-// {
-//     $greeting = $this->getGreeting();
-//     $data = User::where('role', 'user')
-//             ->with(['userProfile', 'userFiles']) // Pastikan relasi di-load
-//             ->get();
-    
-//     return view('admin.daftarpelamar', compact('data', 'greeting'));
-// }
-
 public function daftarpelamar()
 {
     // Cek otorisasi role di controller
-    if (!auth()->user()->hasRole('administrator') && !auth()->user()->hasRole('verifikator')) {
-        abort(403, 'Unauthorized access.');
-    }
+    if (!in_array(auth()->user()->role, ['administrator', 'verifikator'])) {
+    abort(403, 'Unauthorized access.');
+}
 
     $greeting = $this->getGreeting();
 
