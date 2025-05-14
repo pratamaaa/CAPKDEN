@@ -54,8 +54,7 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     Route::put('/userfiles/update/{field}', [UserFilesController::class, 'update'])->name('userfiles.update');
     Route::delete('/userfiles/delete/{field}', [UserFilesController::class, 'destroy'])->name('userfiles.destroy');
     Route::put('/userfiles/updatestatus/{field}', [UserFilesController::class, 'updatestatus'])->name('userfiles.updatestatus');
-    Route::get('/password', [DashboardController::class, 'password'])->name('user.password');
-    Route::post('/password', [DashboardController::class, 'updatePassword'])->name('user.updatePassword');
+    
     Route::resource('pengalaman', UserExperienceController::class)->only(['store', 'update', 'destroy']);
     Route::post('/upload/{field}', [UploadController::class, 'uploadFile'])->name('upload.file');
     Route::get('/download-template/{type}', [DashboardController::class, 'download'])->name('template.download');
@@ -118,3 +117,5 @@ Route::post('/pertanyaan', [PertanyaanWawancaraController::class, 'store'])->nam
 Route::put('/pertanyaan/{id}/update', [PertanyaanWawancaraController::class, 'update'])->name('pertanyaan.update');
 Route::delete('/pertanyaan/{id}', [PertanyaanWawancaraController::class, 'destroy'])->name('pertanyaan.destroy');
 Route::get('/pelamardetail', [DashboardController::class, 'pelamardetail']);
+Route::get('/password', [DashboardController::class, 'password'])->name('user.password');
+    Route::post('/password', [DashboardController::class, 'updatePassword'])->name('user.updatePassword');
