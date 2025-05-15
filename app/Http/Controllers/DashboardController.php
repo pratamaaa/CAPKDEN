@@ -395,7 +395,6 @@ class DashboardController extends Controller
     $data['pas_foto'] = $filename;
 }
 
-
     $data['user_id'] = $user->id;
 
     // Simpan ke tabel user_profiles
@@ -427,7 +426,6 @@ class DashboardController extends Controller
         }
     }
     
-
     return redirect()->back()->with('success', $message);
 }
 
