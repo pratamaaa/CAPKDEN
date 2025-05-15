@@ -74,6 +74,18 @@ Route::middleware(['auth', 'role:verifikator'])->group(function () {
     Route::get('/daftarpelamar', [DashboardController::class, 'daftarpelamar'])->name('daftarpelamar');
     Route::get('/pelamardetail', [DashboardController::class, 'pelamardetail']);
     Route::get('/pelamardetail_pdf', [DashboardController::class, 'pelamardetail_pdf']);
+
+    // WAWANCARA & ASSESSMENT
+    Route::get('/wawancara', [WawancaraController::class, 'wawancara'])->name('wawancara');
+    Route::post('/wawancara/store', [WawancaraController::class, 'store'])->name('wawancara.store');
+    Route::get('/assesment', [AssesmentController::class, 'assesment'])->name('assesment');
+    Route::post('/assesment/store', [AssesmentController::class, 'store'])->name('assesment.store');
+
+    // VERIFIKASI
+    Route::get('/verifikasi', [VerifikasiController::class, 'index'])->name('verifikasi.index');
+    Route::put('/verifikasi/update-semua', [VerifikasiController::class, 'updateSemua'])->name('verifikasi.updateSemua');
+    Route::get('/verifikasiform', [VerifikasiController::class, 'verifikasi_form'])->name('verifikasiform');
+    Route::post('/verifikasi_saveupdate', [VerifikasiController::class, 'verifikasi_saveupdate'])->name('verifikasi_saveupdate');
 });
 
 
@@ -105,20 +117,20 @@ Route::middleware(['auth', 'role:administrator'])->group(function () {
 // === ADMIN & VERIFIKATOR ===
 Route::middleware(['auth', 'role:administrator,verifikator'])->group(function () {
     
-    Route::get('/daftarpelamar', [DashboardController::class, 'daftarpelamar'])->name('daftarpelamar');
-    Route::get('/pelamardetail', [DashboardController::class, 'pelamardetail']);
-    Route::get('/pelamardetail_pdf', [DashboardController::class, 'pelamardetail_pdf']);
+    // Route::get('/daftarpelamar', [DashboardController::class, 'daftarpelamar'])->name('daftarpelamar');
+    // Route::get('/pelamardetail', [DashboardController::class, 'pelamardetail']);
+    // Route::get('/pelamardetail_pdf', [DashboardController::class, 'pelamardetail_pdf']);
 
-    // WAWANCARA & ASSESSMENT
-    Route::get('/wawancara', [WawancaraController::class, 'wawancara'])->name('wawancara');
-    Route::post('/wawancara/store', [WawancaraController::class, 'store'])->name('wawancara.store');
-    Route::get('/assesment', [AssesmentController::class, 'assesment'])->name('assesment');
-    Route::post('/assesment/store', [AssesmentController::class, 'store'])->name('assesment.store');
+    // // WAWANCARA & ASSESSMENT
+    // Route::get('/wawancara', [WawancaraController::class, 'wawancara'])->name('wawancara');
+    // Route::post('/wawancara/store', [WawancaraController::class, 'store'])->name('wawancara.store');
+    // Route::get('/assesment', [AssesmentController::class, 'assesment'])->name('assesment');
+    // Route::post('/assesment/store', [AssesmentController::class, 'store'])->name('assesment.store');
 
-    // VERIFIKASI
-    Route::get('/verifikasi', [VerifikasiController::class, 'index'])->name('verifikasi.index');
-    Route::put('/verifikasi/update-semua', [VerifikasiController::class, 'updateSemua'])->name('verifikasi.updateSemua');
-    Route::get('/verifikasiform', [VerifikasiController::class, 'verifikasi_form'])->name('verifikasiform');
-    Route::post('/verifikasi_saveupdate', [VerifikasiController::class, 'verifikasi_saveupdate'])->name('verifikasi_saveupdate');
+    // // VERIFIKASI
+    // Route::get('/verifikasi', [VerifikasiController::class, 'index'])->name('verifikasi.index');
+    // Route::put('/verifikasi/update-semua', [VerifikasiController::class, 'updateSemua'])->name('verifikasi.updateSemua');
+    // Route::get('/verifikasiform', [VerifikasiController::class, 'verifikasi_form'])->name('verifikasiform');
+    // Route::post('/verifikasi_saveupdate', [VerifikasiController::class, 'verifikasi_saveupdate'])->name('verifikasi_saveupdate');
 
 });
