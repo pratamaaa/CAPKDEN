@@ -213,7 +213,7 @@
 
             @endif
 
-            @if (auth()->user()->role === 'administrator' || auth()->user()->role === 'verifikator')
+            @if (auth()->user()->role === 'verifikator')
                 <li class="nav-header">MENU UTAMA</li>
                 <li class="nav-item">
                     <a href="{{ url('/daftarpelamar') }}" class="nav-link">
