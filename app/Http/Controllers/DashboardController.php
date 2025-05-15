@@ -423,10 +423,6 @@ class DashboardController extends Controller
 
 public function daftarpelamar()
 {
-//     if (!in_array(auth()->user()->role, ['administrator', 'verifikator'])) {
-//     abort(403, 'Unauthorized access.');
-// }
-
     $greeting = $this->getGreeting();
 
     $data = User::where('role', 'user')
