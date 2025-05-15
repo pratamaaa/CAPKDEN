@@ -63,7 +63,7 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     Route::get('/datapelamar_pdf', [DashboardController::class, 'datapelamar_pdf']);
 
     
-    Route::get('/pelamardetail_pdf', [DashboardController::class, 'pelamardetail_pdf']);
+    
     // Route::get('/download-pdf/{id}', [PdfController::class, 'generatePdf'])->name('download.pdf');
     Route::get('/barcode', [DashboardController::class, 'barcode']);
 });
@@ -119,3 +119,4 @@ Route::delete('/pertanyaan/{id}', [PertanyaanWawancaraController::class, 'destro
 Route::get('/pelamardetail', [DashboardController::class, 'pelamardetail']);
 Route::get('/password', [DashboardController::class, 'password'])->name('user.password');
     Route::post('/password', [DashboardController::class, 'updatePassword'])->name('user.updatePassword');
+Route::get('/pelamardetail_pdf', [DashboardController::class, 'pelamardetail_pdf']);
