@@ -17,33 +17,32 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
-    public function login(Request $request){
-        $credentials = $request->validate([
-            'identifier' => 'required', // Bisa username atau NIK
-            'password' => 'required',
-        ]);
+    public function login(Request $request)
+{
+    $credentials = $request->validate([
+        'identifier' => 'required', // Bisa username atau NIK
+        'password' => 'required',
+        'g-recaptcha-response' => 'required|captcha', // Validasi reCAPTCHA di awal
+    ]);
 
-        $user = null;
+    $user = null;
 
-        // Cek apakah input adalah NIK (hanya untuk user)
-        if (is_numeric($request->identifier) && strlen($request->identifier) == 16) {
-            $user = User::where('nik', $request->identifier)->first();
-        } else {
-            // Jika bukan NIK, anggap sebagai username (admin & verifikator)
-            $user = User::where('username', $request->identifier)->first();
-        }
-
-        // Validasi jika user ditemukan dan password cocok
-        if ($user && Hash::check($request->password, $user->password)) {
-            Auth::login($user);
-            return redirect()->route("$user->role.dashboard");
-        }
-
-        $request->validate([
-        'g-recaptcha-response' => 'required|captcha',
-        ]);
-        return back()->withErrors(['loginError' => 'Username/NIK atau password salah!'])->withInput();
+    // Cek apakah input adalah NIK (hanya untuk user)
+    if (is_numeric($request->identifier) && strlen($request->identifier) == 16) {
+        $user = User::where('nik', $request->identifier)->first();
+    } else {
+        // Jika bukan NIK, anggap sebagai username (admin & verifikator)
+        $user = User::where('username', $request->identifier)->first();
     }
+
+    // Validasi jika user ditemukan dan password cocok
+    if ($user && Hash::check($request->password, $user->password)) {
+        Auth::login($user);
+        return redirect()->route("$user->role.dashboard");
+    }
+
+    return back()->withErrors(['loginError' => 'Username/NIK atau password salah!'])->withInput();
+}
 
     public function registrasi(){
         return view('auth.registrasi');
