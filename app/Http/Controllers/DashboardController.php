@@ -390,7 +390,7 @@ class DashboardController extends Controller
         return back()->withErrors(['pas_foto' => 'File pas foto harus berupa gambar JPG, PNG, atau JPEG.']);
     }
 
-    $filename = time() . '.' . $file->getClientOriginalExtension();
+    $filename = time() . '.' . $file->extension();
     $file->move(public_path('uploads/pas_foto'), $filename);
     $data['pas_foto'] = $filename;
 }
@@ -426,6 +426,7 @@ class DashboardController extends Controller
         }
     }
     
+
     return redirect()->back()->with('success', $message);
 }
 
