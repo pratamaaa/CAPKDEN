@@ -39,6 +39,9 @@ class AuthController extends Controller
             return redirect()->route("$user->role.dashboard");
         }
 
+        $request->validate([
+        'g-recaptcha-response' => 'required|captcha',
+        ]);
         return back()->withErrors(['loginError' => 'Username/NIK atau password salah!'])->withInput();
     }
 

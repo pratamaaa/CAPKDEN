@@ -363,7 +363,6 @@ class DashboardController extends Controller
         'jenis_kelamin' => 'nullable|in:Laki-laki,Perempuan',
         'alamat' => 'nullable|string',
         'no_handphone' => 'nullable|numeric|digits_between:10,15',
-        // 'pas_foto' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         'pas_foto' => 'nullable|file|mimetypes:image/jpeg,image/png|max:2048',
         'kalangan' => 'nullable|in:Akademisi,Industri,Teknologi,Lingkungan Hidup,Konsumen',
         'ktp' => 'nullable|file|mimes:pdf|max:2048'
@@ -371,14 +370,6 @@ class DashboardController extends Controller
 
     $data = $request->except(['_token', 'pas_foto', 'ktp']);
     $user = auth()->user();
-
-    // Handle Upload Pas Foto
-    // if ($request->hasFile('pas_foto')) {
-    //     $file = $request->file('pas_foto');
-    //     $filename = time() . '.' . $file->getClientOriginalExtension();
-    //     $file->move(public_path('uploads/pas_foto'), $filename);
-    //     $data['pas_foto'] = $filename;
-    // }
 
     if ($request->hasFile('pas_foto')) {
     $file = $request->file('pas_foto');
