@@ -20,6 +20,8 @@ use App\Http\Controllers\PdfController;
 use App\Helpers\Bantuan;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Str;
 
 class DashboardController extends Controller
 {
@@ -361,8 +363,7 @@ class DashboardController extends Controller
         'jenis_kelamin' => 'nullable|in:Laki-laki,Perempuan',
         'alamat' => 'nullable|string',
         'no_handphone' => 'nullable|numeric|digits_between:10,15',
-        // 'pas_foto' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-        'pas_foto' => 'nullable|file|mimetypes:image/jpeg,image/png|max:2048',
+        'pas_foto' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         'kalangan' => 'nullable|in:Akademisi,Industri,Teknologi,Lingkungan Hidup,Konsumen',
         'ktp' => 'nullable|file|mimes:pdf|max:2048'
     ]);
@@ -370,33 +371,29 @@ class DashboardController extends Controller
     $data = $request->except(['_token', 'pas_foto', 'ktp']);
     $user = auth()->user();
 
-    // Handle Upload Pas Foto
-    // if ($request->hasFile('pas_foto')) {
-    //     $file = $request->file('pas_foto');
-    //     $filename = time() . '.' . $file->getClientOriginalExtension();
-    //     $file->move(public_path('uploads/pas_foto'), $filename);
-    //     $data['pas_foto'] = $filename;
-    // }
-
+    // Upload & Amankan PAS FOTO
     if ($request->hasFile('pas_foto')) {
-    $file = $request->file('pas_foto');
-    $mimeType = $file->getMimeType();
+        $file = $request->file('pas_foto');
 
-    // Validasi MIME type
-    $allowedMimeTypes = ['image/jpeg', 'image/png', 'image/jpg'];
-    if (!in_array($mimeType, $allowedMimeTypes)) {
-        return back()->withErrors(['pas_foto' => 'File pas foto harus berupa gambar JPG, PNG, atau JPEG.']);
+        // Validasi bahwa file benar-benar gambar
+        if (!@getimagesize($file)) {
+            return back()->withErrors(['pas_foto' => 'File pas foto bukan gambar yang valid.']);
+        }
+
+        // Buat nama file unik
+        $filename = Str::uuid() . '.jpg';
+
+        // Konversi ulang dan simpan di storage aman
+        $image = Image::make($file)->encode('jpg');
+        Storage::put("public/pas_foto/{$filename}", (string) $image);
+
+        // Simpan nama file ke database (tanpa path)
+        $data['pas_foto'] = $filename;
     }
-
-    $filename = time() . '.' . $file->getClientOriginalExtension();
-    $file->move(public_path('uploads/pas_foto'), $filename);
-    $data['pas_foto'] = $filename;
-}
-
 
     $data['user_id'] = $user->id;
 
-    // Simpan ke tabel user_profiles
+    // Simpan atau update profil user
     $profile = UserProfile::where('user_id', $user->id)->first();
     if ($profile) {
         $profile->update($data);
@@ -406,25 +403,22 @@ class DashboardController extends Controller
         $message = 'Data berhasil disimpan!';
     }
 
-    // Handle Upload KTP (PDF ke user_files)
-    if ($request->hasFile('file_ktp')) {
-        $ktp = $request->file('file_ktp');
+    // Upload file KTP (PDF)
+    if ($request->hasFile('ktp')) {
+        $ktp = $request->file('ktp');
         $ktpName = 'ktp_' . time() . '.' . $ktp->getClientOriginalExtension();
         $path = $ktp->storeAs('uploads/user_files', $ktpName, 'public');
-    
-        // Cek apakah sudah ada data user_files untuk user ini
-        $userFile = \App\Models\UserFiles::where('user_id', $user->id)->first();
-    
+
+        $userFile = UserFiles::where('user_id', $user->id)->first();
         if ($userFile) {
             $userFile->update(['ktp' => $path]);
         } else {
-            \App\Models\UserFiles::create([
+            UserFiles::create([
                 'user_id' => $user->id,
                 'ktp' => $path
             ]);
         }
     }
-    
 
     return redirect()->back()->with('success', $message);
 }
