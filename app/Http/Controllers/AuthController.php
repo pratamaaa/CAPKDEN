@@ -53,42 +53,41 @@ class AuthController extends Controller
         return redirect('/login');
     }
 
-    public function register(Request $request){
-        // Validasi Input
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
-            'username' => 'required|string|max:255',
-            'nik' => 'required|string|min:16|unique:users,nik',
-            'email' => 'required|string|email|max:255|unique:users,email',
-            'password' => 'required|string|min:6|confirmed',
-            'tempat_lahir' => 'required|string|max:255',
-            'tanggal_lahir' => 'required|date|before:' . now()->subYears(45)->format('Y-m-d'),
-        ], [
-            'tanggal_lahir.before' => 'Anda harus berusia minimal 45 tahun untuk mendaftar.',
-        ]);
+    public function register(Request $request)
+{
+    // Validasi Input termasuk reCAPTCHA
+    $validator = Validator::make($request->all(), [
+        'name' => 'required|string|max:255',
+        'username' => 'required|string|max:255',
+        'nik' => 'required|string|min:16|unique:users,nik',
+        'email' => 'required|string|email|max:255|unique:users,email',
+        'password' => 'required|string|min:6|confirmed',
+        'tempat_lahir' => 'required|string|max:255',
+        'tanggal_lahir' => 'required|date|before:' . now()->subYears(45)->format('Y-m-d'),
+        'g-recaptcha-response' => 'required|captcha', // Validasi reCAPTCHA
+    ], [
+        'tanggal_lahir.before' => 'Anda harus berusia minimal 45 tahun untuk mendaftar.',
+    ]);
 
-        if ($validator->fails()) {
-            return back()->withErrors($validator)->withInput();
-        }
-
-        // Simpan ke Database
-        User::create([
-            'uuid' => (string) Str::uuid(),
-            'name' => $request->name,
-            'username' => $request->username,
-            'nik' => $request->nik,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'tempat_lahir' => $request->tempat_lahir,
-            'tanggal_lahir' => $request->tanggal_lahir,
-        ]);
-        
-         $request->validate([
-        'g-recaptcha-response' => 'required|captcha',
-        ]);
-
-        return redirect('/login')->with('success', 'Registrasi berhasil, silakan login!');
+    if ($validator->fails()) {
+        return back()->withErrors($validator)->withInput();
     }
+
+    // Simpan ke Database
+    User::create([
+        'uuid' => (string) Str::uuid(),
+        'name' => $request->name,
+        'username' => $request->username,
+        'nik' => $request->nik,
+        'email' => $request->email,
+        'password' => Hash::make($request->password),
+        'tempat_lahir' => $request->tempat_lahir,
+        'tanggal_lahir' => $request->tanggal_lahir,
+        'role' => 'user', // Set role default untuk pendaftar baru
+    ]);
+
+    return redirect('/login')->with('success', 'Registrasi berhasil, silakan login!');
+}
 
     public function showForm()
     {
