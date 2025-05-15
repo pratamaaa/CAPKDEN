@@ -39,9 +39,9 @@ class AuthController extends Controller
             return redirect()->route("$user->role.dashboard");
         }
 
-        // $request->validate([
-        // 'g-recaptcha-response' => 'required|captcha',
-        // ]);
+        $request->validate([
+        'g-recaptcha-response' => 'required|captcha',
+        ]);
         return back()->withErrors(['loginError' => 'Username/NIK atau password salah!'])->withInput();
     }
 
@@ -83,6 +83,10 @@ class AuthController extends Controller
             'tempat_lahir' => $request->tempat_lahir,
             'tanggal_lahir' => $request->tanggal_lahir,
         ]);
+        
+        //  $request->validate([
+        // 'g-recaptcha-response' => 'required|captcha',
+        // ]);
 
         return redirect('/login')->with('success', 'Registrasi berhasil, silakan login!');
     }

@@ -29,7 +29,7 @@ Route::get('/clear-cache', function () {
 });
 
 Route::get('/', [HomeController::class, 'homepage']);
-Route::get('/home2', [HomeController::class, 'homepage2']);
+// Route::get('/home2', [HomeController::class, 'homepage2']);
 Route::get('/check_pelamar', [HomeController::class, 'check_pelamar']);
 Route::get('/pengumuman', [HomeController::class, 'pengumuman']);
 Route::get('/kontak', [HomeController::class, 'kontak']);
@@ -42,6 +42,8 @@ Route::get('/registrasi', [AuthController::class, 'registrasi'])->name('registra
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 Route::get('/reset-password', [AuthController::class, 'showForm'])->name('reset-password.form');
 Route::post('/reset-password', [AuthController::class, 'reset'])->name('reset-password.submit');
+Route::get('/password', [DashboardController::class, 'password'])->name('user.password');
+    Route::post('/password', [DashboardController::class, 'updatePassword'])->name('user.updatePassword');
 
 // === USER DASHBOARD ===
 Route::middleware(['auth', 'role:user'])->group(function () {
@@ -62,8 +64,6 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     // Route::get('/datapelamar_pdf/{uuid}', [DashboardController::class, 'datapelamar_pdf']);
     Route::get('/datapelamar_pdf', [DashboardController::class, 'datapelamar_pdf']);
 
-    
-    
     // Route::get('/download-pdf/{id}', [PdfController::class, 'generatePdf'])->name('download.pdf');
     Route::get('/barcode', [DashboardController::class, 'barcode']);
 });
@@ -77,22 +77,11 @@ Route::middleware(['auth', 'role:verifikator'])->group(function () {
 // === ADMIN DASHBOARD ===
 Route::middleware(['auth', 'role:administrator'])->group(function () {
     Route::get('/admin', [DashboardController::class, 'adminDashboard'])->name('administrator.dashboard');
-});
-
-// === ADMIN & VERIFIKATOR ===
-Route::middleware(['auth', 'role:administrator,verifikator'])->group(function () {
 
     // DATA PENGGUNA DAN PELAMAR
     Route::get('/pengguna', [DashboardController::class, 'pengguna'])->name('pengguna');
     Route::put('/pengguna/update/{id}', [DashboardController::class, 'update'])->name('pengguna.update');
     Route::delete('/pengguna/delete/{id}', [DashboardController::class, 'destroy'])->name('pengguna.delete');
-    Route::get('/daftarpelamar', [DashboardController::class, 'daftarpelamar'])->name('daftarpelamar');
-
-    // WAWANCARA & ASSESSMENT
-    Route::get('/wawancara', [WawancaraController::class, 'wawancara'])->name('wawancara');
-    Route::post('/wawancara/store', [WawancaraController::class, 'store'])->name('wawancara.store');
-    Route::get('/assesment', [AssesmentController::class, 'assesment'])->name('assesment');
-    Route::post('/assesment/store', [AssesmentController::class, 'store'])->name('assesment.store');
 
     // PENGUMUMAN
     Route::get('/upl_pengumuman', [DashboardController::class, 'upl_pengumuman'])->name('upl_pengumuman');
@@ -103,6 +92,26 @@ Route::middleware(['auth', 'role:administrator,verifikator'])->group(function ()
     Route::put('/pengumuman/update', [PengumumanController::class, 'update'])->name('pengumuman.update');
     Route::delete('/pengumuman/destroy', [PengumumanController::class, 'destroy'])->name('pengumuman.destroy');
 
+    // === PERTANYAAN WAWANCARA ===
+    Route::get('/pertanyaan', [PertanyaanWawancaraController::class, 'pertanyaan'])->name('pertanyaan');
+    Route::post('/pertanyaan', [PertanyaanWawancaraController::class, 'store'])->name('pertanyaan.store');
+    Route::put('/pertanyaan/{id}/update', [PertanyaanWawancaraController::class, 'update'])->name('pertanyaan.update');
+    Route::delete('/pertanyaan/{id}', [PertanyaanWawancaraController::class, 'destroy'])->name('pertanyaan.destroy');
+});
+
+// === ADMIN & VERIFIKATOR ===
+Route::middleware(['auth', 'role:administrator,verifikator'])->group(function () {
+
+    Route::get('/daftarpelamar', [DashboardController::class, 'daftarpelamar'])->name('daftarpelamar');
+    Route::get('/pelamardetail', [DashboardController::class, 'pelamardetail']);
+    Route::get('/pelamardetail_pdf', [DashboardController::class, 'pelamardetail_pdf']);
+
+    // WAWANCARA & ASSESSMENT
+    Route::get('/wawancara', [WawancaraController::class, 'wawancara'])->name('wawancara');
+    Route::post('/wawancara/store', [WawancaraController::class, 'store'])->name('wawancara.store');
+    Route::get('/assesment', [AssesmentController::class, 'assesment'])->name('assesment');
+    Route::post('/assesment/store', [AssesmentController::class, 'store'])->name('assesment.store');
+
     // VERIFIKASI
     Route::get('/verifikasi', [VerifikasiController::class, 'index'])->name('verifikasi.index');
     Route::put('/verifikasi/update-semua', [VerifikasiController::class, 'updateSemua'])->name('verifikasi.updateSemua');
@@ -110,13 +119,3 @@ Route::middleware(['auth', 'role:administrator,verifikator'])->group(function ()
     Route::post('/verifikasi_saveupdate', [VerifikasiController::class, 'verifikasi_saveupdate'])->name('verifikasi_saveupdate');
 
 });
-
-// === PERTANYAAN WAWANCARA ===
-Route::get('/pertanyaan', [PertanyaanWawancaraController::class, 'pertanyaan'])->name('pertanyaan');
-Route::post('/pertanyaan', [PertanyaanWawancaraController::class, 'store'])->name('pertanyaan.store');
-Route::put('/pertanyaan/{id}/update', [PertanyaanWawancaraController::class, 'update'])->name('pertanyaan.update');
-Route::delete('/pertanyaan/{id}', [PertanyaanWawancaraController::class, 'destroy'])->name('pertanyaan.destroy');
-Route::get('/pelamardetail', [DashboardController::class, 'pelamardetail']);
-Route::get('/password', [DashboardController::class, 'password'])->name('user.password');
-    Route::post('/password', [DashboardController::class, 'updatePassword'])->name('user.updatePassword');
-Route::get('/pelamardetail_pdf', [DashboardController::class, 'pelamardetail_pdf']);
