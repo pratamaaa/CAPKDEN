@@ -361,8 +361,8 @@ class DashboardController extends Controller
         'jenis_kelamin' => 'nullable|in:Laki-laki,Perempuan',
         'alamat' => 'nullable|string',
         'no_handphone' => 'nullable|numeric|digits_between:10,15',
-        // 'pas_foto' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-        'pas_foto' => 'nullable|file|mimetypes:image/jpeg,image/png|max:2048',
+        // 'pas_foto' => 'nullable|file|mimetypes:image/jpeg,image/png|max:2048',
+        'pas_foto' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
         'kalangan' => 'nullable|in:Akademisi,Industri,Teknologi,Lingkungan Hidup,Konsumen',
         'ktp' => 'nullable|file|mimes:pdf|max:2048'
     ]);
@@ -459,7 +459,10 @@ public function pelamardetail(Request $req){
                    ->join('user_files as fi', 'us.id', '=', 'fi.user_id')
                    ->where('us.id', $user_id)->first();
     }
-    $pengalaman = DB::table('user_experiences')->where('user_id', $user_id);
+    $pengalaman = DB::table('user_experiences')
+    ->where('user_id', $user_id)
+    ->orderBy('tmt_jabatan', 'desc') // Tanggal muda ke tua
+    ->get();
 
     return view('admin.pelamardetail', compact('files_check', 'pelamar', 'pengalaman'));
 }
