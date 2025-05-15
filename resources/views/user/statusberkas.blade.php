@@ -47,25 +47,21 @@
                                     </thead>
                                     @php
                                         $dokumenList = [
-                                            'ktp' => 'KTP/SIM/PASPOR',
-                                            'ijazah_sarjana' => 'Ijazah Sarjana',
-                                            // 'transkrip_sarjana' => 'Transkrip Sarjana',
+                                            'ktp' => 'KTP/SIM/PASPOR <span class="text-danger">*</span>',
+                                            'ijazah_sarjana' => 'Ijazah Sarjana <span class="text-danger">*</span>',
                                             'ijazah_magister' => 'Ijazah Magister',
-                                            // 'transkrip_magister' => 'Transkrip Magister',
                                             'ijazah_doktoral' => 'Ijazah Doktoral',
-                                            // 'transkrip_doktoral' => 'Transkrip Doktoral',
                                             'upl_org' => 'Organisasi Pengusul',
                                             'upl_rek_pakar1' => 'Rekomendasi Pakar-1',
                                             'upl_rek_pakar2' => 'Rekomendasi Pakar-2',
                                             'upl_rek_pakar3' => 'Rekomendasi Pakar-3',
-                                            'lamaran' => 'Surat Lamaran',
-                                            'rangkap_jabatan' => 'Surat Pernyataan 3 Poin',
-                                            'cv' => 'Daftar Riwayat Hidup (CV)',
+                                            'lamaran' => 'Surat Lamaran <span class="text-danger">*</span>',
+                                            'rangkap_jabatan' => 'Surat Pernyataan 3 Poin <span class="text-danger">*</span>',
+                                            'cv' => 'Daftar Riwayat Hidup (CV) <span class="text-danger">*</span>',
                                             'pidana' =>
-                                                'Surat Pernyataan Tidak Sedang Menjalani Proses Pidana atau Pernah Dipidana Penjara Berdasarkan Putusan Pengadilan yang Telah Berkekuatan Hukum Tetap',
-                                            // 'makalah' => 'Penulisan Makalah',
-                                            'surat_sehat' => 'Surat Keterangan Sehat Jasmani dan Rohani',
-                                            'skck' => 'SKCK',
+                                                'Surat Pernyataan Tidak Sedang Menjalani Proses Pidana atau Pernah Dipidana Penjara Berdasarkan Putusan Pengadilan yang Telah Berkekuatan Hukum Tetap <span class="text-danger">*</span>',
+                                            'surat_sehat' => 'Surat Keterangan Sehat Jasmani dan Rohani <span class="text-danger">*</span>',
+                                            'skck' => 'SKCK <span class="text-danger">*</span>',
                                             'persetujuan' => 'Surat Persetujuan dari Pimpinan',
                                         ];
                                         $no = 1;
@@ -75,7 +71,8 @@
                                         @foreach ($dokumenList as $field => $label)
                                             <tr>
                                                 <td class="text-center">{{ $no++ }}.</td>
-                                                <td class="text-center">{{ $label }}</td>
+                                                <td class="text-center">{!! $label !!}</td>
+
                                                 <td class="text-center">
                                                     @if (!empty($userFiles->$field))
                                                         <span class="badge bg-success">Sudah Upload</span>
@@ -226,6 +223,8 @@
                                     </tbody>
 
                                 </table>
+                                <span><span class="text-danger"><strong>*</strong></span> wajib di upload</span>
+
                                 <hr>
                                 <form
                                 action="{{ route('userfiles.updatestatus', ['field' => $userFiles->id]) }}"
