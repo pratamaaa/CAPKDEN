@@ -84,9 +84,9 @@ class AuthController extends Controller
             'tanggal_lahir' => $request->tanggal_lahir,
         ]);
         
-        //  $request->validate([
-        // 'g-recaptcha-response' => 'required|captcha',
-        // ]);
+         $request->validate([
+        'g-recaptcha-response' => 'required|captcha',
+        ]);
 
         return redirect('/login')->with('success', 'Registrasi berhasil, silakan login!');
     }
