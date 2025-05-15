@@ -71,9 +71,9 @@ Route::middleware(['auth', 'role:user'])->group(function () {
 // === VERIFIKATOR DASHBOARD === 
 Route::middleware(['auth', 'role:verifikator'])->group(function () {
     Route::get('/verifikator', [DashboardController::class, 'verifikatorDashboard'])->name('verifikator.dashboard');
-    // Route::get('/daftarpelamar', [DashboardController::class, 'daftarpelamar'])->name('daftarpelamar');
-    // Route::get('/pelamardetail', [DashboardController::class, 'pelamardetail']);
-    // Route::get('/pelamardetail_pdf', [DashboardController::class, 'pelamardetail_pdf']);
+    Route::get('/daftarpelamar', [DashboardController::class, 'daftarpelamar'])->name('daftarpelamar');
+    Route::get('/pelamardetail', [DashboardController::class, 'pelamardetail']);
+    Route::get('/pelamardetail_pdf', [DashboardController::class, 'pelamardetail_pdf']);
 
     // WAWANCARA & ASSESSMENT
     Route::get('/wawancara', [WawancaraController::class, 'wawancara'])->name('wawancara');
@@ -92,7 +92,9 @@ Route::middleware(['auth', 'role:verifikator'])->group(function () {
 // === ADMIN DASHBOARD ===
 Route::middleware(['auth', 'role:administrator'])->group(function () {
     Route::get('/admin', [DashboardController::class, 'adminDashboard'])->name('administrator.dashboard');
-
+    Route::get('/daftarpelamar', [DashboardController::class, 'daftarpelamar'])->name('daftarpelamar');
+    Route::get('/pelamardetail', [DashboardController::class, 'pelamardetail']);
+    Route::get('/pelamardetail_pdf', [DashboardController::class, 'pelamardetail_pdf']);
     // DATA PENGGUNA DAN PELAMAR
     Route::get('/pengguna', [DashboardController::class, 'pengguna'])->name('pengguna');
     Route::put('/pengguna/update/{id}', [DashboardController::class, 'update'])->name('pengguna.update');
@@ -117,9 +119,9 @@ Route::middleware(['auth', 'role:administrator'])->group(function () {
 // === ADMIN & VERIFIKATOR ===
 Route::middleware(['auth', 'role:administrator,verifikator'])->group(function () {
     
-    Route::get('/daftarpelamar', [DashboardController::class, 'daftarpelamar'])->name('daftarpelamar');
-    Route::get('/pelamardetail', [DashboardController::class, 'pelamardetail']);
-    Route::get('/pelamardetail_pdf', [DashboardController::class, 'pelamardetail_pdf']);
+    // Route::get('/daftarpelamar', [DashboardController::class, 'daftarpelamar'])->name('daftarpelamar');
+    // Route::get('/pelamardetail', [DashboardController::class, 'pelamardetail']);
+    // Route::get('/pelamardetail_pdf', [DashboardController::class, 'pelamardetail_pdf']);
 
     // // WAWANCARA & ASSESSMENT
     // Route::get('/wawancara', [WawancaraController::class, 'wawancara'])->name('wawancara');
