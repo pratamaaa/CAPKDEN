@@ -56,32 +56,18 @@ class AuthController extends Controller
     public function register(Request $request)
 {
     // Validasi Input termasuk reCAPTCHA
-    use Illuminate\Support\Facades\Validator;
-
-$validator = Validator::make($request->all(), [
-    'name' => 'required|string|max:255',
-    'username' => 'required|string|max:255',
-    'nik' => 'required|string|min:16|unique:users,nik',
-    'email' => 'required|string|email|max:255|unique:users,email',
-    'password' => [
-        'required',
-        'string',
-        'min:6',
-        'confirmed',
-        'regex:/[a-z]/',      // huruf kecil
-        'regex:/[A-Z]/',      // huruf besar
-        'regex:/[0-9]/',      // angka
-        'regex:/[@$!%*#?&]/', // simbol
-    ],
-    'tempat_lahir' => 'required|string|max:255',
-    'tanggal_lahir' => 'required|date|before:' . now()->subYears(45)->format('Y-m-d'),
-    'g-recaptcha-response' => 'required|captcha', // Validasi reCAPTCHA
-], [
-    'tanggal_lahir.before' => 'Anda harus berusia minimal 45 tahun untuk mendaftar.',
-    'password.regex' => 'Password minimal 6 karakter dan harus mengandung huruf besar, huruf kecil, angka, dan simbol.',
-]);
-
-    // Jika validasi gagal, kembalikan ke halaman registrasi dengan pesan error
+    $validator = Validator::make($request->all(), [
+        'name' => 'required|string|max:255',
+        'username' => 'required|string|max:255',
+        'nik' => 'required|string|min:16|unique:users,nik',
+        'email' => 'required|string|email|max:255|unique:users,email',
+        'password' => 'required|string|min:6|confirmed',
+        'tempat_lahir' => 'required|string|max:255',
+        'tanggal_lahir' => 'required|date|before:' . now()->subYears(45)->format('Y-m-d'),
+        'g-recaptcha-response' => 'required|captcha', // Validasi reCAPTCHA
+    ], [
+        'tanggal_lahir.before' => 'Anda harus berusia minimal 45 tahun untuk mendaftar.',
+    ]);
 
     if ($validator->fails()) {
         return back()->withErrors($validator)->withInput();
