@@ -217,9 +217,8 @@ public function update(Request $request, $field)
     $userFiles = UserFiles::where('user_id', Auth::id())->firstOrFail();
 
     if ($userFiles->status_data == 1) {
-        return redirect()->route('statusberkas')->withErrors([
-            'error' => 'Data sudah difinalisasi dan tidak bisa diperbarui.'
-        ]);
+        return redirect()->route('statusberkas')->with('error', 'Data sudah difinalisasi dan tidak bisa diedit.');
+}
     }
 
     if (!empty($userFiles->$field)) {
