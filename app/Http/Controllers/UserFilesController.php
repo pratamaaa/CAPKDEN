@@ -190,12 +190,17 @@ public function updatestatus(Request $request, $field)
 {
     $userFiles = UserFiles::where('user_id', Auth::id())->first();
 
-    if ($userFiles) {
-        $userFiles->status_data = 1;
-        $userFiles->save();
+    if (!$userFiles) {
+        return redirect()->back()->withErrors(['error' => 'Data tidak ditemukan.']);
     }
 
-    // Set session untuk trigger modal
+    if ($userFiles->status_data == 1) {
+        return redirect()->back()->withErrors(['error' => 'Berkas sudah difinalisasi dan tidak dapat diubah lagi.']);
+    }
+
+    $userFiles->status_data = 1;
+    $userFiles->save();
+
     return redirect()->back()->with([
         'final_submit' => true,
         'success' => 'Status Berkas berhasil diperbarui.'
