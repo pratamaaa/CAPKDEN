@@ -216,12 +216,16 @@ public function update(Request $request, $field)
 
     $userFiles = UserFiles::where('user_id', Auth::id())->firstOrFail();
 
-    // Hapus file lama jika ada
+    if ($userFiles->status_data == 1) {
+        return redirect()->route('statusberkas')->withErrors([
+            'error' => 'Data sudah difinalisasi dan tidak bisa diperbarui.'
+        ]);
+    }
+
     if (!empty($userFiles->$field)) {
         Storage::disk('public')->delete($userFiles->$field);
     }
 
-    // Simpan file baru
     $path = $request->file('dokumen')->store('uploads/user_files', 'public');
     $userFiles->$field = $path;
     $userFiles->save();
@@ -232,6 +236,12 @@ public function update(Request $request, $field)
 public function destroy($field)
 {
     $userFiles = UserFiles::where('user_id', Auth::id())->firstOrFail();
+
+    if ($userFiles->status_data == 1) {
+        return redirect()->route('statusberkas')->withErrors([
+            'error' => 'Data sudah difinalisasi dan tidak bisa dihapus.'
+        ]);
+    }
 
     if ($userFiles->$field && Storage::disk('public')->exists($userFiles->$field)) {
         Storage::disk('public')->delete($userFiles->$field);
