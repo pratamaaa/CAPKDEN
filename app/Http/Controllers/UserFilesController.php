@@ -218,7 +218,6 @@ public function update(Request $request, $field)
 
     if ($userFiles->status_data == 1) {
         return redirect()->route('statusberkas')->with('error', 'Data sudah difinalisasi dan tidak bisa diedit.');
-}
     }
 
     if (!empty($userFiles->$field)) {
