@@ -36,6 +36,11 @@
                                             aria-label="Close"></button>
                                     </div>
                                 @endif
+                                @if (session('error'))
+                                    <script>
+                                        toastr.error("{{ session('error') }}");
+                                    </script>
+                                @endif
                                 <table class="table table-sm table-bordered">
                                     <thead>
                                         <tr>

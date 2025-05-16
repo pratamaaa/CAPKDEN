@@ -238,9 +238,8 @@ public function destroy($field)
     $userFiles = UserFiles::where('user_id', Auth::id())->firstOrFail();
 
     if ($userFiles->status_data == 1) {
-        return redirect()->route('statusberkas')->withErrors([
-            'error' => 'Data sudah difinalisasi dan tidak bisa dihapus.'
-        ]);
+        return redirect()->route('statusberkas')->with('error', 'Data sudah difinalisasi dan tidak bisa dihapus.');
+
     }
 
     if ($userFiles->$field && Storage::disk('public')->exists($userFiles->$field)) {
