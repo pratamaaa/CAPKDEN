@@ -44,7 +44,7 @@
             <div class="icon">
                 <i class="fas fa-file-upload"></i>
             </div>
-            <a href="{{ url('/daftarpelamar?submit_data=1') }}" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
+            <a href="{{ url('/verifikasi') }}" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
         </div>
     </div>
 
