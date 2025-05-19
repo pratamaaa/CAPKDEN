@@ -30,7 +30,6 @@
                                                         <th class="align-top text-center" rowspan="2">Foto</th>
                                                         <th class="align-top text-center" rowspan="2" style="width: 250px;">Nama</th>
                                                         <th class="align-top text-center" rowspan="2">Calon Kalangan</th>
-                                                        {{-- <th class="align-top text-center" rowspan="2">Status Submit Data</th> --}}
                                         
                                                         <!-- Header Pendidikan -->
                                                         <th class="align-top text-center" colspan="15">Verifikasi Berkas</th>
@@ -46,11 +45,8 @@
                                                         <!-- Pendidikan -->
                                                         <th class="align-top text-center" style="width: 200px;">KTP</th>
                                                         <th class="align-top text-center" style="width: 200px;">Ijazah Sarjana</th>
-                                                        {{-- <th class="align-top text-center" style="width: 200px;">Transkrip Sarjana</th> --}}
                                                         <th class="align-top text-center" style="width: 200px;">Ijazah Magister</th>
-                                                        {{-- <th class="align-top text-center" style="width: 200px;">Transkrip Magister</th> --}}
                                                         <th class="align-top text-center" style="width: 200px;">Ijazah Doktoral</th>
-                                                        {{-- <th class="align-top text-center" style="width: 200px;">Transkrip Doktoral</th> --}}
                                                         <th class="align-top text-center" style="width: 200px;">Organisasi Pengusul</th>
                                                         <th class="align-top text-center" style="width: 200px;">Rekomendasi Pakar-1</th>
                                                         <th class="align-top text-center" style="width: 200px;">Rekomendasi Pakar-2</th>
@@ -59,7 +55,6 @@
                                                         <th class="align-top text-center" style="width: 200px;">Surat Pernyataan 3 Point</th>
                                                         <th class="align-top text-center" style="width: 200px;">Daftar Riwayat Hidup</th>
                                                         <th class="align-top text-center" style="width: 200px;">Surat Tidak Ada Pidana</th>
-                                                        {{-- <th class="align-top text-center" style="width: 200px;">Penulisan Makalah</th> --}}
                                                         <th class="align-top text-center" style="width: 200px;">Surat Keterangan Sehat</th>
                                                         <th class="align-top text-center" style="width: 200px;">SKCK</th>
                                                         <th class="align-top text-center" style="width: 200px;">Surat Persetujuan</th>
@@ -94,17 +89,6 @@
                                         
                                         
                                                             <td>{{ $d->userProfile->kalangan ?? 'Belum diisi' }}</td>
-                                                            {{-- <td class="text-center">
-                                                                @php
-                                                                    $statusData = $d->userFiles->status_data ?? null;
-                                                                @endphp
-                                                            
-                                                                @if ($statusData == 1)
-                                                                    <span class="badge bg-success">Sudah Submit</span>
-                                                                @else
-                                                                    <span class="badge bg-warning">Belum Submit</span>
-                                                                @endif
-                                                            </td> --}}
                                                          
                                                             <td class="text-center" style="width: 200px;">
                                                                 @if ($pelamardok->count() != 0)
@@ -122,14 +106,6 @@
                                                                 @endif
                                                             </td>
                                         
-                                                            {{-- <td class="text-center" style="width: 200px;">
-                                                                @if ($pelamardok->count() != 0)
-                                                                    @php echo Bantuan::berkasstatus($d->userProfile->user_id, 'transkrip_sarjana') @endphp
-                                                                @else
-                                                                    <span class="badge bg-secondary">Belum upload</span>
-                                                                @endif
-                                                            </td> --}}
-                                        
                                                             <td class="text-center" style="width: 200px;">
                                                                 @if ($pelamardok->count() != 0)
                                                                     @php echo Bantuan::berkasstatus($d->userProfile->user_id, 'ijazah_magister') @endphp
@@ -138,14 +114,6 @@
                                                                 @endif
                                                             </td>
                                         
-                                                            {{-- <td class="text-center" style="width: 200px;">
-                                                                @if ($pelamardok->count() != 0)
-                                                                    @php echo Bantuan::berkasstatus($d->userProfile->user_id, 'transkrip_magister') @endphp
-                                                                @else
-                                                                    <span class="badge bg-secondary">Belum upload</span>
-                                                                @endif
-                                                            </td> --}}
-                                        
                                                             <td class="text-center" style="width: 200px;">
                                                                 @if ($pelamardok->count() != 0)
                                                                     @php echo Bantuan::berkasstatus($d->userProfile->user_id, 'ijazah_doktoral') @endphp
@@ -153,14 +121,6 @@
                                                                     <span class="badge bg-secondary">Belum upload</span>
                                                                 @endif
                                                             </td>
-                                        
-                                                            {{-- <td class="text-center" style="width: 200px;">
-                                                                @if ($pelamardok->count() != 0)
-                                                                    @php echo Bantuan::berkasstatus($d->userProfile->user_id, 'transkrip_doktoral') @endphp
-                                                                @else
-                                                                    <span class="badge bg-secondary">Belum upload</span>
-                                                                @endif
-                                                            </td> --}}
                                         
                                                             <td class="text-center" style="width: 200px;">
                                                                 @if ($pelamardok->count() != 0)
@@ -225,14 +185,6 @@
                                                                     <span class="badge bg-secondary">Belum upload</span>
                                                                 @endif
                                                             </td>
-                                        
-                                                            {{-- <td class="text-center" style="width: 200px;">
-                                                                @if ($pelamardok->count() != 0)
-                                                                    @php echo Bantuan::berkasstatus($d->userProfile->user_id, 'makalah') @endphp
-                                                                @else
-                                                                    <span class="badge bg-secondary">Belum upload</span>
-                                                                @endif
-                                                            </td> --}}
                                         
                                                             <td class="text-center" style="width: 200px;">
                                                                 @if ($pelamardok->count() != 0)
@@ -345,31 +297,38 @@
 </div>
 
 <script>
-    function verifikasiBerkas(user_id){
-        $('#modalverifikasi').modal('show').find('#modalverifikasi_content').load("{{ url('verifikasiform') }}?userid="+user_id);
+    function verifikasiBerkas(user_id) {
+        $('#modalverifikasi').modal('show')
+            .find('#modalverifikasi_content')
+            .load("{{ url('verifikasiform') }}?userid=" + user_id);
     }
 
-    $("form").submit(function(){
-        alert("Submitted");
-    });
+    document.addEventListener('DOMContentLoaded', function () {
+        const previewModal = document.getElementById('previewModalNested');
+        const previewIframe = document.getElementById('previewIframe');
+        const parentModal = document.getElementById('modalverifikasi');
 
-    // Muat file dokumen ke modal previw
-    const previewModal = document.getElementById('previewModalNested');
-    previewModal.addEventListener('show.bs.modal', function(event) {
-        const button = event.relatedTarget;
-        const fileUrl = button.getAttribute('data-file');
-        document.getElementById('previewIframe').src = fileUrl;
-        const iframe = previewModal.querySelector('#previewIframe');
-        iframe.src = fileUrl;
+        if (previewModal && previewIframe && parentModal) {
+            previewModal.addEventListener('show.bs.modal', function (event) {
+                const button = event.relatedTarget;
+                if (button) {
+                    const fileUrl = button.getAttribute('data-file');
+                    if (fileUrl) {
+                        previewIframe.src = fileUrl;
 
-        const parentModal = document.getElementById('verifikasiModal');
-        parentModal.classList.remove('show');
-        parentModal.style.display = 'none';
-    });
+                        // Untuk Bootstrap 4
+                        $('#modalverifikasi').modal('hide');
+                    }
+                }
+            });
 
-    previewModal.addEventListener('hidden.bs.modal', function() {
-        const parentModal = new bootstrap.Modal(document.getElementById('modalverifikasi'));
-        parentModal.show();
+            previewModal.addEventListener('hidden.bs.modal', function () {
+                // Untuk Bootstrap 4
+                $('#modalverifikasi').modal('show');
+            });
+        }
     });
 </script>
+
+
 @endsection
