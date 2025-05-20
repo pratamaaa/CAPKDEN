@@ -20,6 +20,7 @@
                                         <th class="align-top text-center" rowspan="2">Foto</th>
                                         <th class="align-top text-center" rowspan="2" style="width: 250px;">Nama</th>
                                         <th class="align-top text-center" rowspan="2">Calon Kalangan</th>
+                                        <th class="align-top text-center" rowspan="2">No. Handphone</th>
                                         <th class="align-top text-center" rowspan="2">Status Submit Data</th>
                             
                                         <!-- Header Pendidikan -->
@@ -65,6 +66,7 @@
                     {{ $namalengkap_pelamar }}
                 </td>
                 <td>{{ $pel->userProfile?->kalangan ?? '' }}</td>
+                <td>{{ $pel->userProfile?->no_handphone ?? '' }}</td>
                 <td class="text-center">
                     @php
                         $statusData = $pel->userFiles->status_data ?? null;
