@@ -120,8 +120,8 @@
                                                 <td>{{ $kalangan->total_pelamar }}</td>
                                                 <td>{{ $kalangan->lulus_administrasi }}</td>
                                                 <td>{{ $kalangan->tidak_lulus_administrasi }}</td>
-                                                <td>{{ $kalangan->lulus_assesment }}</td>
-                                                <td>{{ $kalangan->tidak_lulus_assesment }}</td>
+                                                <td>{{ $kalangan->lulus_assessment }}</td>
+                                                <td>{{ $kalangan->tidak_lulus_assessment }}</td>
                                                 <td>{{ $kalangan->lulus_wawancara }}</td>
                                                 <td>{{ $kalangan->tidak_lulus_wawancara }}</td>
                                             </tr>
