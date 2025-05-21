@@ -133,8 +133,8 @@
                                                 <td>{{ $totalPelamar }}</td>
                                                 <td>{{ $totalLulusAdministrasi }}</td>
                                                 <td>{{ $totalTidakLulusAdministrasi }}</td>
-                                                <td>{{ $totalLulusAdministrasi }}</td>
-                                                <td>{{ $totalTidakLulusAdministrasi }}</td>
+                                                <td>{{ $totalLulusAssessment }}</td>
+                                                <td>{{ $totalTidakLulusAssessment }}</td>
                                                 <td>{{ $totalLulusWawancara }}</td>
                                                 <td>{{ $totalTidakLulusWawancara }}</td>
                                             </tr>
