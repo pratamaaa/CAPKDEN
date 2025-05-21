@@ -51,7 +51,6 @@ class VerifikasiController extends Controller
                     $query->whereIn('status_ktp', ['diterima', 'ditolak']);
                 })
 
-                })
                 ->with(['userProfile', 'userFiles'])
                 ->get();
         return view('admin.sudahverifikasi', compact('data','dokumenList', 'greeting'));
