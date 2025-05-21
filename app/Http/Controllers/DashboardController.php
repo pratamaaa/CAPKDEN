@@ -433,16 +433,22 @@ foreach ($kalanganData as $kalangan => $jumlah) {
     return redirect()->back()->with('success', $message);
 }
 
-public function daftarpelamar()
+public function daftarpelamar(Request $request)
 {
     $greeting = $this->getGreeting();
 
     $data = User::where('role', 'user')
+        ->when($request->has('status_data'), function ($query) use ($request) {
+            $query->whereHas('userFiles', function ($q) use ($request) {
+                $q->where('status_data', $request->status_data);
+            });
+        })
         ->with(['userProfile', 'userFiles'])
         ->get();
 
     return view('admin.daftarpelamar', compact('data', 'greeting'));
 }
+
 
 public function pelamardetail(Request $req){
     $user_id = $req->get('userid');

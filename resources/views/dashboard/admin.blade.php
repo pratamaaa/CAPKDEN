@@ -58,7 +58,7 @@
             <div class="icon">
                 <i class="fas fa-file"></i>
             </div>
-            <a href="{{ url('/daftarpelamar?submit_data=0') }}" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
+            <a href="{{ url('/daftarpelamar?status_data=0') }}" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
         </div>
     </div>
 
