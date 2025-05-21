@@ -72,7 +72,7 @@
             <div class="icon">
                 <i class="fas fa-user-check"></i>
             </div>
-            <a href="{{ url('/daftarpelamar?verifikasi=ya') }}" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
+            <a href="{{ url('/sudahverifikasi') }}" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
         </div>
     </div>
 
