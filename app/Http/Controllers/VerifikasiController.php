@@ -48,7 +48,7 @@ class VerifikasiController extends Controller
         $dokumenList = UserFiles::with('userProfile.user')->get();
         $data = User::where('role', 'user')
                 ->whereHas('userFiles', function ($query) {
-                    $query->whereIn('status_ktp', ['diterima', 'ditolak']);
+                    $query->whereIn('administrasi_status', ['lulus', 'tidak lulus']);
                 })
 
                 ->with(['userProfile', 'userFiles'])

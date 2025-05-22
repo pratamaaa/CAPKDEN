@@ -340,7 +340,7 @@ foreach ($kalanganData as $kalangan => $jumlah) {
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nama' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
             'username' => 'required|string|max:255|unique:users,username,' . $id,
             'nik' => 'required|numeric|digits:16|unique:users,nik,' . $id,
             'email' => 'required|email|unique:users,email,' . $id,
@@ -349,7 +349,7 @@ foreach ($kalanganData as $kalangan => $jumlah) {
 
         $user = User::findOrFail($id);
         $user->update([
-            'name' => $request->nama,
+            'name' => $request->name,
             'username' => $request->username,
             'nik' => $request->nik,
             'email' => $request->email,

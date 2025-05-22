@@ -86,7 +86,7 @@
             <div class="icon">
                 <i class="fas fa-user-times"></i>
             </div>
-            <a href="{{ url('/daftarpelamar?verifikasi=tidak') }}" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
+            <a href="{{ url('/daftarpelamar?verifikasi=menunggu') }}" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
         </div>
     </div>
 </div>
