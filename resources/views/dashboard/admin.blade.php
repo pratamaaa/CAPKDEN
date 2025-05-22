@@ -79,7 +79,7 @@
 
     <!-- 5. Sudah Diverifikasi -->
     <div class="col-lg-4 col-6">
-        <div class="small-box bg-success">
+        <div class="small-box bg-primary">
             <div class="inner">
                 <h3>{{ $sudahVerifikasi }}</h3>
                 <p>Sudah Diverifikasi</p>
