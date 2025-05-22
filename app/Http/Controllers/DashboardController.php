@@ -96,7 +96,7 @@ class DashboardController extends Controller
     // Data Rekap dari DB
     $kalanganDataPelamar = DB::table('users')
     ->select(
-        DB::raw("COALESCE(user_profiles.kalangan, 'Tidak diketahui') as kalangan"),
+        DB::raw("COALESCE(user_profiles.kalangan, 'Tidak Memilih') as kalangan"),
         DB::raw("COUNT(users.id) as total_pelamar"),
         DB::raw("COUNT(CASE WHEN user_files.administrasi_status = 'lulus' THEN 1 END) as lulus_administrasi"),
         DB::raw("COUNT(CASE WHEN user_files.administrasi_status = 'tidak lulus' THEN 1 END) as tidak_lulus_administrasi"),
@@ -201,7 +201,7 @@ foreach ($kalanganData as $kalangan => $jumlah) {
     // Data Rekap dari DB
     $kalanganDataPelamar = DB::table('users')
     ->select(
-        DB::raw("COALESCE(user_profiles.kalangan, 'Tidak diketahui') as kalangan"),
+        DB::raw("COALESCE(user_profiles.kalangan, 'Tidak Memilih') as kalangan"),
         DB::raw("COUNT(users.id) as total_pelamar"),
         DB::raw("COUNT(CASE WHEN user_files.administrasi_status = 'lulus' THEN 1 END) as lulus_administrasi"),
         DB::raw("COUNT(CASE WHEN user_files.administrasi_status = 'tidak lulus' THEN 1 END) as tidak_lulus_administrasi"),

@@ -139,11 +139,16 @@
                                             ];
                                         @endphp
 
+                                        @php
+                                            $belumMemilih = $kalanganDataPelamar->firstWhere('kalangan', 'Tidak Memilih');
+                                            $kalanganTersaring = $kalanganDataPelamar->filter(fn($item) => $item->kalangan !== 'Tidak Memilih');
+                                        @endphp
+
                                         <tbody class="text-center">
-                                            @foreach($kalanganDataPelamar as $kalangan)
+                                            @foreach($kalanganTersaring as $kalangan)
                                             <tr>
                                                 <td>{{ $kalangan->kalangan ?? '-' }}</td>
-                                                <td>{{ $kuotaKalangan[$kalangan->kalangan] ?? '-' }}</td> <!-- Diisi manual -->
+                                                <td>{{ $kuotaKalangan[$kalangan->kalangan] ?? '-' }}</td>
                                                 <td>{{ $kalangan->total_pelamar }}</td>
                                                 <td>{{ $kalangan->lulus_administrasi }}</td>
                                                 <td>{{ $kalangan->tidak_lulus_administrasi }}</td>
@@ -153,6 +158,20 @@
                                                 <td>{{ $kalangan->tidak_lulus_wawancara }}</td>
                                             </tr>
                                             @endforeach
+
+                                            @if($belumMemilih)
+                                            <tr class="table-danger">
+                                                <td>{{ $belumMemilih->kalangan }}</td>
+                                                <td>{{ $kuotaKalangan[$belumMemilih->kalangan] ?? '-' }}</td>
+                                                <td>{{ $belumMemilih->total_pelamar }}</td>
+                                                <td>{{ $belumMemilih->lulus_administrasi }}</td>
+                                                <td>{{ $belumMemilih->tidak_lulus_administrasi }}</td>
+                                                <td>{{ $belumMemilih->lulus_assessment }}</td>
+                                                <td>{{ $belumMemilih->tidak_lulus_assessment }}</td>
+                                                <td>{{ $belumMemilih->lulus_wawancara }}</td>
+                                                <td>{{ $belumMemilih->tidak_lulus_wawancara }}</td>
+                                            </tr>
+                                            @endif
 
                                             <!-- Baris total -->
                                             <tr class="table-success font-weight-bold">
