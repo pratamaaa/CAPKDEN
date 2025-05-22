@@ -94,10 +94,10 @@ class DashboardController extends Controller
     $kalanganValues = $kalanganData->values();
 
     // Data Rekap dari DB
-    $kalanganDataPelamar = DB::table('user_profiles')
+    $kalanganDataPelamar = DB::table('users')
     ->select(
-        'kalangan',
-        DB::raw('COUNT(user_profiles.user_id) as total_pelamar'),
+        DB::raw("COALESCE(user_profiles.kalangan, 'Tidak diketahui') as kalangan"),
+        DB::raw("COUNT(users.id) as total_pelamar"),
         DB::raw("COUNT(CASE WHEN user_files.administrasi_status = 'lulus' THEN 1 END) as lulus_administrasi"),
         DB::raw("COUNT(CASE WHEN user_files.administrasi_status = 'tidak lulus' THEN 1 END) as tidak_lulus_administrasi"),
         DB::raw("COUNT(CASE WHEN user_files.assessment_status = 'lulus' THEN 1 END) as lulus_assessment"),
@@ -105,10 +105,11 @@ class DashboardController extends Controller
         DB::raw("COUNT(CASE WHEN user_files.wawancara_status = 'lulus' THEN 1 END) as lulus_wawancara"),
         DB::raw("COUNT(CASE WHEN user_files.wawancara_status = 'tidak lulus' THEN 1 END) as tidak_lulus_wawancara")
     )
-    ->leftJoin('user_files', 'user_profiles.user_id', '=', 'user_files.user_id')
-    ->groupBy('kalangan')
+    ->leftJoin('user_profiles', 'user_profiles.user_id', '=', 'users.id')
+    ->leftJoin('user_files', 'user_files.user_id', '=', 'users.id')
+    ->where('users.role', 'user')
+    ->groupBy('user_profiles.kalangan')
     ->get();
-
 
     // Rekap total berdasarkan pelamar
     $totalPelamar = $kalanganDataPelamar->sum('total_pelamar');
@@ -198,10 +199,10 @@ foreach ($kalanganData as $kalangan => $jumlah) {
     $kalanganValues = $kalanganData->values();
 
     // Data Rekap dari DB
-    $kalanganDataPelamar = DB::table('user_profiles')
+    $kalanganDataPelamar = DB::table('users')
     ->select(
-        'kalangan',
-        DB::raw('COUNT(user_profiles.user_id) as total_pelamar'),
+        DB::raw("COALESCE(user_profiles.kalangan, 'Tidak diketahui') as kalangan"),
+        DB::raw("COUNT(users.id) as total_pelamar"),
         DB::raw("COUNT(CASE WHEN user_files.administrasi_status = 'lulus' THEN 1 END) as lulus_administrasi"),
         DB::raw("COUNT(CASE WHEN user_files.administrasi_status = 'tidak lulus' THEN 1 END) as tidak_lulus_administrasi"),
         DB::raw("COUNT(CASE WHEN user_files.assessment_status = 'lulus' THEN 1 END) as lulus_assessment"),
@@ -209,10 +210,11 @@ foreach ($kalanganData as $kalangan => $jumlah) {
         DB::raw("COUNT(CASE WHEN user_files.wawancara_status = 'lulus' THEN 1 END) as lulus_wawancara"),
         DB::raw("COUNT(CASE WHEN user_files.wawancara_status = 'tidak lulus' THEN 1 END) as tidak_lulus_wawancara")
     )
-    ->leftJoin('user_files', 'user_profiles.user_id', '=', 'user_files.user_id')
-    ->groupBy('kalangan')
+    ->leftJoin('user_profiles', 'user_profiles.user_id', '=', 'users.id')
+    ->leftJoin('user_files', 'user_files.user_id', '=', 'users.id')
+    ->where('users.role', 'user') 
+    ->groupBy('user_profiles.kalangan')
     ->get();
-
 
     // Rekap total berdasarkan pelamar
     $totalPelamar = $kalanganDataPelamar->sum('total_pelamar');

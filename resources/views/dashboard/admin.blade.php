@@ -20,12 +20,13 @@
             <div class="container-fluid">
                 <!-- Small boxes (Stat box) -->
                 <div class="row">
+
     <!-- 1. Total Pelamar -->
-    <div class="col-lg-3 col-6">
+    <div class="col-lg-4 col-6">
         <div class="small-box bg-info">
             <div class="inner">
                 <h3>{{ $totalPelamar }}</h3>
-                <p>Total Seluruh Pelamar <br>(yang sudah update data diri)</p>
+                <p>Total Seluruh Pelamar</p>
             </div>
             <div class="icon">
                 <i class="fas fa-users"></i>
@@ -34,8 +35,22 @@
         </div>
     </div>
 
-    <!-- 2. Sudah Submit Final -->
-    <div class="col-lg-3 col-6">
+    <!-- 2. Total Pelamar Update Data Diri  -->
+    {{-- <div class="col-lg-4 col-6">
+        <div class="small-box bg-primary">
+            <div class="inner">
+                <h3>{{ $totalPelamar }}</h3>
+                <p>Total Pelamar <br>(yang sudah update data diri)</p>
+            </div>
+            <div class="icon">
+                <i class="fas fa-user-edit"></i>
+            </div>
+            <a href="{{ url('/daftarpelamar') }}" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+    </div> --}}
+
+    <!-- 3. Sudah Submit Final -->
+    <div class="col-lg-4 col-6">
         <div class="small-box bg-success">
             <div class="inner">
                 <h3>{{ $sudahSubmitFinal }}</h3>
@@ -48,8 +63,8 @@
         </div>
     </div>
 
-    <!-- 3. Belum Submit Final -->
-    <div class="col-lg-3 col-6">
+    <!-- 4. Belum Submit Final -->
+    <div class="col-lg-4 col-6">
         <div class="small-box bg-warning">
             <div class="inner">
                 <h3>{{ $belumSubmitFinal }}</h3>
@@ -62,9 +77,9 @@
         </div>
     </div>
 
-    <!-- 4. Sudah Diverifikasi -->
-    <div class="col-lg-3 col-6">
-        <div class="small-box bg-primary">
+    <!-- 5. Sudah Diverifikasi -->
+    <div class="col-lg-4 col-6">
+        <div class="small-box bg-success">
             <div class="inner">
                 <h3>{{ $sudahVerifikasi }}</h3>
                 <p>Sudah Diverifikasi</p>
@@ -76,8 +91,8 @@
         </div>
     </div>
 
-    <!-- 5. Belum Diverifikasi -->
-    <div class="col-lg-3 col-6">
+    <!-- 6. Belum Diverifikasi -->
+    <div class="col-lg-4 col-6">
         <div class="small-box bg-danger">
             <div class="inner">
                 <h3>{{ $belumVerifikasi }}</h3>
@@ -104,6 +119,7 @@
                                         <thead class="table-primary text-center">
                                             <tr>
                                                 <th>Kalangan</th>
+                                                <th>Formasi</th>
                                                 <th>Total Pelamar</th>
                                                 <th>Lulus Administrasi</th>
                                                 <th>Tidak Lulus Administrasi</th>
@@ -113,10 +129,21 @@
                                                 <th>Tidak Lulus Wawancara</th>
                                             </tr>
                                         </thead>
+                                        @php
+                                            $kuotaKalangan = [
+                                                'Akademisi' => 2,
+                                                'Industri' => 2,
+                                                'Konsumen' => 2,
+                                                'Lingkungan Hidup' => 1,
+                                                'Teknologi' => 1,
+                                            ];
+                                        @endphp
+
                                         <tbody class="text-center">
                                             @foreach($kalanganDataPelamar as $kalangan)
                                             <tr>
                                                 <td>{{ $kalangan->kalangan ?? '-' }}</td>
+                                                <td>{{ $kuotaKalangan[$kalangan->kalangan] ?? '-' }}</td> <!-- Diisi manual -->
                                                 <td>{{ $kalangan->total_pelamar }}</td>
                                                 <td>{{ $kalangan->lulus_administrasi }}</td>
                                                 <td>{{ $kalangan->tidak_lulus_administrasi }}</td>
@@ -126,10 +153,11 @@
                                                 <td>{{ $kalangan->tidak_lulus_wawancara }}</td>
                                             </tr>
                                             @endforeach
-                                    
+
                                             <!-- Baris total -->
                                             <tr class="table-success font-weight-bold">
                                                 <td>Total</td>
+                                                <td>8</td>
                                                 <td>{{ $totalPelamar }}</td>
                                                 <td>{{ $totalLulusAdministrasi }}</td>
                                                 <td>{{ $totalTidakLulusAdministrasi }}</td>
