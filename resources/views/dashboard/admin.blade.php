@@ -64,7 +64,7 @@
     </div>
 
     <!-- 4. Belum Submit Final -->
-    <div class="col-lg-3 col-6">
+    {{-- <div class="col-lg-3 col-6">
         <div class="small-box bg-danger">
             <div class="inner">
                 <h3>{{ $belumSubmitFinal }}</h3>
@@ -75,7 +75,7 @@
             </div>
             <a href="{{ url('/daftarpelamar?status_data=0') }}" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
         </div>
-    </div>
+    </div> --}}
 
     <!-- 5. Sudah Diverifikasi -->
     <div class="col-lg-3 col-6">
