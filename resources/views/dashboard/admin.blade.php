@@ -22,7 +22,7 @@
                 <div class="row">
 
     <!-- 1. Total Pelamar -->
-    <div class="col-lg-4 col-6">
+    <div class="col-lg-3 col-6">
         <div class="small-box bg-info">
             <div class="inner">
                 <h3>{{ $totalPelamar }}</h3>
@@ -36,7 +36,7 @@
     </div>
 
     <!-- 2. Total Pelamar Update Data Diri  -->
-    {{-- <div class="col-lg-4 col-6">
+    {{-- <div class="col-lg-3 col-6">
         <div class="small-box bg-primary">
             <div class="inner">
                 <h3>{{ $totalPelamar }}</h3>
@@ -50,7 +50,7 @@
     </div> --}}
 
     <!-- 3. Sudah Submit Final -->
-    <div class="col-lg-4 col-6">
+    <div class="col-lg-3 col-6">
         <div class="small-box bg-success">
             <div class="inner">
                 <h3>{{ $sudahSubmitFinal }}</h3>
@@ -64,8 +64,8 @@
     </div>
 
     <!-- 4. Belum Submit Final -->
-    <div class="col-lg-4 col-6">
-        <div class="small-box bg-warning">
+    <div class="col-lg-3 col-6">
+        <div class="small-box bg-danger">
             <div class="inner">
                 <h3>{{ $belumSubmitFinal }}</h3>
                 <p>Belum Submit Final</p>
@@ -78,7 +78,7 @@
     </div>
 
     <!-- 5. Sudah Diverifikasi -->
-    <div class="col-lg-4 col-6">
+    <div class="col-lg-3 col-6">
         <div class="small-box bg-primary">
             <div class="inner">
                 <h3>{{ $sudahVerifikasi }}</h3>
@@ -92,7 +92,7 @@
     </div>
 
     <!-- 6. Belum Diverifikasi -->
-    <div class="col-lg-4 col-6">
+    {{-- <div class="col-lg-3 col-6">
         <div class="small-box bg-danger">
             <div class="inner">
                 <h3>{{ $belumVerifikasi }}</h3>
@@ -103,7 +103,7 @@
             </div>
             <a href="{{ url('/daftarpelamar?verifikasi=menunggu') }}" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
         </div>
-    </div>
+    </div> --}}
 </div>
 
                 <!-- Main content -->
