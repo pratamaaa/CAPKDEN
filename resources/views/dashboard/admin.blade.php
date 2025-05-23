@@ -31,7 +31,7 @@
             <div class="icon">
                 <i class="fas fa-users"></i>
             </div>
-            <a href="{{ url('/daftarpelamar') }}" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
+            <a href="{{ url('/daftar-pelamar') }}" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
         </div>
     </div>
 
@@ -113,7 +113,7 @@
                 <p>Tidak Lulus Administrasi</p>
             </div>
             <div class="icon">
-                <i class="fas fa-check"></i>
+                <i class="fas fa-ban"></i>
             </div>
             <a href="{{ url('/verifikasi/tidaklulus') }}" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
         </div>

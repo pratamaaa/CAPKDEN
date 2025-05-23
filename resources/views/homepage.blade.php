@@ -49,9 +49,9 @@
       <div class="carousel-item active">
         <img src="{{ asset('bs/assets/images/slidebannerden2.png') }}" class="d-block w-100" alt="Slide 1">
       </div>
-      {{-- <div class="carousel-item">
-        <img src="{{ asset('bs/assets/images/5.png') }}" class="d-block w-100" alt="Slide 2">
-      </div> --}}
+      <div class="carousel-item">
+        <img src="{{ asset('bs/assets/images/slidebannerden3.png') }}" class="d-block w-100" alt="Slide 2">
+      </div>
       
     </div>
 
