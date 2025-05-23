@@ -65,20 +65,8 @@
                     @endphp
                     {{ $namalengkap_pelamar }}
                 </td>
-                {{-- <td>{{ $pel->userProfile?->kalangan ?? '' }}</td> --}}
-                <td>
-                    @if ($pel->userProfile?->kalangan)
-                    @else
-                        <span class="badge bg-danger">Belum diisi</span>
-                    @endif
-                </td>
-                {{-- <td>{{ $pel->userProfile?->no_handphone ?? '' }}</td> --}}
-                <td>
-                    @if ($pel->userProfile?->no_handphone)
-                    @else
-                        <span class="badge bg-danger">Belum diisi</span>
-                    @endif
-                </td>
+                <td>{{ $pel->userProfile?->kalangan ?? '' }}</td>
+                <td>{{ $pel->userProfile?->no_handphone ?? '' }}</td>
                 <td class="text-center">
                     @php
                         $statusData = $pel->userFiles->status_data ?? null;
@@ -120,36 +108,16 @@
                     @endif
                 </td>
                 <td style="width: 200px;">
-                    {{-- {{ $berkaspelamar->first()->org_pengusul ?? 'Belum diisi' }} --}}
-                    @if ($berkaspelamar->count() != 0)
-                        {{ $berkaspelamar->first()->org_pengusul }}
-                    @else
-                        <span class="badge bg-danger">Belum diisi</span>
-                    @endif
+                    {{ $berkaspelamar->first()->org_pengusul ?? 'Belum diisi' }}
                 </td>
                 <td style="width: 200px;">
-                    {{-- {{ $berkaspelamar->first()->rek_pakar1 ?? 'Belum diisi' }} --}}
-                    @if ($berkaspelamar->count() != 0)
-                        {{ $berkaspelamar->first()->rek_pakar1 }}
-                    @else
-                        <span class="badge bg-danger">Belum diisi</span>
-                    @endif
+                    {{ $berkaspelamar->first()->rek_pakar1 ?? 'Belum diisi' }}
                 </td>
                 <td style="width: 200px;">
-                    {{-- {{ $berkaspelamar->first()->rek_pakar2 ?? 'Belum diisi' }} --}}
-                    @if ($berkaspelamar->count() != 0)
-                        {{ $berkaspelamar->first()->rek_pakar2 }}
-                    @else
-                        <span class="badge bg-danger">Belum diisi</span>
-                    @endif
+                    {{ $berkaspelamar->first()->rek_pakar2 ?? 'Belum diisi' }}
                 </td>
                 <td style="width: 200px;">
-                    {{-- {{ $berkaspelamar->first()->rek_pakar3 ?? 'Belum diisi' }} --}}
-                    @if ($berkaspelamar->count() != 0)
-                        {{ $berkaspelamar->first()->rek_pakar3 }}
-                    @else
-                        <span class="badge bg-danger">Belum diisi</span>
-                    @endif
+                    {{ $berkaspelamar->first()->rek_pakar3 ?? 'Belum diisi' }}
                 </td>
                 <td>
                     <button class="btn btn-primary btn-sm preview-btn" onclick="detailPelamar({{ $pel->id }})" data-bs-toggle="modal" data-bs-target="#modalpelamar">
