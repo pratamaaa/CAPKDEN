@@ -161,36 +161,37 @@ foreach ($kalanganData as $kalangan => $jumlah) {
     public function verifikatorDashboard()
 {
     $users = User::with(['userFiles', 'userProfile'])->get();
-    
+
     $greeting = $this->getGreeting();
+
+    // Hitung total pelamar valid (tanpa nama kosong)
     $totalPelamar = User::whereNotNull('name')
-    ->whereRaw("TRIM(name) != ''")
-    ->count();
+        ->whereRaw("TRIM(name) != ''")
+        ->count();
 
-
-    // 2. Sudah submit final
+    // Sudah submit final
     $sudahSubmitFinal = DB::table('user_files')->where('status_data', 1)->count();
 
-    // 3. Belum submit final
+    // Belum submit final
     $belumSubmitFinal = DB::table('user_files')->where('status_data', 0)->count();
 
-    // 4. Sudah diverifikasi (status_ktp: diterima/ditolak)
+    // Sudah diverifikasi
     $sudahVerifikasi = DB::table('user_files')
         ->where('status_data', 1)
         ->whereIn('administrasi_status', ['lulus', 'tidak lulus'])
         ->count();
 
-    // 5. Belum diverifikasi (status_ktp: belum diverifikasi atau null)
+    // Belum diverifikasi
     $belumVerifikasi = DB::table('user_files')
-    ->where('status_data', 1)
-    ->where('administrasi_status', 'menunggu')
-    ->count();
+        ->where('status_data', 1)
+        ->where('administrasi_status', 'menunggu')
+        ->count();
 
-    // Assessment dan wawancara (masih pakai $users yang sudah di-load dengan relasi)
-    $sudahAssesment = $users->filter(fn($user) => $user->userFiles?->assessment_status != null)->count();
+    // Assessment dan wawancara
+    $sudahAssesment = $users->filter(fn($user) => $user->userFiles?->assessment_status !== null)->count();
     $belumAssesment = $totalPelamar - $sudahAssesment;
 
-    $sudahWawancara = $users->filter(fn($user) => $user->userFiles?->wawancara_status != null)->count();
+    $sudahWawancara = $users->filter(fn($user) => $user->userFiles?->wawancara_status !== null)->count();
     $belumWawancara = $totalPelamar - $sudahWawancara;
 
     // Chart Pie Kalangan
@@ -198,26 +199,28 @@ foreach ($kalanganData as $kalangan => $jumlah) {
     $kalanganLabels = $kalanganData->keys();
     $kalanganValues = $kalanganData->values();
 
-    // Data Rekap dari DB
+    // Data Rekap Pelamar per Kalangan (dari DB)
     $kalanganDataPelamar = DB::table('users')
-    ->select(
-        DB::raw("COALESCE(user_profiles.kalangan, 'Tidak Memilih') as kalangan"),
-        DB::raw("COUNT(users.id) as total_pelamar"),
-        DB::raw("COUNT(CASE WHEN user_files.administrasi_status = 'lulus' THEN 1 END) as lulus_administrasi"),
-        DB::raw("COUNT(CASE WHEN user_files.administrasi_status = 'tidak lulus' THEN 1 END) as tidak_lulus_administrasi"),
-        DB::raw("COUNT(CASE WHEN user_files.assessment_status = 'lulus' THEN 1 END) as lulus_assessment"),
-        DB::raw("COUNT(CASE WHEN user_files.assessment_status = 'tidak lulus' THEN 1 END) as tidak_lulus_assessment"),
-        DB::raw("COUNT(CASE WHEN user_files.wawancara_status = 'lulus' THEN 1 END) as lulus_wawancara"),
-        DB::raw("COUNT(CASE WHEN user_files.wawancara_status = 'tidak lulus' THEN 1 END) as tidak_lulus_wawancara")
-    )
-    ->leftJoin('user_profiles', 'user_profiles.user_id', '=', 'users.id')
-    ->leftJoin('user_files', 'user_files.user_id', '=', 'users.id')
-    ->where('users.role', 'user') 
-    ->groupBy('user_profiles.kalangan')
-    ->get();
+        ->select(
+            DB::raw("COALESCE(user_profiles.kalangan, 'Tidak Memilih') as kalangan"),
+            DB::raw("COUNT(users.id) as total_pelamar"),
+            DB::raw("COUNT(CASE WHEN user_files.status_data = 1 THEN 1 END) as submit_final"),
+            DB::raw("COUNT(CASE WHEN user_files.administrasi_status = 'lulus' THEN 1 END) as lulus_administrasi"),
+            DB::raw("COUNT(CASE WHEN user_files.administrasi_status = 'tidak lulus' THEN 1 END) as tidak_lulus_administrasi"),
+            DB::raw("COUNT(CASE WHEN user_files.assessment_status = 'lulus' THEN 1 END) as lulus_assessment"),
+            DB::raw("COUNT(CASE WHEN user_files.assessment_status = 'tidak lulus' THEN 1 END) as tidak_lulus_assessment"),
+            DB::raw("COUNT(CASE WHEN user_files.wawancara_status = 'lulus' THEN 1 END) as lulus_wawancara"),
+            DB::raw("COUNT(CASE WHEN user_files.wawancara_status = 'tidak lulus' THEN 1 END) as tidak_lulus_wawancara")
+        )
+        ->leftJoin('user_profiles', 'user_profiles.user_id', '=', 'users.id')
+        ->leftJoin('user_files', 'user_files.user_id', '=', 'users.id')
+        ->where('users.role', 'user')
+        ->groupBy('user_profiles.kalangan')
+        ->get();
 
     // Rekap total berdasarkan pelamar
     $totalPelamar = $kalanganDataPelamar->sum('total_pelamar');
+    $totalSubmitFinal = $kalanganDataPelamar->sum('submit_final');
     $totalLulusAdministrasi = $kalanganDataPelamar->sum('lulus_administrasi');
     $totalTidakLulusAdministrasi = $kalanganDataPelamar->sum('tidak_lulus_administrasi');
     $totalLulusAssessment = $kalanganDataPelamar->sum('lulus_assessment');
@@ -227,40 +230,42 @@ foreach ($kalanganData as $kalangan => $jumlah) {
 
     // Rekap Kalangan Manual
     $rekapKalangan = [];
-foreach ($kalanganData as $kalangan => $jumlah) {
-    $usersInKalangan = $users->filter(fn($user) => ($user->userProfile?->kalangan ?? 'Tidak Diketahui') == $kalangan);
+    foreach ($kalanganData as $kalangan => $jumlah) {
+        $usersInKalangan = $users->filter(fn($user) => ($user->userProfile?->kalangan ?? 'Tidak Diketahui') == $kalangan);
 
-    $rekapKalangan[] = [
-        'kalangan' => $kalangan,
-        'total' => $jumlah,
-        'sudah_verifikasi' => $usersInKalangan->filter(fn($u) => in_array($u->userFiles?->status_ktp, ['diterima', 'ditolak']))->count(),
-        'belum_verifikasi' => $usersInKalangan->filter(fn($u) => !in_array($u->userFiles?->status_ktp, ['diterima', 'ditolak']))->count(),
-        'sudah_wawancara' => $usersInKalangan->filter(fn($u) => $u->userFiles?->wawancara_status !== null)->count(),
-        'belum_wawancara' => $usersInKalangan->filter(fn($u) => $u->userFiles?->wawancara_status === null)->count(),
-        'lulus_assessment' => $usersInKalangan->filter(fn($u) => $u->userFiles?->assessment_status === 'lulus')->count(),
-        'tidak_lulus_assessment' => $usersInKalangan->filter(fn($u) => $u->userFiles?->assessment_status === 'tidak lulus')->count(),
-    ];
-}
+        $rekapKalangan[] = [
+            'kalangan' => $kalangan,
+            'total' => $jumlah,
+            'submit_final' => $usersInKalangan->filter(fn($u) => $u->userFiles?->status_data == 1)->count(),
+            'sudah_verifikasi' => $usersInKalangan->filter(fn($u) => in_array($u->userFiles?->status_ktp, ['diterima', 'ditolak']))->count(),
+            'belum_verifikasi' => $usersInKalangan->filter(fn($u) => !in_array($u->userFiles?->status_ktp, ['diterima', 'ditolak']))->count(),
+            'sudah_wawancara' => $usersInKalangan->filter(fn($u) => $u->userFiles?->wawancara_status !== null)->count(),
+            'belum_wawancara' => $usersInKalangan->filter(fn($u) => $u->userFiles?->wawancara_status === null)->count(),
+            'lulus_assessment' => $usersInKalangan->filter(fn($u) => $u->userFiles?->assessment_status === 'lulus')->count(),
+            'tidak_lulus_assessment' => $usersInKalangan->filter(fn($u) => $u->userFiles?->assessment_status === 'tidak lulus')->count(),
+        ];
+    }
 
     return view('dashboard.admin', compact(
-    'greeting',
-    'totalPelamar',
-    'sudahSubmitFinal',
-    'belumSubmitFinal',
-    'sudahVerifikasi',
-    'belumVerifikasi',
-    'sudahWawancara',
-    'belumWawancara',
-    'kalanganLabels',
-    'kalanganValues',
-    'rekapKalangan',
-    'kalanganDataPelamar',
-    'totalLulusAdministrasi',
-    'totalTidakLulusAdministrasi',
-    'totalLulusAssessment',
-    'totalTidakLulusAssessment',
-    'totalLulusWawancara',
-    'totalTidakLulusWawancara'
+        'greeting',
+        'totalPelamar',
+        'sudahSubmitFinal',
+        'belumSubmitFinal',
+        'sudahVerifikasi',
+        'belumVerifikasi',
+        'sudahWawancara',
+        'belumWawancara',
+        'kalanganLabels',
+        'kalanganValues',
+        'rekapKalangan',
+        'kalanganDataPelamar',
+        'totalSubmitFinal',
+        'totalLulusAdministrasi',
+        'totalTidakLulusAdministrasi',
+        'totalLulusAssessment',
+        'totalTidakLulusAssessment',
+        'totalLulusWawancara',
+        'totalTidakLulusWawancara'
     ));
 }
 

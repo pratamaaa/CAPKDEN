@@ -121,6 +121,7 @@
                                                 <th>Kalangan</th>
                                                 <th>Formasi</th>
                                                 <th>Total Pelamar</th>
+                                                <th>Submit Final</th>
                                                 <th>Lulus Administrasi</th>
                                                 <th>Tidak Lulus Administrasi</th>
                                                 <th>Lulus Assesment</th>
@@ -150,6 +151,7 @@
                                                 <td>{{ $kalangan->kalangan ?? '-' }}</td>
                                                 <td>{{ $kuotaKalangan[$kalangan->kalangan] ?? '-' }}</td>
                                                 <td>{{ $kalangan->total_pelamar }}</td>
+                                                <td>{{ $kalangan->submit_final }}</td>
                                                 <td>{{ $kalangan->lulus_administrasi }}</td>
                                                 <td>{{ $kalangan->tidak_lulus_administrasi }}</td>
                                                 <td>{{ $kalangan->lulus_assessment }}</td>
@@ -164,6 +166,7 @@
                                                 <td>{{ $belumMemilih->kalangan }}</td>
                                                 <td>{{ $kuotaKalangan[$belumMemilih->kalangan] ?? '-' }}</td>
                                                 <td>{{ $belumMemilih->total_pelamar }}</td>
+                                                <td>{{ $belumMemilih->submit_final }}</td>
                                                 <td>{{ $belumMemilih->lulus_administrasi }}</td>
                                                 <td>{{ $belumMemilih->tidak_lulus_administrasi }}</td>
                                                 <td>{{ $belumMemilih->lulus_assessment }}</td>
@@ -178,6 +181,7 @@
                                                 <td>Total</td>
                                                 <td>8</td>
                                                 <td>{{ $totalPelamar }}</td>
+                                                <td>{{ $totalSubmitFinal }}</td>
                                                 <td>{{ $totalLulusAdministrasi }}</td>
                                                 <td>{{ $totalTidakLulusAdministrasi }}</td>
                                                 <td>{{ $totalLulusAssessment }}</td>
