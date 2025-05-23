@@ -90,6 +90,8 @@ Route::middleware(['auth', 'role:verifikator'])->group(function () {
     Route::post('/verifikasi_saveupdate', [VerifikasiController::class, 'verifikasi_saveupdate'])->name('verifikasi_saveupdate');
     Route::get('/verifikasi/sudah', [VerifikasiController::class, 'sudahVerifikasi'])->name('verifikasi.sudah');
     Route::get('/verifikasi/belum', [VerifikasiController::class, 'belumVerifikasi'])->name('verifikasi.belum');
+    Route::get('/verifikasi/lulus', [VerifikasiController::class, 'lulusVerifikasi'])->name('verifikasi.lulus');
+    Route::get('/verifikasi/tidaklulus', [VerifikasiController::class, 'tidaklulusVerifikasi'])->name('verifikasi.tidaklulus');
 });   
 
 

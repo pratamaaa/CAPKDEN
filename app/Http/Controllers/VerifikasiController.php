@@ -84,6 +84,62 @@ class VerifikasiController extends Controller
     return view('admin.belumverifikasi', compact('data', 'dokumenList', 'greeting', 'belumVerifikasi'));
 }
 
+    public function lulusVerifikasi()
+{
+    $greeting = $this->getGreeting();
+
+    $dokumenList = UserFiles::with('userProfile.user')->get();
+
+    // Hitung jumlah file yang masih menunggu verifikasi
+    $belumVerifikasi = DB::table('user_files')
+    ->where('status_data', 1)
+    ->where('administrasi_status', 'lulus')
+    ->count();
+
+// Ambil user yang memiliki file dengan status lulus atau tidak lulus
+    $data = User::where('role', 'user')
+    ->whereHas('userFiles', function ($query) {
+        $query->where('status_data', 1)
+              ->whereIn('administrasi_status', ['lulus']);
+    })
+    ->with(['userProfile', 'userFiles' => function ($query) {
+        $query->where('status_data', 1)
+              ->whereIn('administrasi_status', ['lulus']);
+    }])
+    ->get();
+
+
+    return view('admin.lulusverifikasi', compact('data', 'dokumenList', 'greeting', 'belumVerifikasi'));
+}
+
+    public function tidaklulusVerifikasi()
+{
+    $greeting = $this->getGreeting();
+
+    $dokumenList = UserFiles::with('userProfile.user')->get();
+
+    // Hitung jumlah file yang masih menunggu verifikasi
+    $belumVerifikasi = DB::table('user_files')
+    ->where('status_data', 1)
+    ->where('administrasi_status', 'tidak lulus')
+    ->count();
+
+// Ambil user yang memiliki file dengan status lulus atau tidak lulus
+    $data = User::where('role', 'user')
+    ->whereHas('userFiles', function ($query) {
+        $query->where('status_data', 1)
+              ->whereIn('administrasi_status', ['tidak lulus']);
+    })
+    ->with(['userProfile', 'userFiles' => function ($query) {
+        $query->where('status_data', 1)
+              ->whereIn('administrasi_status', ['tidak lulus']);
+    }])
+    ->get();
+
+
+    return view('admin.tidaklulusverifikasi', compact('data', 'dokumenList', 'greeting', 'belumVerifikasi'));
+}
+
     public function update(Request $request, $id){
         $request->validate([
             'status' => 'required|in:diterima,ditolak',

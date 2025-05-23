@@ -35,23 +35,9 @@
         </div>
     </div>
 
-    <!-- 2. Total Pelamar Update Data Diri  -->
-    {{-- <div class="col-lg-3 col-6">
-        <div class="small-box bg-primary">
-            <div class="inner">
-                <h3>{{ $totalPelamar }}</h3>
-                <p>Total Pelamar <br>(yang sudah update data diri)</p>
-            </div>
-            <div class="icon">
-                <i class="fas fa-user-edit"></i>
-            </div>
-            <a href="{{ url('/daftarpelamar') }}" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
-        </div>
-    </div> --}}
-
     <!-- 3. Sudah Submit Final -->
     <div class="col-lg-3 col-6">
-        <div class="small-box bg-success">
+        <div class="small-box bg-warning">
             <div class="inner">
                 <h3>{{ $sudahSubmitFinal }}</h3>
                 <p>Sudah Submit Final</p>
@@ -93,7 +79,7 @@
 
     <!-- 6. Belum Diverifikasi -->
     <div class="col-lg-3 col-6">
-        <div class="small-box bg-danger">
+        <div class="small-box bg-purple">
             <div class="inner">
                 <h3>{{ $belumVerifikasi }}</h3>
                 <p>Belum Diverifikasi</p>
@@ -102,6 +88,34 @@
                 <i class="fas fa-user-times"></i>
             </div>
             <a href="{{ url('/verifikasi/belum') }}" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+
+    <!-- 7. Lulus Administrasi -->
+    <div class="col-lg-3 col-6">
+        <div class="small-box bg-success">
+            <div class="inner">
+                <h3>{{ $totalLulusAdministrasi }}</h3>
+                <p>Lulus Administrasi</p>
+            </div>
+            <div class="icon">
+                <i class="fas fa-check"></i>
+            </div>
+            <a href="{{ url('/verifikasi/lulus') }}" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+
+    <!-- 7. Lulus Administrasi -->
+    <div class="col-lg-3 col-6">
+        <div class="small-box bg-danger">
+            <div class="inner">
+                <h3>{{ $totalTidakLulusAdministrasi }}</h3>
+                <p>Tidak Lulus Administrasi</p>
+            </div>
+            <div class="icon">
+                <i class="fas fa-check"></i>
+            </div>
+            <a href="{{ url('/verifikasi/tidaklulus') }}" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
         </div>
     </div>
 </div>
