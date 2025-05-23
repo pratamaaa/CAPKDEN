@@ -44,7 +44,7 @@
                     <th>Unit Kerja</th>
                     <th>TMT Jabatan</th>
                     <th>Uraian Jabatan</th>
-                    <th>Aksi</th>
+                    {{-- <th>Aksi</th> --}}
                 </tr>
             </thead>
             <tbody>
@@ -60,14 +60,14 @@
                             <td>{{ $pengalaman->unit_kerja }}</td>
                             <td>{{ $pengalaman->tmt_jabatan }}</td>
                             <td>{{ $pengalaman->uraian_jabatan }}</td>
-                            <td>
-                                {{-- Tombol Edit --}}
+                            {{-- <td>
+                                
                                 <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
                                     data-bs-target="#modalEditPengalaman{{ $pengalaman->id }}">
                                     <i class="fas fa-pen"></i>
                                 </button>
 
-                                {{-- Tombol Hapus --}}
+                                
                                 <form action="{{ route('pengalaman.destroy', $pengalaman->id) }}"
                                     method="POST" class="d-inline"
                                     onsubmit="return confirm('Yakin ingin menghapus pengalaman ini?')">
@@ -77,7 +77,7 @@
                                         <i class="fas fa-trash-alt"></i>
                                     </button>
                                 </form>
-                            </td>
+                            </td> --}}
                         </tr>
 
                         {{-- Modal Edit --}}
@@ -145,10 +145,10 @@
         <form action="{{ route('pengalaman.store') }}" method="POST">
             @csrf
             <div class="modal-content">
-                <div class="modal-header">
+                {{-- <div class="modal-header">
                     <h5 class="modal-title">Tambah Pengalaman Kerja</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
-                </div>
+                </div> --}}
                 <div class="modal-body">
                     <div class="row mb-3">
                         <div class="col">
