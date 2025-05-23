@@ -73,8 +73,8 @@ Route::middleware(['auth', 'role:verifikator'])->group(function () {
     // DASHBOARD & PELAMAR
     Route::get('/verifikator', [DashboardController::class, 'verifikatorDashboard'])->name('verifikator.dashboard');
     Route::get('/daftar-pelamar', [DashboardController::class, 'daftarPelamar'])->name('daftar.pelamar');
-    Route::get('/pelamar-detail', [DashboardController::class, 'pelamarDetail'])->name('pelamar.detail');
-    Route::get('/pelamar-detail-pdf', [DashboardController::class, 'pelamarDetailPdf'])->name('pelamar.detail.pdf');
+    Route::get('/pelamardetail', [DashboardController::class, 'pelamarDetail'])->name('pelamar.detail');
+    Route::get('/pelamardetail_pdf', [DashboardController::class, 'pelamarDetailPdf'])->name('pelamar.detail.pdf');
 
     // WAWANCARA & ASSESSMENT
     Route::get('/wawancara', [WawancaraController::class, 'wawancara'])->name('wawancara');
