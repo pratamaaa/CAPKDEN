@@ -38,7 +38,7 @@ class AssesmentController extends Controller
         }
     }
 
-    public function assesment()
+    public function assessment()
 {
     $greeting = $this->getGreeting();
     $userfiles = UserFiles::where('user_id', auth()->id())->first();

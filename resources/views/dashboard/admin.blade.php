@@ -87,7 +87,7 @@
             <div class="icon">
                 <i class="fas fa-user-check"></i>
             </div>
-            <a href="{{ url('/sudahverifikasi') }}" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
+            <a href="{{ url('/verifikasi/sudah') }}" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
         </div>
     </div>
 
@@ -101,7 +101,7 @@
             <div class="icon">
                 <i class="fas fa-user-times"></i>
             </div>
-            <a href="{{ url('/belumverifikasi') }}" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
+            <a href="{{ url('/verifikasi/belum') }}" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
         </div>
     </div>
 </div>

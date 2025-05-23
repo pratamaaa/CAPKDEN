@@ -435,7 +435,7 @@ foreach ($kalanganData as $kalangan => $jumlah) {
     return redirect()->back()->with('success', $message);
 }
 
-public function daftarpelamar(Request $request)
+public function daftarPelamar(Request $request)
 {
     $greeting = $this->getGreeting();
 

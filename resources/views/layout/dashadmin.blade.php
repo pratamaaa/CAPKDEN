@@ -215,7 +215,7 @@
             @if (auth()->user()->role === 'verifikator')
                 <li class="nav-header">MENU UTAMA</li>
                 <li class="nav-item">
-                    <a href="{{ url('/daftarpelamar') }}" class="nav-link">
+                    <a href="{{ url('/daftar-pelamar') }}" class="nav-link">
                         <i class="nav-icon far fa-list-alt"></i>
                         <p>Daftar Pelamar</p>
                     </a>
@@ -226,7 +226,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ url('/assesment') }}" class="nav-link">
+                    <a href="{{ url('/assessment') }}" class="nav-link">
                         <i class="nav-icon far fa-chart-bar"></i>
                         <p>Hasil Assesment</p>
                     </a>
