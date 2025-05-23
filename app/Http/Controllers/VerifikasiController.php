@@ -62,13 +62,10 @@ class VerifikasiController extends Controller
 
     $dokumenList = UserFiles::with('userProfile.user')->get();
 
-    $data = User::where('role', 'user')
-        ->whereHas('userFiles', function ($query) {
-            $query->where('status_data', 1)
-                  ->whereIn('administrasi_status', ['menunggu']);
-        })
-        ->with(['userProfile', 'userFiles'])
-        ->get();
+    $belumVerifikasi = DB::table('user_files')
+    ->where('status_data', 1)
+    ->where('administrasi_status', 'menunggu')
+    ->count();
 
     return view('admin.belumverifikasi', compact('data', 'dokumenList', 'greeting'));
 }

@@ -76,10 +76,10 @@ class DashboardController extends Controller
 
     // 5. Belum diverifikasi (status_ktp: belum diverifikasi atau null)
     $belumVerifikasi = DB::table('user_files')
-        ->where(function($query) {
-            $query->whereNull('status_data')
-                  ->orWhere('status_data', 'menunggu');
-        })->count();
+    ->where('status_data', 1)
+    ->where('administrasi_status', 'menunggu')
+    ->count();
+
 
     // Assessment dan wawancara (masih pakai $users yang sudah di-load dengan relasi)
     $sudahAssesment = $users->filter(fn($user) => $user->userFiles?->assessment_status != null)->count();
@@ -176,15 +176,15 @@ foreach ($kalanganData as $kalangan => $jumlah) {
 
     // 4. Sudah diverifikasi (status_ktp: diterima/ditolak)
     $sudahVerifikasi = DB::table('user_files')
-        ->whereIn('status_ktp', ['diterima', 'ditolak'])
+        ->where('status_data', 1)
+        ->whereIn('administrasi_status', ['lulus', 'tidak lulus'])
         ->count();
 
     // 5. Belum diverifikasi (status_ktp: belum diverifikasi atau null)
     $belumVerifikasi = DB::table('user_files')
-        ->where(function($query) {
-            $query->whereNull('status_ktp')
-                  ->orWhere('status_ktp', 'belum diverifikasi');
-        })->count();
+    ->where('status_data', 1)
+    ->where('administrasi_status', 'menunggu')
+    ->count();
 
     // Assessment dan wawancara (masih pakai $users yang sudah di-load dengan relasi)
     $sudahAssesment = $users->filter(fn($user) => $user->userFiles?->assessment_status != null)->count();
