@@ -77,8 +77,8 @@ class DashboardController extends Controller
     // 5. Belum diverifikasi (status_ktp: belum diverifikasi atau null)
     $belumVerifikasi = DB::table('user_files')
         ->where(function($query) {
-            $query->whereNull('status_ktp')
-                  ->orWhere('status_ktp', 'belum diverifikasi');
+            $query->whereNull('status_data')
+                  ->orWhere('status_data', 'menunggu');
         })->count();
 
     // Assessment dan wawancara (masih pakai $users yang sudah di-load dengan relasi)
