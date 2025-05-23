@@ -88,6 +88,7 @@ Route::middleware(['auth', 'role:verifikator'])->group(function () {
     Route::post('/verifikasi_saveupdate', [VerifikasiController::class, 'verifikasi_saveupdate'])->name('verifikasi_saveupdate');
 });
     Route::get('/sudahverifikasi', [VerifikasiController::class, 'sudahverifikasi'])->name('sudahverifikasi');
+    Route::get('/belumverifikasi', [VerifikasiController::class, 'belumverifikasi'])->name('belumverifikasi');
 
 
 // === ADMIN DASHBOARD ===

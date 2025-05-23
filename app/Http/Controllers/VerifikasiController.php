@@ -56,6 +56,20 @@ class VerifikasiController extends Controller
         return view('admin.sudahverifikasi', compact('data','dokumenList', 'greeting'));
     }
 
+    public function belumverifikasi()
+    {
+        $greeting = $this->getGreeting();
+        $dokumenList = UserFiles::with('userProfile.user')->get();
+        $data = User::where('role', 'user')
+                ->whereHas('userFiles', function ($query) {
+                    $query->whereIn('administrasi_status', 'menunggu');
+                })
+
+                ->with(['userProfile', 'userFiles'])
+                ->get();
+        return view('admin.belumverifikasi', compact('data','dokumenList', 'greeting'));
+    }
+
     public function update(Request $request, $id){
         $request->validate([
             'status' => 'required|in:diterima,ditolak',

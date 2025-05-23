@@ -92,7 +92,7 @@
     </div>
 
     <!-- 6. Belum Diverifikasi -->
-    {{-- <div class="col-lg-3 col-6">
+    <div class="col-lg-3 col-6">
         <div class="small-box bg-danger">
             <div class="inner">
                 <h3>{{ $belumVerifikasi }}</h3>
@@ -101,9 +101,9 @@
             <div class="icon">
                 <i class="fas fa-user-times"></i>
             </div>
-            <a href="{{ url('/daftarpelamar?verifikasi=menunggu') }}" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
+            <a href="{{ url('/belumverifikasi') }}" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
         </div>
-    </div> --}}
+    </div>
 </div>
 
                 <!-- Main content -->
