@@ -38,7 +38,7 @@ Route::get('/kontak', [HomeController::class, 'kontak']);
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-Route::get('/registrasi', [AuthController::class, 'registrasi'])->name('registrasi');
+// Route::get('/registrasi', [AuthController::class, 'registrasi'])->name('registrasi');
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 Route::get('/reset-password', [AuthController::class, 'showForm'])->name('reset-password.form');
 Route::post('/reset-password', [AuthController::class, 'reset'])->name('reset-password.submit');

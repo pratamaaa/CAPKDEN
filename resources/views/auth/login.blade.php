@@ -73,9 +73,9 @@
                     {!! NoCaptcha::display() !!}
                 </form>
 
-                <div class="text-center mt-3">
+                {{-- <div class="text-center mt-3">
                     <small>Belum punya akun? <a href="{{ url('/registrasi') }}">Daftar di sini</a></small>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>
