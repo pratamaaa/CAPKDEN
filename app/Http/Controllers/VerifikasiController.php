@@ -72,11 +72,11 @@ class VerifikasiController extends Controller
     $data = User::where('role', 'user')
     ->whereHas('userFiles', function ($query) {
         $query->where('status_data', 1)
-              ->whereIn('administrasi_status', ['lulus', 'tidak lulus']);
+              ->whereIn('administrasi_status', ['menunggu']);
     })
     ->with(['userProfile', 'userFiles' => function ($query) {
         $query->where('status_data', 1)
-              ->whereIn('administrasi_status', ['lulus', 'tidak lulus']);
+              ->whereIn('administrasi_status', ['menunggu']);
     }])
     ->get();
 
