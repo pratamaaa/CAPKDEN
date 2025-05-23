@@ -57,20 +57,21 @@ class VerifikasiController extends Controller
     }
 
     public function belumVerifikasi()
-    {
-        $greeting = $this->getGreeting();
-        $dokumenList = UserFiles::with('userProfile.user')->get();
-        $data = User::where('role', 'user')
-            ->where('status_data', 1)
-            ->whereHas('userFiles', function ($query) {
-                $query->whereIn('administrasi_status', ['menunggu']);
-            })
-            ->get();
+{
+    $greeting = $this->getGreeting();
 
-                ->with(['userProfile', 'userFiles'])
-                ->get();
-        return view('admin.belumverifikasi', compact('data','dokumenList', 'greeting'));
-    }
+    $dokumenList = UserFiles::with('userProfile.user')->get();
+
+    $data = User::where('role', 'user')
+        ->whereHas('userFiles', function ($query) {
+            $query->where('status_data', 1)
+                  ->whereIn('administrasi_status', ['menunggu']);
+        })
+        ->with(['userProfile', 'userFiles'])
+        ->get();
+
+    return view('admin.belumverifikasi', compact('data', 'dokumenList', 'greeting'));
+}
 
     public function update(Request $request, $id){
         $request->validate([
