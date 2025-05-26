@@ -162,41 +162,6 @@ class VerifikasiController extends Controller
         return view('admin.verifikasiform', compact('user_id'));
     }
 
-    public function statuskahirform(Request $request)
-{
-    $user_id = $request->get('userid');
-    
-    // Ambil data dari database
-    $item = DB::table('user_files')
-            ->where('user_id', $user_id)
-            ->first();
-
-    if (!$item) {
-        return response()->json([
-            'error' => 'Data tidak ditemukan'
-        ], 404);
-    }
-
-    return view('admin.statuskahirform', compact('item'));
-}
-
-public function verifikasi_akhir(Request $request, $id)
-{
-    $validated = $request->validate([
-        'status_akhir' => 'required|in:lulus,tidak lulus',
-        'catatan_akhir' => 'nullable|string|max:500',
-    ]);
-    
-    $file = UserFiles::findOrFail($id); 
-    $file->update([
-        'status_akhir' => $validated['status_akhir'],
-        'catatan_akhir' => $validated['catatan_akhir'],
-        'updated_at' => now()
-    ]);
-
-    return redirect()->back()->with('success', 'Status akhir berhasil diperbarui.');
-}
-
     public function verifikasi_saveupdate(Request $request){
         $status_ktp = ($request->post('status_ktp') == '' ? 'belum diverifikasi' : $request->post('status_ktp'));
         $status_ijazah_sarjana = ($request->post('status_ijazah_sarjana') == '' ? 'belum diverifikasi' : $request->post('status_ijazah_sarjana'));

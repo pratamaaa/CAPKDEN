@@ -92,11 +92,6 @@ Route::middleware(['auth', 'role:verifikator'])->group(function () {
     Route::get('/verifikasi/belum', [VerifikasiController::class, 'belumVerifikasi'])->name('verifikasi.belum');
     Route::get('/verifikasi/lulus', [VerifikasiController::class, 'lulusVerifikasi'])->name('verifikasi.lulus');
     Route::get('/verifikasi/tidaklulus', [VerifikasiController::class, 'tidaklulusVerifikasi'])->name('verifikasi.tidaklulus');
-    Route::put('/verifikasi_akhir/{id}', [VerifikasiController::class, 'verifikasi_akhir'])
-     ->name('verifikasi_akhir');
-    Route::get('/statuskahirform', [VerifikasiController::class, 'statuskahirform'])
-    ->name('statusakhir.form');
-
 });   
 
 
