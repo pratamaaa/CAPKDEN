@@ -178,13 +178,13 @@ foreach ($kalanganData as $kalangan => $jumlah) {
     // Sudah diverifikasi
     $sudahVerifikasi = DB::table('user_files')
         ->where('status_data', 1)
-        ->whereIn('administrasi_status', ['lulus', 'tidak lulus'])
+        ->whereIn('administrasi_status', ['memenuhi syarat', 'tidak memenuhi syarat'])
         ->count();
 
     // Belum diverifikasi
     $belumVerifikasi = DB::table('user_files')
         ->where('status_data', 1)
-        ->where('administrasi_status', 'menunggu')
+        ->where('administrasi_status', 'perlu didiskusikan')
         ->count();
 
     // Assessment dan wawancara

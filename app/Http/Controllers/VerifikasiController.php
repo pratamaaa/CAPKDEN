@@ -48,7 +48,7 @@ class VerifikasiController extends Controller
         $dokumenList = UserFiles::with('userProfile.user')->get();
         $data = User::where('role', 'user')
                 ->whereHas('userFiles', function ($query) {
-                    $query->whereIn('administrasi_status', ['lulus', 'tidak lulus']);
+                    $query->whereIn('administrasi_status', ['memenuhi syarat', 'tidak memenuhi syarat']);
                 })
 
                 ->with(['userProfile', 'userFiles'])
@@ -65,18 +65,18 @@ class VerifikasiController extends Controller
     // Hitung jumlah file yang masih menunggu verifikasi
     $belumVerifikasi = DB::table('user_files')
     ->where('status_data', 1)
-    ->where('administrasi_status', 'menunggu')
+    ->where('administrasi_status', 'perlu didiskusikan')
     ->count();
 
 // Ambil user yang memiliki file dengan status lulus atau tidak lulus
     $data = User::where('role', 'user')
     ->whereHas('userFiles', function ($query) {
         $query->where('status_data', 1)
-              ->whereIn('administrasi_status', ['menunggu']);
+              ->whereIn('administrasi_status', ['perlu didiskusikan']);
     })
     ->with(['userProfile', 'userFiles' => function ($query) {
         $query->where('status_data', 1)
-              ->whereIn('administrasi_status', ['menunggu']);
+              ->whereIn('administrasi_status', ['perlu didiskusikan']);
     }])
     ->get();
 
@@ -93,18 +93,18 @@ class VerifikasiController extends Controller
     // Hitung jumlah file yang masih menunggu verifikasi
     $belumVerifikasi = DB::table('user_files')
     ->where('status_data', 1)
-    ->where('administrasi_status', 'lulus')
+    ->where('administrasi_status', 'memenuhi syarat')
     ->count();
 
 // Ambil user yang memiliki file dengan status lulus atau tidak lulus
     $data = User::where('role', 'user')
     ->whereHas('userFiles', function ($query) {
         $query->where('status_data', 1)
-              ->whereIn('administrasi_status', ['lulus']);
+              ->whereIn('administrasi_status', ['memenuhi syarat']);
     })
     ->with(['userProfile', 'userFiles' => function ($query) {
         $query->where('status_data', 1)
-              ->whereIn('administrasi_status', ['lulus']);
+              ->whereIn('administrasi_status', ['memenuhi syarat']);
     }])
     ->get();
 
@@ -121,18 +121,18 @@ class VerifikasiController extends Controller
     // Hitung jumlah file yang masih menunggu verifikasi
     $belumVerifikasi = DB::table('user_files')
     ->where('status_data', 1)
-    ->where('administrasi_status', 'tidak lulus')
+    ->where('administrasi_status', 'tidak memenuhi syarat')
     ->count();
 
 // Ambil user yang memiliki file dengan status lulus atau tidak lulus
     $data = User::where('role', 'user')
     ->whereHas('userFiles', function ($query) {
         $query->where('status_data', 1)
-              ->whereIn('administrasi_status', ['tidak lulus']);
+              ->whereIn('administrasi_status', ['tidak memenuhi syarat']);
     })
     ->with(['userProfile', 'userFiles' => function ($query) {
         $query->where('status_data', 1)
-              ->whereIn('administrasi_status', ['tidak lulus']);
+              ->whereIn('administrasi_status', ['tidak memenuhi syarat']);
     }])
     ->get();
 
