@@ -226,9 +226,9 @@ class VerifikasiController extends Controller
 
         $simpan = DB::table('user_files')->where('user_id', $user_id)->update($data);
         if ($simpan){
-            $pesan = 'Verifikasi berkas <b>'.$namalengkap_pelamar.'</b> sukses';
+            $pesan = 'Verifikasi berkas '.$namalengkap_pelamar.' sukses';
         }else{
-            $pesan = 'Verifikasi berkas <b>'.$namalengkap_pelamar.'</b> gagal';
+            $pesan = 'Verifikasi berkas '.$namalengkap_pelamar.' gagal';
         }
 
         return redirect()->route('verifikasi.index')->with('message', $pesan);

@@ -17,7 +17,6 @@
                 </div>
                 <div class="row">
                     <div class="col-12">
-
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-12 col-sm-12">
@@ -41,6 +40,8 @@
                                                         <th class="align-top text-center" rowspan="2">Status Administrasi
                                                             Berkas</th>
                                                         <th class="align-top text-center" rowspan="2">Keterangan</th>
+                                                        <th class="align-top text-center" rowspan="2">Status Akhir</th>
+                                                        <th class="align-top text-center" rowspan="2">Catatan Akhir</th>
                                                         <th class="align-top text-center" rowspan="2">Last Update</th>
                                                         <th class="align-top text-center" rowspan="2">Aksi</th>
                                                     </tr>
@@ -233,12 +234,12 @@
                                                                     @php
                                                                         if (
                                                                             $pelamardok->first()->administrasi_status ==
-                                                                            'menunggu'
+                                                                            'perlu didiskusikan'
                                                                         ) {
                                                                             $warna_ver = 'primary';
                                                                         } elseif (
                                                                             $pelamardok->first()->administrasi_status ==
-                                                                            'lulus'
+                                                                            'memenuhi syarat'
                                                                         ) {
                                                                             $warna_ver = 'success';
                                                                         } else {
@@ -254,7 +255,6 @@
                                                             @php
                                                                 $dok = $pelamardok->first();
                                                             @endphp
-
                                                             <td class="text-center">
                                                                 @if ($dok && isset($dok->verified_by) && $dok->verified_by != '')
                                                                     <span class="badge bg-warning">
@@ -266,8 +266,34 @@
                                                                     -
                                                                 @endif
                                                             </td>
+                                                            @php
+                                                                $dok = $pelamardok->first();
+                                                            @endphp
 
                                                             <td class="text-center">
+                                                            @if ($dok && $dok->status_akhir)
+                                                                @php
+                                                                    $warna_ver = $dok->status_akhir == 'lulus' ? 'success' : 'danger';
+                                                                @endphp
+                                                                <span class="badge bg-{{ $warna_ver }}">{{ $dok->status_akhir }}</span>
+                                                            @else
+                                                                <span class="badge bg-secondary">-</span>
+                                                            @endif
+                                                        </td>
+                                                    
+                                                        <td class="text-center">
+                                                            @if ($dok && $dok->verified_by)
+                                                                <span class="badge bg-warning">
+                                                                    {{ Bantuan::get_verifikator($dok->verified_by)->name }}
+                                                                </span>
+                                                                <hr style="margin-top: 5px;margin-bottom: 2px;">
+                                                                {{ $dok->catatan_akhir ?? '-' }}
+                                                            @else
+                                                                -
+                                                            @endif
+                                                        </td>
+
+                                                             <td class="text-center">
                                                                 @if ($pelamardok->count() != 0)
                                                                     <span style="font-size: 12px;">
                                                                         {{ optional($pelamardok->first())->verified_at ?? '-' }}
@@ -278,11 +304,16 @@
                                                             </td>
 
                                                             <td class="text-center">
-                                                                <button class="btn btn-primary btn-sm preview-btn"
-                                                                    onclick="verifikasiBerkas({{ $d->id }})"
-                                                                    data-bs-toggle="modal"
+                                                                <button class="btn btn-sm btn-primary preview-btn mb-1" 
+                                                                    onclick="verifikasiBerkas({{ $d->id }})" 
+                                                                    data-bs-toggle="modal" 
                                                                     data-bs-target="#modalverifikasi">
-                                                                    <i class="fas fa-check"></i>
+                                                                <i class="fas fa-check"></i> Verifikasi
+                                                            </button>
+
+                                                                 <button type="button" class="btn btn-sm btn-success" 
+                                                                onclick="showStatusAkhirModal({{ $d->id }})">
+                                                                <i class="fas fa-edit me-1"></i> Status Akhir
                                                                 </button>
 
                                                             </td>
@@ -318,9 +349,17 @@
         </div>
     </div>
 
-    <div class="modal fade" id="modalverifikasi" tabindex="-1" aria-labelledby="previewModalLabel" aria-hidden="true">
+    <!-- Modal Verifikasi Berkas -->
+    <div class="modal fade" id="modalverifikasi" tabindex="-1" aria-labelledby="verifikasiModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div id="modalverifikasi_content" class="modal-content shadow rounded-4 border-0"></div>
+        </div>
+    </div>
+
+    <!-- Modal Status Akhir -->
+    <div class="modal fade" id="modalStatusAkhir" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div id="modalStatusAkhirContent" class="modal-content"></div>
         </div>
     </div>
 
@@ -331,27 +370,54 @@
                 .load("{{ url('verifikasiform') }}?userid=" + user_id);
         }
 
-        document.addEventListener('DOMContentLoaded', function() {
+        function showStatusAkhirModal(userId) {
+            const modal = new bootstrap.Modal(document.getElementById('modalStatusAkhir'));
+            
+            fetch(`/statuskahirform?userid=${userId}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.text();
+                })
+                .then(html => {
+                    document.getElementById('modalStatusAkhirContent').innerHTML = html;
+                    modal.show();
+                })
+                .catch(error => {
+                    document.getElementById('modalStatusAkhirContent').innerHTML = `
+                        <div class="modal-header">
+                            <h5 class="modal-title">Error</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="alert alert-danger">
+                                Gagal memuat data: ${error.message}
+                            </div>
+                        </div>
+                    `;
+                    modal.show();
+                });
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
             const previewModal = document.getElementById('previewModalNested');
             const previewIframe = document.getElementById('previewIframe');
             const parentModal = document.getElementById('modalverifikasi');
 
             if (previewModal && previewIframe && parentModal) {
-                previewModal.addEventListener('show.bs.modal', function(event) {
+                previewModal.addEventListener('show.bs.modal', function (event) {
                     const button = event.relatedTarget;
                     if (button) {
                         const fileUrl = button.getAttribute('data-file');
                         if (fileUrl) {
                             previewIframe.src = fileUrl;
-
-                            // Untuk Bootstrap 4
                             $('#modalverifikasi').modal('hide');
                         }
                     }
                 });
 
-                previewModal.addEventListener('hidden.bs.modal', function() {
-                    // Untuk Bootstrap 4
+                previewModal.addEventListener('hidden.bs.modal', function () {
                     $('#modalverifikasi').modal('show');
                 });
             }

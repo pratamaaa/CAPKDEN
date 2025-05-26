@@ -84,9 +84,9 @@
             <label for="tmt_jabatan" class="form-label">Status verifikasi berkas:</label>
             <select class="form form-control" id="status_verifikasi" name="status_verifikasi" style="width: 200px;">
                 @if ($berkaspelamar->count() != 0)
-                    <option id="menunggu" {{ $berkaspelamar->first()->administrasi_status == 'perlu didiskusikan' ? 'selected' : '' }}>Perlu Didiskusikan</option>
-                    <option id="lulus" {{ $berkaspelamar->first()->administrasi_status == 'memenuhi syarat' ? 'selected' : '' }}>Memenuhi Syarat</option>
-                    <option id="tidak lulus" {{ $berkaspelamar->first()->administrasi_status == 'tidak memenuhi syarat' ? 'selected' : '' }}>Tidak Memenuhi Syarat</option>
+                    <option id="perlu didiskusikan" {{ $berkaspelamar->first()->administrasi_status == 'perlu didiskusikan' ? 'selected' : '' }}>Perlu Didiskusikan</option>
+                    <option id="memenuhi syarat" {{ $berkaspelamar->first()->administrasi_status == 'memenuhi syarat' ? 'selected' : '' }}>Memenuhi Syarat</option>
+                    <option id="tidak memenuhi syarat" {{ $berkaspelamar->first()->administrasi_status == 'tidak memenuhi syarat' ? 'selected' : '' }}>Tidak Memenuhi Syarat</option>
                 @endif
             </select>
         </div>

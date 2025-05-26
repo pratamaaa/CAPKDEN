@@ -41,6 +41,8 @@
                                                         <th class="align-top text-center" rowspan="2">Status Administrasi
                                                             Berkas</th>
                                                         <th class="align-top text-center" rowspan="2">Keterangan</th>
+                                                        <th class="align-top text-center" rowspan="2">Status Akhir</th>
+                                                        <th class="align-top text-center" rowspan="2">Catatan Akhir</th>
                                                         <th class="align-top text-center" rowspan="2">Last Update</th>
                                                         <th class="align-top text-center" rowspan="2">Aksi</th>
                                                     </tr>
@@ -228,44 +230,59 @@
                                                                 @endif
                                                             </td>
 
-                                                            <td class="text-center">
-                                                                @if ($pelamardok->count() != 0)
-                                                                    @php
-                                                                        if (
-                                                                            $pelamardok->first()->administrasi_status ==
-                                                                            'menunggu'
-                                                                        ) {
-                                                                            $warna_ver = 'primary';
-                                                                        } elseif (
-                                                                            $pelamardok->first()->administrasi_status ==
-                                                                            'lulus'
-                                                                        ) {
-                                                                            $warna_ver = 'success';
-                                                                        } else {
-                                                                            $warna_ver = 'danger';
-                                                                        }
-                                                                    @endphp
-                                                                    <span
-                                                                        class="badge bg-{{ $warna_ver }}">{{ $pelamardok->first()->administrasi_status }}</span>
-                                                                @else
-                                                                    <span class="badge bg-secondary">-</span>
-                                                                @endif
-                                                            </td>
                                                             @php
                                                                 $dok = $pelamardok->first();
                                                             @endphp
 
                                                             <td class="text-center">
-                                                                @if ($dok && isset($dok->verified_by) && $dok->verified_by != '')
-                                                                    <span class="badge bg-warning">
-                                                                        {{ Bantuan::get_verifikator($dok->verified_by)->name }}
-                                                                    </span>
-                                                                    <hr style="margin-top: 5px;margin-bottom: 2px;">
-                                                                    {{ $dok->administrasi_catatan ?? '-' }}
-                                                                @else
-                                                                    -
-                                                                @endif
-                                                            </td>
+                                                            @if ($dok && $dok->administrasi_status)
+                                                                @php
+                                                                    $warna_ver = match($dok->administrasi_status) {
+                                                                        'perlu didiskusikan' => 'primary',
+                                                                        'memenuhi syarat' => 'success',
+                                                                        default => 'danger'
+                                                                    };
+                                                                @endphp
+                                                                <span class="badge bg-{{ $warna_ver }}">{{ $dok->administrasi_status }}</span>
+                                                            @else
+                                                                <span class="badge bg-secondary">-</span>
+                                                            @endif
+                                                        </td>
+                                                    
+                                                        <td class="text-center">
+                                                            @if ($dok && $dok->verified_by)
+                                                                <span class="badge bg-warning">
+                                                                    {{ Bantuan::get_verifikator($dok->verified_by)->name }}
+                                                                </span>
+                                                                <hr style="margin-top: 5px;margin-bottom: 2px;">
+                                                                {{ $dok->administrasi_catatan ?? '-' }}
+                                                            @else
+                                                                -
+                                                            @endif
+                                                        </td>
+                                                    
+                                                        <td class="text-center">
+                                                            @if ($dok && $dok->status_akhir)
+                                                                @php
+                                                                    $warna_ver = $dok->status_akhir == 'lulus' ? 'success' : 'danger';
+                                                                @endphp
+                                                                <span class="badge bg-{{ $warna_ver }}">{{ $dok->status_akhir }}</span>
+                                                            @else
+                                                                <span class="badge bg-secondary">-</span>
+                                                            @endif
+                                                        </td>
+                                                    
+                                                        <td class="text-center">
+                                                            @if ($dok && $dok->verified_by)
+                                                                <span class="badge bg-warning">
+                                                                    {{ Bantuan::get_verifikator($dok->verified_by)->name }}
+                                                                </span>
+                                                                <hr style="margin-top: 5px;margin-bottom: 2px;">
+                                                                {{ $dok->catatan_akhir ?? '-' }}
+                                                            @else
+                                                                -
+                                                            @endif
+                                                        </td>
 
                                                             <td class="text-center">
                                                                 @if ($pelamardok->count() != 0)
@@ -278,11 +295,16 @@
                                                             </td>
 
                                                             <td class="text-center">
-                                                                <button class="btn btn-primary btn-sm preview-btn"
-                                                                    onclick="verifikasiBerkas({{ $d->id }})"
-                                                                    data-bs-toggle="modal"
+                                                                <button class="btn btn-sm btn-primary preview-btn mb-1" 
+                                                                    onclick="verifikasiBerkas({{ $d->id }})" 
+                                                                    data-bs-toggle="modal" 
                                                                     data-bs-target="#modalverifikasi">
-                                                                    <i class="fas fa-check"></i>
+                                                                <i class="fas fa-check"></i> Verifikasi
+                                                            </button>
+
+                                                                 <button type="button" class="btn btn-sm btn-success" 
+                                                                onclick="showStatusAkhirModal({{ $d->id }})">
+                                                                <i class="fas fa-edit me-1"></i> Status Akhir
                                                                 </button>
 
                                                             </td>

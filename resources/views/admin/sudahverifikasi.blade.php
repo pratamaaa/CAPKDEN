@@ -233,12 +233,12 @@
                                                                     @php
                                                                         if (
                                                                             $pelamardok->first()->administrasi_status ==
-                                                                            'menunggu'
+                                                                            'perlu didiskusikan'
                                                                         ) {
                                                                             $warna_ver = 'primary';
                                                                         } elseif (
                                                                             $pelamardok->first()->administrasi_status ==
-                                                                            'lulus'
+                                                                            'memenuhi syarat'
                                                                         ) {
                                                                             $warna_ver = 'success';
                                                                         } else {
