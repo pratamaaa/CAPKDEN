@@ -340,9 +340,17 @@
         </div>
     </div>
 
-    <div class="modal fade" id="modalverifikasi" tabindex="-1" aria-labelledby="previewModalLabel" aria-hidden="true">
+    <!-- Modal Verifikasi Berkas -->
+    <div class="modal fade" id="modalverifikasi" tabindex="-1" aria-labelledby="verifikasiModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div id="modalverifikasi_content" class="modal-content shadow rounded-4 border-0"></div>
+        </div>
+    </div>
+
+    <!-- Modal Status Akhir -->
+    <div class="modal fade" id="modalStatusAkhir" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div id="modalStatusAkhirContent" class="modal-content"></div>
         </div>
     </div>
 
@@ -353,27 +361,54 @@
                 .load("{{ url('verifikasiform') }}?userid=" + user_id);
         }
 
-        document.addEventListener('DOMContentLoaded', function() {
+        function showStatusAkhirModal(userId) {
+            const modal = new bootstrap.Modal(document.getElementById('modalStatusAkhir'));
+            
+            fetch(`/statuskahirform?userid=${userId}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.text();
+                })
+                .then(html => {
+                    document.getElementById('modalStatusAkhirContent').innerHTML = html;
+                    modal.show();
+                })
+                .catch(error => {
+                    document.getElementById('modalStatusAkhirContent').innerHTML = `
+                        <div class="modal-header">
+                            <h5 class="modal-title">Error</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="alert alert-danger">
+                                Gagal memuat data: ${error.message}
+                            </div>
+                        </div>
+                    `;
+                    modal.show();
+                });
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
             const previewModal = document.getElementById('previewModalNested');
             const previewIframe = document.getElementById('previewIframe');
             const parentModal = document.getElementById('modalverifikasi');
 
             if (previewModal && previewIframe && parentModal) {
-                previewModal.addEventListener('show.bs.modal', function(event) {
+                previewModal.addEventListener('show.bs.modal', function (event) {
                     const button = event.relatedTarget;
                     if (button) {
                         const fileUrl = button.getAttribute('data-file');
                         if (fileUrl) {
                             previewIframe.src = fileUrl;
-
-                            // Untuk Bootstrap 4
                             $('#modalverifikasi').modal('hide');
                         }
                     }
                 });
 
-                previewModal.addEventListener('hidden.bs.modal', function() {
-                    // Untuk Bootstrap 4
+                previewModal.addEventListener('hidden.bs.modal', function () {
                     $('#modalverifikasi').modal('show');
                 });
             }
