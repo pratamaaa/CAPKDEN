@@ -81,6 +81,16 @@
         }
     </style>
 
+    <style>
+        th.sticky-header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: #fff; /* atau warna lain sesuai kebutuhan */
+            white-space: nowrap;
+        }
+    </style>
+
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">

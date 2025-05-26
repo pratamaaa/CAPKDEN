@@ -17,17 +17,14 @@ class UserFiles extends Model
     'jurusan_sarjana',
     'lulus_sarjana',
     'ijazah_sarjana',
-    // 'transkrip_sarjana',
     'universitas_magister',
     'jurusan_magister',
     'lulus_magister',
     'ijazah_magister',
-    // 'transkrip_magister',
     'universitas_doktoral',
     'jurusan_doktoral',
     'lulus_doktoral',
     'ijazah_doktoral',
-    // 'transkrip_doktoral',
     'org_pengusul',
     'upl_org',
     'rek_pakar1',
@@ -52,7 +49,9 @@ class UserFiles extends Model
     'wawancara_status',
     'assessment_status',
     'wawancara_catatan',
-    'assessment_catatan'
+    'assessment_catatan',
+    'status_akhir',
+    'catatan_akhir'
     ];
 
     // Relasi ke tabel users
