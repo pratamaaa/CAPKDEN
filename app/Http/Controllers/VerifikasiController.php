@@ -161,6 +161,11 @@ class VerifikasiController extends Controller
 
         return view('admin.verifikasiform', compact('user_id'));
     }
+    public function statuskahirform(Request $request){
+        $user_id = $request->get('userid');
+
+        return view('admin.statuskahirform', compact('user_id'));
+    }
 
     public function verifikasi_saveupdate(Request $request){
         $status_ktp = ($request->post('status_ktp') == '' ? 'belum diverifikasi' : $request->post('status_ktp'));
@@ -228,5 +233,28 @@ class VerifikasiController extends Controller
 
         return redirect()->route('verifikasi.index')->with('message', $pesan);
     }
+
+    public function statusakhirsave(Request $request)
+{
+    $request->validate([
+        'user_id' => 'required|exists:user_files,user_id',
+        'status_akhir' => 'required|in:lulus,tidak lulus',
+        'catatan_akhir' => 'nullable|string',
+    ]);
+
+    // Ambil record berdasarkan user_id
+    $userFile = UserFiles::where('user_id', $request->user_id)->first();
+
+    if (!$userFile) {
+        return redirect()->back()->with('error', 'Data tidak ditemukan.');
+    }
+
+    // Simpan data
+    $userFile->status_akhir = $request->status_akhir;
+    $userFile->catatan_akhir = $request->catatan_akhir;
+    $userFile->save();
+
+    return redirect()->back()->with('success', 'Status akhir berhasil disimpan.');
+}
 
 }

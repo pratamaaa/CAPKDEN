@@ -52,7 +52,9 @@ class UserFiles extends Model
     'wawancara_status',
     'assessment_status',
     'wawancara_catatan',
-    'assessment_catatan'
+    'assessment_catatan',
+    'status_akhir',
+    'catatan_akhir'
     ];
 
     // Relasi ke tabel users
