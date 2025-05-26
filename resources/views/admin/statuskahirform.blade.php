@@ -27,6 +27,6 @@
 
     <div class="modal-footer">
         <button type="submit" class="btn btn-primary">Simpan Verifikasi</button>
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
     </div>
 </form>
