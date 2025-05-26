@@ -96,7 +96,7 @@
         <div class="small-box bg-success">
             <div class="inner">
                 <h3>{{ $totalLulusAdministrasi }}</h3>
-                <p>Lulus Administrasi</p>
+                <p>Memenuhi Syarat</p>
             </div>
             <div class="icon">
                 <i class="fas fa-check"></i>
@@ -110,7 +110,7 @@
         <div class="small-box bg-danger">
             <div class="inner">
                 <h3>{{ $totalTidakLulusAdministrasi }}</h3>
-                <p>Tidak Lulus Administrasi</p>
+                <p>Tidak Memenuhi Syarat</p>
             </div>
             <div class="icon">
                 <i class="fas fa-ban"></i>
@@ -136,8 +136,8 @@
                                                 <th>Formasi</th>
                                                 <th>Total Pelamar</th>
                                                 <th>Submit Final</th>
-                                                <th>Lulus Administrasi</th>
-                                                <th>Tidak Lulus Administrasi</th>
+                                                <th>Memenuhi Syarat</th>
+                                                <th>Tidak Memenuhi Syarat</th>
                                                 <th>Lulus Assesment</th>
                                                 <th>Tidak Lulus Assesment</th>
                                                 <th>Lulus Wawancara</th>
