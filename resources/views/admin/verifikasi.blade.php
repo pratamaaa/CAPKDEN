@@ -212,9 +212,9 @@
                                                             <td class="text-center">
                                                                 @if ($pelamardok->count() != 0)
                                                                     @php
-                                                                    if ($pelamardok->first()->administrasi_status == 'menunggu'){
+                                                                    if ($pelamardok->first()->administrasi_status == 'perlu didiskusikan'){
                                                                         $warna_ver = 'primary';
-                                                                    }elseif ($pelamardok->first()->administrasi_status == 'lulus'){
+                                                                    }elseif ($pelamardok->first()->administrasi_status == 'memenuhi syarat'){
                                                                         $warna_ver = 'success';
                                                                     }else{
                                                                         $warna_ver = 'danger';
