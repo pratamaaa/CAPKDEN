@@ -207,6 +207,8 @@ foreach ($kalanganData as $kalangan => $jumlah) {
             DB::raw("COUNT(CASE WHEN user_files.status_data = 1 THEN 1 END) as submit_final"),
             DB::raw("COUNT(CASE WHEN user_files.administrasi_status = 'memenuhi syarat' THEN 1 END) as lulus_administrasi"),
             DB::raw("COUNT(CASE WHEN user_files.administrasi_status = 'tidak memenuhi syarat' THEN 1 END) as tidak_lulus_administrasi"),
+            DB::raw("COUNT(CASE WHEN user_files.status_akhir = 'lulus' THEN 1 END) as status_akhir_lulus"),
+            DB::raw("COUNT(CASE WHEN user_files.status_akhir = 'tidak lulus' THEN 1 END) as status_akhir_tidak_lulus"),
             DB::raw("COUNT(CASE WHEN user_files.assessment_status = 'lulus' THEN 1 END) as lulus_assessment"),
             DB::raw("COUNT(CASE WHEN user_files.assessment_status = 'tidak lulus' THEN 1 END) as tidak_lulus_assessment"),
             DB::raw("COUNT(CASE WHEN user_files.wawancara_status = 'lulus' THEN 1 END) as lulus_wawancara"),
@@ -223,6 +225,8 @@ foreach ($kalanganData as $kalangan => $jumlah) {
     $totalSubmitFinal = $kalanganDataPelamar->sum('submit_final');
     $totalLulusAdministrasi = $kalanganDataPelamar->sum('lulus_administrasi');
     $totalTidakLulusAdministrasi = $kalanganDataPelamar->sum('tidak_lulus_administrasi');
+    $totalLulusAkhir = $kalanganDataPelamar->sum('status_akhir_lulus');
+    $totalTidakLulusAkhir = $kalanganDataPelamar->sum('status_akhir_tidak_lulus');
     $totalLulusAssessment = $kalanganDataPelamar->sum('lulus_assessment');
     $totalTidakLulusAssessment = $kalanganDataPelamar->sum('tidak_lulus_assessment');
     $totalLulusWawancara = $kalanganDataPelamar->sum('lulus_wawancara');
@@ -261,6 +265,8 @@ foreach ($kalanganData as $kalangan => $jumlah) {
         'kalanganDataPelamar',
         'totalSubmitFinal',
         'totalLulusAdministrasi',
+        'totalLulusAkhir',
+        'totalTidakLulusAkhir',
         'totalTidakLulusAdministrasi',
         'totalLulusAssessment',
         'totalTidakLulusAssessment',

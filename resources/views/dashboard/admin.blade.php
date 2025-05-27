@@ -138,10 +138,10 @@
                                                 <th>Submit Final</th>
                                                 <th>Memenuhi Syarat</th>
                                                 <th>Tidak Memenuhi Syarat</th>
-                                                <th>Lulus Assesment</th>
-                                                <th>Tidak Lulus Assesment</th>
-                                                <th>Lulus Wawancara</th>
-                                                <th>Tidak Lulus Wawancara</th>
+                                                <th>Lulus Administrasi</th>
+                                                <th>Tidak Lulus Administrasi</th>
+                                                {{-- <th>Lulus Wawancara</th>
+                                                <th>Tidak Lulus Wawancara</th> --}}
                                             </tr>
                                         </thead>
                                         @php
@@ -168,10 +168,10 @@
                                                 <td>{{ $kalangan->submit_final }}</td>
                                                 <td>{{ $kalangan->lulus_administrasi }}</td>
                                                 <td>{{ $kalangan->tidak_lulus_administrasi }}</td>
-                                                <td>{{ $kalangan->lulus_assessment }}</td>
-                                                <td>{{ $kalangan->tidak_lulus_assessment }}</td>
-                                                <td>{{ $kalangan->lulus_wawancara }}</td>
-                                                <td>{{ $kalangan->tidak_lulus_wawancara }}</td>
+                                                <td>{{ $kalangan->status_akhir_lulus }}</td>
+                                                <td>{{ $kalangan->status_akhir_tidak_lulus }}</td>
+                                                {{-- <td>{{ $kalangan->lulus_wawancara }}</td>
+                                                <td>{{ $kalangan->tidak_lulus_wawancara }}</td> --}}
                                             </tr>
                                             @endforeach
 
@@ -183,10 +183,10 @@
                                                 <td>{{ $belumMemilih->submit_final }}</td>
                                                 <td>{{ $belumMemilih->lulus_administrasi }}</td>
                                                 <td>{{ $belumMemilih->tidak_lulus_administrasi }}</td>
-                                                <td>{{ $belumMemilih->lulus_assessment }}</td>
-                                                <td>{{ $belumMemilih->tidak_lulus_assessment }}</td>
-                                                <td>{{ $belumMemilih->lulus_wawancara }}</td>
-                                                <td>{{ $belumMemilih->tidak_lulus_wawancara }}</td>
+                                                <td>{{ $belumMemilih->status_akhir_lulus }}</td>
+                                                <td>{{ $belumMemilih->status_akhir_tidak_lulus }}</td>
+                                                {{-- <td>{{ $belumMemilih->lulus_wawancara }}</td>
+                                                <td>{{ $belumMemilih->tidak_lulus_wawancara }}</td> --}}
                                             </tr>
                                             @endif
 
@@ -198,10 +198,10 @@
                                                 <td>{{ $totalSubmitFinal }}</td>
                                                 <td>{{ $totalLulusAdministrasi }}</td>
                                                 <td>{{ $totalTidakLulusAdministrasi }}</td>
-                                                <td>{{ $totalLulusAssessment }}</td>
-                                                <td>{{ $totalTidakLulusAssessment }}</td>
-                                                <td>{{ $totalLulusWawancara }}</td>
-                                                <td>{{ $totalTidakLulusWawancara }}</td>
+                                                <td>{{ $totalLulusAkhir }}</td>
+                                                <td>{{ $totalTidakLulusAkhir }}</td>
+                                                {{-- <td>{{ $totalLulusWawancara }}</td>
+                                                <td>{{ $totalTidakLulusWawancara }}</td> --}}
                                             </tr>
                                         </tbody>
                                     </table>
