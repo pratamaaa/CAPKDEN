@@ -14,7 +14,7 @@ class HomeController extends Controller
 {
     public function homepage(){
         
-        $data['jadwalseleksi'] = [['judul' => 'Pendaftaran Calon Anggota DEN', 'gambar' => 'number/1.png', 'tanggal'=>'28 Mei s.d. 9 Juni 2025'], 
+        $data['jadwalseleksi'] = [['judul' => 'Pengumuman Pendaftaran Calon Anggota DEN', 'gambar' => 'number/1.png', 'tanggal'=>'27 Mei s.d. 5 Juni 2025'], 
                                     ['judul' => 'Pengumuman Hasil Seleksi Administrasi', 'gambar' => 'number/2.png', 'tanggal'=>'12 Juni 2025'],
                                     ['judul' => 'Pelaksanaan Assessment<br><br>', 'gambar' => 'number/3.png', 'tanggal'=>'16 s.d. 20 Juni 2025'],
                                     ['judul' => 'Pengumuman Hasil Assessment', 'gambar' => 'number/4.png', 'tanggal'=>'3 Juli 2025'],
