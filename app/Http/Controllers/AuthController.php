@@ -22,7 +22,7 @@ class AuthController extends Controller
     $credentials = $request->validate([
         'identifier' => 'required', // Bisa username atau NIK
         'password' => 'required',
-        'g-recaptcha-response' => 'required|captcha', // Validasi reCAPTCHA di awal
+        // 'g-recaptcha-response' => 'required|captcha', // Validasi reCAPTCHA di awal
     ]);
 
     $user = null;

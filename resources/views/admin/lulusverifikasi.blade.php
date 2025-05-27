@@ -27,16 +27,9 @@
                                                     <tr class="header-row">
                                                         <th class="align-top text-center" rowspan="2">No</th>
                                                         <th class="align-top text-center" rowspan="2">Foto</th>
-                                                        <th class="align-top text-center" rowspan="2"
-                                                            style="width: 250px;">Nama</th>
+                                                        <th class="align-top text-center" rowspan="2" style="width: 250px;">Nama</th>
                                                         <th class="align-top text-center" rowspan="2">Calon Kalangan</th>
-
-                                                        <!-- Header Pendidikan -->
-                                                        <th class="align-top text-center" colspan="15">Verifikasi Berkas
-                                                        </th>
-
-                                                        <!-- Header Aksi -->
-
+                                                        <th class="align-top text-center" colspan="15">Verifikasi Berkas</th>
                                                         <th class="align-top text-center" rowspan="2">Status Administrasi
                                                             Berkas</th>
                                                         <th class="align-top text-center" rowspan="2">Keterangan</th>
