@@ -14,12 +14,12 @@ class HomeController extends Controller
 {
     public function homepage(){
         
-        $data['jadwalseleksi'] = [['judul' => 'Pendaftaran Calon Anggota DEN', 'gambar' => 'number/1.png', 'tanggal'=>'9 Mei s.d. 23 Mei 2025'], 
-                                    ['judul' => 'Pengumuman Hasil Seleksi Administrasi', 'gambar' => 'number/2.png', 'tanggal'=>'28 Mei 2025'],
-                                    ['judul' => 'Pelaksanaan Assessment<br><br>', 'gambar' => 'number/3.png', 'tanggal'=>'2 s.d. 7 Juni 2025'],
-                                    ['judul' => 'Pengumuman Hasil Assessment', 'gambar' => 'number/4.png', 'tanggal'=>'24 Juni 2025'],
-                                    ['judul' => 'Pelaksanaan Wawancara<br><br>', 'gambar' => 'number/5.png', 'tanggal'=>'25 s.d. 27 Juni 2025'],
-                                    ['judul' => 'Pengumuman Hasil Wawancara', 'gambar' => 'number/6.png', 'tanggal'=>'30 Juni 2025'],
+        $data['jadwalseleksi'] = [['judul' => 'Pendaftaran Calon Anggota DEN', 'gambar' => 'number/1.png', 'tanggal'=>'28 Mei s.d. 9 Juni 2025'], 
+                                    ['judul' => 'Pengumuman Hasil Seleksi Administrasi', 'gambar' => 'number/2.png', 'tanggal'=>'12 Juni 2025'],
+                                    ['judul' => 'Pelaksanaan Assessment<br><br>', 'gambar' => 'number/3.png', 'tanggal'=>'16 s.d. 20 Juni 2025'],
+                                    ['judul' => 'Pengumuman Hasil Assessment', 'gambar' => 'number/4.png', 'tanggal'=>'3 Juli 2025'],
+                                    ['judul' => 'Pelaksanaan Wawancara<br><br>', 'gambar' => 'number/5.png', 'tanggal'=>'7 s.d. 9 Juli 2025'],
+                                    ['judul' => 'Pengumuman Hasil Wawancara', 'gambar' => 'number/6.png', 'tanggal'=>'16 Juli 2025'],
                                     ['judul' => 'Fit & Proper Test (DPR RI)<br><br>', 'gambar' => 'number/7.png', 'tanggal'=>'Menyesuaikan'],
                                     ['judul' => 'Pengangkatan APK DEN Periode 2026-2030', 'gambar' => 'number/8.png', 'tanggal'=>'Menyesuaikan'],
                                 ];
