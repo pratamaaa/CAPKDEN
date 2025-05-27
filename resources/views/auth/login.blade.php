@@ -69,7 +69,8 @@
                     </div>
 
                     <button type="submit" class="btn btn-primary w-100">Halaman Login</button>
-                    {{-- {!! Nd --}}
+                    {!! NoCaptcha::renderJs() !!}
+                    {!! NoCaptcha::display() !!}
                 </form>
 
                 {{-- <div class="text-center mt-3">
