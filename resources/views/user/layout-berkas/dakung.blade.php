@@ -87,7 +87,7 @@
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const previewFields = ['lamaran', 'rangkap_jabatan', 'cv', 'pidana', 'makalah', 'surat_sehat', 'skck','surat_persetujuan'];
+            const previewFields = ['lamaran', 'rangkap_jabatan', 'cv', 'pidana', 'makalah', 'surat_sehat', 'skck','persetujuan'];
 
             previewFields.forEach(function(name) {
                 const input = document.getElementById(`${name}_input`);
