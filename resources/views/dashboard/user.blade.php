@@ -103,7 +103,7 @@
                                         </style>
                                         
                                         <script>
-                                            const deadline = new Date("May 23, 2025 23:59:59").getTime();
+                                            const deadline = new Date("Jun 5, 2025 23:59:59").getTime();
                                         
                                             const x = setInterval(function () {
                                                 const now = new Date().getTime();
