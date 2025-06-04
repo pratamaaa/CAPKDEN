@@ -80,7 +80,7 @@
                 @php
                     $berkaspelamar = \App\Helpers\Bantuan::berkaspelamar($pel->id);
                 @endphp
-                <td style="width: 200px;">
+                <td class="text-center" style="width: 200px;">
                     @if ($berkaspelamar->count() != 0)
                         <strong>{{ $berkaspelamar->first()->universitas_sarjana }}</strong>
                         {{ $berkaspelamar->first()->jurusan_sarjana }}
@@ -89,7 +89,7 @@
                         <span class="badge bg-danger">Belum diisi</span>
                     @endif
                 </td>
-                <td style="width: 200px;">
+                <td class="text-center" style="width: 200px;">
                     @if ($berkaspelamar->count() != 0)
                         <strong>{{ $berkaspelamar->first()->universitas_magister }}</strong>
                         {{ $berkaspelamar->first()->jurusan_magister }}
@@ -98,7 +98,7 @@
                         <span class="badge bg-danger">Belum diisi</span>
                     @endif
                 </td>
-                <td style="width: 200px;">
+                <td class="text-center" style="width: 200px;">
                     @if ($berkaspelamar->count() != 0)
                         <strong>{{ $berkaspelamar->first()->universitas_doktoral }}</strong>
                         {{ $berkaspelamar->first()->jurusan_doktoral }}
@@ -107,30 +107,32 @@
                         <span class="badge bg-danger">Belum diisi</span>
                     @endif
                 </td>
-                <td style="width: 200px;">
-                    @if ($berkaspelamar->first()->org_pengusul)
-                        {{ $berkaspelamar->first()->org_pengusul }}
+                @php $berkas = $berkaspelamar->first(); @endphp
+
+                <td class="text-center" style="width: 200px;">
+                    @if ($berkas && $berkas->org_pengusul)
+                        {{ $berkas->org_pengusul }}
                     @else
                         <span class="badge bg-danger">Belum diisi</span>
                     @endif
                 </td>
-                <td style="width: 200px;">
-                    @if ($berkaspelamar->first()->rek_pakar1)
-                        {{ $berkaspelamar->first()->rek_pakar1 }}
+                <td class="text-center" style="width: 200px;">
+                    @if ($berkas && $berkas->rek_pakar1)
+                        {{ $berkas->rek_pakar1 }}
                     @else
                         <span class="badge bg-danger">Belum diisi</span>
                     @endif
                 </td>
-                <td style="width: 200px;">
-                    @if ($berkaspelamar->first()->rek_pakar2)
-                        {{ $berkaspelamar->first()->rek_pakar2 }}
+                <td class="text-center" style="width: 200px;">
+                    @if ($berkas && $berkas->rek_pakar2)
+                        {{ $berkas->rek_pakar2 }}
                     @else
                         <span class="badge bg-danger">Belum diisi</span>
                     @endif
                 </td>
-                <td style="width: 200px;">
-                    @if ($berkaspelamar->first()->rek_pakar3)
-                        {{ $berkaspelamar->first()->rek_pakar3 }}
+                <td class="text-center" style="width: 200px;">
+                    @if ($berkas && $berkas->rek_pakar3)
+                        {{ $berkas->rek_pakar3 }}
                     @else
                         <span class="badge bg-danger">Belum diisi</span>
                     @endif
