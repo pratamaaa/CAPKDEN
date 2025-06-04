@@ -32,7 +32,7 @@
                                                         <th class="align-top text-center" colspan="15">Verifikasi Berkas</th>
                                                         <th class="align-top text-center" rowspan="2">Status Administrasi
                                                             Berkas</th>
-                                                        <th class="align-top text-center" rowspan="2">Keterangan</th>
+                                                        <th class="align-top text-center style="min-width: 250px;">Keterangan</th>
                                                         <th class="align-top text-center" rowspan="2">Status Akhir</th>
                                                         <th class="align-top text-center" rowspan="2">Catatan Akhir</th>
                                                         <th class="align-top text-center" rowspan="2">Last Update</th>
@@ -247,7 +247,7 @@
                                                             @php
                                                                 $dok = $pelamardok->first();
                                                             @endphp
-                                                            <td class="text-center">
+                                                            <td class="text-center" style="min-width: 250px;">
                                                                 @if ($dok && isset($dok->verified_by) && $dok->verified_by != '')
                                                                     <span class="badge bg-warning">
                                                                         {{ Bantuan::get_verifikator($dok->verified_by)->name }}
