@@ -40,7 +40,7 @@
 
                                                         <th class="align-top text-center" rowspan="2">Status Administrasi
                                                             Berkas</th>
-                                                        <th class="align-top text-center style="min-width: 250px;">Keterangan</th>
+                                                        <th class="align-top text-center" rowspan="2">Keterangan</th>
                                                         <th class="align-top text-center" rowspan="2">Status Akhir</th>
                                                         <th class="align-top text-center" rowspan="2">Catatan Akhir</th>
                                                         <th class="align-top text-center" rowspan="2">Last Update</th>
@@ -257,7 +257,7 @@
 </td>
 
                                                     
-                                                        <td class="text-center" style="min-width: 250px;">
+                                                        <td class="text-center">
                                                             @if ($dok && $dok->verified_by)
                                                                 <span class="badge bg-warning">
                                                                     {{ Bantuan::get_verifikator($dok->verified_by)->name }}
