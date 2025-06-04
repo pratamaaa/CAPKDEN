@@ -16,6 +16,7 @@
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                     <tr class="header-row">
+                                        <th class="align-top text-center" rowspan="2">Status Update</th>
                                         <th class="align-top text-center" rowspan="2">No</th>
                                         <th class="align-top text-center" rowspan="2">Foto</th>
                                         <th class="align-top text-center" rowspan="2" style="width: 250px;">Nama</th>
@@ -46,9 +47,23 @@
                                 </thead>
                             
                                 <tbody>
+                                    
     @if ($data->count() != 0)
         @foreach ($data as $nourut => $pel)
             <tr>
+                @php
+                                                            $pelamardok = isset($d->userProfile)
+                                                                ? Bantuan::berkaspelamar($d->userProfile->user_id)
+                                                                : collect();
+                                                        @endphp
+                <td class="text-center">
+                    @if ($pelamardok->count() > 0 && $pelamardok->where('updated_at', '>', '2025-05-27')->count() > 0)
+                        <span class="badge bg-warning text-dark">Update</span>
+                    @else
+                        <span class="badge bg-secondary">Tidak Update</span>
+                    @endif
+                </td>
+
                 <td>{{ $nourut + 1 }}</td>
                 <td>
                     @if ($pel->userProfile?->pas_foto)
