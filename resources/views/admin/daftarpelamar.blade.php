@@ -52,10 +52,14 @@
         @foreach ($data as $nourut => $pel)
             <tr>
                 @php
-                                                            $pelamardok = isset($d->userProfile)
-                                                                ? Bantuan::berkaspelamar($d->userProfile->user_id)
-                                                                : collect();
-                                                        @endphp
+                 $pelamardok = isset($d->userProfile)
+                 ? Bantuan::berkaspelamar($d->userProfile->user_id): collect();
+                @endphp
+                 @php
+        $isUpdated = $pelamardok->filter(function($item) {
+            return \Carbon\Carbon::parse($item->updated_at)->gt('2025-05-27');
+        })->count() > 0;
+    @endphp
                 <td class="text-center">
                     @if ($pelamardok->count() > 0 && $pelamardok->where('updated_at', '>', '2025-05-27')->count() > 0)
                         <span class="badge bg-warning text-dark">Update</span>
