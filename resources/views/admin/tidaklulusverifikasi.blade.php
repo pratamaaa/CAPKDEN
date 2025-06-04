@@ -235,19 +235,27 @@
                                                             @endphp
 
                                                             <td class="text-center">
-                                                            @if ($dok && $dok->administrasi_status)
-                                                                @php
-                                                                    $warna_ver = match($dok->administrasi_status) {
-                                                                        'perlu didiskusikan' => 'primary',
-                                                                        'memenuhi syarat' => 'success',
-                                                                        default => 'danger'
-                                                                    };
-                                                                @endphp
-                                                                <span class="badge bg-{{ $warna_ver }}">{{ $dok->administrasi_status }}</span>
-                                                            @else
-                                                                <span class="badge bg-secondary">-</span>
-                                                            @endif
-                                                        </td>
+    @if ($pelamardok->count() != 0)
+        @php
+            $status = strtolower($pelamardok->first()->administrasi_status);
+            if ($status == 'perlu didiskusikan') {
+                $warna_ver = 'primary';
+            } elseif ($status == 'memenuhi syarat') {
+                $warna_ver = 'success';
+            } elseif ($status == 'tidak memenuhi syarat') {
+                $warna_ver = 'danger';
+            } else {
+                $warna_ver = 'secondary';
+            }
+        @endphp
+        <span class="badge bg-{{ $warna_ver }}">
+            {{ ucwords($status) }}
+        </span>
+    @else
+        <span class="badge bg-secondary">-</span>
+    @endif
+</td>
+
                                                     
                                                         <td class="text-center">
                                                             @if ($dok && $dok->verified_by)

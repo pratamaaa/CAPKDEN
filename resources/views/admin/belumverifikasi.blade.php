@@ -229,28 +229,27 @@
                                                             </td>
 
                                                             <td class="text-center">
-                                                                @if ($pelamardok->count() != 0)
-                                                                    @php
-                                                                        if (
-                                                                            $pelamardok->first()->administrasi_status ==
-                                                                            'perlu didiskusikan'
-                                                                        ) {
-                                                                            $warna_ver = 'primary';
-                                                                        } elseif (
-                                                                            $pelamardok->first()->administrasi_status ==
-                                                                            'memenuhi syarat'
-                                                                        ) {
-                                                                            $warna_ver = 'success';
-                                                                        } else {
-                                                                            $warna_ver = 'danger';
-                                                                        }
-                                                                    @endphp
-                                                                    <span
-                                                                        class="badge bg-{{ $warna_ver }}">{{ $pelamardok->first()->administrasi_status }}</span>
-                                                                @else
-                                                                    <span class="badge bg-secondary">-</span>
-                                                                @endif
-                                                            </td>
+    @if ($pelamardok->count() != 0)
+        @php
+            $status = strtolower($pelamardok->first()->administrasi_status);
+            if ($status == 'perlu didiskusikan') {
+                $warna_ver = 'primary';
+            } elseif ($status == 'memenuhi syarat') {
+                $warna_ver = 'success';
+            } elseif ($status == 'tidak memenuhi syarat') {
+                $warna_ver = 'danger';
+            } else {
+                $warna_ver = 'secondary';
+            }
+        @endphp
+        <span class="badge bg-{{ $warna_ver }}">
+            {{ ucwords($status) }}
+        </span>
+    @else
+        <span class="badge bg-secondary">-</span>
+    @endif
+</td>
+
                                                             @php
                                                                 $dok = $pelamardok->first();
                                                             @endphp
