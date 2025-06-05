@@ -52,21 +52,22 @@
         @foreach ($data as $nourut => $pel)
             <tr>
                 @php
-                 $pelamardok = isset($d->userProfile)
-                 ? Bantuan::berkaspelamar($d->userProfile->user_id): collect();
-                @endphp
-                 @php
-        $isUpdated = $pelamardok->filter(function($item) {
-            return \Carbon\Carbon::parse($item->updated_at)->gt('2025-05-27');
-        })->count() > 0;
-    @endphp
-                <td class="text-center">
-                    @if ($pelamardok->count() > 0 && $pelamardok->where('updated_at', '>', '2025-05-27')->count() > 0)
-                        <span class="badge bg-warning text-dark">Update</span>
-                    @else
-                        <span class="badge bg-secondary">Tidak Update</span>
-                    @endif
-                </td>
+    use Carbon\Carbon;
+    $batasTanggal = Carbon::create(2025, 5, 27, 0, 0, 0); // 27 Mei 2025 jam 00:00
+    $pelamardok = \App\Models\UserFiles::where('user_id', $d->userProfile->user_id)->get();
+    $isUpdated = $pelamardok->filter(function ($item) use ($batasTanggal) {
+        return Carbon::parse($item->updated_at)->greaterThan($batasTanggal);
+    })->count() > 0;
+@endphp
+
+<td class="text-center">
+    @if ($isUpdated)
+        <span class="badge bg-warning text-dark">Update</span>
+    @else
+        <span class="badge bg-secondary">Tidak Update</span>
+    @endif
+</td>
+
 
                 <td>{{ $nourut + 1 }}</td>
                 <td>
