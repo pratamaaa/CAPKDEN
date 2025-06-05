@@ -201,11 +201,11 @@ class DashboardController extends Controller
         ->count();
 
     // Assessment dan wawancara
-    // $sudahAssesment = $users->filter(fn($user) => $user->userFiles?->assessment_status !== null)->count();
-    // $belumAssesment = $totalPelamar - $sudahAssesment;
+    $sudahAssesment = $users->filter(fn($user) => $user->userFiles?->assessment_status !== null)->count();
+    $belumAssesment = $totalPelamar - $sudahAssesment;
 
-    // $sudahWawancara = $users->filter(fn($user) => $user->userFiles?->wawancara_status !== null)->count();
-    // $belumWawancara = $totalPelamar - $sudahWawancara;
+    $sudahWawancara = $users->filter(fn($user) => $user->userFiles?->wawancara_status !== null)->count();
+    $belumWawancara = $totalPelamar - $sudahWawancara;
 
     // Chart Pie Kalangan
     $kalanganData = $users->groupBy(fn($user) => $user->userProfile?->kalangan ?? 'Tidak Diketahui')->map->count();
