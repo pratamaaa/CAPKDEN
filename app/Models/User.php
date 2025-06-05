@@ -27,9 +27,9 @@ class User extends Authenticatable
         return $this->hasOne(UserProfile::class, 'user_id', 'id');
     }
 
-   public function userFiles()
+    public function userFiles(): HasOne
     {
-        return $this->hasMany(UserFiles::class, 'user_id', 'id');
+        return $this->hasOne(UserFiles::class, 'user_id', 'id');
     }
     
     public function profile()
