@@ -29,11 +29,11 @@
 
         <h5 class="fw-bold mb-3">Riwayat Pengalaman Jabatan</h5>
 
-        <button class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#modalTambahPengalaman"
+        {{-- <button class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#modalTambahPengalaman"
             {{ $userFiles != null && $userFiles->status_data == 1 ? 'disabled' : '' }}>
             <i class="fa fa-plus" aria-hidden="true"></i> Tambah Pengalaman
             {{ $userFiles != null && $userFiles->status_data == 1 ? '(Berkas Sudah Di Submit)' : '' }}
-        </button>
+        </button> --}}
 
         {{-- Tabel --}}
         <table class="table table-bordered">
@@ -62,10 +62,10 @@
                             <td>{{ $pengalaman->uraian_jabatan }}</td>
                             <td>
                                 
-                                <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
+                                {{-- <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
                                     data-bs-target="#modalEditPengalaman{{ $pengalaman->id }}">
                                     <i class="fas fa-pen"></i>
-                                </button>
+                                </button> --}}
 
                                 
                                 <form action="{{ route('pengalaman.destroy', $pengalaman->id) }}"
