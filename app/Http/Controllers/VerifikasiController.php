@@ -38,6 +38,7 @@ class VerifikasiController extends Controller
                     $query->where('status_data', '1');
                 })
                 ->with(['userProfile', 'userFiles'])
+                ->orderBy('created_at', 'desc')
                 ->get();
         return view('admin.verifikasi', compact('data','dokumenList', 'greeting'));
     }
