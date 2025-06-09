@@ -98,15 +98,15 @@
                                                             </button>
 
                                                             <!-- Tombol Edit -->
-                                                            <button type="button" class="btn btn-sm btn-primary"
+                                                            <!-- <button type="button" class="btn btn-sm btn-primary"
                                                              {{ ($userFiles != null && $userFiles->status_data == 1) ? 'disabled' : '' }}
                                                                 data-bs-toggle="modal"
                                                                 data-bs-target="#modalEdit{{ $field }}">
                                                                 <i class="fas fa-pen"></i>
-                                                            </button>
+                                                            </button> -->
 
                                                             <!-- Tombol Hapus -->
-                                                            <form
+                                                            <!-- <form
                                                                 action="{{ route('userfiles.destroy', ['field' => $field]) }}"
                                                                 method="POST" style="display:inline;">
                                                                 @csrf
@@ -116,7 +116,7 @@
                                                                     onclick="return confirm('Yakin ingin menghapus dokumen ini?')">
                                                                     <i class="fas fa-trash-alt"></i>
                                                                 </button>
-                                                            </form>
+                                                            </form> -->
 
                                                             <!-- Modal Preview -->
                                                             <div class="modal fade" id="modalPreview{{ $field }}" tabindex="-1"
