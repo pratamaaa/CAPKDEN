@@ -62,10 +62,10 @@
                             <td>{{ $pengalaman->uraian_jabatan }}</td>
                             <td>
                                 
-                                {{-- <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
+                                <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
                                     data-bs-target="#modalEditPengalaman{{ $pengalaman->id }}">
                                     <i class="fas fa-pen"></i>
-                                </button> --}}
+                                </button>
 
                                 
                                 <form action="{{ route('pengalaman.destroy', $pengalaman->id) }}"

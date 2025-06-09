@@ -69,13 +69,13 @@
                     </div>
 
                     <button type="submit" class="btn btn-primary w-100">Halaman Login</button>
-                    {!! NoCaptcha::renderJs() !!}
-                    {!! NoCaptcha::display() !!}
+                    {{-- {!! NoCaptcha::renderJs() !!}
+                    {!! NoCaptcha::display() !!} --}}
                 </form>
 
-                {{-- <div class="text-center mt-3">
+                <div class="text-center mt-3">
                     <small>Belum punya akun? <a href="{{ url('/registrasi') }}">Daftar di sini</a></small>
-                </div> --}}
+                </div>
             </div>
         </div>
     </div>

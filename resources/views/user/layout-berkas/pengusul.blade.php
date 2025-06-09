@@ -125,11 +125,11 @@
         {{-- <button type="submit" form="uploadFormPengusul" class="btn btn-success px-4 py-2">
             <i class="fa fa-upload" aria-hidden="true"></i> Simpan & Upload
         </button> --}}
-        {{-- <button type="submit" form="uploadFormPengusul" class="btn btn-success px-4 py-2"
+        <button type="submit" form="uploadFormPengusul" class="btn btn-success px-4 py-2"
             {{ $userFiles != null && $userFiles->status_data == 1 ? 'disabled' : '' }}>
             <i class="fa fa-upload" aria-hidden="true"></i> Simpan & Upload
             {{ $userFiles != null && $userFiles->status_data == 1 ? '(Berkas Sudah Di Submit)' : '' }}
-        </button> --}}
+        </button>
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', function() {

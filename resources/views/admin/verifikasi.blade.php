@@ -25,6 +25,7 @@
                                             <table id="example1" class="table table-bordered table-striped">
                                                 <thead>
                                                     <tr class="header-row">
+                                                        <th class="align-top text-center" rowspan="2">Status Update</th>
                                                         <th class="align-top text-center" rowspan="2">No</th>
                                                         <th class="align-top text-center" rowspan="2">Foto</th>
                                                         <th class="align-top text-center" rowspan="2" style="width: 250px;">Nama</th>
@@ -81,6 +82,24 @@
                                                         @endphp
 
                                                         <tr>
+                                                            @php
+    $batasTanggal = \Carbon\Carbon::create(2025, 5, 27, 0, 0, 0); // ✅ pakai backslash
+    $pelamardok = \App\Models\UserFiles::where('user_id', $d->userProfile->user_id)->get();
+
+    $isUpdated = $pelamardok->filter(function ($item) use ($batasTanggal) {
+        return \Carbon\Carbon::parse($item->updated_at)->greaterThan($batasTanggal);
+    })->count() > 0;
+@endphp
+
+
+<td class="text-center">
+    @if ($isUpdated)
+        <span class="badge bg-warning text-dark">Update</span>
+    @else
+        <span class="badge bg-secondary">Tidak Update</span>
+    @endif
+</td>
+
                                                             <td>{{ $index + 1 }}</td>
                                                             <td>
                                                                 @if (optional($d->userProfile)->pas_foto)
