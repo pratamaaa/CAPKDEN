@@ -25,8 +25,8 @@
                                             <table id="example1" class="table table-bordered table-striped">
                                                 <thead>
                                                     <tr class="header-row">
-                                                        <th class="align-top text-center" rowspan="2">Status Update</th>
                                                         <th class="align-top text-center" rowspan="2">No</th>
+                                                        <th class="align-top text-center" rowspan="2">Status Update</th>
                                                         <th class="align-top text-center" rowspan="2">Foto</th>
                                                         <th class="align-top text-center" rowspan="2" style="width: 250px;">Nama</th>
                                                         <th class="align-top text-center" rowspan="2">Calon Kalangan</th>
@@ -91,6 +91,7 @@
     })->count() > 0;
 @endphp
 
+<td>{{ $index + 1 }}</td>
 
 <td class="text-center">
     @if ($isUpdated)
@@ -100,7 +101,7 @@
     @endif
 </td>
 
-                                                            <td>{{ $index + 1 }}</td>
+                                                            
                                                             <td>
                                                                 @if (optional($d->userProfile)->pas_foto)
                                                                     <img src="{{ asset('uploads/pas_foto/' . $d->userProfile->pas_foto) }}"
