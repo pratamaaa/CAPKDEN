@@ -46,4 +46,15 @@ class User extends Authenticatable
 {
     return $this->hasMany(HasilWawancara::class, 'user_id');
 }
+
+public function userExperiences()
+{
+    return $this->hasMany(UserExperience::class, 'user_id', 'id');
+}
+
+public function latestExperience()
+{
+    return $this->hasOne(UserExperience::class)->latestOfMany();
+}
+
 }

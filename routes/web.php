@@ -85,6 +85,7 @@ Route::middleware(['auth', 'role:verifikator'])->group(function () {
 
     // VERIFIKASI
     Route::get('/verifikasi', [VerifikasiController::class, 'index'])->name('verifikasi.index');
+    Route::get('/detail-pelamar', [VerifikasiController::class, 'detailPelamar'])->name('verifikasi.detail-pelamar');
     Route::put('/verifikasi/update-semua', [VerifikasiController::class, 'updateSemua'])->name('verifikasi.updateSemua');
     Route::get('/verifikasiform', [VerifikasiController::class, 'verifikasi_form'])->name('verifikasiform');
     Route::get('/statuskahirform', [VerifikasiController::class, 'statuskahirform'])->name('statuskahirform');

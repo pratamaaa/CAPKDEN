@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\UserFiles;
-use App\Models\User;
-use App\Models\UserProfile;
-use Illuminate\Support\Facades\Session;
 use App\Helpers\Bantuan;
+use App\Models\User;
+use App\Models\UserFiles;
+use App\Models\UserProfile;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 
 class VerifikasiController extends Controller
@@ -29,18 +29,19 @@ class VerifikasiController extends Controller
         }
     }
 
-    public function index()
+    public function detailPelamar()
     {
         $greeting = $this->getGreeting();
         $dokumenList = UserFiles::with('userProfile.user')->get();
         $data = User::where('role', 'user')
-                ->whereHas('userFiles', function ($query) {
-                    $query->where('status_data', '1');
-                })
-                ->with(['userProfile', 'userFiles'])
-                ->orderBy('name')
-                ->get();
-        return view('admin.verifikasi', compact('data','dokumenList', 'greeting'));
+                    ->whereHas('userFiles', function ($query) {
+                        $query->where('status_data', '1');
+                    })
+                    ->with(['userProfile', 'userFiles', 'userExperiences'])
+                    ->orderBy('name')
+                    ->get();
+
+        return view('admin.detail-pelamar', compact('data','dokumenList', 'greeting'));
     }
 
     public function sudahverifikasi()

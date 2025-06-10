@@ -29,7 +29,7 @@
     <!-- summernote -->
     <link rel="stylesheet" href="{{ asset('bs/plugins/summernote/summernote-bs4.min.css') }}">
     <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
     <!-- DataTables -->
     <link rel="stylesheet" href="{{ asset('bs/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('bs/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
@@ -220,11 +220,23 @@
                         <p>Daftar Pelamar</p>
                     </a>
                 <li class="nav-item">
-                    <a href="{{ url('/verifikasi') }}" class="nav-link">
-                        <i class="nav-icon far fa-check-square"></i>
-                        <p>Verifikasi Data</p>
-                    </a>
-                </li>
+    <li class="nav-item has-treeview">
+    <a href="#" class="nav-link">
+        <i class="nav-icon far fa-check-square"></i>
+        <p>
+            Verifikasi Data
+            <i class="right fas fa-angle-left"></i>
+        </p>
+    </a>
+    <ul class="nav nav-treeview">
+        <li class="nav-item">
+            <a href="{{ url('/detail-pelamar') }}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Detail Pelamar</p>
+            </a>
+        </li>
+    </ul>
+</li>
                 <li class="nav-item">
                     <a href="{{ url('/assessment') }}" class="nav-link">
                         <i class="nav-icon far fa-chart-bar"></i>
