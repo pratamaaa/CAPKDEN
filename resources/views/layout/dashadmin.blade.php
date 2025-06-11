@@ -221,18 +221,27 @@
                     </a>
                 <li class="nav-item">
     <li class="nav-item has-treeview">
-    <a href="#" class="nav-link">
+    <a href="{{ url('/detail-pelamar') }}" class="nav-link">
         <i class="nav-icon far fa-check-square"></i>
         <p>
-            Verifikasi Data
+            Verifikasi
             <i class="right fas fa-angle-left"></i>
         </p>
     </a>
     <ul class="nav nav-treeview">
         <li class="nav-item">
+            <a href="{{ url('/verifikasi') }}" class="nav-link">
+                
+                <i class="nav-icon far fa-check-circle"></i>
+                <p>Verifikasi Pelamar</p>
+            </a>
+        </li>
+    </ul>
+    <ul class="nav nav-treeview">
+        <li class="nav-item">
             <a href="{{ url('/detail-pelamar') }}" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Detail Pelamar</p>
+                <i class="nav-icon far fa-list-alt"></i>
+                <p>Detail</p>
             </a>
         </li>
     </ul>

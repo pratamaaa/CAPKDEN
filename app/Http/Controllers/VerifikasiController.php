@@ -29,6 +29,20 @@ class VerifikasiController extends Controller
         }
     }
 
+    public function index()
+    {
+        $greeting = $this->getGreeting();
+        $dokumenList = UserFiles::with('userProfile.user')->get();
+        $data = User::where('role', 'user')
+                    ->whereHas('userFiles', function ($query) {
+                        $query->where('status_data', '1');
+                    })
+                    ->with(['userProfile', 'userFiles', 'userExperiences'])
+                    ->orderBy('name')
+                    ->get();
+
+        return view('admin.verifikasi', compact('data','dokumenList', 'greeting'));
+    }
     public function detailPelamar()
     {
         $greeting = $this->getGreeting();
