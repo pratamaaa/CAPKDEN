@@ -247,13 +247,13 @@
     </ul>
 </li>
                 <li class="nav-item">
-                    <a href="{{ url('/assessment') }}" class="nav-link">
+                    <a href="#" class="nav-link">
                         <i class="nav-icon far fa-chart-bar"></i>
                         <p>Hasil Assesment</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ url('/wawancara') }}" class="nav-link">
+                    <a href="#" class="nav-link">
                         <i class="nav-icon far fa-user"></i>
                         <p>Hasil Wawancara</p>
                     </a>
