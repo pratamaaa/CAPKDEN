@@ -183,72 +183,81 @@ class VerifikasiController extends Controller
         return view('admin.statuskahirform', compact('user_id'));
     }
 
-    public function verifikasi_saveupdate(Request $request){
-        $status_ktp = ($request->post('status_ktp') == '' ? 'belum diverifikasi' : $request->post('status_ktp'));
-        $status_ijazah_sarjana = ($request->post('status_ijazah_sarjana') == '' ? 'belum diverifikasi' : $request->post('status_ijazah_sarjana'));
-        $status_transkrip_sarjana = ($request->post('status_transkrip_sarjana') == '' ? 'belum diverifikasi' : $request->post('status_transkrip_sarjana'));
-        $status_ijazah_magister = ($request->post('status_ijazah_magister') == '' ? 'belum diverifikasi' : $request->post('status_ijazah_magister'));
-        $status_transkrip_magister = ($request->post('status_transkrip_magister') == '' ? 'belum diverifikasi' : $request->post('status_transkrip_magister'));
-        $status_ijazah_doktoral = ($request->post('status_ijazah_doktoral') == '' ? 'belum diverifikasi' : $request->post('status_ijazah_doktoral'));
-        $status_transkrip_doktoral = ($request->post('status_transkrip_doktoral') == '' ? 'belum diverifikasi' : $request->post('status_transkrip_doktoral'));
-        $status_upl_org = ($request->post('status_upl_org') == '' ? 'belum diverifikasi' : $request->post('status_upl_org'));
-        $status_upl_rek_pakar1 = ($request->post('status_upl_rek_pakar1') == '' ? 'belum diverifikasi' : $request->post('status_upl_rek_pakar1'));
-        $status_upl_rek_pakar2 = ($request->post('status_upl_rek_pakar2') == '' ? 'belum diverifikasi' : $request->post('status_upl_rek_pakar2'));
-        $status_upl_rek_pakar3 = ($request->post('status_upl_rek_pakar3') == '' ? 'belum diverifikasi' : $request->post('status_upl_rek_pakar3'));
-        $status_lamaran = ($request->post('status_lamaran') == '' ? 'belum diverifikasi' : $request->post('status_lamaran'));
-        $status_rangkap_jabatan = ($request->post('status_rangkap_jabatan') == '' ? 'belum diverifikasi' : $request->post('status_rangkap_jabatan'));
-        $status_cv = ($request->post('status_cv') == '' ? 'belum diverifikasi' : $request->post('status_cv'));
-        $status_pidana = ($request->post('status_pidana') == '' ? 'belum diverifikasi' : $request->post('status_pidana'));
-        $status_makalah = ($request->post('status_makalah') == '' ? 'belum diverifikasi' : $request->post('status_makalah'));
-        $status_surat_sehat = ($request->post('status_surat_sehat') == '' ? 'belum diverifikasi' : $request->post('status_surat_sehat'));
-        $status_skck = ($request->post('status_skck') == '' ? 'belum diverifikasi' : $request->post('status_skck'));
-        $status_persetujuan = ($request->post('status_persetujuan') == '' ? 'belum diverifikasi' : $request->post('status_persetujuan'));
-        $status_verifikasi = $request->post('status_verifikasi');
-        $catatan_verifikasi = $request->post('catatan_verifikasi');
-        $user_id = $request->post('user_id');
+    public function verifikasi_saveupdate(Request $request)
+{
+    /* ---------- 1. Validasi ---------- */
+    $request->validate([
+        'user_id'           => 'required|exists:user_files,user_id',
+        'status_verifikasi' => 'required|in:memenuhi syarat,perlu didiskusikan,tidak memenuhi syarat',
+        'catatan_verifikasi'=> 'nullable|string',
+    ]);
 
-        $data = ['status_ktp' => $status_ktp,
-                 'status_ijazah_sarjana' => $status_ijazah_sarjana,
-                 'status_transkrip_sarjana' => $status_transkrip_sarjana,
-                 'status_ijazah_magister' => $status_ijazah_magister,
-                 'status_transkrip_magister' => $status_transkrip_magister,
-                 'status_ijazah_doktoral' => $status_ijazah_doktoral,
-                 'status_transkrip_doktoral' => $status_transkrip_doktoral,
-                 'status_upl_org' => $status_upl_org,
-                 'status_upl_rek_pakar1' => $status_upl_rek_pakar1,
-                 'status_upl_rek_pakar2' => $status_upl_rek_pakar2,
-                 'status_upl_rek_pakar3' => $status_upl_rek_pakar3,
-                 'status_lamaran' => $status_lamaran,
-                 'status_rangkap_jabatan' => $status_rangkap_jabatan,
-                 'status_cv' => $status_cv,
-                 'status_pidana' => $status_pidana,
-                 'status_makalah' => $status_makalah,
-                 'status_surat_sehat' => $status_surat_sehat,
-                 'status_skck' => $status_skck,
-                 'status_persetujuan' => $status_persetujuan,
-                 'verified_by' => auth()->user()->id,
-                 'verified_at' => date('Y-m-d H:i:s'),
-                 'administrasi_status' => $status_verifikasi,
-                 'administrasi_catatan' => $catatan_verifikasi,
-                ];
-        
-        $pelamar = DB::table('users as us')
-                   ->join('user_profiles as pro', 'us.id', '=', 'pro.user_id')
-                   ->where('us.id', $user_id)->first();
-        $depan = ($pelamar->gelar_depan != '' ? $pelamar->gelar_depan : '');
-        $nama = $pelamar->name;
-        $belakang = ($pelamar->gelar_belakang != '' ? $pelamar->gelar_belakang : '');
-        $namalengkap_pelamar = str_replace('-', '', $depan.$nama.','. $belakang);
+    /* ---------- 2. Build array status bidang ---------- */
+    $statusFields = [
+        'status_ktp',
+        'status_ijazah_sarjana',
+        'status_transkrip_sarjana',
+        'status_ijazah_magister',
+        'status_transkrip_magister',
+        'status_ijazah_doktoral',
+        'status_transkrip_doktoral',
+        'status_upl_org',
+        'status_upl_rek_pakar1',
+        'status_upl_rek_pakar2',
+        'status_upl_rek_pakar3',
+        'status_lamaran',
+        'status_rangkap_jabatan',
+        'status_cv',
+        'status_pidana',
+        'status_makalah',
+        'status_surat_sehat',
+        'status_skck',
+        'status_persetujuan',
+    ];
 
-        $simpan = DB::table('user_files')->where('user_id', $user_id)->update($data);
-        if ($simpan){
-            $pesan = 'Verifikasi berkas '.$namalengkap_pelamar.' sukses';
-        }else{
-            $pesan = 'Verifikasi berkas '.$namalengkap_pelamar.' gagal';
-        }
+    // setiap kolom di‑isi value request atau default “belum diverifikasi”
+    $data = collect($statusFields)
+        ->mapWithKeys(fn ($field) => [$field => $request->input($field, 'belum diverifikasi')])
+        ->toArray();
 
-        return redirect()->route('verifikasi.index')->with('message', $pesan);
+    /* ---------- 3. Field inti administrasi ---------- */
+    $data += [
+        'administrasi_status'  => $request->status_verifikasi,
+        'administrasi_catatan' => $request->catatan_verifikasi,
+        'verified_by'          => auth()->id(),
+        'verified_at'          => now(),           // pakai Carbon
+    ];
+
+    /* ---------- 4. Propagasi otomatis ---------- */
+    if ($request->status_verifikasi === 'tidak memenuhi syarat') {
+    $data['assessment_status'] = 'tidak lulus';
+    $data['wawancara_status']  = 'tidak lulus';
+    } else {
+        // biarkan kosong agar tidak override status 'menunggu'
+        unset($data['assessment_status'], $data['wawancara_status']);
     }
+
+
+    /* ---------- 5. Simpan sekali saja ---------- */
+    $updated = DB::table('user_files')
+        ->where('user_id', $request->user_id)
+        ->update($data);
+
+    /* ---------- 6. Ambil nama pelamar untuk notifikasi ---------- */
+    $pelamar = User::with('userProfile')->find($request->user_id);
+    $namaLengkap = trim(
+        ($pelamar->userProfile->gelar_depan ?? '').' '.
+        $pelamar->name.' '.
+        ($pelamar->userProfile->gelar_belakang ?? '')
+    );
+
+    $pesan = $updated
+        ? "Verifikasi berkas {$namaLengkap} sukses"
+        : "Verifikasi berkas {$namaLengkap} gagal";
+
+    return redirect()->route('verifikasi.index')->with('message', $pesan);
+}
+
 
     public function statusakhirsave(Request $request)
 {

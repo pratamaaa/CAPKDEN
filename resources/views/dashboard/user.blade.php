@@ -336,7 +336,7 @@
                                     </thead>
                                     <tbody>
                                         @foreach ([
-                                        ['label' => 'Administrasi', 'status' => $userfiles?->administrasi_status, 'catatan' => $userfiles?->administrasi_catatan],
+                                        ['label' => 'Administrasi', 'status' => $userfiles?->status_akhir, 'catatan' => $userfiles?->catatan_akhir],
                                         ['label' => 'Assesment', 'status' => $userfiles?->assessment_status, 'catatan' => $userfiles?->assessment_catatan],
                                         ['label' => 'Wawancara', 'status' => $userfiles?->wawancara_status, 'catatan' => $userfiles?->wawancara_catatan],
                                         // ['label' => 'Fit and Proper Test', 'status' => $userfiles?->propertest_status, 'catatan' => $userfiles?->propertest_catatan],
@@ -351,14 +351,14 @@
                                                 $statusText = match ($item['status']) {
                                                     'lulus' => 'Lulus',
                                                     'tidak lulus' => 'Tidak Lulus',
-                                                    default => 'Menunggu',
+                                                    default => '-',
                                                 };
                                             @endphp
                                             <tr>
                                                 <td>{{ $index + 1 }}</td>
                                                 <td>{{ $item['label'] }}</td>
                                                 <td>
-                                                    {{-- <span class="badge {{ $badgeClass }}">{{ $statusText }}</span> --}}
+                                                    <span class="badge {{ $badgeClass }}">{{ $statusText }}</span>
                                                 </td>
                                                 {{-- <td>{{ $item['catatan'] ?? '-' }}</td> --}}
                                             </tr>
