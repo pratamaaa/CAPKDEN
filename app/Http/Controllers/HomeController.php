@@ -14,14 +14,14 @@ class HomeController extends Controller
 {
     public function homepage(){
         
-        $data['jadwalseleksi'] = [['judul' => 'Pengumuman Pendaftaran Calon Anggota DEN', 'gambar' => 'number/1.png', 'tanggal'=>'27 Mei s.d. 5 Juni 2025'], 
-                                    ['judul' => 'Pengumuman Hasil Seleksi Administrasi', 'gambar' => 'number/2.png', 'tanggal'=>'12 Juni 2025'],
-                                    ['judul' => 'Pelaksanaan Assessment<br><br>', 'gambar' => 'number/3.png', 'tanggal'=>'16 s.d. 20 Juni 2025'],
-                                    ['judul' => 'Pengumuman Hasil Assessment', 'gambar' => 'number/4.png', 'tanggal'=>'3 Juli 2025'],
-                                    ['judul' => 'Pelaksanaan Wawancara<br><br>', 'gambar' => 'number/5.png', 'tanggal'=>'7 s.d. 9 Juli 2025'],
-                                    ['judul' => 'Pengumuman Hasil Wawancara', 'gambar' => 'number/6.png', 'tanggal'=>'16 Juli 2025'],
-                                    ['judul' => 'Fit & Proper Test (DPR RI)<br><br>', 'gambar' => 'number/7.png', 'tanggal'=>'Menyesuaikan'],
-                                    ['judul' => 'Pengangkatan APK DEN Periode 2026-2030', 'gambar' => 'number/8.png', 'tanggal'=>'Menyesuaikan'],
+        $data['jadwalseleksi'] = [['judul' => 'Pengumuman Pendaftaran Calon Anggota DEN', 'gambar' => 'number/1.png', 'tanggal'=>''], 
+                                    ['judul' => 'Pengumuman Hasil Seleksi Administrasi', 'gambar' => 'number/2.png', 'tanggal'=>''],
+                                    ['judul' => 'Pelaksanaan Assessment<br><br>', 'gambar' => 'number/3.png', 'tanggal'=>''],
+                                    ['judul' => 'Pengumuman Hasil Assessment', 'gambar' => 'number/4.png', 'tanggal'=>''],
+                                    ['judul' => 'Pelaksanaan Wawancara<br><br>', 'gambar' => 'number/5.png', 'tanggal'=>''],
+                                    ['judul' => 'Pengumuman Hasil Wawancara', 'gambar' => 'number/6.png', 'tanggal'=>''],
+                                    ['judul' => 'Fit & Proper Test (DPR RI)<br><br>', 'gambar' => 'number/7.png', 'tanggal'=>''],
+                                    ['judul' => 'Pengangkatan APK DEN Periode 2026-2030', 'gambar' => 'number/8.png', 'tanggal'=>''],
                                 ];
         $data['syarat'] = DB::table('persyaratan')->orderBy('urutan', 'asc');
         return view('homepage', $data);
