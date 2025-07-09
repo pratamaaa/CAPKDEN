@@ -50,6 +50,7 @@ class VerifikasiController extends Controller
         $data = User::where('role', 'user')
                     ->whereHas('userFiles', function ($query) {
                         $query->where('status_data', '1');
+                        $query->whereIn('administrasi_status', ['memenuhi syarat']);
                     })
                     ->with(['userProfile', 'userFiles', 'userExperiences'])
                     ->orderBy('name')
