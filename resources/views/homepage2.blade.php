@@ -1,6 +1,6 @@
 @extends('layout/main')
 @section('content')
-    <div class="main-banner wow fadeIn" id="top" data-wow-duration="1s" data-wow-delay="0.5s">
+    {{-- <div class="main-banner wow fadeIn" id="top" data-wow-duration="1s" data-wow-delay="0.5s">
         <div class="container">
             <div class="">
                 <div class="" data-wow-duration="1s" data-wow-delay="0.5s">
@@ -8,7 +8,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     {{-- <div id="free-quote" class="free-quote">
         <div class="container">
