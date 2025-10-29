@@ -2,7 +2,9 @@
 <html lang="en">
 
 <head>
-    <meta name="robots" content="noindex">
+    <meta name="description" content="Portal resmi Dewan Energi Nasional — informasi kebijakan energi, data dan publikasi nasional.">
+<meta name="robots" content="index, follow">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
