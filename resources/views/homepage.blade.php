@@ -44,11 +44,11 @@
     }
   </style>
 
-  <div id="customCarousel" class="carousel slide" data-bs-ride="carousel">
+  {{-- <div id="customCarousel" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
       <div class="carousel-item active">
         <img src="{{ asset('bs/assets/images/pengumuman-assessment.png') }}" class="d-block w-100" alt="Slide 1">
-      </div>
+      </div> --}}
       {{-- <div class="carousel-item">
         <img src="{{ asset('bs/assets/images/slidebannerden3.png') }}" class="d-block w-100" alt="Slide 2">
       </div> --}}
