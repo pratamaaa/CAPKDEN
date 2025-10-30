@@ -2,9 +2,8 @@
 <html lang="en">
 
 <head>
-    <meta name="description" content="Portal resmi Dewan Energi Nasional — informasi kebijakan energi, data dan publikasi nasional.">
-<meta name="robots" content="index, follow">
-
+    
+    <meta name="google-site-verification" content="oxhFYnN80KhRhDVHK2VwcP0SjZeya5_gcLh8BB9Mddk" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
